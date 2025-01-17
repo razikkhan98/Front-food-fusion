@@ -1,0 +1,48 @@
+/* -----Color Code----- */
+:root {
+  --admin-color: #a8e6cf;
+  --admin-light-color: #cbf0e2;
+  --cashier-main-color: #d79555;
+  --cashier-color: #ffdab9;
+  --cashier-light-color: #ffe9d5;
+  --staff-color: #fff9b0;
+  --captain-color: #e3d6f7;
+  --chef-color: #ffb3ab;
+  --light-color: #f1f1f1;
+  --red-color: #dc143c;
+  --green-color: #94d82d;
+  --yellow-color: #ffd700;
+  --purple-color: #6a5acd;
+}
+
+.bg-admin {
+  background-color: var(--admin-color);
+}
+
+.cashier-main-text-color {
+  color: var(--cashier-main-color);
+}
+.cashier-main-bg-color {
+  background-color: var(--cashier-main-color);
+}
+.cashier-light-bg-color {
+  background-color: var(--cashier-light-color);
+}
+
+
+.background-img {
+  background-image: url(../src/Components/Assets/Images/background/background-img.png);
+  height: 100vh;
+}
+
+/* ---------right side bar-------------- */
+
+/* --------------- scroll bar css ----------------- */
+.order-card-scroll::-webkit-scrollbar {
+  display: none;
+}
+.slick-current img {
+  border: 4px solid var(--cashier-main-color);
+  border-radius: 15px;
+}
+
