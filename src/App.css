@@ -28,7 +28,27 @@
 .cashier-light-bg-color {
   background-color: var(--cashier-light-color);
 }
-
+.text-light-green{
+  color: #2FDA32;
+}
+.bg-light-green{
+  background-color: rgba(47, 218, 50, 0.05);
+}
+.text-color-red{
+  color: #DA322F;
+}
+.bg-color-red{
+  background-color: rgba(218, 50, 47, 0.05);
+}
+.menu-green-borderCard{
+  border-left: 3px solid #2FDA32;
+}
+.menu-red-borderCard{
+  border-left: 3px solid #DA322F;
+}
+.bg-light-yellow{
+  background-color: rgba(255, 215, 0, 0.1);
+}
 
 .background-img {
   background-image: url(../src/Components/Assets/Images/background/background-img.png);
@@ -38,9 +58,12 @@
 /* ---------right side bar-------------- */
 
 /* --------------- scroll bar css ----------------- */
-.order-card-scroll::-webkit-scrollbar {
+.hidden-scroll::-webkit-scrollbar {
   display: none;
 }
+
+/* --------------------------- */
+
 .slick-current img {
   border: 4px solid var(--cashier-main-color);
   border-radius: 15px;
