@@ -10,7 +10,7 @@ import StaffData from "../Pages/StaffData/staffdata";
 const RouteRoutes = () => {
   return (
     <>
-      <Router>
+      {/* <Router>
         <Routes>
           <Route path="/" element={<UserLogin />}></Route>
           <Route path="/home" element={<Home />}></Route>
@@ -21,7 +21,7 @@ const RouteRoutes = () => {
           <Route path="/order/:tableNo" element={<Order />}></Route>
           <Route path="/staffdata" element={<StaffData />}></Route>
         </Routes>
-      </Router>
+      </Router> */}
     </>
   );
 };
