@@ -1,23 +1,21 @@
 import React, { useState } from "react";
 import LeftSideNavbar from "../../Common/SideNavbar/leftSideNavbar.jsx";
 import RightSidebar from "../../Common/SideNavbar/rightSideNavbar.jsx";
-import { connect, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 // import img
-// import Toggle from '../../Assets/Images/sidebarImg/toggle.png'
 import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
-import Button from "../../Common/button/button.jsx";
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
-import Navbar from "../../Common/Navbar/navbar.jsx";
 import { useParams } from "react-router-dom";
-import { TableBooking } from "../../Common/Redux/TableBooking/tableBookingSlice.jsx";
-// import FoodCard from "../../Common/Test/menuItems.jsx";
+// import { TableBooking } from "../../Common/Redux/TableBooking/tableBookingSlice.jsx";
+import { TableBooking } from "../../Redux/Slice/TableBooking/tableBookingSlice.jsx"
+
 const Order = () => {
   const {
     register,
     handleSubmit,
-    setValue,watch,
+    watch,
     formState: { errors },
   } = useForm();
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);

@@ -20,7 +20,7 @@ const Home = () => {
     {/* Main Content Area */}
     <div className={`flex-grow p-4 transition-all duration-300`}>
     <h1>Table</h1>
-      <div className={`grid ${isRightSidebarOpen == true ? "grid-cols-4" : "grid-cols-5" } gap-4`}>
+      <div className={`grid ${isRightSidebarOpen === true ? "grid-cols-4" : "grid-cols-5" } gap-4`}>
         {[1, 2, 3, 4, 5, 6].map((i) => (
           <div key={i} onClick={toggleRightSidebar} className="bg-white rounded-lg shadow-md p-4 w-56">
             <h2>Card {i}</h2>

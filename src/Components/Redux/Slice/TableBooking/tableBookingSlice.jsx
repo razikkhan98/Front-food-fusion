@@ -1,6 +1,6 @@
 // cartReducer.js
 import { createSlice } from "@reduxjs/toolkit";
-import { TableBookingAct } from "./tableBookingAction";
+import { TableBookingAct } from "../../Action/TableBooking/tableBookingAction";
 export const initialState = {
   TableBooking: [],
 };

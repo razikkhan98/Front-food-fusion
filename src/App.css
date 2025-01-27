@@ -1,4 +1,21 @@
-/* -----Color Code----- */
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  /* font-family: 'Poppins', sans-serif; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* 
+ ========================== 
+
+ Color Code Scheme
+
+ ========================== 
+*/
+
 :root {
   --admin-color: #a8e6cf;
   --admin-light-color: #cbf0e2;
@@ -15,40 +32,177 @@
   --purple-color: #6a5acd;
 }
 
+/* 
+ =========================
+
+ Background Color Scheme
+
+ ========================= 
+*/
+
 .bg-admin {
   background-color: var(--admin-color);
 }
 
-.cashier-main-text-color {
-  color: var(--cashier-main-color);
-}
 .cashier-main-bg-color {
   background-color: var(--cashier-main-color);
 }
+
 .cashier-light-bg-color {
   background-color: var(--cashier-light-color);
 }
-.text-light-green{
-  color: #2FDA32;
-}
+
 .bg-light-green{
   background-color: rgba(47, 218, 50, 0.05);
 }
-.text-color-red{
-  color: #DA322F;
-}
+
 .bg-color-red{
   background-color: rgba(218, 50, 47, 0.05);
 }
+
+.bg-light-yellow{
+  background-color: rgba(255, 215, 0, 0.1);
+}
+
+/* 
+  =========================
+
+  Text Color Scheme
+
+  =========================
+*/
+
+.cashier-main-text-color {
+  color: var(--cashier-main-color);
+}
+
+.text-light-green{
+  color: #2FDA32;
+}
+
+.text-color-red{
+  color: #DA322F;
+}
+
+
+
+/* 
+  =========================
+
+  Border Color Scheme
+
+  =========================
+*/
+
 .menu-green-borderCard{
   border-left: 3px solid #2FDA32;
 }
 .menu-red-borderCard{
   border-left: 3px solid #DA322F;
 }
-.bg-light-yellow{
-  background-color: rgba(255, 215, 0, 0.1);
+
+/* 
+  =========================
+
+  Font Size Scheme
+
+  =========================
+*/
+
+.cashier-main-font-size {
+  font-size: 24px;
 }
+
+.font-size-medium {
+  font-size: 18px;
+}
+
+/* 
+  =========================
+
+  Font Family Scheme
+
+  =========================
+*/
+
+.font-family-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+
+
+/* 
+  =========================
+
+  Button Styles
+
+  =========================
+*/
+
+.btn-cashier-main {
+  background-color: var(--cashier-main-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+
+/* 
+  =========================
+
+  Responsive Design
+
+  =========================
+*/
+
+@media screen and (max-width: 768px) {
+  .hidden-tablet {
+     display: none;
+   }
+ }
+ 
+ @media screen and (max-width: 480px) {
+   .hidden-mobile {
+     display: none;
+   }
+ }
+ /* 
+  =========================
+
+  Transition Effects
+
+  =========================
+*/
+
+.animated {
+  animation: slideIn 1s ease-in-out forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .background-img {
   background-image: url(../src/Components/Assets/Images/background/background-img.png);

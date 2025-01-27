@@ -1,5 +1,5 @@
 import React from 'react'
-import Button  from '../../Common/button/button';
+import Button  from '../Button/button';
 
 const OrderSideMenu = () => {
     return (

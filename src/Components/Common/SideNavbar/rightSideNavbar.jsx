@@ -8,7 +8,7 @@ import clendar from '../../Assets/Images/sidebarImg/calendar-tick.svg'
 import openSchedule from '../../Assets/Images/sidebarImg/openSchedule.svg'
 import closeSchedule from '../../Assets/Images/sidebarImg/openSchedule.svg'
 import { NavLink } from "react-router-dom";
-import DropDownInput from "../dropdownInput/dropDownInput";
+import DropDownInput from "../DropdownInput/dropDownInput";
 
 
 

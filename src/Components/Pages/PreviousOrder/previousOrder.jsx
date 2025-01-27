@@ -3,7 +3,6 @@ import LeftSideNavbar from "../../Common/SideNavbar/leftSideNavbar.jsx";
 import RightSidebar from "../../Common/SideNavbar/rightSideNavbar.jsx";
 
 // import img
-import Toggle from "../../Assets/Images/sidebarImg/toggle.png";
 import PreviousOrderCards from "../../Common/PreviousOrderCards/previousOrderCards.jsx";
 import Coin from "../../Assets/Images/previous/coin_16821589.svg";
 // import FoodCard from "../../Common/Test/menuItems.jsx";
@@ -83,7 +82,7 @@ const PreviousOrder = () => {
                 <div className="col-span-4">
                   <div className="text-xs text-gray-400 font-semibold flex justify-between  ">{items.title}
                     {/* {CustomerDetailsCard?.length == index++} */}
-                    {CustomerDetailsCard?.length == index++ && (<div className={`flex bg-light-yellow rounded-md px-1`}>
+                    {CustomerDetailsCard?.length === index++ && (<div className={`flex bg-light-yellow rounded-md px-1`}>
                       <img src={Coin} alt="Loading" />
                       <div className="text-sm font-medium ms-2">120 Pt</div>
                     </div>) 
@@ -103,7 +102,7 @@ const PreviousOrder = () => {
         </div>
 
         {/* Previous Order Cards */}
-        <div className={`grid h-full hidden-scroll overflow-auto ${isRightSidebarOpen == true ? "grid-cols-2" : "grid-cols-3"} gap-1`}>
+        <div className={`grid h-full hidden-scroll overflow-auto ${isRightSidebarOpen === true ? "grid-cols-2" : "grid-cols-3"} gap-1`}>
           <PreviousOrderCards />
         </div>
       </div>

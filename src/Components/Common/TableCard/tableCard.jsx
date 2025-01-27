@@ -14,7 +14,7 @@ const TableCard = ({ tableNo, index,tableStatus, tableBooking }) => {
   return (
     <>
       {/* // ------- booked table ------- */}
-      {tableStatus == "book" ? (
+      {tableStatus === "book" ? (
         <>
           <div className=" flex items-center ">
             <Link className="w-5/6 h-full" to={`/order/${tableNo}`}>
@@ -52,7 +52,7 @@ const TableCard = ({ tableNo, index,tableStatus, tableBooking }) => {
             </Link>
           </div>
         </>
-      ) : tableStatus == "pending" ? (
+      ) : tableStatus === "pending" ? (
         <>
           {/* ------- pending table ------- */}
           <div className=" flex items-center ">
@@ -91,7 +91,7 @@ const TableCard = ({ tableNo, index,tableStatus, tableBooking }) => {
             </Link>
           </div>
         </>
-      ) : tableStatus == "process" ? (
+      ) : tableStatus === "process" ? (
         <>
           {/* ------- process table ------- */}
           <div className=" flex items-center ">
@@ -118,7 +118,7 @@ const TableCard = ({ tableNo, index,tableStatus, tableBooking }) => {
             </Link>
           </div>
         </>
-      ) : tableStatus == "reserve" ? (
+      ) : tableStatus === "reserve" ? (
         <>
           {/* ------- reserve table ------- */}
           <div className=" flex items-center ">

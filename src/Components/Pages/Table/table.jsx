@@ -29,7 +29,7 @@ const Table = () => {
         <div className="overflow-auto h-full hidden-scroll">
           <h2 className="text-base font-semibold">Table for 2 members</h2>
           <div
-            className={`grid ${isRightSidebarOpen == true ? "md:grid-cols-2 lg:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-6"
+            className={`grid ${isRightSidebarOpen === true ? "md:grid-cols-2 lg:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-6"
               } gap-4`}
           >
             {[1, 2, 3, 4, 5, 6, 7, 8].map((i,index) => (
@@ -38,7 +38,7 @@ const Table = () => {
               <h2>Card {i}</h2>
               <p>Some content for card {i}</p>
             </div> */}
-                <TableCard tableStatus={index == 1 ? "book" :  index == 2 ? "pending" : index == 3 ? "process" : index == 4 ? "reserve" : "blank"}  index={index} tableNo={i} />
+                <TableCard tableStatus={index === 1 ? "book" :  index === 2 ? "pending" : index === 3 ? "process" : index === 4 ? "reserve" : "blank"}  index={index} tableNo={i} />
               </>
             ))}
           </div>
@@ -46,12 +46,12 @@ const Table = () => {
           <hr className="mt-3 mb-1" />
           <h2 className="text-base font-semibold">Table for 4 members</h2>
           <div
-            className={`grid ${isRightSidebarOpen == true ? "md:grid-cols-2 lg:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-6"
+            className={`grid ${isRightSidebarOpen === true ? "md:grid-cols-2 lg:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-6"
               } gap-4`}
           >
             {[1, 2, 3, 4, 5, 6].map((i, index) => (
               <>
-                <TableCard tableStatus={index == 4 ? "blank" : ""} index={index} tableNo={i} />
+                <TableCard tableStatus={index === 4 ? "blank" : ""} index={index} tableNo={i} />
               </>
             ))}
           </div>
@@ -64,12 +64,12 @@ const Table = () => {
               <span className="text-sm font-light ">Max Capacity 12 members</span>
           </div>
           <div
-            className={`grid ${isRightSidebarOpen == true ? "md:grid-cols-2 lg:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-6"
+            className={`grid ${isRightSidebarOpen === true ? "md:grid-cols-2 lg:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-6"
               } gap-4`}
           >
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i, index) => (
               <>
-                <TableCard tableStatus={index == 4 ? "blank" : ""} index={index} tableNo={i} />
+                <TableCard tableStatus={index === 4 ? "blank" : ""} index={index} tableNo={i} />
               </>
             ))}
           </div>

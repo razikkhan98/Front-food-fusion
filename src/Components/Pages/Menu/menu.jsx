@@ -1,14 +1,11 @@
 import React, { useState } from 'react'
-import MenuSlider from '../../Common/MenuSlider/menucategoryslider';
 import LeftSideNavbar from '../../Common/SideNavbar/leftSideNavbar';
 import RightSidebar from '../../Common/SideNavbar/rightSideNavbar';
 
 // import img
-// import Toggle from '../../Assets/Images/sidebarImg/Group-1171276770.svg';
 import Food1 from "../../Assets/Images/menuCard-img/food-1.jpeg";
 import Food2 from "../../Assets/Images/menuCard-img/food-2.jpeg";
 import Food3 from "../../Assets/Images/menuCard-img/food-3.jpeg";
-import OrderSideMenu from '../../Common/OrderSideMenu/ordersidemenu';
 import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 import MenuDetailsCardSlider from '../../Common/MenuSlider/menudetailscardslider';
 
@@ -79,7 +76,7 @@ const Menu = () => {
                         {/* <MenuSlider /> */}
                     {/* </div> */}
                     <h1 className='font-bold text-xl'>Starters</h1>
-                    <div className={`grid mt-4 ${isRightSidebarOpen == true ? "lg:grid-cols-4 md:grid-cols-2" : "lg:grid-cols-5 md:grid-cols-3"} gap-2`}>
+                    <div className={`grid mt-4 ${isRightSidebarOpen === true ? "lg:grid-cols-4 md:grid-cols-2" : "lg:grid-cols-5 md:grid-cols-3"} gap-2`}>
                         {MenuCard.map((item, index) => (
                             <div key={index} className={`bg-white rounded-lg shadow-md px-2 py-2 w-56 ${item.cardBorder}`}>
                                 <div className='grid grid-cols-2'>
