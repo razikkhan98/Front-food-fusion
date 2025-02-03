@@ -30,7 +30,10 @@
   --green-color: #94d82d;
   --yellow-color: #ffd700;
   --purple-color: #6a5acd;
+  --sidebar-light: #db9f66
 }
+
+
 
 /* 
  =========================
@@ -148,6 +151,61 @@
   cursor: pointer;
 }
 
+/* 
+  =========================
+
+  Sidebar CSS Design
+
+  =========================
+*/
+.sidebar-li:hover .sidebar-icon {
+  background: var(--sidebar-light);
+}
+
+.sidebar-li-active .sidebar-icon {
+  background: var(--sidebar-light);
+}
+
+/* 
+  =========================
+
+  MENU PAGE CSS
+
+  =========================
+*/
+.slider-container {
+  /* text-align: center; */
+  position: relative;
+  overflow: hidden; /* Hide overflow to only show visible items */
+}
+
+.slider-overlay {
+  width: 100%;
+  overflow: hidden; /* Hide overflow for sliding effect */
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out; /* For smooth transition */
+}
+
+.slider-item {
+  min-width: 10%; /* Set width based on items to show */
+  box-sizing: border-box; /* Ensure padding and border are included in total width */
+  padding: 10px; /* Optional padding */
+}
+
+button {
+  margin: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+
+.active-image {
+  border: 4px solid var(--cashier-main-color); 
+  border-radius: 10px;
+}
 
 /* 
   =========================
