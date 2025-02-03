@@ -52,6 +52,9 @@
   background-color: var(--cashier-light-color);
 }
 
+.cashier-bg-table-color{
+  background-color: rgba(255, 233, 213, 0.7);
+}
 .bg-light-green{
   background-color: rgba(47, 218, 50, 0.05);
 }
@@ -62,6 +65,9 @@
 
 .bg-light-yellow{
   background-color: rgba(255, 215, 0, 0.1);
+}
+.bg-purple-btn{
+  background-color: var(--purple-color);
 }
 
 /* 

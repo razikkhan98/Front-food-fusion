@@ -78,7 +78,7 @@ const Table = () => {
 
       {/* Right Sidebar */}
       <div
-        className={`bg-gray-200 transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "w-80" : "w-9"
+        className={`bg-gray-200 transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "w-80" : "w-7"
           }`}
       >
         {/* <button
@@ -88,7 +88,7 @@ const Table = () => {
             {isRightSidebarOpen ? "Close" : "Open"}
           </button> */}
         <span
-          className="bg-blue-700 hover:bg-blue-700 font-bold p-3 rounded-full absolute top-1/2 -left-5"
+          className="bg-blue-700 hover:bg-blue-700 font-bold p-1 cursor-pointer rounded-full absolute top-1/2 -left-5"
           onClick={toggleRightSidebar}
         >
              <MdOutlineKeyboardDoubleArrowLeft className='text-3xl text-white font-semibold' />

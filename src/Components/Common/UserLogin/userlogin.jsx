@@ -170,6 +170,7 @@ import Captain from "../../Assets/Images/Login-img/captain.png";
 import UserLoginModal from "../Modal/userloginModal";
 
 // Third party components
+// import useApi from "../hooks/useApi";
 
 // Role JSON Data
 const users = [
@@ -215,7 +216,8 @@ const UserLogin = () => {
   // ==========  
   // State 
   // ============
-
+  // const { request, loading, error } = useApi();
+  const [name, setName] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
 
@@ -237,6 +239,14 @@ const UserLogin = () => {
   // Handle form submission
   const onSubmit = async (data) => {
     console.log("data: ", data);
+    
+    // e.preventDefault(e);
+    // const response = await request("POST", "/users", { name });
+
+    // if (response) {
+    //   alert("User created successfully!");
+    //   setName("");
+    // }
   };
 
   // ======= 
@@ -252,11 +262,11 @@ const UserLogin = () => {
   return (
     <>
       <div className="h-screen flex justify-center items-center">
-        <div className="grid grid-cols-1 grid-rows-3 gap-1">
+        <div className="grid grid-cols-1 grid-rows-4 gap-1">
           {/* Logo & Title */}
-          <div className="flex justify-center items-center mb-20">
+          <div className="row-span-2 flex justify-center items-center mb-20">
             <img
-              className="w-auto h-28 inline me-5"
+              className="w-auto h-24 inline me-5"
               src={Logo}
               alt="Food Fusion Logo"
             />
@@ -266,12 +276,12 @@ const UserLogin = () => {
           </div>
 
           {/* User Selection */}
-          <div className="text-center flex justify-center">
+          <div className="row-span-2 row-start-3 text-center flex justify-center">
             {users.map((user) => (
               <span
                 key={user.name}
                 onClick={() => openModal(user)}
-                className="mx-5 cursor-pointer font-medium text-3xl transform transition-transform duration-300 hover:scale-125"
+                className="mx-8 cursor-pointer font-medium text-3xl transform transition-transform duration-300 hover:scale-125"
               >
                 <div
                   className={`h-24 w-24 flex justify-center items-center ${user.bgClass} rounded-xl mb-1`}

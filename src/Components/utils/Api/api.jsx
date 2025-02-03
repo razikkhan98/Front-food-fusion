@@ -17,7 +17,10 @@ const useApi = () => {
         url: `${BASE_URL}${endpoint}`,
         data,
         params,
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "69420",
+        },
       });
 
       return response.data; // Return API response data

@@ -1,53 +1,64 @@
 import React, { useState } from "react";
+
+// common components
 import LeftSideNavbar from "../../Common/SideNavbar/leftSideNavbar.jsx";
 import RightSidebar from "../../Common/SideNavbar/rightSideNavbar.jsx";
+import Navbar from "../../Common/Navbar/navbar.jsx";
 
 // import img
 import PreviousOrderCards from "../../Common/PreviousOrderCards/previousOrderCards.jsx";
 import Coin from "../../Assets/Images/previous/coin_16821589.svg";
 // import FoodCard from "../../Common/Test/menuItems.jsx";
-// Import ICONS
+
+// Import ICONS from react-icons
 import { IoCallOutline } from "react-icons/io5";
 import { MdOutlineKeyboardDoubleArrowLeft, MdOutlineMailOutline } from "react-icons/md";
 import { GoHome } from "react-icons/go";
-import Navbar from "../../Common/Navbar/navbar.jsx";
 
-
+// Role JSON Data
+const CustomerDetailsCard = [
+  {
+    icon: "RV",
+    color: "rounded-md bg-white p-2 text-center border",
+    border: "border-r",
+    title: "Customer's Name",
+    name: "Rahul Vijay",
+  },
+  {
+    icon: <IoCallOutline className="text-light-green text-xl" />,
+    color: "bg-gray-50 rounded-full flex items-center justify-center py-3",
+    border: "border-r",
+    title: "Contact Number",
+    name: 1234737577,
+  },
+  {
+    icon: <MdOutlineMailOutline className="text-blue-500 text-xl" />,
+    color: "bg-gray-50 rounded-full flex items-center justify-center py-3",
+    border: "border-r",
+    title: "E-mail Address",
+    name: "Avshd@gmail.com",
+  },
+  {
+    icon: <GoHome className="text-xl" />,
+    color: "bg-gray-50 rounded-full flex items-center justify-center py-3",
+    title: "Delivery Address",
+    name: "132 main street Appartment 4B, Indore Madhya Pradesh, 85558",
+  },
+];
 const PreviousOrder = () => {
+  // ===========
+  // State
+  // ==========
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
 
+  // =========
+  // Function
+  // =========
+  
   const toggleRightSidebar = () => {
     setIsRightSidebarOpen(!isRightSidebarOpen);
   };
-  const CustomerDetailsCard = [
-    {
-      icon: "RV",
-      color: "rounded-md bg-white p-2 text-center border",
-      border: "border-r",
-      title: "Customer's Name",
-      name: "Rahul Vijay",
-    },
-    {
-      icon: <IoCallOutline className="text-light-green text-xl" />,
-      color: "bg-gray-50 rounded-full flex items-center justify-center py-3",
-      border: "border-r",
-      title: "Contact Number",
-      name: 1234737577,
-    },
-    {
-      icon: <MdOutlineMailOutline className="text-blue-500 text-xl" />,
-      color: "bg-gray-50 rounded-full flex items-center justify-center py-3",
-      border: "border-r",
-      title: "E-mail Address",
-      name: "Avshd@gmail.com",
-    },
-    {
-      icon: <GoHome className="text-xl" />,
-      color: "bg-gray-50 rounded-full flex items-center justify-center py-3",
-      title: "Delivery Address",
-      name: "132 main street Appartment 4B, Indore Madhya Pradesh, 85558",
-    },
-  ];
+
   return (
     <div className="flex h-screen overflow-hidden">
       {/* Left Sidebar */}
@@ -64,8 +75,8 @@ const PreviousOrder = () => {
           </div>
 
           {/* Navbar start */}
-          <Navbar/>
-          
+          <Navbar />
+
         </div>
 
 
@@ -81,13 +92,13 @@ const PreviousOrder = () => {
                 </div>
                 <div className="col-span-4">
                   <div className="text-xs text-gray-400 font-semibold flex justify-between  ">{items.title}
-                    {/* {CustomerDetailsCard?.length == index++} */}
-                    {CustomerDetailsCard?.length === index++ && (<div className={`flex bg-light-yellow rounded-md px-1`}>
-                      <img src={Coin} alt="Loading" />
-                      <div className="text-sm font-medium ms-2">120 Pt</div>
-                    </div>) 
-                    
-                   }
+                    {/* Check if it's the last item */}
+                    {index === CustomerDetailsCard.length - 1 && (
+                      <div className="flex bg-light-yellow rounded-md px-1">
+                        <img src={Coin} alt="Loading" />
+                        <div className="text-sm font-medium ms-2">120 Pt</div>
+                      </div>
+                    )}
                   </div>
                   <div className="font-semibold text-sm">
                     {items.name}

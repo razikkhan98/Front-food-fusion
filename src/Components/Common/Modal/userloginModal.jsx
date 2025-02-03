@@ -122,6 +122,14 @@ import React, { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
+import { NavLink } from "react-router-dom";
+
+// Images
+import admin from "../../Assets/Images/Login-img/admin.png";
+import staff from "../../Assets/Images/Login-img/staff.png";
+import chef from "../../Assets/Images/Login-img/chef.png";
+import billing from "../../Assets/Images/Login-img/cashier.png";
+import captain from "../../Assets/Images/Login-img/captain.png";
 
 const UserLoginModal = ({ isOpen, closeModal, selectedUser, onSubmit }) => {
   // ==========  
@@ -129,16 +137,37 @@ const UserLoginModal = ({ isOpen, closeModal, selectedUser, onSubmit }) => {
   // ============
   const { register, handleSubmit, reset } = useForm();
 
-  
+
   // ==========  
   // State 
   // ============ 
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // ==========  
   // Functions 
   // ============ 
+
+  // const setUserImage = () => {
+  //   let img = "";
+  //   switch (selectedUser?.image) {
+  //     case "admin":
+  //       img = { img: admin, bg: selectedUser?.name };
+  //       break;
+  //     case "cashier":
+  //       img = { img: billing, bg: selectedUser?.name };
+  //       break;
+  //     case "staff":
+  //       img = { img: staff, bg: selectedUser?.name };
+  //       break;
+  //     case "captain":
+  //       img = { img: captain, bg: selectedUser?.name };
+  //       break;
+  //     case "chef":
+  //       img = { img: chef, bg: selectedUser?.name };
+  //       break;
+  //   }
+  //   return img;
+  // };
 
 
   // Close the modal and reset the form
@@ -149,11 +178,10 @@ const UserLoginModal = ({ isOpen, closeModal, selectedUser, onSubmit }) => {
 
   // Submit the form
   const onSubmitHandler = async (data) => {
-    setIsSubmitting(true);
+    console.log('data: ', data);
 
     await onSubmit(data);
 
-    setIsSubmitting(false);
   };
 
   return (
@@ -194,26 +222,47 @@ const UserLoginModal = ({ isOpen, closeModal, selectedUser, onSubmit }) => {
 
         {/* Login Form */}
         <form className="text-center" onSubmit={handleSubmit(onSubmitHandler)}>
-          <div className="m-5">
+          <div className="relative m-5">
             <label className="block pt-4 text-gray-600 font-normal">
               Please enter your code
-              <input
-                className={`block w-full rounded-full my-2 opacity-60 border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ${selectedUser?.bgClass}`}
-                type="text"
-                {...register("userCode")}
-              />
             </label>
+
+            <div className="relative">
+              <input
+                className={`${selectedUser?.bgClass} opacity-60 w-full rounded-full my-2 border-0 py-2 pl-4 pr-12 text-gray-900   sm:text-sm`}
+                type="text"
+                id="selectuser"
+                {...register("selectuser")}
+              />
+
+              {/* Arrow Button */}
+              {/* <NavLink to={"/home"}> */}
+              <button type="submit" className="absolute right-2 top-1/2 transform -translate-y-1/2 rounded-full bg-gray-100 p-1 text-gray-600">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="w-5 h-5"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-7-7l7 7-7 7" />
+                </svg>
+              </button>
+              {/* </NavLink> */}
+            </div>
           </div>
+
 
           {/* Submit Button */}
           <div className="flex justify-center">
-            <button
+            {/* <button
               className="bg-blue-500 flex items-center justify-center text-white px-4 py-2 rounded disabled:opacity-50"
               type="submit"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Submitting..." : "Submit"}
-            </button>
+            </button> */}
           </div>
         </form>
       </div>
