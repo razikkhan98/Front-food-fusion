@@ -7,6 +7,17 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@font-face {
+  font-family: Montserrat Alternates;
+  src: url('../src/Components/Assets/fonts/MontserratAlternates-Regular.ttf')format('truetype');
+}
+@font-face {
+  font-family: poppins;
+  src: url('../src/Components/Assets/fonts/Poppins-Regular.ttf')format('truetype');
+}
+body{
+  font-family: poppins;
+}
 
 /* 
  ========================== 
@@ -106,6 +117,9 @@
 .menu-red-borderCard{
   border-left: 3px solid #DA322F;
 }
+.border-cashier{
+  border: 2px solid var(--cashier-main-color);
+}
 
 /* 
   =========================
@@ -135,7 +149,9 @@
   font-family: 'Poppins', sans-serif;
 }
 
-
+.food-fusion{
+  font-family: Montserrat Alternates !important;
+}
 
 /* 
   =========================

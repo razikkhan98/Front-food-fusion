@@ -7,7 +7,9 @@ import RightSidebar from "../../Common/SideNavbar/rightSideNavbar.jsx";
 // Images
 import Navbar from "../../Common/Navbar/navbar.jsx";
 import Toggle from "../../Assets/Images/sidebarImg/toggle.png";
-
+import bell from "../../Assets/Images/navbar-img/bell.svg";
+import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
+import Sort from "../../Assets/Images/navbar-img/SortAscending.svg";
 // Role JSON Data
 const employees = [
 
@@ -147,6 +149,14 @@ const employees = [
     },
 ];
 
+
+
+
+const StaffIcons = [
+    { nav_img: magnify},
+    { nav_img: Sort },
+    { nav_img: bell },
+  ];
 const StaffData = () => {
     // ==========  
     // State 
@@ -170,13 +180,13 @@ const StaffData = () => {
 
             {/* Main Content Area */}
             <div className={`flex-grow p-4 transition-all duration-300`}>
-                <div className="text-sm text-black mb-4">
+                <div className="text-sm text-black">
                     &lt;{" "}
                     <span className="ml-2 font-bold">Staff Data</span>
                 </div>
 
                 {/* <Navbar /> */}
-                <Navbar />
+                <Navbar icons={StaffIcons} />
 
                 {/* Table Start */}
                 <div className="bg-white mt-4 border rounded-xl overflow-auto h-80">

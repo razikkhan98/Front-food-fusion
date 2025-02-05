@@ -1,13 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
 
-const BASE_URL = "https://api.example.com"; // Change this to your API
+const BASE_URL = "https://1228-106-222-217-121.ngrok-free.app"; // Change this to your API
 
 const useApi = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const request = async (method, endpoint, data = null, params = null) => {
+    console.log('method: ', method);
     setLoading(true);
     setError(null);
 
