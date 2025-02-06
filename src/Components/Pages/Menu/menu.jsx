@@ -142,7 +142,6 @@ const Menu = () => {
             className="bg-blue-700 hover:bg-blue-700 font-bold p-1 rounded-full absolute top-1/2 -left-5"
             onClick={toggleRightSidebar}
           >
-            {/* <img src={Toggle} alt="Loading" /> */}
             <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
           </span>
 
@@ -152,8 +151,8 @@ const Menu = () => {
 
       {/* Menu Details Card Slider */}
       {MenuCardOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg relative max-w-4xl w-full">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center  z-50">
+          <div className=" p-6 rounded-lg shadow-lg relative">
             <button
               onClick={closeMenuCardSlider}
               className="absolute top-2 right-2 text-gray-500 hover:text-gray-800"

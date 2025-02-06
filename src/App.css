@@ -190,21 +190,24 @@
 }
 
 .slider-item {
-  min-width: 10%; /* Set width based on items to show */
+  min-width: 9%; /* Set width based on items to show */
   box-sizing: border-box; /* Ensure padding and border are included in total width */
   padding: 10px; /* Optional padding */
 }
 
-button {
-  margin: 10px;
-  padding: 10px;
-  cursor: pointer;
-}
-
-
 .active-image {
   border: 4px solid var(--cashier-main-color); 
   border-radius: 10px;
+}
+.menu-category-next{
+  position: absolute;
+  top: 3.5rem;
+  right: 0;
+}
+.menu-category-prev{
+  position: absolute;
+  top: 3.5rem;
+  left: 0;
 }
 
 /* 
