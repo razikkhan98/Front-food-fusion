@@ -10,56 +10,56 @@ import Food3 from "../../Assets/Images/menuCard-img/food-3.jpeg";
 import sparkleStar from "../../Assets/Images/menuPageImages/svgs/Sparkle.svg";
 
 import { PiChefHatFill, PiPizzaLight } from "react-icons/pi";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowBack, IoIosArrowForward, IoMdClose } from "react-icons/io";
 
-function MenuDetailsCardSlider() {
-  // Example cards data
-  // JSON
-  const cards = [
-    {
-      img: Food1,
-      cardBorder: "menu-green-borderCard",
-      name: "Cheese Balls",
-      status: "Available",
-      price: 100,
-      colorStatus: "text-light-green bg-light-green",
-    },
-    {
-      img: Food2,
-      cardBorder: "menu-green-borderCard",
-      name: "Veg Pizza",
-      status: "Available",
-      price: 120,
-      colorStatus: "text-light-green bg-light-green",
-    },
-    {
-      img: Food3,
-      cardBorder: "menu-red-borderCard",
-      name: "Sandwich",
-      status: "N Available",
-      price: 150,
-      colorStatus: "text-color-red bg-color-red",
-    },
-    {
-      img: Food1,
-      name: "Cheese Balls",
-      cardBorder: "menu-green-borderCard",
-      status: "Available",
-      price: 380,
-      colorStatus: "text-light-green bg-light-green",
-    },
-    {
-      img: Food1,
-      cardBorder: "menu-green-borderCard",
-      name: "Cheese Balls",
-      status: "Available",
-      price: 700,
-      colorStatus: "text-light-green bg-light-green",
-    },
-  ];
-
+// JSON
+const cards = [
+  {
+    img: Food1,
+    cardBorder: "menu-green-borderCard",
+    name: "Cheese Balls",
+    status: "Available",
+    price: 100,
+    colorStatus: "text-light-green bg-light-green",
+  },
+  {
+    img: Food2,
+    cardBorder: "menu-green-borderCard",
+    name: "Veg Pizza",
+    status: "Available",
+    price: 120,
+    colorStatus: "text-light-green bg-light-green",
+  },
+  {
+    img: Food3,
+    cardBorder: "menu-red-borderCard",
+    name: "Sandwich",
+    status: "N Available",
+    price: 150,
+    colorStatus: "text-color-red bg-color-red",
+  },
+  {
+    img: Food1,
+    name: "Cheese Balls",
+    cardBorder: "menu-green-borderCard",
+    status: "Available",
+    price: 380,
+    colorStatus: "text-light-green bg-light-green",
+  },
+  {
+    img: Food1,
+    cardBorder: "menu-green-borderCard",
+    name: "Cheese Balls",
+    status: "Available",
+    price: 700,
+    colorStatus: "text-light-green bg-light-green",
+  },
+];
+function MenuDetailsCardSlider(toggleMenuDetailModal) {
+// states
   const [currentCardIndex, setCurrentCardIndex] = useState(0); // Start showing from the first card
 
+  // Functions
   const handlePrev = () => {
     setCurrentCardIndex((prevIndex) =>
       prevIndex === 0 ? cards.length - 1 : prevIndex - 1
@@ -107,7 +107,11 @@ function MenuDetailsCardSlider() {
                   src={card?.img}
                   alt="Veg Pizza"
                 />
-                <span className="absolute top-2 right-2 bg-slate-400 opacity-75 px-2 py-0.5 rounded-full">X</span>
+                {
+                  index === 1 ? (
+                    <span onClick={() => setMenuCardOpen("false")} className="absolute top-3 right-3 bg-white bg-opacity-25  px-2 py-2 rounded-full"><IoMdClose className="text-white" /></span>
+                  ) :  null
+                }
               </div>
 
               {/* Card content */}
@@ -180,7 +184,7 @@ function MenuDetailsCardSlider() {
                     className={` ${
                       card?.status !== "Available"
                         ? "border-2 text-gray-600 cursor-not-allowed"
-                        : "bg-[--cashier-main-color] text-black"
+                        : "cashier-light-bg-color text-black"
                     } px-5 py-1 rounded-md`}
                   >
                     ADD
@@ -202,3 +206,5 @@ function MenuDetailsCardSlider() {
 }
 
 export default MenuDetailsCardSlider;
+
+
