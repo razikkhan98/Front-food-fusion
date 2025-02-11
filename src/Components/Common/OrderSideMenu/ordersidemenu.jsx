@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../Button/button";
+import Button from "../button/button";
 import { FaCircleExclamation, FaPen } from "react-icons/fa6";
 import percentage from "../../Assets/Images/menuPageImages/svgs/percentage.svg";
 import rewardpoint from "../../Assets/Images/menuPageImages/svgs/rewardpoint.svg";

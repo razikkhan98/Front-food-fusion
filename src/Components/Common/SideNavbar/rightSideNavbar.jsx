@@ -11,7 +11,7 @@ import closeSchedule from '../../Assets/Images/sidebarImg/openSchedule.svg'
 // Third Party Components
 import { NavLink } from "react-router-dom";
 // Common
-import DropDownInput from "../DropdownInput/dropDownInput";
+import DropDownInput from "../dropdownInput/dropDownInput";
 
 
 

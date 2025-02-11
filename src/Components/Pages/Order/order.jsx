@@ -1,24 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Common Components
 import LeftSideNavbar from "../../Common/SideNavbar/leftSideNavbar.jsx";
 import RightSidebar from "../../Common/SideNavbar/rightSideNavbar.jsx";
-import { useDispatch } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
 import { useParams } from "react-router-dom";
-// import { TableBooking } from "../../Common/Redux/TableBooking/tableBookingSlice.jsx";
-import { TableBookingRedux } from "../../Redux/Slice/Order/tableBookingSlice.jsx"
-
+import { TableBookingRedux } from "../../Redux/Slice/Order/tableBookingSlice.jsx";
 
 // import React-icons
 import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
-
 
 // import img
 import ChatBot from "../../Common/ChatBot/chatbot.jsx";
 import Navbar from "../../Common/Navbar/navbar.jsx";
 import bell from "../../Assets/Images/navbar-img/bell.svg";
+import { TableNoRedux } from "../../Redux/Slice/Table/tableDetailSlice.jsx";
 // Json
 const customerData = [
   {
@@ -46,26 +44,27 @@ const customerData = [
     customer_email: "robertbrown@example.com",
   },
 ];
- const OrderIcons =[
-    { nav_img: bell },
-  ];
-const Order = () => {
-  // ==========  
-  // UseFrom 
+const OrderIcons = [{ nav_img: bell }];
+const Order = ({ tableNoFromRedux ,tableDetailsFromRedux}) => {
+  // console.log('tableDetailsFromRedux: ', tableDetailsFromRedux?.TableBooking);
+  // ==========
+  // UseFrom
   // ============
-  const { register, handleSubmit,
+  const {
+    register,
+    handleSubmit,
     setValue,
     watch,
     formState: { errors },
   } = useForm();
 
-  // ==========  
-  // State 
+  // ==========
+  // State
   // ============
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
+  const [orderDetailState, setorderDetailState] = useState();
 
-
-  // ==========  
+  // ==========
   // Functions
   // ============
 
@@ -84,17 +83,45 @@ const Order = () => {
   const deliveryAddressInptField = watch("deliveryAddress");
 
   const onSubmit = (data) => {
-    console.log('data: ', data);
     const payload = {
-      tableNo: params.tableNo || data?.tableNo,
+      tableNo:
+        data?.orderType == "Takeaway" || data?.orderType == "Delivery"
+          ? ""
+          : params.tableNo || data?.tableNo,
       customerName: data?.name,
       customerEmail: data?.email,
       customerPhone: data?.number,
-      orderTotal: data?.orderType,
-      orderStatus: "book",
+      orderType: data?.orderType,
+      deliveryAddress: data?.deliveryAddress,
+      orderStatus: "reserve",
     };
     dispatch(TableBookingRedux(payload));
+    dispatch(
+      TableNoRedux(
+        data?.orderType == "Takeaway" || data?.orderType == "Delivery"
+          ? ""
+          : data?.tableNo
+      )
+    );
   };
+
+  // Filter Functionality
+  const filterInpFildFromPrevOrder = tableDetailsFromRedux?.TableBooking?.filter((i)=>{
+    return Number(i?.tableNo) == params.tableNo
+  })
+
+  //==========
+  // useEffect
+  // ============
+
+  useEffect(() => {
+    setValue("name", filterInpFildFromPrevOrder[0]?.customerName);
+    setValue("number", filterInpFildFromPrevOrder[0]?.customerPhone);
+    setValue("email", filterInpFildFromPrevOrder[0]?.customerEmail);
+    setValue("orderType", filterInpFildFromPrevOrder[0]?.orderType);
+    setValue("deliveryAddress", filterInpFildFromPrevOrder[0]?.deliveryAddress);
+    setValue("tableNo", filterInpFildFromPrevOrder[0]?.tableNo || params.tableNo || tableNoFromRedux?.tableNo);
+  }, []);
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -112,9 +139,7 @@ const Order = () => {
           <span className="mr-2">Book Table</span> &gt;{" "}
           <span className="ml-2">Generate Order</span>
         </div>
-        <Navbar  icons={OrderIcons}/>
-
-      
+        <Navbar icons={OrderIcons} />
 
         {/* Order Details */}
         <div className="bg-white rounded-lg border shadow-md p-6 mt-2">
@@ -136,7 +161,7 @@ const Order = () => {
                     {errors?.customer_name?.message}
                   </span>
                 )}
-                {filteredCustomers?.length > 0 && (
+                {/* {filteredCustomers?.length > 0 && (
                   <ul className="absolute left-72 top-48 w-3/12 h-32 overflow-y-scroll mt-2 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
                     {filteredCustomers.map((customer, index) => (
                       <li
@@ -148,7 +173,7 @@ const Order = () => {
                       </li>
                     ))}
                   </ul>
-                )}
+                )} */}
               </div>
               {/* Contact No */}
               <div>
@@ -205,7 +230,9 @@ const Order = () => {
                   {...register("email")}
                 />
                 {errors.customer_email && (
-                  <p className="text-red-500 text-xs">{errors.customer_email.message}</p>
+                  <p className="text-red-500 text-xs">
+                    {errors.customer_email.message}
+                  </p>
                 )}
               </div>
               {/* Table No if Dine In */}
@@ -214,13 +241,19 @@ const Order = () => {
                   <label className="text-black font-medium text-sm block">
                     Table No
                   </label>
-                  <select className="w-1/4 mt-1 p-2 border rounded-lg focus-visible:bg-white"
-                  {...register("tableNo")}>
-                    <option value={""} >Table No.</option>
-                    <option value={"1"} >1</option>
-                    <option value={"2"} >2</option>
-                    <option value={"3"} >3</option>
-                    <option value={"4"} >4</option>
+                  <select
+                    className="w-1/4 mt-1 p-2 border rounded-lg focus-visible:bg-white"
+                    {...register("tableNo")}
+                  >
+                    <option value={""}>Table No.</option>
+                    <option value={"1"}>1</option>
+                    <option value={"2"}>2</option>
+                    <option value={"3"}>3</option>
+                    <option value={"4"}>4</option>
+                    <option value={"5"}>5</option>
+                    <option value={"6"}>6</option>
+                    <option value={"7"}>7</option>
+                    <option value={"8"}>8</option>
                   </select>
                 </div>
               ) : orderTypeInptField == "Delivery" ? (
@@ -254,15 +287,21 @@ const Order = () => {
               {/* <Button title={"Save"}/> */}
               <NavLink to={"/previousorder"}>
                 <button
-                  className={`px-6 py-2 ${nameInptField && numberInptField && orderTypeInptField ? "border-cashier cashier-main-text-color hover:text-white hover:bg-[--cashier-main-color]" : "text-gray-600 bg-gray-50 opacity-50 cursor-not-allowed"} rounded-full border border-gray-400`}
-                  disabled={!(nameInptField || numberInptField || orderTypeInptField)} // Disable the button if none of the fields are filled
+                  className={`px-6 py-2 ${
+                    nameInptField && numberInptField && orderTypeInptField
+                      ? "border-cashier cashier-main-text-color hover:text-white hover:bg-[--cashier-main-color]"
+                      : "text-gray-600 bg-gray-50 opacity-50 cursor-not-allowed"
+                  } rounded-full border border-gray-400`}
+                  disabled={
+                    !(nameInptField || numberInptField || orderTypeInptField)
+                  } // Disable the button if none of the fields are filled
                 >
                   View Previous Orders
                 </button>
               </NavLink>
               <button
                 className={`px-7 py-2 ${
-                  nameInptField && orderTypeInptField && deliveryAddressInptField
+                  nameInptField && orderTypeInptField
                     ? "cashier-main-bg-color text-white"
                     : "bg-gray-400 text-gray-700 opacity-50 cursor-not-allowed"
                 } text-gray-600 rounded-full`}
@@ -361,4 +400,10 @@ const Order = () => {
     </div>
   );
 };
-export default Order;
+
+const mapStateToProps = (state) => ({
+  tableNoFromRedux: state?.tableDetails,
+  tableDetailsFromRedux: state?.tableBooking
+});
+
+export default connect(mapStateToProps, {})(Order);

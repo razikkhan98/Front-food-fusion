@@ -6,7 +6,9 @@ import RightSidebar from "../../Common/SideNavbar/rightSideNavbar.jsx";
 // import Icon
 import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 import ChatBot from "../../Common/ChatBot/chatbot.jsx";
-const Home = () => {
+import { connect } from "react-redux";
+import TableCard from "../../Common/TableCard/tableCard.jsx";
+const Home = ({tableDetailsFromRedux}) => {
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
 
   const toggleRightSidebar = () => {
@@ -23,12 +25,11 @@ const Home = () => {
       <div className={`flex-grow p-4 transition-all duration-300`}>
         <h1>Table</h1>
         <div className={`grid ${isRightSidebarOpen === true ? "grid-cols-4" : "grid-cols-5"} gap-4`}>
-          {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div key={i} onClick={toggleRightSidebar} className="bg-white rounded-lg shadow-md p-4 w-56">
-              <h2>Card {i}</h2>
-              <p>Some content for card {i}</p>
-            </div>
+          {tableDetailsFromRedux?.TableBooking?.map((i,index) => (
+            <TableCard tableDetail={i} />
           ))}
+          <div  className=" p-4 w-56">
+            </div>
         </div>
         
       </div>
@@ -56,4 +57,8 @@ const Home = () => {
 
   );
 };
-export default Home;
+const mapStateToProps = (state) => ({
+  tableDetailsFromRedux: state?.tableBooking,
+});
+
+export default connect(mapStateToProps, {})(Home);

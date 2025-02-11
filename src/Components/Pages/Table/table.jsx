@@ -54,7 +54,7 @@ const Table = () => {
               <h2>Card {i}</h2>
               <p>Some content for card {i}</p>
             </div> */}
-                  <TableCard tableStatus={index === 1 ? "book" : index === 2 ? "pending" : index === 3 ? "process" : index === 4 ? "reserve" : "blank"} index={index} tableNo={i} />
+                  <TableCard tableStatus={"blank"} index={index} tableNo={i} />
                 </>
               ))}
             </div>
@@ -67,7 +67,7 @@ const Table = () => {
             >
               {[1, 2, 3, 4, 5, 6].map((i, index) => (
                 <>
-                  <TableCard tableStatus={index === 4 ? "blank" : ""} index={index} tableNo={i} />
+                  <TableCard tableStatus={"blank"} index={index} tableNo={i} />
                 </>
               ))}
             </div>
@@ -85,7 +85,7 @@ const Table = () => {
             >
               {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i, index) => (
                 <>
-                  <TableCard tableStatus={index === 4 ? "blank" : ""} index={index} tableNo={i} />
+                  <TableCard tableStatus={"blank"} index={index} tableNo={i} />
                 </>
               ))}
             </div>
