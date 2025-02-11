@@ -89,6 +89,10 @@ body{
   background-color: var(--purple-color);
 }
 
+.bg-color-gray{
+  background-color: rgba(112, 112, 112, 0.1);
+}
+
 /* 
   =========================
 

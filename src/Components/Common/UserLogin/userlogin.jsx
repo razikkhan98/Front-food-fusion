@@ -140,7 +140,7 @@ const UserLogin = () => {
                   className={`h-[120px] w-[120px] flex justify-center items-center ${user.bgClass} rounded-[16px] mb-1`}
                 >
                   <img
-                    className="w-[72px] m-auto p-2"
+                    className="w-20 m-auto p-2"
                     src={user.image}
                     alt={user.label}
                   />

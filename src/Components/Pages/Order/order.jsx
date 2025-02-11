@@ -371,12 +371,16 @@ const Order = ({ tableNoFromRedux ,tableDetailsFromRedux}) => {
         <div className="flex gap-7 mt-6">
           {/* <Button title={" Generate Invoice"}/>
           <Button title={"Send to Kitchen"}/> */}
-          <button className="px-8 py-2 bg-gray-100 text-gray-500 rounded-full border border-gray-300">
-            Generate Invoice
-          </button>
-          <button className="px-8 py-2 bg-gray-300 text-gray-600 rounded-full">
-            Send To Kitchen
-          </button>
+          <NavLink to={"/allinvoice"}>
+            <button className="px-8 py-2 bg-gray-100 text-gray-500 rounded-full border border-gray-300">
+              Generate Invoice
+            </button>
+          </NavLink>
+          <NavLink to={"/sendtokitchen"}>
+            <button className="px-8 py-2 bg-gray-300 text-gray-600 rounded-full">
+              Send To Kitchen
+            </button>
+          </NavLink>
         </div>
       </div>
 

@@ -1,0 +1,114 @@
+
+import React, { useState } from 'react'
+
+
+// Common Components
+import Navbar from '../../Common/Navbar/navbar';
+import ChatBot from '../../Common/ChatBot/chatbot';
+import LeftSideNavbar from '../../Common/SideNavbar/leftSideNavbar';
+import GenerateOrderCards from '../../Common/GenerateOrderCards/ordercards';
+import RightSidebar from '../../Common/SideNavbar/rightSideNavbar';
+
+
+// Import Images
+import bell from "../../Assets/Images/navbar-img/bell.svg";
+import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
+
+
+// import React-Icons
+import { MdOutlineKeyboardDoubleArrowLeft } from 'react-icons/md';
+
+
+// Json
+const KitchenButtons = [
+    { btn_name: "All", btn_color: "bg-orange-100" },
+    { btn_name: "Dine In", btn_color: "bg-transparent" },
+    { btn_name: "Take Away", btn_color: "bg-transparent" },
+    { btn_name: "Online Orders", btn_color: "bg-transparent" },
+];
+const KitchenIcons = [
+    { nav_img: magnify },
+    { nav_img: bell },
+];
+
+
+const SendToKitchen = () => {
+    // ========
+    // State
+    // ========
+    const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
+
+
+    // ========
+    // Functions
+    // ========
+    const toggleRightSidebar = () => {
+        setIsRightSidebarOpen(!isRightSidebarOpen);
+    };
+    return (
+        <>
+            <div className="flex h-screen overflow-hidden">
+                {/* Left Sidebar */}
+                <LeftSideNavbar />
+                <ChatBot />
+
+
+                {/* Main Content here */}
+                <div className={`flex-grow p-6 transition-all duration-300 flex flex-col justify-center`}>
+                    <Navbar buttons={KitchenButtons} icons={KitchenIcons} />
+                    <div className="overflow-auto h-full hidden-scroll">
+                        <h2 className="text-base font-semibold mt-2">In Progress</h2>
+                        <div
+                            className={`grid justify-center ${isRightSidebarOpen === true ? "md:grid-cols-1 lg:grid-cols-3" : "md:grid-cols-2 lg:grid-cols-4"
+                                } gap-4`}
+                        >
+                            {[1, 2, 3, 4, 5,].map((i, index) => (
+                                <>
+                                    <GenerateOrderCards />
+                                </>
+                            ))}
+                        </div>
+
+
+                        <h2 className="text-base font-semibold mt-2">Completed</h2>
+                        <div
+                            className={`grid ${isRightSidebarOpen === true ? "md:grid-cols-1 lg:grid-cols-2" : "md:grid-cols-2 lg:grid-cols-3"
+                                } gap-4`}
+                        >
+                            {[1, 2, 3, 4, 5,].map((i, index) => (
+                                <>
+                                    <GenerateOrderCards />
+                                </>
+                            ))}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                {/* Right Sidebar */}
+                <div
+                    className={`bg-gray-200 transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "w-80" : "w-7"
+                        }`}
+                >
+                    <span
+                        className="bg-blue-700 hover:bg-blue-700 font-bold p-1 cursor-pointer rounded-full absolute top-1/2 -left-5"
+                        onClick={toggleRightSidebar}
+                    >
+                        <MdOutlineKeyboardDoubleArrowLeft className='text-3xl text-white font-semibold' />
+                    </span>
+
+
+                    <RightSidebar />
+                </div>
+            </div>
+
+
+        </>
+    )
+}
+
+
+export default SendToKitchen;

@@ -24,24 +24,24 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking,tableDetail }) =>
       {/* // ------- booked table ------- */}
       {tableStatus === "book" || tableDetail?.orderStatus === "book" ? (
         <>
-          <div className=" flex items-center ">
-            <Link className="w-5/6 h-full" to={`/order/${tableDetail?.tableNo || tableNo}`}>
-              <div className=" px-3 py-2 bg-white rounded-2xl shadow-lg cashier-light-bg-color h-full ">
+          <div className=" flex items-center">
+            <Link className="w-36 h-40" to={`/order/${tableDetail?.tableNo || tableNo}`}>
+              <div className="px-3 py-2 bg-white rounded-2xl shadow-lg cashier-light-bg-color h-full ">
                 <div className="flex justify-between">
                   <div>
                     <span className="bg-white rounded-lg px-2 hidden">
                       22:10
                     </span>
                   </div>
-                  <img src={tick} alt="" />
+                  <img src={tick} alt="Loading" />
                 </div>
                 <div className="flex justify-center mt-1 mb-3">
-                  <img className="w-12" src={Table} alt="" />
+                  <img className="w-16" src={Table} alt="Loading" />
                 </div>
                 <div className="flex justify-between">
                   <div>
-                    <h2 className="text-sm ">Table {tableDetail?.tableNo || "7" }</h2>
-                    <p className="text-sm font-semibold">{tableDetail?.customerName || "MR Rohan" }</p>
+                    <h2 className="text-xs ">Table {tableDetail?.tableNo || "7" }</h2>
+                    <p className="text-xs font-medium">{tableDetail?.customerName || "MR Rohan" }</p>
                   </div>
                   <div className="bg-[#ffffff4d] p-2 rounded-lg h-full">
                     <img className="" src={recipt} alt="" />
@@ -64,18 +64,18 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking,tableDetail }) =>
         <>
           {/* ------- pending table ------- */}
           <div className=" flex items-center ">
-            <Link className="w-5/6 h-full" to={`/order/${tableNo}`}>
-              <div className=" px-3 py-2 bg-white rounded-2xl shadow-lg cashier-light-bg-color h-full  ">
+            <Link className="w-36 h-40" to={`/order/${tableNo}`}>
+              <div className="px-3 py-2 bg-white rounded-2xl shadow-lg cashier-light-bg-color h-full">
                 <div className="flex justify-between">
                   <div>
-                    <span className="bg-white rounded-lg px-2 hidden">
+                    <span className="bg-white text-xs font-medium rounded-lg px-2 hidden">
                       22:10
                     </span>
                   </div>
-                  <img src={warning} alt="" />
+                  <img src={warning} alt="Loading" />
                 </div>
                 <div className="flex justify-center mt-1 mb-5">
-                  <img className="w-12" src={Table} alt="" />
+                  <img className="w-16" src={Table} alt="Loading" />
                 </div>
                 {/* <div className="flex justify-between">
             <div>
@@ -86,10 +86,10 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking,tableDetail }) =>
             <img className="" src={recipt} alt="" />
             </div>
             </div> */}
-                <div className="text-center my-3">
-                  <span className="text-sm">
+                <div className="text-center my-2">
+                  <span className="text-xs">
                     Table {tableNo}{" "}
-                    <span className="font-semibold">Mr Admin</span>
+                    <span className="font-medium text-xs">Mr Admin</span>
                   </span>
                   {/* <h5 className="text-sm font-semibold text-red-700">
                     Reserved
@@ -103,21 +103,21 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking,tableDetail }) =>
         <>
           {/* ------- process table ------- */}
           <div className=" flex items-center ">
-            <Link className="w-5/6 h-full" to={`/order/${tableNo}`}>
+            <Link className="w-36 h-40" to={`/order/${tableNo}`}>
               <div className=" px-3 py-2 bg-white rounded-2xl shadow-lg cashier-light-bg-color h-full  ">
                 <div className="flex justify-between my-1">
                   <div>
                     <span className="bg-white rounded-lg px-2">22:10</span>
                   </div>
-                  <img src={dine} alt="" />
+                  <img src={dine} alt="Loading" />
                 </div>
                 <div className="flex justify-center mt-1 mb-3">
-                  <img className="w-12" src={Table} alt="" />
+                  <img className="w-16" src={Table} alt="Loading" />
                 </div>
                 <div className="text-center my-3">
-                  <span className="text-sm">
+                  <span className="text-xs">
                     Table {tableNo}{" "}
-                    <span className="font-semibold">Mr Admin</span>
+                    <span className="font-medium text-xs">Mr Admin</span>
                   </span>
                 </div>
               </div>
@@ -128,7 +128,7 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking,tableDetail }) =>
         <>
           {/* ------- reserve table ------- */}
           <div className=" flex items-center ">
-            <Link className="w-5/6 h-full" to={`/order/${tableDetail?.tableNo || tableNo}`}>
+            <Link className="w-36 h-40" to={`/order/${tableDetail?.tableNo || tableNo}`}>
               <div className=" px-3 py-2 bg-white rounded-2xl shadow-lg cashier-light-bg-color h-full  ">
                 <div className="flex justify-between">
                   <div>
@@ -139,7 +139,7 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking,tableDetail }) =>
                   <img src={calender} alt="" />
                 </div>
                 <div className="flex justify-center mt-1 mb-3">
-                  <img className="w-12" src={Table} alt="" />
+                  <img className="w-16" src={Table} alt="Loading" />
                 </div>
                 {/* <div className="flex justify-between">
         <div>
@@ -151,11 +151,11 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking,tableDetail }) =>
         </div>
         </div> */}
                 <div className="text-center">
-                  <span className="text-sm">
+                  <span className="text-xs">
                     Table {tableDetail?.tableNo || "7" }{" "}
-                    <span className="font-semibold">{tableDetail?.customerName || "MR Rohan" }</span>
+                    <span className="font-medium text-xs">{tableDetail?.customerName || "MR Rohan" }</span>
                   </span>
-                  <h5 className="text-sm font-semibold text-red-700">
+                  <h5 className="text-xs font-semibold text-red-700">
                     Reserved
                   </h5>
                 </div>
@@ -166,15 +166,15 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking,tableDetail }) =>
       ) : (
         <div className=" flex items-center">
           <Link
-            className="w-5/6 h-full"
+            className="w-36 h-40"
             to={`/order/${tableNo}`}
             onClick={() => HandleTableNo(tableNo)}
           >
-            <div className="py-1 px-4 bg-white border border-black rounded-2xl ">
+            <div className="py-2 px-1 bg-white border border-black rounded-2xl ">
               <div className="flex justify-center mt-1 ">
-                <img className="w-11/12" src={Table} alt="" />
+                <img className="w-[105px] h-[102px      ]" src={Table} alt="Loading" />
               </div>
-              <div className="text-center">
+              <div className="text-center my-2">
                 <span className="">Table {tableNo}</span>
               </div>
             </div>
