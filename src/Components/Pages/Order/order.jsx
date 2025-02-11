@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
 import { useParams } from "react-router-dom";
 // import { TableBooking } from "../../Common/Redux/TableBooking/tableBookingSlice.jsx";
-import { TableBooking } from "../../Redux/Slice/TableBooking/tableBookingSlice.jsx"
+import { TableBookingRedux } from "../../Redux/Slice/Order/tableBookingSlice.jsx"
 
 
 // import React-icons
