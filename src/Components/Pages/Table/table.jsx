@@ -40,10 +40,10 @@ const Table = () => {
         <div className={`flex-grow p-4 transition-all duration-300`}>
           <Navbar buttons={HomeButtons} icons={HomeIcons} />
           {/* -------- for 2 member table ---------- */}
-          <hr className="mt-3 mb-1" />
+          {/* <hr className="mt-3 mb-1" /> */}
 
           <div className="overflow-auto h-full hidden-scroll">
-            <h2 className="text-base font-semibold">Table for 2 members</h2>
+            <h2 className="text-base font-semibold my-3">Table for 2 members</h2>
             <div
               className={`grid ${isRightSidebarOpen === true ? "md:grid-cols-2 lg:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-6"
                 } gap-4`}
@@ -60,7 +60,7 @@ const Table = () => {
             </div>
             {/* -------- for 4 member table ---------- */}
             <hr className="mt-3 mb-1" />
-            <h2 className="text-base font-semibold">Table for 4 members</h2>
+            <h2 className="text-base font-semibold my-3">Table for 4 members</h2>
             <div
               className={`grid ${isRightSidebarOpen === true ? "md:grid-cols-2 lg:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-6"
                 } gap-4`}
@@ -73,7 +73,7 @@ const Table = () => {
             </div>
             {/* -------- for family member table ---------- */}
             <hr className="mt-3 mb-1" />
-            <div className="flex justify-between">
+            <div className="flex justify-between my-3">
               <span className="text-base font-semibold">
                 Table for family members
               </span>

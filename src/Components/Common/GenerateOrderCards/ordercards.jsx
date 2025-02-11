@@ -24,14 +24,14 @@ const GenerateOrderCards = ({OrderStatus}) => {
                     {/* Dine In Tag */}
                     { (OrderStatus === "Dine In" || "Paid" || "Handed Over" || "Ready" )? (
                         <>
-                            <div className="text-green-600 h-full text-xs font-semibold bg-green-100 px-2 py-1 rounded-md inline-block ">
+                            <div className="text-light-green h-full text-xs font-semibold bg-light-green px-2 py-1 rounded-md inline-block ">
                                 Dine In
                             </div>
                         </>
                     ) : OrderStatus === "In Progress" ?
                         (
                             <>
-                                <div className="text-yellow-400 h-full text-xs font-semibold bg-yellow-100 px-2 py-1 rounded-md inline-block ">
+                                <div className="text-yellow-400 h-full text-xs font-semibold bg-light-yellow px-2 py-1 rounded-md inline-block ">
                                     In Progress
                                 </div>
                             </>
@@ -44,7 +44,7 @@ const GenerateOrderCards = ({OrderStatus}) => {
                         )
                         : OrderStatus === "Unsuccessfull" ? (
                             <>
-                                <div className="text-red-600 h-full text-xs font-semibold bg-red-100 px-2 py-1 rounded-md inline-block ">
+                                <div className="text-color-red h-full text-xs font-semibold bg-color-red px-2 py-1 rounded-md inline-block ">
                                 Unsuccessfull
                                 </div>
                             </>

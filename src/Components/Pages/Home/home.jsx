@@ -35,15 +35,9 @@ const Home = () => {
 
       {/* Right Sidebar */}
       <div
-        className={`bg-gray-200 transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "w-80" : "w-9"
+        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "w-80" : "w-7"
           }`}
       >
-        {/* <button
-          onClick={toggleRightSidebar}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded absolute top-1/2 "
-        >
-          {isRightSidebarOpen ? "Close" : "Open"}
-        </button> */}
         <span className="bg-blue-700 hover:bg-blue-700 cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5" onClick={toggleRightSidebar}>
           {/* <img src={Toggle} alt="Loading" /> */}
           <MdOutlineKeyboardDoubleArrowLeft className='text-3xl text-white font-semibold' />

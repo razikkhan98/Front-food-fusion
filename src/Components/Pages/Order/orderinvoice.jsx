@@ -12,6 +12,8 @@ import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 // Import Images
 import bell from "../../Assets/Images/navbar-img/bell.svg";
 import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
+import InvoiceCards from "../../Common/InvoiceCards/invoicecards";
+import InvoiceReceipt from "../../Common/InvoiceReceipt/invoicereceipt";
 
 // Json
 const InvoiceButtons = [
@@ -48,6 +50,23 @@ const AllInvoice = () => {
                 {/* Main Content here */}
                 <div className={`flex-grow p-6 transition-all duration-300 flex flex-col justify-center`}>
                     <Navbar buttons={InvoiceButtons} icons={InvoiceIcons} />
+                    <div className="overflow-auto h-full hidden-scroll">
+                        <div className="grid grid-cols-6 grid-rows-1">
+                            <div
+                                className="col-span-4"
+                            >
+                                <h2 className="text-base font-semibold mt-2">Today</h2>
+                                {[1, 2, 3, 4, 5,].map((i, index) => (
+                                    <>
+                                        <InvoiceCards />
+                                    </>
+                                ))}
+                            </div>
+                            <div className="col-span-2 col-start-5 mt-3">
+                                <InvoiceReceipt />
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from "../Button/button";
+import Button from "../button/button";
 const PreviousOrderCards = () => {
     return (
         <>
