@@ -46,9 +46,9 @@ const customerData = [
     customer_email: "robertbrown@example.com",
   },
 ];
- const OrderIcons =[
-    { nav_img: bell },
-  ];
+const OrderIcons = [
+  { nav_img: bell },
+];
 const Order = () => {
   // ==========  
   // UseFrom 
@@ -139,9 +139,9 @@ const Order = () => {
           <span className="mr-2">Book Table</span> &gt;{" "}
           <span className="ml-2">Generate Order</span>
         </div>
-        <Navbar  icons={OrderIcons}/>
+        <Navbar icons={OrderIcons} />
 
-      
+
 
         {/* Order Details */}
         <div className="bg-white rounded-lg border shadow-md p-6 mt-2">
@@ -315,12 +315,16 @@ const Order = () => {
         <div className="flex gap-7 mt-6">
           {/* <Button title={" Generate Invoice"}/>
           <Button title={"Send to Kitchen"}/> */}
-          <button className="px-8 py-2 bg-gray-100 text-gray-500 rounded-full border border-gray-300">
-            Generate Invoice
-          </button>
-          <button className="px-8 py-2 bg-gray-300 text-gray-600 rounded-full">
-            Send To Kitchen
-          </button>
+          <NavLink to={"/allinvoice"}>
+            <button className="px-8 py-2 bg-gray-100 text-gray-500 rounded-full border border-gray-300">
+              Generate Invoice
+            </button>
+          </NavLink>
+          <NavLink to={"/sendtokitchen"}>
+            <button className="px-8 py-2 bg-gray-300 text-gray-600 rounded-full">
+              Send To Kitchen
+            </button>
+          </NavLink>
         </div>
       </div>
 

@@ -122,7 +122,7 @@ const UserLogin = () => {
               src={Logo}
               alt="Food Fusion Logo"
             />
-            <span className="food-fusion uppercase cashier-main-text-color text-6xl ms-1 font-bold">
+            <span className="food-fusion text-shadow-xl uppercase cashier-main-text-color text-6xl ms-1 font-bold">
               FOOD FUSION
             </span>
           </div>
@@ -139,7 +139,7 @@ const UserLogin = () => {
                   className={`h-24 w-24 flex justify-center items-center ${user.bgClass} rounded-xl mb-1`}
                 >
                   <img
-                    className="w-[72px] m-auto p-2"
+                    className="w-20 m-auto p-2"
                     src={user.image}
                     alt={user.label}
                   />

@@ -151,6 +151,7 @@ body{
 
 .food-fusion{
   font-family: Montserrat Alternates !important;
+  text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
 }
 
 /* 
@@ -228,7 +229,7 @@ body{
 
 .background-img {
   background-image: url(../src/Components/Assets/Images/background/background-img.png);
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 /* ---------right side bar-------------- */

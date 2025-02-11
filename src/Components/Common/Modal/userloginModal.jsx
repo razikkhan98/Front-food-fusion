@@ -13,7 +13,7 @@ import { RxCross2 } from "react-icons/rx";
 // import billing from "../../Assets/Images/Login-img/cashier.png";
 // import captain from "../../Assets/Images/Login-img/captain.png";
 
-const UserLoginModal = ({ isOpen, closeModal, selectedUser, onSubmit }) => {
+const   UserLoginModal = ({ isOpen, closeModal, selectedUser, onSubmit }) => {
   // ==========  
   // UseFrom 
   // ============
