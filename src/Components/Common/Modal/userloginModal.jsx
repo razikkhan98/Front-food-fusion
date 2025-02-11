@@ -1,26 +1,23 @@
-
-
-import React, { useState } from "react";
+import React from "react";
 
 // Third party components
 import { Dialog } from "@headlessui/react";
 import { useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 
 // Images
-import admin from "../../Assets/Images/Login-img/admin.png";
-import staff from "../../Assets/Images/Login-img/staff.png";
-import chef from "../../Assets/Images/Login-img/chef.png";
-import billing from "../../Assets/Images/Login-img/cashier.png";
-import captain from "../../Assets/Images/Login-img/captain.png";
+// import admin from "../../Assets/Images/Login-img/admin.png";
+// import staff from "../../Assets/Images/Login-img/staff.png";
+// import chef from "../../Assets/Images/Login-img/chef.png";
+// import billing from "../../Assets/Images/Login-img/cashier.png";
+// import captain from "../../Assets/Images/Login-img/captain.png";
 
 const UserLoginModal = ({ isOpen, closeModal, selectedUser, onSubmit }) => {
   // ==========  
   // UseFrom 
   // ============
-  const { register, handleSubmit, reset } = useForm();
-
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
   // ==========  
   // State 
@@ -31,28 +28,6 @@ const UserLoginModal = ({ isOpen, closeModal, selectedUser, onSubmit }) => {
   // Functions 
   // ============ 
 
-  // const setUserImage = () => {
-  //   let img = "";
-  //   switch (selectedUser?.image) {
-  //     case "admin":
-  //       img = { img: admin, bg: selectedUser?.name };
-  //       break;
-  //     case "cashier":
-  //       img = { img: billing, bg: selectedUser?.name };
-  //       break;
-  //     case "staff":
-  //       img = { img: staff, bg: selectedUser?.name };
-  //       break;
-  //     case "captain":
-  //       img = { img: captain, bg: selectedUser?.name };
-  //       break;
-  //     case "chef":
-  //       img = { img: chef, bg: selectedUser?.name };
-  //       break;
-  //   }
-  //   return img;
-  // };
-
 
   // Close the modal and reset the form
   const handleModalClose = () => {
@@ -61,12 +36,10 @@ const UserLoginModal = ({ isOpen, closeModal, selectedUser, onSubmit }) => {
   };
 
   // Submit the form
-  const onSubmitHandler = async (data) => {
-    console.log('data: ', data);
-
-    await onSubmit(data);
-
-  };
+  const onSubmitHandler = async (payload) => {
+    console.log('payload: ', payload);
+    await onSubmit(payload);
+  }
 
   return (
     <Dialog
@@ -116,12 +89,12 @@ const UserLoginModal = ({ isOpen, closeModal, selectedUser, onSubmit }) => {
 
             <div className="relative">
               <input
-                className={`${selectedUser?.bgClass} opacity-60 w-full rounded-full my-3 border-0 py-3 pl-4 pr-12 text-gray-900 sm:text-sm`}
+                className={`${selectedUser?.bgClass} opacity-60 w-full rounded-full my-2 border-0 py-2 pl-4 pr-12 text-gray-900 sm:text-sm`}
                 type="text"
-                id="selectuser"
-                {...register("selectuser")}
+                id="code"
+                {...register("code", { required: "Code is required" })}
               />
-
+              {errors.code && <p className="text-red-500 text-sm">{errors.code.message}</p>}
               {/* Arrow Button */}
               {/* <NavLink to={"/home"}> */}
               <button type="submit" className="absolute right-2 top-1/2 transform -translate-y-1/2 rounded-full bg-gray-100 p-1 text-gray-600">
@@ -143,13 +116,7 @@ const UserLoginModal = ({ isOpen, closeModal, selectedUser, onSubmit }) => {
 
           {/* Submit Button */}
           <div className="flex justify-center">
-            {/* <button
-              className="bg-blue-500 flex items-center justify-center text-white px-4 py-2 rounded disabled:opacity-50"
-              type="submit"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Submitting..." : "Submit"}
-            </button> */}
+
           </div>
         </form>
       </div>

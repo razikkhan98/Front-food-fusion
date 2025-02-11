@@ -1,24 +1,73 @@
 import React, { useState } from "react";
+
+// Common Components
 import LeftSideNavbar from "../../Common/SideNavbar/leftSideNavbar.jsx";
 import RightSidebar from "../../Common/SideNavbar/rightSideNavbar.jsx";
 import { useDispatch } from "react-redux";
-
-// import img
-import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
 import { useParams } from "react-router-dom";
 // import { TableBooking } from "../../Common/Redux/TableBooking/tableBookingSlice.jsx";
 import { TableBooking } from "../../Redux/Slice/TableBooking/tableBookingSlice.jsx"
 
+
+// import React-icons
+import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
+
+
+// import img
+import ChatBot from "../../Common/ChatBot/chatbot.jsx";
+import Navbar from "../../Common/Navbar/navbar.jsx";
+import bell from "../../Assets/Images/navbar-img/bell.svg";
+// Json
+const customerData = [
+  {
+    customer_name: "John Doe",
+    customer_mobile_no: "+1234567890",
+    customer_orderType: "Online",
+    customer_email: "johndoe@example.com",
+  },
+  {
+    customer_name: "Jane Smith",
+    customer_mobile_no: "+9876543210",
+    customer_orderType: "Takeaway",
+    customer_email: "janesmith@example.com",
+  },
+  {
+    customer_name: "Alice Johnson",
+    customer_mobile_no: "+1122334455",
+    customer_orderType: "Dine In",
+    customer_email: "alicejohnson@example.com",
+  },
+  {
+    customer_name: "Robert Brown",
+    customer_mobile_no: "+9988776655",
+    customer_orderType: "Delivery",
+    customer_email: "robertbrown@example.com",
+  },
+];
+ const OrderIcons =[
+    { nav_img: bell },
+  ];
 const Order = () => {
-  const {
-    register,
-    handleSubmit,
+  // ==========  
+  // UseFrom 
+  // ============
+  const { register, handleSubmit,
+    setValue,
     watch,
     formState: { errors },
   } = useForm();
+
+  // ==========  
+  // State 
+  // ============
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
+
+
+  // ==========  
+  // Functions
+  // ============
 
   //  get table no from URL
   const params = useParams()
@@ -28,19 +77,47 @@ const Order = () => {
     setIsRightSidebarOpen(!isRightSidebarOpen);
   };
 
-  const nameInptField = watch('name')
-  const numberInptField = watch('number')
-  const orderTypeInptField = watch('orderType')
-  const emailInptField = watch('email')
+  const nameInptField = watch('customer_name')
+  const numberInptField = watch('customer_mobile_no')
+  const orderTypeInptField = watch('customer_orderType')
+  const emailInptField = watch('customer_email')
 
+  // const [previousCustomers, setPreviousCustomers] = useState();
+  const [filteredCustomers, setFilteredCustomers] = useState([]);
+
+  // Filter customers based on input name
+  const handleNameChange = (e) => {
+    const value = e.target.value;
+    setValue("customer_name", value);
+
+    if (value) {
+      const filtered = customerData.filter((customer) =>
+        customer.customer_name.toLowerCase().includes(value.toLowerCase())
+      );
+      setFilteredCustomers(filtered);
+    } else {
+      setFilteredCustomers([]);
+      setValue("customer_mobile_no", "");
+      setValue("customer_email", "");
+    }
+  };
+
+  // Select customer from filtered list
+  const handleSelectCustomer = (customer) => {
+    setValue("customer_name", customer.customer_name);
+    setValue("customer_mobile_no", customer.customer_mobile_no);
+    setValue("customer_email", customer.customer_email);
+    setFilteredCustomers([]);
+  };
 
   const onSubmit = (data) => {
+    console.log('data: ', data);
     const payload = {
       tableNo: params.tableNo,
-      customerName: data?.name,
-      customerEmail: data?.email,
-      customerPhone: data?.number,
-      orderTotal: data?.orderType,
+      customerName: data?.customer_name,
+      customerEmail: data?.customer_email,
+      customerPhone: data?.customer_mobile_no,
+      orderTotal: data?.customer_orderType,
       orderStatus: "book",
     }
     dispatch(TableBooking(payload));
@@ -51,27 +128,23 @@ const Order = () => {
       {/* Left Sidebar */}
       <LeftSideNavbar />
 
+      {/* Chatbot Section start */}
+      <ChatBot />
+      {/* Chatbot Section End */}
+
       {/* Main Content Area */}
       <div className={`flex-grow py-2 px-6 transition-all duration-300`}>
-        {/* <Navbar /> */}
         {/* Breadcrumb */}
-        <div className="text-sm text-gray-500 mb-4">
+        <div className="text-sm text-gray-500 ">
           <span className="mr-2">Book Table</span> &gt;{" "}
           <span className="ml-2">Generate Order</span>
         </div>
+        <Navbar  icons={OrderIcons}/>
 
-        {/* Order Header */}
-        <div className="flex justify-between items-center mb-4">
-          <span className="text-gray-800 font-medium text-lg">
-            Order Number - #123
-          </span>
-          <button className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
-            <span className="text-gray-500">🔔</span>
-          </button>
-        </div>
+      
 
         {/* Order Details */}
-        <div className="bg-white rounded-lg border shadow-md p-6 ">
+        <div className="bg-white rounded-lg border shadow-md p-6 mt-2">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="grid grid-cols-2 gap-6 lg:grid-cols-3">
               {/* Name */}
@@ -81,10 +154,27 @@ const Order = () => {
                   type="text"
                   placeholder="Customer's name here"
                   className={`w-full mt-1 p-2 border rounded-lg  bg-${nameInptField ? "" : "gray-200"} focus-visible:bg-white`}
-                  {...register("name")}
+                  {...register("customer_name", {
+                    onChange: handleNameChange,
+                  })}
                 />
-                {errors.name && (
-                  <p className="text-red-500 text-xs">{errors.name.message}</p>
+                {errors?.customer_name && (
+                  <span className="text-red-600">
+                    {errors?.customer_name?.message}
+                  </span>
+                )}
+                {filteredCustomers?.length > 0 && (
+                  <ul className="absolute left-72 top-48 w-3/12 h-32 overflow-y-scroll mt-2 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
+                    {filteredCustomers.map((customer, index) => (
+                      <li
+                        key={index}
+                        className="p-2 hover:bg-gray-200 cursor-pointer"
+                        onClick={() => handleSelectCustomer(customer)}
+                      >
+                        {customer?.customer_name} - {customer?.customer_mobile_no}
+                      </li>
+                    ))}
+                  </ul>
                 )}
               </div>
               {/* Contact No */}
@@ -94,11 +184,11 @@ const Order = () => {
                   type="text"
                   placeholder="Customer's contact no here"
                   className={`w-full mt-1 p-2 border rounded-lg  bg-${numberInptField ? "" : "gray-200"} focus-visible:bg-white`}
-                  {...register("number")}
+                  {...register("customer_mobile_no")}
                 />
-                {errors.number && (
+                {errors.customer_mobile_no && (
                   <p className="text-red-500 text-xs">
-                    {errors.number.message}
+                    {errors.customer_mobile_no.message}
                   </p>
                 )}
               </div>
@@ -107,16 +197,16 @@ const Order = () => {
                 <label className="text-black font-medium text-sm">Order Type</label>
                 <select
                   className={`w-full mt-1 p-2 border rounded-lg  bg-${orderTypeInptField ? "" : "gray-200"} focus-visible:bg-white`}
-                  {...register("orderType")}
+                  {...register("customer_orderType")}
                 >
                   <option value="">Select Order Type</option>
                   <option value="Dine In">Dine In</option>
                   <option value="Takeaway">Takeaway</option>
                   <option value="Delivery">Delivery</option>
                 </select>
-                {errors.orderType && (
+                {errors.customer_orderType && (
                   <p className="text-red-500 text-xs mt-1">
-                    {errors.orderType.message}
+                    {errors.customer_orderType.message}
                   </p>
                 )}
               </div>
@@ -127,10 +217,10 @@ const Order = () => {
                   type="email"
                   placeholder="Customer's E-mail ID here"
                   className={`w-full mt-1 p-2 border rounded-lg  bg-${emailInptField ? "" : "gray-200"} focus-visible:bg-white`}
-                  {...register("email")}
+                  {...register("customer_email")}
                 />
-                {errors.email && (
-                  <p className="text-red-500 text-xs">{errors.email.message}</p>
+                {errors.customer_email && (
+                  <p className="text-red-500 text-xs">{errors.customer_email.message}</p>
                 )}
               </div>
               {/* Table No */}
@@ -151,7 +241,10 @@ const Order = () => {
               {/* <Button title={"View previous Orders"}/> */}
               {/* <Button title={"Save"}/> */}
               <NavLink to={"/previousorder"}>
-                <button className="px-6 py-2 text-gray-400 bg-gray-50 rounded-full border border-gray-300">
+                <button
+                  className={`px-6 py-2 ${nameInptField && numberInptField && orderTypeInptField ? "border-cashier cashier-main-text-color hover:text-white hover:bg-[--cashier-main-color]" : "text-gray-600 bg-gray-50 opacity-50 cursor-not-allowed"} rounded-full border border-gray-400`}
+                  disabled={!(nameInptField || numberInptField || orderTypeInptField)} // Disable the button if none of the fields are filled
+                >
                   View Previous Orders
                 </button>
               </NavLink>
@@ -217,7 +310,7 @@ const Order = () => {
             </tbody>
           </table>
         </div>
-        
+
         {/* Footer Buttons */}
         <div className="flex gap-7 mt-6">
           {/* <Button title={" Generate Invoice"}/>
@@ -232,7 +325,7 @@ const Order = () => {
       </div>
 
 
-      {/* Right Sidebar */}
+      {/* Right SidePanel */}
       <div className={`bg-gray-200 transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "w-80" : "w-7"}`}
       >
         <span
