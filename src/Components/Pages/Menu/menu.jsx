@@ -9,6 +9,7 @@ import Food3 from "../../Assets/Images/menuCard-img/food-3.jpeg";
 import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 import MenuDetailsCardSlider from "../../Common/MenuSlider/menudetailscardslider";
 import MenuSlider from "../../Common/MenuSlider/menucategoryslider";
+import OrderSideMenu from "../../Common/OrderSideMenu/ordersidemenu";
 
 // JSON
 const MenuCard = [
@@ -56,11 +57,15 @@ const MenuCard = [
 const Menu = () => {
   //  States
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
+  const [OrderDetailSidebar, setOrderDetailSidebar] = useState(false);
   const [MenuCardOpen, setMenuCardOpen] = useState(false);
 
   // Functions
   const toggleRightSidebar = () => {
     setIsRightSidebarOpen(!isRightSidebarOpen);
+  };
+  const toggleOrderSidebar = () => {
+    setOrderDetailSidebar(!OrderDetailSidebar);
   };
   const openMenuCardSlider = () => {
     setMenuCardOpen(true);
@@ -70,6 +75,10 @@ const Menu = () => {
     setMenuCardOpen(false);
   };
 
+    // // Function to close the Menu Detail Modal
+    // const closeModal = () => {
+    //   setOrderDetailSidebar(false);
+    // };
   return (
     <>
       <div className="flex h-screen overflow-hidden">
@@ -81,7 +90,7 @@ const Menu = () => {
           <h1 className="font-bold text-xl">Starters</h1>
           <div
             className={`grid mt-4 ${
-              isRightSidebarOpen === true
+              isRightSidebarOpen === true || OrderDetailSidebar === true
                 ? "lg:grid-cols-3 md:grid-cols-2 w-11/12"
                 : "lg:grid-cols-5 md:grid-cols-3"
             } gap-2`}
@@ -97,7 +106,9 @@ const Menu = () => {
                       src={item?.img}
                       alt="Loading"
                       onClick={() => openMenuCardSlider(item)}
-                      className={`${item?.status !== "Available" ? "filter grayscale" : ""} cursor-pointer h-[70px] w-[86px] rounded-md`}
+                      className={`${
+                        item?.status !== "Available" ? "filter grayscale" : ""
+                      } cursor-pointer h-[70px] w-[86px] rounded-md`}
                     />
                   </div>
                   <div>
@@ -115,14 +126,31 @@ const Menu = () => {
                         {item?.status}
                       </span>
                     </div>
-                    <p className={`${item?.status !== "Available" ? "text-gray-400" : ""} font-semibold text-left`}>{item?.name}</p>
+                    <p
+                      className={`${
+                        item?.status !== "Available" ? "text-gray-400" : ""
+                      } font-semibold text-left`}
+                    >
+                      {item?.name}
+                    </p>
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
-                  <button disabled className={`${item?.status !== "Available" ? "text-gray-400 border" : "cashier-light-bg-color cursor-pointer"} uppercase  px-6 py-1 mt-2 rounded-md`}>
+                  <button
+                    onClick={toggleOrderSidebar}
+                    className={`${
+                      item?.status !== "Available"
+                        ? "text-gray-400 border"
+                        : "cashier-light-bg-color cursor-pointer"
+                    } uppercase  px-6 py-1 mt-2 rounded-md`}
+                  >
                     Add
                   </button>
-                  <p className={`${item?.status !== "Available" ? "text-gray-400" : ""} text-end text-lg font-semibold`}>
+                  <p
+                    className={`${
+                      item?.status !== "Available" ? "text-gray-400" : ""
+                    } text-end text-lg font-semibold`}
+                  >
                     ₹ {item?.price}
                   </p>
                 </div>
@@ -130,7 +158,14 @@ const Menu = () => {
             ))}
           </div>
         </div>
-        {/* <OrderSideMenu /> */}
+        {/* Right Order Details Sidebar  */}
+        <div
+          className={`transition-all duration-300 ease-in-out relative right-4 rounded-l-3xl ${
+            OrderDetailSidebar ? " w-80" : "hidden"
+          } ${isRightSidebarOpen ? "hidden" : ""}`}
+        >
+          <OrderSideMenu />
+        </div>
 
         {/* Right Sidebar Start */}
         <div
@@ -159,7 +194,7 @@ const Menu = () => {
             >
               ✕
             </button>
-            <MenuDetailsCardSlider />
+            <MenuDetailsCardSlider toggleMenuDetailModal={setMenuCardOpen} />
           </div>
         </div>
       )}
