@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
 import { useParams } from "react-router-dom";
 // import { TableBooking } from "../../Common/Redux/TableBooking/tableBookingSlice.jsx";
-import { TableBooking } from "../../Redux/Slice/TableBooking/tableBookingSlice.jsx"
+import { TableBookingRedux } from "../../Redux/Slice/Order/tableBookingSlice.jsx";
 
 const Order = () => {
   const {
@@ -21,29 +21,29 @@ const Order = () => {
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
 
   //  get table no from URL
-  const params = useParams()
+  const params = useParams();
   const dispatch = useDispatch();
 
   const toggleRightSidebar = () => {
     setIsRightSidebarOpen(!isRightSidebarOpen);
   };
 
-  const nameInptField = watch('name')
-  const numberInptField = watch('number')
-  const orderTypeInptField = watch('orderType')
-  const emailInptField = watch('email')
-  
+  const nameInptField = watch("name");
+  const numberInptField = watch("number");
+  const orderTypeInptField = watch("orderType");
+  const emailInptField = watch("email");
+  const deliveryAddressInptField = watch("deliveryAddress");
 
   const onSubmit = (data) => {
     const payload = {
-      tableNo: params.tableNo,
+      tableNo: params.tableNo || data?.tableNo,
       customerName: data?.name,
       customerEmail: data?.email,
       customerPhone: data?.number,
       orderTotal: data?.orderType,
       orderStatus: "book",
-    }
-    dispatch(TableBooking(payload));
+    };
+    dispatch(TableBookingRedux(payload));
   };
 
   return (
@@ -80,7 +80,9 @@ const Order = () => {
                 <input
                   type="text"
                   placeholder="Customer's name here"
-                  className={`w-full mt-1 p-2 border rounded-lg  bg-${nameInptField ? "" :"gray-200"} focus-visible:bg-white`}
+                  className={`w-full mt-1 p-2 border rounded-lg  bg-${
+                    nameInptField ? "" : "gray-200"
+                  } focus-visible:bg-white`}
                   {...register("name")}
                 />
                 {errors.name && (
@@ -89,11 +91,15 @@ const Order = () => {
               </div>
               {/* Contact No */}
               <div>
-                <label className="text-black font-medium text-sm">Contact No</label>
+                <label className="text-black font-medium text-sm">
+                  Contact No
+                </label>
                 <input
                   type="text"
                   placeholder="Customer's contact no here"
-                  className={`w-full mt-1 p-2 border rounded-lg  bg-${numberInptField ? "" :"gray-200"} focus-visible:bg-white`}
+                  className={`w-full mt-1 p-2 border rounded-lg  bg-${
+                    numberInptField ? "" : "gray-200"
+                  } focus-visible:bg-white`}
                   {...register("number")}
                 />
                 {errors.number && (
@@ -104,14 +110,18 @@ const Order = () => {
               </div>
               {/* Order Type */}
               <div>
-                <label className="text-black font-medium text-sm">Order Type</label>
+                <label className="text-black font-medium text-sm">
+                  Order Type
+                </label>
                 <select
-                  className={`w-full mt-1 p-2 border rounded-lg  bg-${orderTypeInptField ? "" :"gray-200"} focus-visible:bg-white`}
+                  className={`w-full mt-1 p-2 border rounded-lg  bg-${
+                    orderTypeInptField ? "" : "gray-200"
+                  } focus-visible:bg-white`}
                   {...register("orderType")}
                 >
                   <option value="">Select Order Type</option>
                   <option value="Dine In">Dine In</option>
-                  <option value="Takeaway">Takeaway</option>
+                  <option value="Takeaway">Take Away</option>
                   <option value="Delivery">Delivery</option>
                 </select>
                 {errors.orderType && (
@@ -122,28 +132,59 @@ const Order = () => {
               </div>
               {/* Email */}
               <div>
-                <label className="text-black font-medium text-sm">E-mail (Optional)</label>
+                <label className="text-black font-medium text-sm">
+                  E-mail (Optional)
+                </label>
                 <input
                   type="email"
                   placeholder="Customer's E-mail ID here"
-                  className={`w-full mt-1 p-2 border rounded-lg  bg-${emailInptField ? "" :"gray-200"} focus-visible:bg-white`}
+                  className={`w-full mt-1 p-2 border rounded-lg  bg-${
+                    emailInptField ? "" : "gray-200"
+                  } focus-visible:bg-white`}
                   {...register("email")}
                 />
                 {errors.email && (
                   <p className="text-red-500 text-xs">{errors.email.message}</p>
                 )}
               </div>
-              {/* Table No */}
-              <div>
-                <label className="text-black font-medium text-sm block">Table No</label>
-                <select className="w-1/4 mt-1 p-2 border rounded-lg focus-visible:bg-white"
-                  >
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                </select>
-              </div>
+              {/* Table No if Dine In */}
+              {orderTypeInptField == "Dine In" || orderTypeInptField == "" ? (
+                <div>
+                  <label className="text-black font-medium text-sm block">
+                    Table No
+                  </label>
+                  <select className="w-1/4 mt-1 p-2 border rounded-lg focus-visible:bg-white"
+                  {...register("tableNo")}>
+                    <option value={""} >Table No.</option>
+                    <option value={"1"} >1</option>
+                    <option value={"2"} >2</option>
+                    <option value={"3"} >3</option>
+                    <option value={"4"} >4</option>
+                  </select>
+                </div>
+              ) : orderTypeInptField == "Delivery" ? (
+                <>
+                  {/* delivery address if delivery */}
+                  <div>
+                    <label className="text-black font-medium text-sm">
+                      Delivery Address
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Customer's Address here"
+                      className={`w-full mt-1 p-2 border rounded-lg  bg-${
+                        orderTypeInptField ? "" : "gray-200"
+                      } focus-visible:bg-white`}
+                      {...register("deliveryAddress")}
+                    />
+                    {/* {errors.deliveryaddress && (
+                <p className="text-red-500 text-xs">{errors.deliveryaddress.message}</p>
+              )} */}
+                  </div>
+                </>
+              ) : (
+                <></>
+              )}
             </div>
 
             {/* Action Buttons */}
@@ -155,7 +196,12 @@ const Order = () => {
                   View Previous Orders
                 </button>
               </NavLink>
-              <button className={`px-7 py-2 ${ nameInptField && numberInptField && orderTypeInptField ? "cashier-main-bg-color text-white" : "bg-gray-400 text-gray-700 opacity-50 cursor-not-allowed"} text-gray-600 rounded-full`}
+              <button
+                className={`px-7 py-2 ${
+                  nameInptField && orderTypeInptField && deliveryAddressInptField
+                    ? "cashier-main-bg-color text-white"
+                    : "bg-gray-400 text-gray-700 opacity-50 cursor-not-allowed"
+                } text-gray-600 rounded-full`}
                 type="submit"
               >
                 Save
@@ -216,7 +262,10 @@ const Order = () => {
       </div>
 
       {/* Right Sidebar */}
-      <div className={`bg-gray-200 transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "w-80" : "w-7"}`}
+      <div
+        className={`bg-gray-200 transition-all duration-300 ease-in-out relative rounded-l-3xl ${
+          isRightSidebarOpen ? "w-80" : "w-7"
+        }`}
       >
         <span
           className="bg-blue-700 hover:bg-blue-700 font-bold p-1 cursor-pointer rounded-full absolute top-1/2 -left-5"

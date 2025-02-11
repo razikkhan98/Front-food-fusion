@@ -12,77 +12,36 @@ import sparkleStar from "../../Assets/Images/menuPageImages/svgs/Sparkle.svg";
 import { PiChefHatFill, PiPizzaLight } from "react-icons/pi";
 import { IoIosArrowBack, IoIosArrowForward, IoMdClose } from "react-icons/io";
 
-// JSON
-const cards = [
-  {
-    img: Food1,
-    cardBorder: "menu-green-borderCard",
-    name: "Cheese Balls",
-    status: "Available",
-    price: 100,
-    colorStatus: "text-light-green bg-light-green",
-  },
-  {
-    img: Food2,
-    cardBorder: "menu-green-borderCard",
-    name: "Veg Pizza",
-    status: "Available",
-    price: 120,
-    colorStatus: "text-light-green bg-light-green",
-  },
-  {
-    img: Food3,
-    cardBorder: "menu-red-borderCard",
-    name: "Sandwich",
-    status: "N Available",
-    price: 150,
-    colorStatus: "text-color-red bg-color-red",
-  },
-  {
-    img: Food1,
-    name: "Cheese Balls",
-    cardBorder: "menu-green-borderCard",
-    status: "Available",
-    price: 380,
-    colorStatus: "text-light-green bg-light-green",
-  },
-  {
-    img: Food1,
-    cardBorder: "menu-green-borderCard",
-    name: "Cheese Balls",
-    status: "Available",
-    price: 700,
-    colorStatus: "text-light-green bg-light-green",
-  },
-];
-function MenuDetailsCardSlider(toggleMenuDetailModal) {
-// states
+function MenuDetailsCardSlider({
+  toggleMenuDetailModal,
+  SliderDataJson,
+  selectedCard,
+}) {
+  // states
   const [currentCardIndex, setCurrentCardIndex] = useState(0); // Start showing from the first card
 
   // Functions
   const handlePrev = () => {
     setCurrentCardIndex((prevIndex) =>
-      prevIndex === 0 ? cards.length - 1 : prevIndex - 1
+      prevIndex === 0 ? SliderDataJson?.length - 1 : prevIndex - 1
     );
   };
 
   const handleNext = () => {
     setCurrentCardIndex((prevIndex) =>
-      prevIndex === cards.length - 1 ? 0 : prevIndex + 1
+      prevIndex === SliderDataJson?.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const displayedCards = [
-    cards[(currentCardIndex - 1 + cards.length) % cards.length],
-    cards[currentCardIndex],
-    cards[(currentCardIndex + 1) % cards.length],
+    SliderDataJson[(currentCardIndex - 1 + SliderDataJson?.length) % SliderDataJson?.length],
+    SliderDataJson[currentCardIndex],
+    SliderDataJson[(currentCardIndex + 1) % SliderDataJson?.length],
   ];
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div
-        className="relative flex justify-center items-center"
-      >
+      <div className="relative flex justify-center items-center">
         {displayedCards.map((card, index) => (
           <div
             key={card.id}
@@ -107,11 +66,14 @@ function MenuDetailsCardSlider(toggleMenuDetailModal) {
                   src={card?.img}
                   alt="Veg Pizza"
                 />
-                {
-                  index === 1 ? (
-                    <span onClick={() => setMenuCardOpen("false")} className="absolute top-3 right-3 bg-white bg-opacity-25  px-2 py-2 rounded-full"><IoMdClose className="text-white" /></span>
-                  ) :  null
-                }
+                {index === 1 ? (
+                  <span
+                    onClick={toggleMenuDetailModal}
+                    className="absolute top-3 right-3 bg-white bg-opacity-25  px-2 py-2 rounded-full cursor-pointer"
+                  >
+                    <IoMdClose className="text-white" />
+                  </span>
+                ) : null}
               </div>
 
               {/* Card content */}
@@ -136,7 +98,7 @@ function MenuDetailsCardSlider(toggleMenuDetailModal) {
                 </div>
                 <div className="flex items-center text-sm text-gray-600 mt-1">
                   {/* Star Icon */}
-           
+
                   <span className="mr-1">4.5</span>
                   <span>(48 ratings)</span>
                 </div>
@@ -206,5 +168,3 @@ function MenuDetailsCardSlider(toggleMenuDetailModal) {
 }
 
 export default MenuDetailsCardSlider;
-
-

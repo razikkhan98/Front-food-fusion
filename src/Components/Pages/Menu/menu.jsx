@@ -59,6 +59,7 @@ const Menu = () => {
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
   const [OrderDetailSidebar, setOrderDetailSidebar] = useState(false);
   const [MenuCardOpen, setMenuCardOpen] = useState(false);
+    const [selectedCard, setSelectedCard] = useState(null);
 
   // Functions
   const toggleRightSidebar = () => {
@@ -67,7 +68,8 @@ const Menu = () => {
   const toggleOrderSidebar = () => {
     setOrderDetailSidebar(!OrderDetailSidebar);
   };
-  const openMenuCardSlider = () => {
+  const openMenuCardSlider = (item) => {
+    setSelectedCard(item)
     setMenuCardOpen(true);
   };
 
@@ -194,7 +196,7 @@ const Menu = () => {
             >
               ✕
             </button>
-            <MenuDetailsCardSlider toggleMenuDetailModal={setMenuCardOpen} />
+            <MenuDetailsCardSlider SliderDataJson={MenuCard} selectedCard={selectedCard} toggleMenuDetailModal={closeMenuCardSlider} />
           </div>
         </div>
       )}
