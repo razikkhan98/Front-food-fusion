@@ -1,4 +1,6 @@
-*{
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
@@ -6,6 +8,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 
 
 /* 
@@ -30,7 +33,12 @@
   --green-color: #94d82d;
   --yellow-color: #ffd700;
   --purple-color: #6a5acd;
+  --sidebar-light: #db9f66;
+  --black-color: #111111;
+  --gray-color: #707070;
 }
+
+
 
 /* 
  =========================
@@ -52,21 +60,21 @@
   background-color: var(--cashier-light-color);
 }
 
-.cashier-bg-table-color{
+.cashier-bg-table-color {
   background-color: rgba(255, 233, 213, 0.7);
 }
-.bg-light-green{
+.bg-light-green {
   background-color: rgba(47, 218, 50, 0.05);
 }
 
-.bg-color-red{
+.bg-color-red {
   background-color: rgba(218, 50, 47, 0.05);
 }
 
-.bg-light-yellow{
+.bg-light-yellow {
   background-color: rgba(255, 215, 0, 0.1);
 }
-.bg-purple-btn{
+.bg-purple-btn {
   background-color: var(--purple-color);
 }
 
@@ -82,15 +90,20 @@
   color: var(--cashier-main-color);
 }
 
-.text-light-green{
-  color: #2FDA32;
+.text-light-green {
+  color: #2fda32;
 }
 
-.text-color-red{
-  color: #DA322F;
+.text-color-red {
+  color: #da322f;
+}
+.text-color-black{
+  color: var(--black-color);
 }
 
-
+.text-color-gray{
+  color: var(--gray-color);
+}
 
 /* 
   =========================
@@ -100,11 +113,11 @@
   =========================
 */
 
-.menu-green-borderCard{
-  border-left: 3px solid #2FDA32;
+.menu-green-borderCard {
+  border-left: 3px solid #2fda32;
 }
-.menu-red-borderCard{
-  border-left: 3px solid #DA322F;
+.menu-red-borderCard {
+  border-left: 3px solid #da322f;
 }
 
 /* 
@@ -131,10 +144,227 @@
   =========================
 */
 
-.font-family-poppins {
-  font-family: 'Poppins', sans-serif;
+/* Montserrat Alternates: CSS classes */
+
+.montserrat-alternates-thin {
+  font-family: "Montserrat Alternates", serif;
+  font-weight: 100;
+  font-style: normal;
 }
 
+.montserrat-alternates-extralight {
+  font-family: "Montserrat Alternates", serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.montserrat-alternates-light {
+  font-family: "Montserrat Alternates", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.montserrat-alternates-regular {
+  font-family: "Montserrat Alternates", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.montserrat-alternates-medium {
+  font-family: "Montserrat Alternates", serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.montserrat-alternates-semibold {
+  font-family: "Montserrat Alternates", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.montserrat-alternates-bold {
+  font-family: "Montserrat Alternates", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.montserrat-alternates-extrabold {
+  font-family: "Montserrat Alternates", serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.montserrat-alternates-black {
+  font-family: "Montserrat Alternates", serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.montserrat-alternates-thin-italic {
+  font-family: "Montserrat Alternates", serif;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.montserrat-alternates-extralight-italic {
+  font-family: "Montserrat Alternates", serif;
+  font-weight: 200;
+  font-style: italic;
+}
+
+.montserrat-alternates-light-italic {
+  font-family: "Montserrat Alternates", serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.montserrat-alternates-regular-italic {
+  font-family: "Montserrat Alternates", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.montserrat-alternates-medium-italic {
+  font-family: "Montserrat Alternates", serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.montserrat-alternates-semibold-italic {
+  font-family: "Montserrat Alternates", serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.montserrat-alternates-bold-italic {
+  font-family: "Montserrat Alternates", serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.montserrat-alternates-extrabold-italic {
+  font-family: "Montserrat Alternates", serif;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.montserrat-alternates-black-italic {
+  font-family: "Montserrat Alternates", serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+
+/* Poppins: CSS classes */
+
+
+.poppins-thin {
+  font-family: "Poppins", serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.poppins-extralight {
+  font-family: "Poppins", serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.poppins-light {
+  font-family: "Poppins", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.poppins-regular {
+  font-family: "Poppins", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.poppins-medium {
+  font-family: "Poppins", serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.poppins-semibold {
+  font-family: "Poppins", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.poppins-bold {
+  font-family: "Poppins", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.poppins-extrabold {
+  font-family: "Poppins", serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.poppins-black {
+  font-family: "Poppins", serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.poppins-thin-italic {
+  font-family: "Poppins", serif;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.poppins-extralight-italic {
+  font-family: "Poppins", serif;
+  font-weight: 200;
+  font-style: italic;
+}
+
+.poppins-light-italic {
+  font-family: "Poppins", serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.poppins-regular-italic {
+  font-family: "Poppins", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.poppins-medium-italic {
+  font-family: "Poppins", serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.poppins-semibold-italic {
+  font-family: "Poppins", serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.poppins-bold-italic {
+  font-family: "Poppins", serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.poppins-extrabold-italic {
+  font-family: "Poppins", serif;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.poppins-black-italic {
+  font-family: "Poppins", serif;
+  font-weight: 900;
+  font-style: italic;
+}
 
 
 /* 
@@ -154,6 +384,64 @@
   cursor: pointer;
 }
 
+/* 
+  =========================
+
+  Sidebar CSS Design
+
+  =========================
+*/
+.sidebar-li:hover .sidebar-icon {
+  background: var(--sidebar-light);
+}
+
+.sidebar-li-active .sidebar-icon {
+  background: var(--sidebar-light);
+}
+
+/* 
+  =========================
+
+  MENU PAGE CSS
+
+  =========================
+*/
+.slider-container {
+  /* text-align: center; */
+  position: relative;
+  overflow: hidden; /* Hide overflow to only show visible items */
+}
+
+.slider-overlay {
+  width: 100%;
+  overflow: hidden; /* Hide overflow for sliding effect */
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out; /* For smooth transition */
+}
+
+.slider-item {
+  min-width: 9%; /* Set width based on items to show */
+  box-sizing: border-box; /* Ensure padding and border are included in total width */
+  padding: 10px; /* Optional padding */
+}
+
+.active-image {
+  border: 4px solid var(--cashier-main-color);
+  border-radius: 10px;
+}
+.menu-category-next {
+  position: absolute;
+  top: 3.5rem;
+  right: 0;
+}
+.menu-category-prev {
+  position: absolute;
+  top: 3.5rem;
+  left: 0;
+}
 
 /* 
   =========================
@@ -165,16 +453,16 @@
 
 @media screen and (max-width: 768px) {
   .hidden-tablet {
-     display: none;
-   }
- }
- 
- @media screen and (max-width: 480px) {
-   .hidden-mobile {
-     display: none;
-   }
- }
- /* 
+    display: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hidden-mobile {
+    display: none;
+  }
+}
+/* 
   =========================
 
   Transition Effects
@@ -195,24 +483,10 @@
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .background-img {
   background-image: url(../src/Components/Assets/Images/background/background-img.png);
-  height: 100vh;
+  background-position: center, center;
+  background-size: contain;
 }
 
 /* ---------right side bar-------------- */
@@ -228,4 +502,3 @@
   border: 4px solid var(--cashier-main-color);
   border-radius: 15px;
 }
-

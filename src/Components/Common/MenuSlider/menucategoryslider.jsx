@@ -1,108 +1,132 @@
-import React from "react";
-import Slider from "react-slick";
-// Import css files
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-// Images
+import React, { useState, useEffect } from "react";
 import Menu1 from "../../Assets/Images/menuCategory/menu1.png";
 import Menu2 from "../../Assets/Images/menuCategory/menu2.png";
 import Menu3 from "../../Assets/Images/menuCategory/menu3.png";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+// import './MenuSlider.css'; // Import your CSS styles here
 
+// ==========
+// Import Json
+// ==========
+
+const items = [
+  { id: 1, src: Menu1, label: "Starters" },
+  { id: 2, src: Menu2, label: "Breads" },
+  { id: 3, src: Menu3, label: "Paneer" },
+  { id: 4, src: Menu1, label: "Chinese" },
+  { id: 5, src: Menu2, label: "Thali" },
+  { id: 6, src: Menu1, label: "Desserts" },
+  { id: 7, src: Menu3, label: "Chinese" },
+  { id: 8, src: Menu2, label: "Paneer" },
+  { id: 9, src: Menu3, label: "Chinese" },
+  { id: 10, src: Menu2, label: "Breads" },
+];
 const MenuSlider = () => {
-    var settings = {
-        dots: false,
-        speed: 500,
-        // autoplay: true,
-        // autoplaySpeed: 1000,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                    infinite: true,
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                    initialSlide: 2
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            }
-        ]
+  // ==========
+  //  States
+  // ==========
+
+  const [itemsToShow, setItemsToShow] = useState(1);
+  const [currentStartIndex, setCurrentStartIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0); // Active index state
+
+  // ==========
+  //  Functions
+  // ==========
+
+  const handleNext = () => {
+    setCurrentStartIndex((prevIndex) => {
+      const newIndex = prevIndex + itemsToShow;
+      return newIndex < items.length ? newIndex : 0; // Loop back to the start
+    });
+  };
+
+  const handlePrev = () => {
+    setCurrentStartIndex((prevIndex) => {
+      const newIndex = prevIndex - itemsToShow;
+      return newIndex >= 0 ? newIndex : items.length - itemsToShow; // Loop to the end
+    });
+  };
+  const handleItemClick = (index) => {
+    setActiveIndex(index); // Set the clicked index as active
+  };
+  // ==========
+  //  useEffects
+  // ==========
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width < 480) {
+        setItemsToShow(1);
+      } else if (width < 768) {
+        setItemsToShow(2);
+      } else {
+        setItemsToShow(1); // Adjusted for desktop view
+      }
     };
-    return (
-        <>
-            <div className="slider-container">
-                <h1 className="font-bold text-lg border-t-2">Categories</h1>
-                <Slider {...settings}>
-                    <div className="mx-3">
-                        <h3>1</h3>
-                        <img src={Menu1} alt="Loading" />
-                        <p>Starters</p>
-                    </div>
-                    <div className="mx-3">
-                        <h3>2</h3>
-                        <img src={Menu2} alt="Loading" />
-                        <p>Breads</p>
-                    </div>
-                    <div className="mx-3">
-                        <h3>3</h3>
-                        <img src={Menu3} alt="Loading" />
-                        <p>Paneer</p>
 
-                    </div>
-                    <div className="mx-3">
-                        <h3>4</h3>
-                        <img src={Menu1} alt="Loading" />
-                        <p>Chinese</p>
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Call once to set initial value
 
-                    </div>
-                    <div className="mx-3">
-                        <h3>5</h3>
-                        <img src={Menu2} alt="Loading" />
-                        <p> Thali</p>
-                    </div>
-                    <div className="mx-3">
-                        <h3>6</h3>
-                        <img src={Menu1} alt="Loading" />
-                       <p> Desserts</p>
-                    </div>
-                    <div className="mx-3">
-                        <h3>7</h3>
-                        <img src={Menu3} alt="Loading" />
-                       <p>Chinese</p>
-                    </div>
-                    <div className="mx-3">
-                        <h3>8</h3>
-                        <img src={Menu2} alt="Loading" />
-                       <p>Paneer</p>
-                    </div>
-                    <div className="mx-3">
-                        <h3>9</h3>
-                        <img src={Menu3} alt="Loading" />
-                       <p>Chinese</p>
-                    </div>
-                    <div className="mx-3">
-                        <h3>10</h3>
-                        <img src={Menu2} alt="Loading" />
-                        <p>Breads</p>
-                    </div>
-                </Slider>
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  return (
+    <div className="slider-container">
+      <h1 className="font-bold text-lg border-t-2">Categories</h1>
+      <div className="slider-overlay">
+        <div
+          className="slider hidden-scroll w-screen"
+          style={{
+            transform: `translateX(-${
+              (currentStartIndex / items.length) * 100
+            }%)`,
+            transition: "transform 0.5s ease-in-out",
+          }}
+        >
+          {items.map((item, index) => (
+            <div
+              key={item.id}
+              className={`slider-item ${activeIndex === index ? "active" : ""}`}
+              onClick={() => handleItemClick(index)}
+            >
+              <div className="flex justify-center mb-2">
+                <img
+                  src={item.src}
+                  alt={item.label}
+                  className={activeIndex === index ? "active-image" : ""}
+                />{" "}
+                {/* Optionally, you can add a class to the image itself */}
+              </div>
+              <div className="flex justify-evenly">
+                <p>{item.label}</p>
+                <span
+                  className={`${
+                    activeIndex === index
+                      ? "bg-[--cashier-main-color] text-white"
+                      : "bg-[#EAEAEA]"
+                  }  rounded-md px-2`}
+                >
+                  0
+                </span>
+              </div>
             </div>
-        </>
-    );
+          ))}
+        </div>
+      </div>
+      <div className="slider-controls">
+        <button className="menu-category-prev " onClick={handlePrev}>
+          <IoIosArrowBack className="bg-white w-6 h-6 p-1 border border-[--cashier-main-color] text-[--cashier-main-color] rounded-full text-xl hover:bg-[--cashier-main-color] hover:text-white active:bg-[--cashier-main-color]" />
+        </button>
+        <button className="menu-category-next" onClick={handleNext}>
+          <IoIosArrowForward className="bg-white w-6 h-6 p-1 border border-[--cashier-main-color] text-[--cashier-main-color] rounded-full text-xl hover:bg-[--cashier-main-color] hover:text-white active:bg-[--cashier-main-color]" />
+        </button>
+      </div>
+    </div>
+  );
 };
+
 export default MenuSlider;
