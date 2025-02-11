@@ -113,16 +113,17 @@ const UserLogin = () => {
 
   return (
     <>
+    <section>
       <div className="h-screen flex justify-center items-center">
         <div className="grid grid-cols-1 grid-rows-4 gap-1">
           {/* Logo & Title */}
           <div className="row-span-2 flex justify-center items-center mb-20">
             <img
-              className="w-auto h-24 inline me-5"
+              className="w-[108px] h-[108px] inline me-5"
               src={Logo}
               alt="Food Fusion Logo"
             />
-            <span className="food-fusion text-shadow-xl uppercase cashier-main-text-color text-6xl ms-1 font-bold">
+            <span className="cashier-main-text-color text-6xl ms-1 montserrat-alternates-semibold" style={{ textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)" }}>
               FOOD FUSION
             </span>
           </div>
@@ -136,7 +137,7 @@ const UserLogin = () => {
                 className="mx-8 cursor-pointer font-medium text-3xl transform transition-transform duration-300 hover:scale-125"
               >
                 <div
-                  className={`h-24 w-24 flex justify-center items-center ${user.bgClass} rounded-xl mb-1`}
+                  className={`h-[120px] w-[120px] flex justify-center items-center ${user.bgClass} rounded-[16px] mb-1`}
                 >
                   <img
                     className="w-20 m-auto p-2"
@@ -144,7 +145,10 @@ const UserLogin = () => {
                     alt={user.label}
                   />
                 </div>
+                <div className="poppins-medium text-3xl text-color-black">
                 {user.label}
+                </div>
+               
               </span>
             ))}
           </div>
@@ -161,6 +165,7 @@ const UserLogin = () => {
           onSubmit={onSubmit}
         />
       )}
+      </section>
     </>
   );
 };

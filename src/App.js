@@ -5,6 +5,7 @@ import RouteRoutes from "./Components/RouteRoutes/routes";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { store } from "./Components/Redux/store"
+import ImageSlider from "./Components/Common/Test/test";
 function App() {
   return (
     <>
@@ -13,6 +14,7 @@ function App() {
         <Provider store={store}>
           <RouteRoutes />
         </Provider>
+        {/* <ImageSlider/> */}
       </div>
     </>
   );

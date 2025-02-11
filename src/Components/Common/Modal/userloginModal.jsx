@@ -55,7 +55,7 @@ const   UserLoginModal = ({ isOpen, closeModal, selectedUser, onSubmit }) => {
       />
 
       {/* Modal Content */}
-      <div className="relative bg-white p-6 rounded-2xl shadow-lg z-20 w-96">
+      <div className="bg-white p-6 rounded-2xl shadow-lg z-20 w-[450px]">
         {/* Close Button */}
         <div className="flex justify-end">
           <button
@@ -75,12 +75,15 @@ const   UserLoginModal = ({ isOpen, closeModal, selectedUser, onSubmit }) => {
             className="my-3 p-4"
             alt={selectedUser?.image}
           />
+           
         </div>
+        <div className="poppins-medium text-2xl text-color-black text-center my-3">
+            {selectedUser?.label}
+           </div>
 
         {/* Login Form */}
         <form className="text-center" onSubmit={handleSubmit(onSubmitHandler)}>
-          <div className="relative m-5">
-            <label className="block pt-4 text-gray-600 font-normal">
+            <label className="poppins-regular text-2xl text-color-gray">
               Please enter your code
             </label>
 
@@ -108,7 +111,7 @@ const   UserLoginModal = ({ isOpen, closeModal, selectedUser, onSubmit }) => {
               </button>
               {/* </NavLink> */}
             </div>
-          </div>
+          
 
 
           {/* Submit Button */}
