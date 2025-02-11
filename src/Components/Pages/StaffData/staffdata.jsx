@@ -1,9 +1,16 @@
 import React, { useState } from "react";
+// Common Components
 import LeftSideNavbar from "../../Common/SideNavbar/leftSideNavbar.jsx";
 import RightSidebar from "../../Common/SideNavbar/rightSideNavbar.jsx";
-// Images
-import Toggle from "../../Assets/Images/sidebarImg/toggle.png";
 
+
+// Images
+import Navbar from "../../Common/Navbar/navbar.jsx";
+import Toggle from "../../Assets/Images/sidebarImg/toggle.png";
+import bell from "../../Assets/Images/navbar-img/bell.svg";
+import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
+import Sort from "../../Assets/Images/navbar-img/SortAscending.svg";
+// Role JSON Data
 const employees = [
 
     {
@@ -20,15 +27,40 @@ const employees = [
 
         status: "Present",
 
+        statuscolor: "text-green-600 bg-light-green",
+
         task: "-",
 
-        color: "bg-green-500"
+        color: "bg-green-500",
 
+        dotcolor: "bg-green-500",
     },
 
     {
 
         initials: "SK",
+
+        name: "Razik Khan",
+
+        phone: "+91-9715555555",
+
+        role: "Cashier",
+
+        shift: "Morning",
+
+        status: "On Leave",
+
+        statuscolor: "text-red-600 bg-color-red",
+
+        task: "Orders & Payments",
+
+        color: "bg-purple-400",
+
+        dotcolor: "bg-red-500",
+    },
+    {
+
+        initials: "RK",
 
         name: "Shumaila Khan",
 
@@ -40,20 +72,107 @@ const employees = [
 
         status: "Present",
 
+        statuscolor: "text-green-600 bg-light-green",
+
         task: "Orders & Payments",
 
-        color: "bg-purple-400"
+        color: "bg-purple-400",
 
-    }
+        dotcolor: "bg-green-500",
 
+    },
+    {
+
+        initials: "SK",
+
+        name: "Razik Khan",
+
+        phone: "+91-9715555555",
+
+        role: "Cashier",
+
+        shift: "Morning",
+
+        status: "On Leave",
+
+        statuscolor: "text-red-600 bg-color-red",
+
+        task: "Orders & Payments",
+
+        color: "bg-purple-400",
+
+        dotcolor: "bg-red-500",
+    },
+    {
+
+        initials: "DJ",
+
+        name: "Dollar Jain",
+
+        phone: "+91-9715555555",
+
+        role: "Admin",
+
+        shift: "Morning",
+
+        status: "Present",
+
+        statuscolor: "text-green-600 bg-light-green",
+
+        task: "-",
+
+        color: "bg-green-500",
+
+        dotcolor: "bg-green-500",
+    },
+    {
+
+        initials: "SK",
+
+        name: "Razik Khan",
+
+        phone: "+91-9715555555",
+
+        role: "Cashier",
+
+        shift: "Morning",
+
+        status: "On Leave",
+
+        statuscolor: "text-red-600 bg-color-red",
+
+        task: "Orders & Payments",
+
+        color: "bg-purple-400",
+
+        dotcolor: "bg-red-500",
+    },
 ];
 
+
+
+
+const StaffIcons = [
+    { nav_img: magnify},
+    { nav_img: Sort },
+    { nav_img: bell },
+  ];
 const StaffData = () => {
+    // ==========  
+    // State 
+    // ============ 
     const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
 
+
+    // ==========  
+    // Function 
+    // ============
+
+    // Open & Close Function For RightSide Panel 
     const toggleRightSidebar = () => {
         setIsRightSidebarOpen(!isRightSidebarOpen);
     };
+
     return (
         <div className="flex h-screen overflow-hidden">
             {/* Left Sidebar */}
@@ -61,39 +180,46 @@ const StaffData = () => {
 
             {/* Main Content Area */}
             <div className={`flex-grow p-4 transition-all duration-300`}>
+                <div className="text-sm text-black">
+                    &lt;{" "}
+                    <span className="ml-2 font-bold">Staff Data</span>
+                </div>
+
                 {/* <Navbar /> */}
-                <div className="overflow-x-auto">
-                    <table className="min-w-full border rounded-lg shadow-md">
+                <Navbar icons={StaffIcons} />
+
+                {/* Table Start */}
+                <div className="bg-white mt-4 border rounded-xl overflow-auto h-80">
+                    <table className="w-full border rounded-xl shadow-md">
                         <thead>
-                            <tr className="bg-orange-100 text-left">
-                                <th className="px-4 py-3">Employee Name</th>
-                                <th className="px-4 py-3">Role</th>
-                                <th className="px-4 py-3">Shift</th>
-                                <th className="px-4 py-3">Status</th>
-                                <th className="px-4 py-3">Notify</th>
-                                <th className="px-4 py-3">Assigned Task</th>
+                            <tr className="cashier-bg-table-color text-left">
+                                <th className="px-6 py-3 font-medium">Employee Name</th>
+                                <th className="px-4 py-3 font-medium">Role</th>
+                                <th className="px-4 py-3 font-medium">Shift</th>
+                                <th className="px-4 py-3 font-medium">Status</th>
+                                <th className="px-4 py-3 font-medium">Notify</th>
+                                <th className="px-4 py-3 font-medium">Assigned Task</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white">
-
                             {employees.map((employee, index) => (
-                                <tr key={index} className="border-t">
-                                    <td className="px-4 py-3 flex items-center space-x-2">
-                                        <span className={`w-10 h-10 flex items-center justify-center text-white font-bold rounded-full ${employee.color}`}>{employee.initials}</span>
+                                <tr key={index} className="border-t text-left">
+                                    <td className="px-6 py-3 flex items-center space-x-3">
+                                        <span className={`w-10 h-10 flex items-center justify-center text-white font-bold rounded-md ${employee.color}`}>{employee.initials}</span>
                                         <div>
-                                            <p className="font-medium text-gray-700">{employee.name}</p>
+                                            <p className="font-medium text-gray-900">{employee.name}</p>
                                             <p className="text-sm text-gray-500">{employee.phone}</p>
                                         </div>
                                     </td>
-                                    <td className="px-4 py-3 text-gray-700">{employee.role}</td>
-                                    <td className="px-4 py-3 text-gray-700">{employee.shift}</td>
+                                    <td className="px-4 py-3 text-gray-900">{employee.role}</td>
+                                    <td className="px-4 py-3 text-gray-900">{employee.shift}</td>
                                     <td className="px-4 py-3">
-                                        <span className="text-green-600 font-semibold flex items-center">
-                                            <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span> {employee.status}
+                                        <span className={`${employee.statuscolor} rounded-lg font-semibold flex items-center justify-center py-1`}>
+                                            <span className={`w-2 h-2 ${employee.dotcolor} rounded-full mr-2`}></span> {employee.status}
                                         </span>
                                     </td>
                                     <td className="px-4 py-3">
-                                        <button className="px-3 py-1 border border-orange-500 text-orange-500 rounded-full hover:bg-orange-100">Notify</button>
+                                        <button className="px-3 py-1 border border-[--cashier-main-color] cashier-main-text-color rounded-full hover:bg-[--cashier-main-color] hover:text-white">Notify</button>
                                     </td>
                                     <td className="px-4 py-3 text-gray-700">{employee.task}</td>
                                 </tr>
@@ -102,18 +228,14 @@ const StaffData = () => {
                         </tbody>
                     </table>
                 </div>
+                {/* Table End */}
             </div>
-            {/* Right Sidebar */}
+            {/* Right Side Panel */}
             <div
                 className={`bg-gray-200 transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "w-80" : "w-7"
                     }`}
             >
-                {/* <button
-            onClick={toggleRightSidebar}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded absolute top-1/2 "
-          >
-            {isRightSidebarOpen ? "Close" : "Open"}
-          </button> */}
+
                 <span
                     className="bg-blue-700 hover:bg-blue-700 font-bold p-3 cursor-pointer rounded-full absolute top-1/2 -left-5"
                     onClick={toggleRightSidebar}
@@ -125,7 +247,6 @@ const StaffData = () => {
             </div>
 
         </div>
-
 
     );
 

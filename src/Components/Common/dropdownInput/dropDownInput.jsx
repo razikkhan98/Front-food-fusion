@@ -1,28 +1,60 @@
 import React, { useState } from "react";
 
+// Role JSON Data
+const orders = [
+  {
+    table: "Table 1",
+    orderNo: "#1001",
+    time: "15 Min",
+    items: ["1x Pizza", "2x Coke"],
+  },
+  {
+    table: "Table 2",
+    orderNo: "#1002",
+    time: "10 Min",
+    items: ["2x Samosa", "1x Chowmein", "2x Cold Coffee", "2x Cold Coffee", "2x Cold Coffee"],
+  },
+  {
+    table: "Table 3",
+    orderNo: "#1003",
+    time: "20 Min",
+    items: ["1x Burger", "1x Fries"],
+  },
+  {
+    table: "Table 4",
+    orderNo: "#1004",
+    time: "5 Min",
+    items: ["3x Pasta", "2x Lemonade"],
+  },
+];
+
 const DropDownInput = () => {
+  // ==========  
+  // State 
+  // ============
   const [inputValue, setInputValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
-  // Sample data for the dropdown options
-  const options = [
-    "Apple",
-    "Banana",
-    "Orange",
-    "Mango",
-    "Strawberry",
-    "Pineapple",
-    "Grapes",
-  ];
+
+  // ==========  
+  // Functions 
+  // ============ 
 
   // Filter options based on the input value
-  const filteredOptions = options.filter((option) =>
-    option.toLowerCase().includes(inputValue.toLowerCase())
+  const filteredOptions = orders.filter((order) =>
+    order.table.toLowerCase().includes(inputValue.toLowerCase())
   );
+
+  // Handle selection
+  const handleSelect = (order) => {
+    setInputValue(order.table);
+    setIsOpen(false);
+  };
 
   return (
     <div className="relative">
-      <div className="flex items-center bg-transparent border-white border-2 rounded-full px-4 py-2 w-full max-w-md">
+      {/* Search Input   */}
+      <div className="flex items-center bg-transparent border-white border-2 rounded-full px-4 py-2 w-full max-w-md hover:bg-white">
         <span className="text-gray-400">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -50,24 +82,40 @@ const DropDownInput = () => {
         />
       </div>
 
-      {/* Dropdown menu */}
+      {/* Search Card  */}
       {isOpen && inputValue && (
-        <ul className="absolute left-0 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-md max-h-60 overflow-y-auto z-10">
+        <div className="absolute left-0 text-sm w-full max-h-60 py-4 px-3 bg-white mt-1 rounded-3xl shadow-md">
           {filteredOptions.length > 0 ? (
-            filteredOptions.map((option, index) => (
-              <li
-                key={index}
-                className="px-4 py-2 text-gray-700 hover:bg-gray-200 cursor-pointer"
-                onMouseDown={() => setInputValue(option)}
-              >
-                {option}
-              </li>
+            filteredOptions.map((order, index) => (
+              <div className="cursor-pointer" onMouseDown={() => handleSelect(order)}>
+                <div className="flex justify-between border-b py-2">
+                  <span className="font-medium">Order Details :</span>
+                  <span className="font-semibold">{order.table}</span>
+                </div>
+                <div className="flex justify-between border-b py-2">
+                  <span className="text-gray-400">Order No:</span>
+                  <span className="text-left">{order.orderNo}</span>
+                </div>
+                <div className="flex justify-between border-b py-2">
+                  <span className="text-gray-400">Time:</span>
+                  <span className="text-left">{order.time}</span>
+                </div>
+                <div className="flex justify-between py-2">
+                  <span className="text-gray-400">Items :</span>
+                  <ol className="list-decimal pl-5 h-16 hidden-scroll overflow-y-auto">
+                    {order.items.map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
+                  </ol>
+                </div>
+              </div>
             ))
           ) : (
-            <li className="px-4 py-2 text-gray-500">No results found</li>
+            <p className="px-4 py-2 text-gray-500">No results found</p>
           )}
-        </ul>
+        </div>
       )}
+
     </div>
   );
 };

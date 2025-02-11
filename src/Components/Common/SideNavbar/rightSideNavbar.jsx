@@ -7,13 +7,24 @@ import trash from '../../Assets/Images/sidebarImg/Trash.svg'
 import clendar from '../../Assets/Images/sidebarImg/calendar-tick.svg'
 import openSchedule from '../../Assets/Images/sidebarImg/openSchedule.svg'
 import closeSchedule from '../../Assets/Images/sidebarImg/openSchedule.svg'
+
+// Third Party Components
 import { NavLink } from "react-router-dom";
-import DropDownInput from "../dropdownInput/dropDownInput";
+// Common
+import DropDownInput from "../DropdownInput/dropDownInput";
 
 
 
 const RightSidebar = () => {
+    // ==========  
+  // State 
+  // ============ 
   const [isOpen, setIsOpen] = useState(true);
+
+
+ // ==========  
+  // Functions 
+  // ============ 
 
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
@@ -82,7 +93,7 @@ const RightSidebar = () => {
             <img src={isOpen ? openSchedule : closeSchedule} alt="" />
           </div>
 
-          {/* Accordion Content */}
+          {/* Schedule Accordion Content */}
           {isOpen && (
             <div className="">
               {/* First Order */}
