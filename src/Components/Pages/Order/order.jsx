@@ -136,7 +136,7 @@ const Order = () => {
                     {errors?.customer_name?.message}
                   </span>
                 )}
-                {filteredCustomers?.length > 0 && (
+                {/* {filteredCustomers?.length > 0 && (
                   <ul className="absolute left-72 top-48 w-3/12 h-32 overflow-y-scroll mt-2 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
                     {filteredCustomers.map((customer, index) => (
                       <li
@@ -148,7 +148,7 @@ const Order = () => {
                       </li>
                     ))}
                   </ul>
-                )}
+                )} */}
               </div>
               {/* Contact No */}
               <div>
