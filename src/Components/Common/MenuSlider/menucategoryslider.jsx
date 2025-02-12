@@ -76,7 +76,7 @@ const MenuSlider = () => {
 
   return (
     <div className="slider-container">
-      <h1 className="font-bold text-lg border-t-2">Categories</h1>
+      <h1 className="font-bold text-lg ">Categories</h1>
       <div className="slider-overlay">
         <div
           className="slider hidden-scroll w-screen"

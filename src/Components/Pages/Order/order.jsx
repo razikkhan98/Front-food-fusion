@@ -45,6 +45,7 @@ const customerData = [
   },
 ];
 const OrderIcons = [{ nav_img: bell }];
+const OrderHeading= ["Book Table" , "Generate Order"]
 const Order = ({ tableNoFromRedux ,tableDetailsFromRedux}) => {
   // console.log('tableDetailsFromRedux: ', tableDetailsFromRedux?.TableBooking);
   // ==========
@@ -134,12 +135,8 @@ const Order = ({ tableNoFromRedux ,tableDetailsFromRedux}) => {
 
       {/* Main Content Area */}
       <div className={`flex-grow py-2 px-6 transition-all duration-300`}>
-        {/* Breadcrumb */}
-        <div className="text-sm text-gray-500 ">
-          <span className="mr-2">Book Table</span> &gt;{" "}
-          <span className="ml-2">Generate Order</span>
-        </div>
-        <Navbar icons={OrderIcons} />
+      
+        <Navbar icons={OrderIcons} pageHeading={OrderHeading} />
 
         {/* Order Details */}
         <div className="bg-white rounded-lg border shadow-md p-6 mt-2">

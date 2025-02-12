@@ -54,7 +54,7 @@ const DropDownInput = () => {
   return (
     <div className="relative">
       {/* Search Input   */}
-      <div className="flex items-center bg-transparent border-white border-2 rounded-full px-4 py-2 w-full max-w-md hover:bg-white">
+      <div className="flex items-center bg-transparent border-white border rounded-full px-4 py-2 w-full max-w-md hover:bg-white">
         <span className="text-gray-400">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -64,11 +64,12 @@ const DropDownInput = () => {
             stroke="currentColor"
             strokeWidth={2}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M11 4a7 7 0 100 14 7 7 0 000-14zm10 10l-4-4"
-            />
+           <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-4.35-4.35M16.5 10.5a6 6 0 1 0-12 0 6 6 0 0 0 12 0z"
+              />
           </svg>
         </span>
         <input
@@ -78,7 +79,7 @@ const DropDownInput = () => {
           onFocus={() => setIsOpen(true)}
           onBlur={() => setIsOpen(false)} // Optional: You can keep the dropdown open by managing this state differently
           placeholder="Table or Order status"
-          className="bg-transparent text-gray-400 placeholder-gray-400 focus:outline-none focus:ring-0 border-none ml-2 w-full"
+          className="bg-transparent text-gray-400 text-base font-normal placeholder-gray-400 focus:outline-none focus:ring-0 border-none ml-2 w-full"
         />
       </div>
 

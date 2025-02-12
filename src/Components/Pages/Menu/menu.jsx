@@ -6,10 +6,13 @@ import RightSidebar from "../../Common/SideNavbar/rightSideNavbar";
 import Food1 from "../../Assets/Images/menuCard-img/food-1.jpeg";
 import Food2 from "../../Assets/Images/menuCard-img/food-2.jpeg";
 import Food3 from "../../Assets/Images/menuCard-img/food-3.jpeg";
+import bell from "../../Assets/Images/navbar-img/bell.svg";
+import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
 import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 import MenuDetailsCardSlider from "../../Common/MenuSlider/menudetailscardslider";
 import MenuSlider from "../../Common/MenuSlider/menucategoryslider";
 import OrderSideMenu from "../../Common/OrderSideMenu/ordersidemenu";
+import Navbar from "../../Common/Navbar/navbar";
 
 // JSON
 const MenuCard = [
@@ -54,6 +57,19 @@ const MenuCard = [
     colorStatus: "text-light-green bg-light-green",
   },
 ];
+const MenuButtons =[
+  { btn_name: "All", btn_color: "bg-orange-100" },
+  { btn_name: "Veg", btn_color: "bg-transparent" },
+  { btn_name: "Non Veg", btn_color: "bg-transparent" },
+  { btn_name: "Chef's Special", btn_color: "bg-transparent" },
+];
+ const MenuIcons =[
+  { nav_img: magnify },
+  { nav_img: bell },
+ ];
+ const MenuHeading =[
+  "Generate Order" , "Add Item"
+ ]
 const Menu = () => {
   //  States
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
@@ -87,6 +103,7 @@ const Menu = () => {
         <LeftSideNavbar />
         {/* Main Content Area */}
         <div className={`flex-grow w-3/5 p-4 transition-all duration-300`}>
+        <Navbar pageHeading={MenuHeading} buttons={MenuButtons} icons={MenuIcons} />
           <MenuSlider />
           {/* <MenuDetailsCardSlider/> */}
           <h1 className="font-bold text-xl">Starters</h1>
