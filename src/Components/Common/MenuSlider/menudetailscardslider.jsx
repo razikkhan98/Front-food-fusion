@@ -3,10 +3,10 @@ import React, { useState } from "react";
 // =============
 // import Images
 // =============
-import foodimg from "../../Assets/Images/menuCard-img/food-1.jpeg";
-import Food1 from "../../Assets/Images/menuCard-img/food-1.jpeg";
-import Food2 from "../../Assets/Images/menuCard-img/food-2.jpeg";
-import Food3 from "../../Assets/Images/menuCard-img/food-3.jpeg";
+// import foodimg from "../../Assets/Images/menuCard-img/food-1.jpeg";
+// import Food1 from "../../Assets/Images/menuCard-img/food-1.jpeg";
+// import Food2 from "../../Assets/Images/menuCard-img/food-2.jpeg";
+// import Food3 from "../../Assets/Images/menuCard-img/food-3.jpeg";
 import sparkleStar from "../../Assets/Images/menuPageImages/svgs/Sparkle.svg";
 
 import { PiChefHatFill, PiPizzaLight } from "react-icons/pi";

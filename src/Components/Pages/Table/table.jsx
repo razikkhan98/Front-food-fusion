@@ -22,6 +22,9 @@ const HomeIcons = [
   { nav_img: magnify},
   { nav_img: bell },
 ];
+const HomeHeading =[
+  "Book Table"
+]
 const Table = () => {
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
 
@@ -38,7 +41,7 @@ const Table = () => {
         <ChatBot />
         {/* Main Content Area */}
         <div className={`flex-grow p-4 transition-all duration-300`}>
-          <Navbar buttons={HomeButtons} icons={HomeIcons} />
+          <Navbar buttons={HomeButtons} icons={HomeIcons}  pageHeading={HomeHeading}/>
           {/* -------- for 2 member table ---------- */}
           {/* <hr className="mt-3 mb-1" /> */}
 

@@ -76,7 +76,7 @@ const MenuSlider = () => {
 
   return (
     <div className="slider-container">
-      <h1 className="font-bold text-lg border-t-2">Categories</h1>
+      <h1 className="font-bold text-lg ">Categories</h1>
       <div className="slider-overlay">
         <div
           className="slider hidden-scroll w-screen"
@@ -102,13 +102,13 @@ const MenuSlider = () => {
                 {/* Optionally, you can add a class to the image itself */}
               </div>
               <div className="flex justify-evenly">
-                <p>{item.label}</p>
+                <p className="text-base font-normal">{item.label}</p>
                 <span
                   className={`${
                     activeIndex === index
                       ? "bg-[--cashier-main-color] text-white"
                       : "bg-[#EAEAEA]"
-                  }  rounded-md px-2`}
+                  }  rounded-md text-sm px-2 pt-0.5`}
                 >
                   0
                 </span>

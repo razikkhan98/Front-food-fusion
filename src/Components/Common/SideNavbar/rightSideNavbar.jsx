@@ -13,16 +13,41 @@ import { NavLink } from "react-router-dom";
 // Common
 import DropDownInput from "../dropdownInput/dropDownInput";
 
-
+// Json
+const tableData = [
+  { count: 6, label: "Active Tables", color: "bg-green-400" },
+  { count: 3, label: "Available Tables", color: "bg-yellow-400" },
+  { count: 20, label: "Reservations", color: "bg-red-400" },
+];
+const orders = [
+  {
+    name: "Mr. Rahul Vijay",
+    bookingId: "123456789",
+    dateTime: "10-12-2024; 5 PM",
+    bookingFor: 7,
+  },
+  {
+    name: "Mr. Rahul Vijay",
+    bookingId: "123456789",
+    dateTime: "10-12-2024; 5 PM",
+    bookingFor: 7,
+  },
+  {
+    name: "Mr. Rahul Vijay",
+    bookingId: "123456789",
+    dateTime: "10-12-2024; 5 PM",
+    bookingFor: 7,
+  },
+];
 
 const RightSidebar = () => {
-    // ==========  
+  // ==========  
   // State 
   // ============ 
   const [isOpen, setIsOpen] = useState(true);
 
 
- // ==========  
+  // ==========  
   // Functions 
   // ============ 
 
@@ -35,40 +60,37 @@ const RightSidebar = () => {
       {/* Sidebar */}
       <div className="cashier-light-bg-color h-full rounded-l-3xl p-6 shadow-md z-0">
         {/* Create New Order Button */}
-       <NavLink to={"/order"}>
-       <button className="w-full cashier-main-bg-color text-white py-2 px-4 rounded-full font-semibold">
-          + Create New Order
-        </button>
-       </NavLink>
+        <NavLink to={"/order"}>
+          <button className="w-full cashier-main-bg-color text-white py-2 px-4 rounded-full font-semibold">
+            + Create New Order
+          </button>
+        </NavLink>
 
         <div className="my-2 py-2 px-5 bg-[#ffffff4d] rounded-xl">
           <div className="text-center">
-            <DropDownInput/>
+            <DropDownInput />
           </div>
-          <div className="mt-2.5">
-            <span className="  w-9 h-9 pt-1.5 text-center inline-block  rounded-full bg-green-400 shadow-xl font-semibold">
-              6
-            </span>{" "}
-            <span className="font-semibold ms-4 lg:text-base md:text-sm">Active Tables</span>
-          </div>
-          <hr className="h-[2px] my-2 bg-white border-white" />
-          <div className="mt-3">
-            <span className="  w-9 h-9 pt-1.5 text-center inline-block  rounded-full bg-yellow-400 shadow-xl font-semibold">
-              3
-            </span>{" "}
-            <span className="font-semibold ms-4 lg:text-base md:text-sm">Available Tables</span>
-          </div>
-          <hr className="h-[1.5px] my-2 bg-white border-white" />
-          <div className="mt-3">
-            <span className="  w-9 h-9 pt-1.5 text-center inline-block  rounded-full bg-red-400 shadow-xl font-semibold">
-              20
-            </span>{" "}
-            <span className="font-semibold ms-4 lg:text-base md:text-sm">Reservations</span>
+          <div>
+            {tableData.map((item, index) => (
+              <div key={index} className="mt-3">
+                <span
+                  className={`md:w-10 md:h-10 md:pt-2 h-8 w-8 pt-1.5 text-center text-base inline-block rounded-full ${item.color} shadow-xl font-normal`}
+                >
+                  {item.count}
+                </span>{" "}
+                <span className="font-normal ms-4 lg:text-base md:text-sm">
+                  {item.label}
+                </span>
+                {index !== tableData.length - 1 && (
+                  <hr className="h-[1px] my-2 bg-white border-white" />
+                )}
+              </div>
+            ))}
           </div>
         </div>
 
         {/* Schedule New Order Button */}
-        <button className="w-full bg-[#ffffff4d] py-2 mb-3 mt-2 px-4 rounded-full border-white border-2">
+        <button className="w-full text-base font-medium bg-[#ffffff4d] py-2 mb-3 mt-2 px-4 rounded-full border-white border">
           + Schedule New Order
         </button>
 
@@ -81,107 +103,47 @@ const RightSidebar = () => {
           >
             <div className="flex items-center space-x-3">
               <div className="p-2 bg-[#dc143c1a] rounded-full">
-                <img src={clendar} alt="" />
+                <img className="h-5 w-5" src={clendar} alt="Loading" />
               </div>
-              <h2 className="font-semibold text-lg">Scheduled Orders</h2>
+              <h2 className="font-normal text-base">Scheduled Orders</h2>
             </div>
-            {/* <i
-              className={`fas ${
-                isOpen ? "fa-chevron-up" : "fa-chevron-down"
-              } text-gray-600`}
-            ></i> */}
-            <img src={isOpen ? openSchedule : closeSchedule} alt="" />
+
+            <img className="me-2" src={isOpen ? openSchedule : closeSchedule} alt="Loading" />
           </div>
 
           {/* Schedule Accordion Content */}
           {isOpen && (
-            <div className="">
-              {/* First Order */}
-              <hr className="h-[2px] bg-white my-0 border-white" />
-              <div className="px-2  my-2 flex  justify-between  rounded-lg">
-                <div className="">
-                  <div className="flex justify-between items-center my-2">
+            <div className="h-96 overflow-auto hidden-scroll">
+              {orders.map((order, index) => (
+                <div key={index}>
+                  <hr className="h-[1px] bg-white my-0 border-white" />
+                  <div className="px-2 my-2 flex justify-between rounded-lg">
+                    {/* Booking Details */}
                     <div>
-                      <p className="text-sm">
-                        Name:{" "}
-                        <span className="font-medium">Mr. Rahul Vijay</span>
-                      </p>
+                      {[
+                        { label: "Name", value: order.name },
+                        { label: "Booking ID", value: order.bookingId },
+                        { label: "Date & Time", value: order.dateTime },
+                        { label: "Booking for", value: order.bookingFor },
+                      ].map((item, i) => (
+                        <div key={i} className="flex justify-between items-center my-2">
+                          <p className="text-xs flex items-center">
+                            {item.label}: <span className="font-medium text-sm ps-1">{item.value}</span>
+                          </p>
+                        </div>
+                      ))}
                     </div>
-                  </div>
-                  <div className="flex justify-between items-center my-2">
-                    <div>
-                      <p className="text-sm">
-                        Booking ID:{" "}
-                        <span className="font-medium">123456789</span>
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex justify-between items-center my-2">
-                    <div>
-                      <p className="text-sm">
-                        Date & Time:{" "}
-                        <span className="font-medium">10-12-2024; 5 PM</span>
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex justify-between items-center my-2">
-                    <div>
-                      <p className="text-sm">
-                        Booking for: <span className="font-medium">7</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="">
-                <div className="w-7 h-7 my-1 bg-[#ffffff66] rounded-full flex items-center justify-center"><img className="w-100" src={edit} alt="" /></div>
-                <div className="w-7 h-7 my-1 bg-[#ffffff66] rounded-full flex items-center justify-center"><img className="w-100" src={call} alt="" /></div>
-                <div className="w-7 h-7 my-1 bg-[#ffffff66] rounded-full flex items-center justify-center"><img className="w-100" src={trash} alt="" /></div>
-                </div>
-              </div>
-              <hr className="h-[2px] bg-white my-0 border-white" />
 
-              {/* Second Order */}
-              <div className="px-2  my-2 flex  justify-between  rounded-lg">
-                <div className="">
-                  <div className="flex justify-between items-center my-2">
-                    <div>
-                      <p className="text-sm">
-                        Name:{" "}
-                        <span className="font-medium">Mr. Rahul Vijay</span>
-                      </p>
+                    {/* Action Icons */}
+                    <div className="">
+                      <div className="w-6 h-6 my-2 bg-[#ffffff66] rounded-full flex items-center justify-center"><img className="w-100 h-4" src={edit} alt="Loading" /></div>
+                      <div className="w-6 h-6 my-4 bg-[#ffffff66] rounded-full flex items-center justify-center"><img className="w-100 h-4" src={call} alt="Loading" /></div>
+                      <div className="w-6 h-6 my-2 bg-[#ffffff66] rounded-full flex items-center justify-center"><img className="w-100 h-4" src={trash} alt="Loading" /></div>
                     </div>
                   </div>
-                  <div className="flex justify-between items-center my-2">
-                    <div>
-                      <p className="text-sm">
-                        Booking ID:{" "}
-                        <span className="font-medium">123456789</span>
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex justify-between items-center my-2">
-                    <div>
-                      <p className="text-sm">
-                        Date & Time:{" "}
-                        <span className="font-medium">10-12-2024; 5 PM</span>
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex justify-between items-center my-2">
-                    <div>
-                      <p className="text-sm">
-                        Booking for: <span className="font-medium">7</span>
-                      </p>
-                    </div>
-                  </div>
+                  {/* <hr className="h-[1px] bg-white my-0 border-white" /> */}
                 </div>
-                <div className="">
-                <div className="w-7 h-7 my-1 bg-[#ffffff66] rounded-full flex items-center justify-center"><img className="w-100" src={edit} alt="" /></div>
-                <div className="w-7 h-7 my-1 bg-[#ffffff66] rounded-full flex items-center justify-center"><img className="w-100" src={call} alt="" /></div>
-                <div className="w-7 h-7 my-1 bg-[#ffffff66] rounded-full flex items-center justify-center"><img className="w-100" src={trash} alt="" /></div>
-                </div>
-              </div>
-              <hr className="h-[2px] bg-white my-0 border-white" />
+              ))}
             </div>
           )}
         </div>

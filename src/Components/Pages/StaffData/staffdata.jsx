@@ -153,10 +153,13 @@ const employees = [
 
 
 const StaffIcons = [
-    { nav_img: magnify},
+    { nav_img: magnify },
     { nav_img: Sort },
     { nav_img: bell },
-  ];
+];
+const StaffHeading = [
+    "Staff Data"
+]
 const StaffData = () => {
     // ==========  
     // State 
@@ -180,13 +183,10 @@ const StaffData = () => {
 
             {/* Main Content Area */}
             <div className={`flex-grow p-4 transition-all duration-300`}>
-                <div className="text-sm text-black">
-                    &lt;{" "}
-                    <span className="ml-2 font-bold">Staff Data</span>
-                </div>
+
 
                 {/* <Navbar /> */}
-                <Navbar icons={StaffIcons} />
+                <Navbar icons={StaffIcons} pageHeading={StaffHeading} />
 
                 {/* Table Start */}
                 <div className="bg-white mt-4 border rounded-xl overflow-auto h-80">
