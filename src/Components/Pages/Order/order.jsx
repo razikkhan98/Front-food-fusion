@@ -17,6 +17,7 @@ import ChatBot from "../../Common/ChatBot/chatbot.jsx";
 import Navbar from "../../Common/Navbar/navbar.jsx";
 import bell from "../../Assets/Images/navbar-img/bell.svg";
 import { TableNoRedux } from "../../Redux/Slice/Table/tableDetailSlice.jsx";
+import AutoSuggestSearch from "../../Common/AutoSuggestSearchBar/autoSuggestSearch.jsx";
 // Json
 const customerData = [
   {
@@ -63,7 +64,7 @@ const Order = ({ tableNoFromRedux ,tableDetailsFromRedux}) => {
   // State
   // ============
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
-  const [orderDetailState, setorderDetailState] = useState();
+  const [autoSearchFillValue, setautoSearchFillValue] = useState();
 
   // ==========
   // Functions
@@ -110,6 +111,11 @@ const Order = ({ tableNoFromRedux ,tableDetailsFromRedux}) => {
   const filterInpFildFromPrevOrder = tableDetailsFromRedux?.TableBooking?.filter((i)=>{
     return Number(i?.tableNo) == params.tableNo
   })
+
+  // Auto Search Input Field
+  const HandleAutoSearchInp =(e)=>{
+    setautoSearchFillValue(e.target.value)
+  }
 
   //==========
   // useEffect
@@ -319,8 +325,10 @@ const Order = ({ tableNoFromRedux ,tableDetailsFromRedux}) => {
             <input
               type="text"
               placeholder="Search for items"
+              onChange={HandleAutoSearchInp}
               className="w-full py-2 pl-10 pr-4 cashier-light-bg-color opacity-60 border-2 border-[--cashier-main-color] rounded-full focus:outline-none focus:ring-1 focus:ring-[--cashier-main-color]"
             />
+            <AutoSuggestSearch inputValue={autoSearchFillValue}/>
             <svg
               className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"
               xmlns="http://www.w3.org/2000/svg"
