@@ -68,7 +68,7 @@ const DropDownInput = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M21 21l-4.35-4.35M16.5 10.5a6 6 0 1 0-12 0 6 6 0 0 0 12 0z"
+                d="M21 21l-4.35-4.35M16.5 12.5a6 6 0 1 0-12 0 6 6 0 0 0 12 0z"
               />
           </svg>
         </span>

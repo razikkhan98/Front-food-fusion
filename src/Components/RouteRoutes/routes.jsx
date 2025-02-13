@@ -9,6 +9,7 @@ import Order from "../Pages/Order/order";
 import StaffData from "../Pages/StaffData/staffdata";
 import SendToKitchen from "../Pages/SendToKitchen/kitchen";
 import AllInvoice from "../Pages/Order/orderinvoice";
+import Schedule from "../Pages/Schedule/schedule";
 const RouteRoutes = () => {
   return (
     <>
@@ -24,7 +25,7 @@ const RouteRoutes = () => {
           <Route path="/staffdata" element={<StaffData />}></Route>
           <Route path="/sendtokitchen" element={<SendToKitchen />}></Route>
           <Route path="/allinvoice" element={<AllInvoice />}></Route>
-
+          <Route path="/schedule" element={<Schedule />}></Route>
 
         </Routes>
       </Router>

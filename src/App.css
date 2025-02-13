@@ -39,7 +39,7 @@ body{
   --staff-color: #fff9b0;
   --captain-color: #e3d6f7;
   --chef-color: #ffb3ab;
-  --light-color: #f1f1f1;
+  --light-color: #f5f5f5;
   --red-color: #dc143c;
   --green-color: #94d82d;
   --yellow-color: #ffd700;
@@ -47,6 +47,8 @@ body{
   --sidebar-light: #db9f66;
   --black-color: #111111;
   --gray-color: #707070;
+  --light-gray-color : #A1A1A1;
+
 }
 
 
@@ -77,7 +79,6 @@ body{
 .bg-light-green {
   background-color: rgba(47, 218, 50, 0.05);
 }
-
 .bg-color-red {
   background-color: rgba(218, 50, 47, 0.05);
 }
@@ -88,11 +89,18 @@ body{
 .bg-purple-btn {
   background-color: var(--purple-color);
 }
-
+.bg-green-color{
+  background-color: var(--green-color);
+}
 .bg-color-gray{
   background-color: rgba(112, 112, 112, 0.1);
 }
-
+.bg-light-gray-color{
+  background-color: var(--light-gray-color);
+}
+.bg-light-color{
+  background-color: var(--light-color);
+}
 /* 
   =========================
 
@@ -119,7 +127,9 @@ body{
 .text-color-gray{
   color: var(--gray-color);
 }
-
+.text-light-gray-color{
+  color: var(--light-gray-color);
+}
 /* 
   =========================
 
@@ -137,7 +147,9 @@ body{
 .border-cashier{
   border: 2px solid var(--cashier-main-color);
 }
-
+.border-light-gray{
+  border: 1px solid var(--light-gray-color);
+}
 /* 
   =========================
 
@@ -520,3 +532,9 @@ body{
   border: 4px solid var(--cashier-main-color);
   border-radius: 15px;
 }
+
+
+
+/* --------------------- Schedule Page Css-------------------------- */
+
+

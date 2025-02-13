@@ -117,7 +117,7 @@ const Menu = () => {
             {MenuCard.map((item, index) => (
               <div
                 key={index}
-                className={`bg-white rounded-lg shadow-md px-2 py-2 w-56 ${item?.cardBorder}`}
+                className={`bg-white rounded-lg shadow-md px-2 py-2 w-56 h-32 ${item?.cardBorder}`}
               >
                 <div className="grid grid-cols-2">
                   <div className="me-1">
@@ -133,10 +133,10 @@ const Menu = () => {
                   <div>
                     <div className="flex justify-end">
                       <span
-                        className={`text-end flex items-center px-1 font-semibold ${item?.colorStatus}`}
+                        className={`text-end flex text-xs items-center px-1 font-semibold ${item?.colorStatus}`}
                       >
                         <span
-                          className={`${
+                          className={` ${
                             item?.status == "Available"
                               ? "bg-green-500"
                               : "bg-red-500"
@@ -148,7 +148,7 @@ const Menu = () => {
                     <p
                       className={`${
                         item?.status !== "Available" ? "text-gray-400" : ""
-                      } font-semibold text-left`}
+                      } font-medium text-sm text-left`}
                     >
                       {item?.name}
                     </p>
@@ -157,7 +157,7 @@ const Menu = () => {
                 <div className="flex justify-between items-center">
                   <button
                     onClick={toggleOrderSidebar}
-                    className={`${
+                    className={` text-sm ${
                       item?.status !== "Available"
                         ? "text-gray-400 border"
                         : "cashier-light-bg-color cursor-pointer"
@@ -168,7 +168,7 @@ const Menu = () => {
                   <p
                     className={`${
                       item?.status !== "Available" ? "text-gray-400" : ""
-                    } text-end text-lg font-semibold`}
+                    } text-end text-base font-semibold`}
                   >
                     ₹ {item?.price}
                   </p>

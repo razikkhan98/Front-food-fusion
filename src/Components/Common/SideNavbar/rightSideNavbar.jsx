@@ -74,7 +74,7 @@ const RightSidebar = () => {
             {tableData.map((item, index) => (
               <div key={index} className="mt-3">
                 <span
-                  className={`w-10 h-10 pt-2 text-center text-base inline-block rounded-full ${item.color} shadow-xl font-normal`}
+                  className={`md:w-10 md:h-10 md:pt-2 h-8 w-8 pt-1.5 text-center text-base inline-block rounded-full ${item.color} shadow-xl font-normal`}
                 >
                   {item.count}
                 </span>{" "}

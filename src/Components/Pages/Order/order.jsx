@@ -86,7 +86,7 @@ const Order = ({ tableNoFromRedux ,tableDetailsFromRedux}) => {
   const onSubmit = (data) => {
     const payload = {
       tableNo:
-        data?.orderType == "Takeaway" || data?.orderType == "Delivery"
+        data?.orderType === "Takeaway" || data?.orderType === "Delivery"
           ? ""
           : params.tableNo || data?.tableNo,
       customerName: data?.name,
@@ -134,7 +134,7 @@ const Order = ({ tableNoFromRedux ,tableDetailsFromRedux}) => {
       {/* Chatbot Section End */}
 
       {/* Main Content Area */}
-      <div className={`flex-grow py-2 px-6 transition-all duration-300`}>
+      <div className={`flex-grow p-4 transition-all duration-300`}>
       
         <Navbar icons={OrderIcons} pageHeading={OrderHeading} />
 
@@ -356,7 +356,22 @@ const Order = ({ tableNoFromRedux ,tableDetailsFromRedux}) => {
             <tbody>
               {/* Placeholder for dynamic items */}
               <tr className="border-b">
-                <td className="py-4 text-center text-gray-400" colSpan="6">
+                <td className="py-4 text-center text-gray-400">
+                  No items added.
+                </td>
+                <td className="py-4 text-center text-gray-400">
+                  No items added.
+                </td>
+                <td className="py-4 text-center text-gray-400">
+                  No items added.
+                </td>
+                <td className="py-4 text-center text-gray-400">
+                  No items added.
+                </td>
+                <td className="py-4 text-center text-gray-400">
+                  No items added.
+                </td>
+                <td className="py-4 text-center text-gray-400">
                   No items added.
                 </td>
               </tr>

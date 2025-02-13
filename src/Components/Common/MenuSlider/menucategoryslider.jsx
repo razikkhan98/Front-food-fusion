@@ -102,13 +102,13 @@ const MenuSlider = () => {
                 {/* Optionally, you can add a class to the image itself */}
               </div>
               <div className="flex justify-evenly">
-                <p>{item.label}</p>
+                <p className="text-base font-normal">{item.label}</p>
                 <span
                   className={`${
                     activeIndex === index
                       ? "bg-[--cashier-main-color] text-white"
                       : "bg-[#EAEAEA]"
-                  }  rounded-md px-2`}
+                  }  rounded-md text-sm px-2 pt-0.5`}
                 >
                   0
                 </span>
