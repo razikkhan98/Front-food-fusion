@@ -1,6 +1,7 @@
 import React from "react";
 
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { NavLink } from "react-router-dom";
 
 
 const Navbar = ({ pageHeading = [], buttons = [], icons = [] }) => {
@@ -25,13 +26,16 @@ const Navbar = ({ pageHeading = [], buttons = [], icons = [] }) => {
       <div class="flex gap-4 border-b pb-3">
         {buttons.length > 0 &&
           buttons.map((floor, index) => (
-            <button
-              key={index}
-              type="button"
-              className={`${floor.btn_color} hover:bg-orange-100 text-gray-600 font-semibold hover:text-black py-1 px-4 border border-orange-100 hover:border-transparent rounded-full`}
-            >
-              {floor.btn_name}
-            </button>
+            <NavLink to={floor.btn_path}>
+              <button
+                key={index}
+                type="button"
+                className={`${floor.btn_color} hover:bg-orange-100 text-gray-600 font-semibold hover:text-black py-1 px-4 border border-orange-100 hover:border-transparent rounded-full`}
+              >
+                {floor.btn_name}
+              </button>
+
+            </NavLink>
           ))}
 
         {icons.length > 0 && (

@@ -10,6 +10,7 @@ import StaffData from "../Pages/StaffData/staffdata";
 import SendToKitchen from "../Pages/SendToKitchen/kitchen";
 import AllInvoice from "../Pages/Order/orderinvoice";
 import Schedule from "../Pages/Schedule/schedule";
+// import ScheduleOngoing from "../Pages/Schedule/scheduleongoing";
 const RouteRoutes = () => {
   return (
     <>
@@ -26,6 +27,7 @@ const RouteRoutes = () => {
           <Route path="/sendtokitchen" element={<SendToKitchen />}></Route>
           <Route path="/allinvoice" element={<AllInvoice />}></Route>
           <Route path="/schedule" element={<Schedule />}></Route>
+          {/* <Route path="/scheduleongoing" element={<ScheduleOngoing />}></Route> */}
 
         </Routes>
       </Router>
