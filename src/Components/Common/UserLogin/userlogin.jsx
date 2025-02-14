@@ -117,13 +117,13 @@ const UserLogin = () => {
       <div className="h-screen flex justify-center items-center">
         <div className="grid grid-cols-1 grid-rows-4 gap-1">
           {/* Logo & Title */}
-          <div className="row-span-2 flex justify-center items-center mb-20">
+          <div className="row-span-2 flex justify-center items-center my-32">
             <img
-              className="w-[108px] h-[108px] inline me-5"
+              className="w-[108.24px] h-[108.24px] inline me-5"
               src={Logo}
               alt="Food Fusion Logo"
             />
-            <span className="cashier-main-text-color text-6xl ms-1 montserrat-alternates-semibold" style={{ textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)" }}>
+            <span className="cashier-main-text-color text-6xl ms-3 montserrat-alternates-semibold" style={{ textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)" }}>
               FOOD FUSION
             </span>
           </div>
@@ -137,7 +137,7 @@ const UserLogin = () => {
                 className="mx-10 cursor-pointer font-medium text-3xl transform transition-transform duration-300 hover:scale-125"
               >
                 <div
-                  className={`h-[120px] w-[120px] flex justify-center items-center ${user.bgClass} rounded-[16px] mb-1`}
+                  className={`h-[120px] w-[120px] flex justify-center items-center ${user.bgClass} rounded-[16px] mb-3`}
                 >
                   <img
                     className="w-20 m-auto p-2"

@@ -75,7 +75,7 @@ const Schedule = () => {
                         <div className="grid grid-cols-2 gap-6 lg:grid-cols-4 border-b pb-4">
                             {/* Name */}
                             <div>
-                                <label className="text-black font-medium text-sm">Name</label>
+                                <label className="text-color-black font-medium text-sm">Name</label>
                                 <input
                                     type="text"
                                     placeholder="Customer's name here"
@@ -92,7 +92,7 @@ const Schedule = () => {
                             </div>
                             {/* Contact No */}
                             <div>
-                                <label className="text-black font-medium text-sm">
+                                <label className="text-color-black font-medium text-sm">
                                     Contact No
                                 </label>
                                 <input
@@ -110,7 +110,7 @@ const Schedule = () => {
 
                             {/* Email */}
                             <div>
-                                <label className="text-black font-medium text-sm">
+                                <label className="text-color-black font-medium text-sm">
                                     E-mail (Optional)
                                 </label>
                                 <input
@@ -157,7 +157,7 @@ const Schedule = () => {
                         <div>
                             <p className='my-5 text-color-gray text-base font-medium'>Booking Type</p>
 
-                            <div className="flex space-x-4">
+                            <div className="flex space-x-4  border-b pb-5">
                                 {["Dine In", "Delivery", "Pickup"].map((option, index) => (
                                     <label key={index} className="flex items-center space-x-2 cursor-pointer">
                                         <input type="radio" name="orderType" className="hidden peer" onChange={() => setOrderTypeInptField(option)} />
@@ -172,13 +172,13 @@ const Schedule = () => {
 
 
                         {/* Table No if Dine In */}
-                        {orderTypeInptField == "Dine In" || orderTypeInptField == "" ? (
+                        {orderTypeInptField === "Dine In" || orderTypeInptField === "" ? (
                             <div>
-                                <label className="text-black font-medium text-sm block mt-3">
+                                <label className="text-color-black font-medium text-sm block mt-3">
                                     No of Members
                                 </label>
                                 <select
-                                    className={`w-1/7 mt-1 p-3 border rounded-lg bg-${memberInputField ? "" : "gray-200"} focus-visible:bg-white`}
+                                    className={`w-1/7 mt-1 p-3 border rounded-lg ${memberInputField ? "" : "bg-light-color"} focus-visible:bg-white`}
                                     {...register("member")}
                                 >
                                     <option value={""}>No. of Members</option>
@@ -192,14 +192,14 @@ const Schedule = () => {
                                     <option value={"8"}>8</option>
                                 </select>
 
-                                <div className='grid grid-cols-8 gap-2'>
+                                <div className='grid grid-cols-8 gap-2 mt-2'>
 
                                     <div>
-                                        <label className="text-black font-medium text-sm block mt-3">
+                                        <label className="text-color-black font-medium text-sm block mt-3">
                                             Ground Floor
                                         </label>
                                         <select
-                                            className={`w-1/7 mt-1 p-3 border rounded-lg bg-${tableInputField ? "" : "gray-200"} focus-visible:bg-white`}
+                                            className={`w-40 mt-1 p-3 border rounded-lg ${tableInputField ? "" : "bg-light-color"} focus-visible:bg-white`}
                                             {...register("tableNo")}
                                         >
                                             <option value={""}>Select table</option>
@@ -215,12 +215,12 @@ const Schedule = () => {
                                     </div>
 
                                     <div>
-                                        <label className="text-black font-medium text-sm block mt-3">
+                                        <label className="text-color-black font-medium text-sm block mt-3">
                                             First Floor
                                         </label>
                                         <select
-                                            className={`w-1/7 mt-1 p-3 border rounded-lg bg-${tableInputField ? "" : "gray-200"} focus-visible:bg-white`}
-                                            {...register("tableNo")}
+                                            className={`w-40 mt-1 p-3 border rounded-lg ${tableInputField ? "" : "bg-light-color"} focus-visible:bg-white`}
+                                            {...register("table")}
                                         >
                                             <option value={""}>Select table</option>
                                             <option value={"1"}>1</option>
@@ -235,12 +235,12 @@ const Schedule = () => {
                                     </div>
 
                                     <div>
-                                        <label className="text-black font-medium text-sm block mt-3">
+                                        <label className="text-color-black font-medium text-sm block mt-3">
                                             Second Floor
                                         </label>
                                         <select
-                                            className={`w-1/7 mt-1 p-3 border rounded-lg bg-${tableInputField ? "" : "gray-200"} focus-visible:bg-white`}
-                                            {...register("tableNo")}
+                                            className={`w-40 mt-1 p-3 border rounded-lg ${tableInputField ? "" : "bg-light-color"} focus-visible:bg-white`}
+                                            {...register("table")}
                                         >
                                             <option value={""}>Select table</option>
                                             <option value={"1"}>1</option>
@@ -255,31 +255,135 @@ const Schedule = () => {
                                     </div>
                                 </div>
                             </div>
-                        ) : orderTypeInptField == "Delivery" ? (
+                        ) : orderTypeInptField === "Delivery" ? (
                             <>
                                 {/* delivery address if delivery */}
                                 <div>
-                                    <label className="text-black font-medium text-sm">
-                                        Delivery Address
-                                    </label>
-                                    <input
-                                        type="text"
-                                        placeholder="Customer's Address here"
-                                        className={`w-full mt-1 p-2 border rounded-lg  bg-${orderTypeInptField ? "" : "gray-200"
-                                            } focus-visible:bg-white`}
-                                        {...register("deliveryAddress")}
-                                    />
-                                    {/* {errors.deliveryaddress && (
-                <p className="text-red-500 text-xs">{errors.deliveryaddress.message}</p>
-              )} */}
+                                    <p className='my-3 text-color-gray text-base font-medium'>Delivery Address</p>
+
+                                    <div className="flex space-x-4">
+                                        {["New Address", "Saved Address"].map((option, index) => (
+                                            <label key={index} className="flex items-center space-x-2 cursor-pointer">
+                                                <input type="radio" name="orderType" className="hidden peer" />
+                                                <div className="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center peer-checked:border-[--green-color] peer-checked:bg-[--green-color]">
+                                                    <div className="w-4 h-4 rounded-full border-2 border-gray-50 peer-checked:bg-[--green-color]"></div>
+                                                </div>
+                                                <span className="text-gray-700">{option}</span>
+                                            </label>
+                                        ))}
+                                    </div>
+
+                                    <div className='grid grid-cols-6 py-5'>
+                                        <div>
+                                            <label className="text-color-black font-medium text-sm">
+                                                House/flat no.
+                                            </label>
+                                            <input
+                                                type="text"
+                                                placeholder="House/flat no"
+                                                className={` mt-1 p-2 border rounded-lg focus-visible:bg-white`}
+                                            />
+
+                                        </div>
+                                        <div>
+                                            <label className="text-color-black font-medium text-sm">
+                                                Appartment/Road/Area
+                                            </label>
+                                            <input
+                                                type="text"
+                                                placeholder="Appartment"
+                                                className={` mt-1 p-2 border rounded-lg focus-visible:bg-white`}
+                                            />
+
+                                        </div>
+                                        <div>
+                                            <label className="text-color-black font-medium text-sm">
+                                                Pincode
+                                            </label>
+                                            <input
+                                                type="text"
+                                                placeholder="pincode"
+                                                className={`mt-1 p-2 border rounded-lg focus-visible:bg-white`}
+                                            />
+
+                                        </div>
+                                        <div>
+                                            <label className="text-color-black font-medium text-sm">
+                                                City
+                                            </label>
+                                            <input
+                                                type="text"
+                                                placeholder='city'
+                                                className={`mt-1 p-2 border rounded-lg focus-visible:bg-white`}
+                                            />
+
+                                        </div>
+                                        <div>
+                                            <label className="text-color-black font-medium text-sm">
+                                                State
+                                            </label>
+                                            <input
+                                                type="text"
+                                                placeholder='State'
+                                                className={`mt-1 p-2 border rounded-lg focus-visible:bg-white`}
+                                            />
+
+                                        </div>
+                                    </div>
+
+
+                                    <div className='border-t'>
+                                        <p className='my-3 text-color-gray text-base font-medium'>Payment</p>
+
+                                        <div className="flex space-x-4">
+                                            {["Cash", "UPI", "Card"].map((option, index) => (
+                                                <label key={index} className="flex items-center space-x-2 cursor-pointer">
+                                                    <input type="radio" name="orderType" className="hidden peer" />
+                                                    <div className="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center peer-checked:border-[--green-color] peer-checked:bg-[--green-color]">
+                                                        <div className="w-4 h-4 rounded-full border-2 border-gray-50 peer-checked:bg-[--green-color]"></div>
+                                                    </div>
+                                                    <span className="text-gray-700">{option}</span>
+                                                </label>
+                                            ))}
+                                        </div>
+                                    </div>
                                 </div>
                             </>
-                        ) : (
-                            <></>
-                        )}
+                        ) : orderTypeInptField === "Pickup" ? (
+                            <>
+
+                                <div>
+                                    <p className='my-5 text-color-gray text-base font-medium'>Payment</p>
+
+                                    <div className="flex space-x-4">
+                                        {["Cash", "UPI", "Card"].map((option, index) => (
+                                            <label key={index} className="flex items-center space-x-2 cursor-pointer">
+                                                <input type="radio" name="orderType" className="hidden peer" />
+                                                <div className="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center peer-checked:border-[--green-color] peer-checked:bg-[--green-color]">
+                                                    <div className="w-4 h-4 rounded-full border-2 border-gray-50 peer-checked:bg-[--green-color]"></div>
+                                                </div>
+                                                <span className="text-gray-700">{option}</span>
+                                            </label>
+                                        ))}
+                                    </div>
+                                </div>
+                            </>
+                        )
+
+                            : (
+                                <></>
+                            )}
 
                         <div>
-                            <button className='px-8 py-2 bg-gray-200 text-gray-600 rounded-full mt-7'>Schedule Button</button>
+
+                            {orderTypeInptField === "Dine In" || "Delivery" || "Pickup" & orderTypeInptField === " " ? (
+                                <button className='px-8 py-2 bg-gray-200 text-gray-600 rounded-full mt-7'>Schedule Button</button>
+
+                            ) : (
+                                <button className='px-8 py-2 bg-gray-200 text-gray-600 rounded-full mt-7'>Add Item</button>
+
+                            )
+                            }
                         </div>
                     </form>
                 </div>
