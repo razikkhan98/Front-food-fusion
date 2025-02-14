@@ -184,7 +184,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
       {/* Chatbot Section End */}
 
       {/* Main Content Area */}
-      <div className={`flex-grow p-4 transition-all duration-300`}>
+      <div className={`flex-grow p-4 transition-all duration-300 overflow-scroll hidden-scroll`}>
         <Navbar icons={OrderIcons} pageHeading={OrderHeading} />
 
         {/* Order Details */}
@@ -364,7 +364,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
           <button className="px-10 py-2 text-base font-normal bg-purple-btn text-white rounded-full">
             Add Item
           </button>
-          <div className="w-1/2 relative">
+          <div className={`${isRightSidebarOpen ? "w-[537px] transition-all duration-300 ease-in-out" : "w-[849px] transition-all duration-300 ease-in-out"}  relative`}>
             <input
               type="text"
               placeholder="Search for items"
@@ -373,7 +373,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
             />
             <AutoSuggestSearch inputValue={autoSearchFillValue} />
             <svg
-              className="absolute left-3 top-1/2 z-10 transform -translate-y-1/2 text-gray-500"
+              className="absolute left-3 top-1/2 z-20 transform -translate-y-1/2 text-gray-500"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"

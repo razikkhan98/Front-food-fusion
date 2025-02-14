@@ -1,178 +1,194 @@
-// import React, { useState } from "react";
+// import React, { useState, useRef, useEffect } from 'react';
 
-// const Dropdown = () => {
-//   const [inputValue, setInputValue] = useState("");
-//   const [isOpen, setIsOpen] = useState(false);
+// const Slider = () => {
+//   const [currentIndex, setCurrentIndex] = useState(1); // Start at the center (1)
+//   const sliderRef = useRef(null);
 
-//   // Sample data for the dropdown options
-//   const options = [
-//     "Apple",
-//     "Banana",
-//     "Orange",
-//     "Mango",
-//     "Strawberry",
-//     "Pineapple",
-//     "Grapes",
+//   const slides = [
+//     { id: 0, content: 'Slide 1', backgroundColor: 'bg-blue-200' },
+//     { id: 1, content: 'Slide 2', backgroundColor: 'bg-green-200' },
+//     { id: 2, content: 'Slide red', backgroundColor: 'bg-red-200' },
 //   ];
 
-//   // Filter options based on the input value
-//   const filteredOptions = options.filter((option) =>
-//     option.toLowerCase().includes(inputValue.toLowerCase())
-//   );
+//   const goToPrevious = () => {
+//     setCurrentIndex((prevIndex) => (prevIndex === 0 ? slides.length - 1 : prevIndex - 1));
+//   };
+
+//   const goToNext = () => {
+//     setCurrentIndex((prevIndex) => (prevIndex === slides.length - 1 ? 0 : prevIndex + 1));
+//   };
+
+//   useEffect(() => {
+//     if (sliderRef.current) {
+//       sliderRef.current.style.transition = 'transform 0.5s ease-in-out'; // Add smooth transition
+//       sliderRef.current.style.transform = `translateX(-${currentIndex * (100 / slides.length)}%)`;
+//     }
+//     //Optional: set automatic sliding
+
+//     const intervalId = setInterval(() => {
+//         goToNext();
+//     }, 50000000)
+
+//     return () => clearInterval(intervalId); //Clean up interval on unmount.
+//   }, [currentIndex, slides.length]);
+
+
 
 //   return (
-//     <div className="relative">
-//       <div className="flex items-center bg-transparent border-white border-2 rounded-full px-4 py-2 w-full max-w-md">
-//         <span className="text-gray-400">
-//           <svg
-//             xmlns="http://www.w3.org/2000/svg"
-//             className="h-5 w-5"
-//             fill="none"
-//             viewBox="0 0 24 24"
-//             stroke="currentColor"
-//             strokeWidth={2}
-//           >
-//             <path
-//               strokeLinecap="round"
-//               strokeLinejoin="round"
-//               d="M11 4a7 7 0 100 14 7 7 0 000-14zm10 10l-4-4"
-//             />
-//           </svg>
-//         </span>
-//         <input
-//           type="text"
-//           value={inputValue}
-//           onChange={(e) => setInputValue(e.target.value)}
-//           onFocus={() => setIsOpen(true)}
-//           onBlur={() => setIsOpen(false)} // Optional: You can keep the dropdown open by managing this state differently
-//           placeholder="Table or Order status"
-//           className="bg-transparent text-gray-400 placeholder-gray-400 focus:outline-none focus:ring-0 border-none ml-2 w-full"
-//         />
+//     <div className="relative w-full overflow-hidden">
+//       <div className="flex transition-transform duration-500 ease-in-out"
+//            style={{ width: `${slides.length * 100}%` }}
+//            ref={sliderRef}>
+//         {slides.map((slide, index) => (
+//           <div key={slide.id}
+//                className={`w-1/3 flex-shrink-0 flex items-center justify-center h-64 text-2xl font-bold ${slide.backgroundColor} ${index === currentIndex ? 'scale-125' : 'scale-100'} transition-transform duration-300 z-10`}>
+//             {slide.content}
+//           </div>
+//         ))}
 //       </div>
 
-//       {/* Dropdown menu */}
-//       {isOpen && inputValue && (
-//         <ul className="absolute left-0 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-md max-h-60 overflow-y-auto z-10">
-//           {filteredOptions.length > 0 ? (
-//             filteredOptions.map((option, index) => (
-//               <li
-//                 key={index}
-//                 className="px-4 py-2 text-gray-700 hover:bg-gray-200 cursor-pointer"
-//                 onMouseDown={() => setInputValue(option)}
-//               >
-//                 {option}
-//               </li>
-//             ))
-//           ) : (
-//             <li className="px-4 py-2 text-gray-500">No results found</li>
-//           )}
-//         </ul>
-//       )}
+//       <button
+//         className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-20"
+//         onClick={goToPrevious}
+//       >
+//         &#8249;
+//       </button>
+//       <button
+//         className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-20"
+//         onClick={goToNext}
+//       >
+//         &#8250;
+//       </button>
 //     </div>
 //   );
 // };
 
-// export default Dropdown;
+// export default Slider;
 
-// import React, { useState } from "react";
-// import "./test.css";
 
-// function ImageSlider() {
-//   const [showModal, setShowModal] = useState(false);
-//   const [selectedImage, setSelectedImage] = useState(null);
-//   const [images, setImages] = useState([
-//     {
-//       id: 1,
-//       url: "https://picsum.photos/200/300",
-//     },
-//     {
-//       id: 2,
-//       url: "https://picsum.photos/300/200",
-//     },
-//     {
-//       id: 3,
-//       url: "https://picsum.photos/200/200",
-//     },
-//     {
-//       id: 4,
-//       url: "https://picsum.photos/100/200",
-//     },
-//   ]);
+import React, { useState, useEffect } from 'react';
 
-//   const handleModal = (image) => {
-//     setSelectedImage(image);
-//     setShowModal(true);
-//   };
+// Card Slider Component
+const Slider = () => {
+  // Sample card data
+  const cards = [
+    {
+      id: 1,
+      title: 'Card 1',
+      description: 'Description for Card 1',
+      image: 'https://via.placeholder.com/300x200'
+    },
+    {
+      id: 2,
+      title: 'Card 2',
+      description: 'Description for Card 2',
+      image: 'https://via.placeholder.com/300x200'
+    },
+    {
+      id: 3,
+      title: 'Card 3',
+      description: 'Description for Card 3',
+      image: 'https://via.placeholder.com/300x200'
+    },
+    {
+      id: 4,
+      title: 'Card 4',
+      description: 'Description for Card 4',
+      image: 'https://via.placeholder.com/300x200'
+    },
+    {
+      id: 5,
+      title: 'Card 5',
+      description: 'Description for Card 5',
+      image: 'https://via.placeholder.com/300x200'
+    }
+  ];
 
-//   const handlePrevious = () => {
-//     const index = images.indexOf(selectedImage);
-//     if (index === 0) {
-//       return;
-//     }
-//     setSelectedImage(images[index - 1]);
-//   };
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-//   const handleNext = () => {
-//     const index = images.indexOf(selectedImage);
-//     if (index === images.length - 1) {
-//       return;
-//     }
-//     setSelectedImage(images[index + 1]);
-//   };
+  // Handle slide to next card
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => 
+      (prevIndex + 1) % cards.length
+    );
+  };
 
-//   return (
-//     <div className="app">
-//       {images.map((image) => (
-//         <img
-//           key={image.id}
-//           src={image.url}
-//           alt="Card Image"
-//           onClick={() => handleModal(image)}
-//           className="card-image"
-//         />
-//       ))}
-//       {showModal && (
-//         <div className="modal">
-//           <button className="close-btn" onClick={() => setShowModal(false)}>
-//             &times;
-//           </button>
-//           <button className="prev-btn" onClick={handlePrevious}>
-//             Previous
-//           </button>
-//           <button className="next-btn" onClick={handleNext}>
-//             Next
-//           </button>
-//           <div className="slider-container">
-//             {images.map((img, index) => (
-//               <div key={index}>
-//                 {index === images.indexOf(selectedImage) ? (
-//                   <>
-//                   <img
-//                   src={img.url}
-//                   alt="Selected Image"
-//                   className={`image ${index === images.indexOf(selectedImage) ? "selected" : ""}`}
-//                   />
-//                   {/* {console.log('images.indexOf(selectedImage): ', images.indexOf(selectedImage))} */}
-//                   </>
-//                 ) : (
-//                   <img
-//                     src={img.url}
-//                     alt="Other Images"
-//                     className={`image ${
-//                       index < images.indexOf(selectedImage)
-//                         ? "left"
-//                         : "right"
-//                     }`}
-//                   />
-//                 )}
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
+  // Handle slide to previous card
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === 0 ? cards.length - 1 : prevIndex - 1
+    );
+  };
 
-// export default ImageSlider;
+  // Render individual card
+  const renderCard = (card, index) => {
+    // Calculate position relative to current index
+    const offset = index - currentIndex;
+    
+    // Determine card styles based on position
+    const getCardStyles = () => {
+      switch(offset) {
+        case -1:
+          return ' scale-75 w-[20rem] right-20 -translate-x-20 z-10';
+        case 0:
+          return 'opacity-100 w-[25rem] scale-100 z-20 shadow-2xl';
+        case 1:
+          return ' scale-75 w-[20rem] left-20 translate-x-20 z-10';
+        default:
+          return 'opacity-0 scale-50 z-0';
+      }
+    };
 
+    return (
+      <div 
+        key={card.id}
+        className={`
+          absolute 
+          transition-all 
+          duration-500 
+          ease-in-out 
+          
+          ${getCardStyles()}
+        `}
+      >
+        <div className="bg-white rounded-lg overflow-hidden shadow-md">
+          <img 
+            src={card.image} 
+            alt={card.title} 
+            className="w-full h-48 object-cover"
+          />
+          <div className="p-4">
+            <h3 className="text-xl font-bold mb-2">{card.title}</h3>
+            <p className="text-gray-600">{card.description}</p>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="relative w-full h-screen flex items-center justify-center">
+      {/* Navigation Buttons */}
+      <button 
+        onClick={prevSlide}
+        className="absolute left-10 z-30 bg-blue-500 text-white p-2 rounded-full"
+      >
+        ←
+      </button>
+      
+      <button 
+        onClick={nextSlide}
+        className="absolute right-10 z-30 bg-blue-500 text-white p-2 rounded-full"
+      >
+        →
+      </button>
+
+      {/* Card Container */}
+      <div className="relative  h-96 flex items-center justify-center">
+        {cards.map((card, index) => renderCard(card, index))}
+      </div>
+    </div>
+  );
+};
+
+export default Slider;

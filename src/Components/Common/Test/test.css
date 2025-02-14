@@ -1,74 +1,54 @@
-/* .app {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
-  }
-  
-  .card-image {
-    width: 150px;
-    height: 150px;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-  
-  .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  
-  .slider-container {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    border: 1px solid #ccc;
-    width: 500px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .image {
-    width: 150px;
-    height: 150px;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-  
-  .image.selected {
-    z-index: 10;
-  }
-  
-  .image.left {
-    position: absolute;
-    top: 20px;
-    left: -100px;
-  }
-  
-  .image.right {
-    position: absolute;
-    top: 20px;
-    right: -100px;
-  }
-  
-  .prev-btn, .next-btn {
-    margin: 10px;
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  } */
+.slider-container {
+  width: 80%; /* Adjust as needed */
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #ccc; /* Optional border */
+}
+
+.slider-wrapper {
+  overflow: hidden; /* Ensure the slider stays within the container */
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+}
+
+.slide {
+  flex: 0 0 auto;
+  width: 33.333%;  /* Three slides visible at a time */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  padding: 20px;
+  text-align: center;
+  font-size: 16px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+}
+
+.slide.active {
+  transform: scale(1.2); /* Make the active slide larger */
+  z-index: 1; /* Ensure it's above other slides */
+  background-color: #e0e0e0;
+}
+
+
+.slider-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.slider-button-left {
+  left: 10px;
+}
+
+.slider-button-right {
+  right: 10px;
+}

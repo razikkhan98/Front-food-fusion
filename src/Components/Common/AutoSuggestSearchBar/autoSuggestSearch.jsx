@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import IncrementDecrementFunctionality from "../IncrementDecrementFunctionality/incrementDecrementFunctionality";
 import { connect, useDispatch } from "react-redux";
 import { AddMenuRedux } from "../../Redux/Slice/Menu/MenuSlice";
@@ -807,8 +807,10 @@ const AutoSuggestSearch = ({ inputValue, MenuFromRedux }) => {
   // ==========
   const [query, setQuery] = useState("");
   const [filteredOptions, setFilteredOptions] = useState();
+  const [showDropdown, setshowDropdown] = useState(true);
   const [IncrDecrQuantity, setIncrDecrQuantity] = useState({});
   const dispatch = useDispatch();
+  const dropdownRef = useRef(null); // Ref for the dropdown
 
   // =========
   // Functions
@@ -826,7 +828,6 @@ const AutoSuggestSearch = ({ inputValue, MenuFromRedux }) => {
 
   //
 
-
   // Function to handle Add FOOD Item
   const HandleItemAdd = (item) => {
     const payload = {
@@ -839,7 +840,7 @@ const AutoSuggestSearch = ({ inputValue, MenuFromRedux }) => {
       subcategoriesName: item?.name,
       subcategoriesAmount: item?.price,
       subcategoriesType: "",
-      quantity:1,
+      quantity: 1,
       totalAmount: 0,
       totalitemTax: 0,
       discount: "",
@@ -863,6 +864,25 @@ const AutoSuggestSearch = ({ inputValue, MenuFromRedux }) => {
     }
   }, [inputValue]);
 
+    // Function to handle outside clicks
+    useEffect(() => {
+      function handleClickOutside(event) {
+        console.log('event: ', event);
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+          setFilteredOptions(null); // Close the dropdown
+          // setshowDropdown(false)
+          // console.log('showDropdown: ', showDropdown);
+        }
+      }
+  
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on cleanup
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [dropdownRef,showDropdown]);
+
   return (
     <>
       <div className=" flex flex-col items-center justify-center">
@@ -877,8 +897,8 @@ const AutoSuggestSearch = ({ inputValue, MenuFromRedux }) => {
           /> */}
 
           {/* Suggestions dropdown */}
-          {filteredOptions?.length > 0 && (
-            <ul className="absolute left-0 top-[-20px] w-full h-[280px]  overflow-y-scroll hidden-scroll bg-white border border-gray-300 border-t-0 rounded-lg rounded-t-none shadow-lg z-10">
+          {filteredOptions?.length >= 0 && (
+            <ul ref={dropdownRef} className={`absolute left-0 top-[-20px] w-full h-[280px]  overflow-y-scroll hidden-scroll bg-white border border-gray-300 border-t-0 rounded-lg rounded-t-none shadow-lg z-10 ${showDropdown? "" : ""}`}>
               <li className="h-4"></li>
               {filteredOptions?.map((option, index) => (
                 <>
@@ -893,7 +913,11 @@ const AutoSuggestSearch = ({ inputValue, MenuFromRedux }) => {
                     ) ? (
                       <IncrementDecrementFunctionality
                         ItemId={option?.id}
-                        prevCount={MenuFromRedux?.Menu?.find((i) => i?.customerID == option?.id)?.quantity}
+                        prevCount={
+                          MenuFromRedux?.Menu?.find(
+                            (i) => i?.customerID == option?.id
+                          )?.quantity
+                        }
                         // GetQuantity={GetQuantity}
                       />
                     ) : (
