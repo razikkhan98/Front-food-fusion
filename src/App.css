@@ -24,6 +24,10 @@
 body {
   font-family: poppins;
 }
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 0s 600000s, color 0s 600000s !important;
+}
 html, body {
   overflow: hidden;
 }
@@ -577,7 +581,8 @@ background-color: var(--gray-light-color);
 .background-img {
   background-image: url(../src/Components/Assets/Images/background/background-img.png);
   background-position: center, center;
-  background-size: contain;  
+  background-size: contain;
+  min-height: 100vh;
 }
 
 /* ---------right side bar-------------- */

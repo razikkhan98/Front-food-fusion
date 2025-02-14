@@ -96,7 +96,7 @@ const UserLoginModal = ({ isOpen, closeModal, selectedUser, onSubmit }) => {
             />
             {/* Arrow Button */}
             {/* <NavLink to={"/home"}> */}
-            <button type="submit" className={`absolute right-7 top-2/3 transform -translate-y-2/3 rounded-full bg-gray-100 p-1.5 text-gray-600 ${errors.code ? "top-[52px]" : ""}`}>
+            <button type="submit" className={`absolute right-7 top-[50px] transform -translate-y-2/3 rounded-full bg-white p-1.5 text-gray-600 ${errors.code ? "top-[50px]" : ""}`}>
               <svg
                 fill="none"
                 viewBox="0 0 24 24"
