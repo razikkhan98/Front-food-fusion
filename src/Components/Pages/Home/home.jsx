@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import LeftSideNavbar from "../../Common/SideNavbar/leftSideNavbar.jsx";
 import RightSidebar from "../../Common/SideNavbar/rightSideNavbar.jsx";
 
-
 // import Icon
-import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
+import {
+  MdOutlineKeyboardDoubleArrowLeft,
+  MdOutlineKeyboardDoubleArrowRight,
+} from "react-icons/md";
 import ChatBot from "../../Common/ChatBot/chatbot.jsx";
 import { connect } from "react-redux";
 import TableCard from "../../Common/TableCard/tableCard.jsx";
-const Home = ({tableDetailsFromRedux}) => {
+const Home = ({ tableDetailsFromRedux }) => {
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
 
   const toggleRightSidebar = () => {
@@ -24,31 +26,39 @@ const Home = ({tableDetailsFromRedux}) => {
       {/* Main Content Area */}
       <div className={`flex-grow p-4 transition-all duration-300`}>
         <h1>Table</h1>
-        <div className={`grid ${isRightSidebarOpen === true ? "grid-cols-4" : "grid-cols-5"} gap-4`}>
-          {tableDetailsFromRedux?.TableBooking?.map((i,index) => (
+        <div
+          className={`grid ${
+            isRightSidebarOpen === true ? "grid-cols-4" : "grid-cols-5"
+          } gap-4`}
+        >
+          {tableDetailsFromRedux?.TableBooking?.map((i, index) => (
             <TableCard tableDetail={i} />
           ))}
-          <div  className=" p-4 w-56">
-            </div>
+          <div className=" p-4 w-56"></div>
         </div>
-        
       </div>
 
       {/* Right Sidebar */}
       <div
-        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "w-80" : "w-7"
-          }`}
+        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${
+          isRightSidebarOpen ? "w-[360px]" : "w-7"
+        }`}
       >
-        <span className="bg-blue-700 hover:bg-blue-700 cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5" onClick={toggleRightSidebar}>
+        <span
+          className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
+          onClick={toggleRightSidebar}
+        >
           {/* <img src={Toggle} alt="Loading" /> */}
-          <MdOutlineKeyboardDoubleArrowLeft className='text-3xl text-white font-semibold' />
+          {isRightSidebarOpen ? (
+            <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
+          ) : (
+            <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
+          )}
         </span>
 
         <RightSidebar />
-    
       </div>
     </div>
-
   );
 };
 const mapStateToProps = (state) => ({

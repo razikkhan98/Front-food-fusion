@@ -10,7 +10,10 @@ import { useParams } from "react-router-dom";
 import { TableBookingRedux } from "../../Redux/Slice/Order/tableBookingSlice.jsx";
 
 // import React-icons
-import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
+import {
+  MdOutlineKeyboardDoubleArrowLeft,
+  MdOutlineKeyboardDoubleArrowRight,
+} from "react-icons/md";
 
 // import img
 import ChatBot from "../../Common/ChatBot/chatbot.jsx";
@@ -18,6 +21,8 @@ import Navbar from "../../Common/Navbar/navbar.jsx";
 import bell from "../../Assets/Images/navbar-img/bell.svg";
 import { TableNoRedux } from "../../Redux/Slice/Table/tableDetailSlice.jsx";
 import AutoSuggestSearch from "../../Common/AutoSuggestSearchBar/autoSuggestSearch.jsx";
+import IncrementDecrementFunctionality from "../../Common/IncrementDecrementFunctionality/incrementDecrementFunctionality.jsx";
+import { AddMenuRedux } from "../../Redux/Slice/Menu/MenuSlice.jsx";
 // Json
 const customerData = [
   {
@@ -46,9 +51,9 @@ const customerData = [
   },
 ];
 const OrderIcons = [{ nav_img: bell }];
-const OrderHeading= ["Book Table" , "Generate Order"]
-const Order = ({ tableNoFromRedux ,tableDetailsFromRedux}) => {
-  // console.log('tableDetailsFromRedux: ', tableDetailsFromRedux?.TableBooking);
+const OrderHeading = ["Book Table", "Generate Order"];
+const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
+  console.log('MenuFromRedux: ', MenuFromRedux?.Menu);
   // ==========
   // UseFrom
   // ============
@@ -107,15 +112,49 @@ const Order = ({ tableNoFromRedux ,tableDetailsFromRedux}) => {
     );
   };
 
+  // function to get total amount 
+  const calculateTotalAmount = () => {
+    let total = 0;
+    MenuFromRedux?.Menu?.forEach(item => {
+      total += item?.subcategoriesAmount * item?.quantity;
+    });
+    return total;
+  };
+
+
   // Filter Functionality
-  const filterInpFildFromPrevOrder = tableDetailsFromRedux?.TableBooking?.filter((i)=>{
-    return Number(i?.tableNo) == params.tableNo
-  })
+  const filterInpFildFromPrevOrder =
+    tableDetailsFromRedux?.TableBooking?.filter((i) => {
+      return Number(i?.tableNo) == params.tableNo;
+    });
 
   // Auto Search Input Field
-  const HandleAutoSearchInp =(e)=>{
-    setautoSearchFillValue(e.target.value)
-  }
+  const HandleAutoSearchInp = (e) => {
+    setautoSearchFillValue(e.target.value);
+  };
+    const GetQuantity = (data) => {
+      const payload = {
+        customerID: data?.ItemId,
+        menuID: 0,
+        floorName: "",
+        tableNumber: 0,
+        orderID: 0,
+        categoriesName: "",
+        subcategoriesName: "",
+        subcategoriesAmount: 0,
+        subcategoriesType: "",
+        quantity: data?.count,
+        totalAmount: 0,
+        totalitemTax: 0,
+        discount: "",
+        addonNotes: "",
+        addonName: "",
+        addonAmount: 0,
+        addonQuantity: 0,
+      };
+      dispatch(AddMenuRedux(payload));
+      // return setIncrDecrQuantity(data);
+    };
 
   //==========
   // useEffect
@@ -127,7 +166,12 @@ const Order = ({ tableNoFromRedux ,tableDetailsFromRedux}) => {
     setValue("email", filterInpFildFromPrevOrder[0]?.customerEmail);
     setValue("orderType", filterInpFildFromPrevOrder[0]?.orderType);
     setValue("deliveryAddress", filterInpFildFromPrevOrder[0]?.deliveryAddress);
-    setValue("tableNo", filterInpFildFromPrevOrder[0]?.tableNo || params.tableNo || tableNoFromRedux?.tableNo);
+    setValue(
+      "tableNo",
+      filterInpFildFromPrevOrder[0]?.tableNo ||
+        params.tableNo ||
+        tableNoFromRedux?.tableNo
+    );
   }, []);
 
   return (
@@ -141,7 +185,6 @@ const Order = ({ tableNoFromRedux ,tableDetailsFromRedux}) => {
 
       {/* Main Content Area */}
       <div className={`flex-grow p-4 transition-all duration-300`}>
-      
         <Navbar icons={OrderIcons} pageHeading={OrderHeading} />
 
         {/* Order Details */}
@@ -326,11 +369,11 @@ const Order = ({ tableNoFromRedux ,tableDetailsFromRedux}) => {
               type="text"
               placeholder="Search for items"
               onChange={HandleAutoSearchInp}
-              className="w-full py-2 pl-10 pr-4 cashier-light-bg-color opacity-60 border-2 border-[--cashier-main-color] rounded-full focus:outline-none focus:ring-1 focus:ring-[--cashier-main-color]"
+              className="w-full py-2 pl-10 pr-4 z-20 relative cashier-light-bg-color border-2 border-[--cashier-main-color] rounded-full focus:outline-none  focus:ring-[--cashier-main-color] hover:bg-[--select-section] focus-within:bg-[--select-section]"
             />
-            <AutoSuggestSearch inputValue={autoSearchFillValue}/>
+            <AutoSuggestSearch inputValue={autoSearchFillValue} />
             <svg
-              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+              className="absolute left-3 top-1/2 z-10 transform -translate-y-1/2 text-gray-500"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -363,26 +406,42 @@ const Order = ({ tableNoFromRedux ,tableDetailsFromRedux}) => {
             </thead>
             <tbody>
               {/* Placeholder for dynamic items */}
-              <tr className="border-b">
-                <td className="py-4 text-center text-gray-400">
-                  No items added.
-                </td>
-                <td className="py-4 text-center text-gray-400">
-                  No items added.
-                </td>
-                <td className="py-4 text-center text-gray-400">
-                  No items added.
-                </td>
-                <td className="py-4 text-center text-gray-400">
-                  No items added.
-                </td>
-                <td className="py-4 text-center text-gray-400">
-                  No items added.
-                </td>
-                <td className="py-4 text-center text-gray-400">
-                  No items added.
-                </td>
-              </tr>
+              {MenuFromRedux?.Menu?.map((item, index) => 
+              <>
+                <tr className="border-b">
+                  <td className="py-4 text-center text-sm font-normal text-[--gray-color] ">
+                    {++index}
+                  </td>
+                  <td className="py-4 text-center text-sm font-normal text-[--gray-color] ">
+                    {item?.subcategoriesName}
+                  </td>
+                  <td className="py-4 text-center text-sm font-normal text-[--gray-color] ">
+                    {item?.addonNotes || '-'}
+                  </td>
+                  <td className="py-4 text-center ">
+                  <IncrementDecrementFunctionality
+                        ItemId={item?.customerID}
+                        GetQuantity={GetQuantity}
+                        prevCount={item?.quantity}
+                      />
+                  </td>
+                  <td className="py-4 text-center text-sm font-normal text-[--gray-color] ">
+                    ₹ {item?.subcategoriesAmount}
+                  </td>
+                  <td className="py-4 text-center text-sm font-normal">
+                    ₹ {item?.subcategoriesAmount * item?.quantity }
+                  </td>
+                </tr>
+                </>
+              )}
+                {MenuFromRedux?.Menu?.length > 0 ? <tr>
+                  <td className="py-4 text-center"></td>
+                  <td className="py-4 text-center"></td>
+                  <td className="py-4 text-center"></td>
+                  <td className="py-4 text-center"></td>
+                  <td className="py-4 text-center">Total</td>
+                  <td className="py-4 text-center text-sm font-medium">₹ {calculateTotalAmount() || 0}</td>
+                </tr> : <></>}
             </tbody>
           </table>
         </div>
@@ -406,20 +465,23 @@ const Order = ({ tableNoFromRedux ,tableDetailsFromRedux}) => {
 
       {/* Right Sidebar */}
       <div
-        className={`bg-gray-200 transition-all duration-300 ease-in-out relative rounded-l-3xl ${
-          isRightSidebarOpen ? "w-80" : "w-7"
+        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${
+          isRightSidebarOpen ? "w-[360px]" : "w-7"
         }`}
       >
         <span
-          className="bg-purple-btn hover:bg-blue-700 font-bold p-1 cursor-pointer rounded-full absolute top-1/2 -left-5"
+          className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
           onClick={toggleRightSidebar}
         >
           {/* <img src={Toggle} alt="Loading" /> */}
-          <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
+          {isRightSidebarOpen ? (
+            <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
+          ) : (
+            <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
+          )}
         </span>
 
         <RightSidebar />
-        {/* <FoodCard/> */}
       </div>
     </div>
   );
@@ -427,7 +489,8 @@ const Order = ({ tableNoFromRedux ,tableDetailsFromRedux}) => {
 
 const mapStateToProps = (state) => ({
   tableNoFromRedux: state?.tableDetails,
-  tableDetailsFromRedux: state?.tableBooking
+  tableDetailsFromRedux: state?.tableBooking,
+  MenuFromRedux: state?.menu,
 });
 
 export default connect(mapStateToProps, {})(Order);

@@ -94,12 +94,10 @@ const UserLoginModal = ({ isOpen, closeModal, selectedUser, onSubmit }) => {
               id="code"
               {...register("code", { required: "Code is required" })}
             />
-            {errors.code && <p className="text-red-500 text-sm">{errors.code.message}</p>}
             {/* Arrow Button */}
             {/* <NavLink to={"/home"}> */}
-            <button type="submit" className="absolute right-2 top-1/2 transform -translate-y-1/2 rounded-full bg-gray-100 p-1 text-gray-600">
+            <button type="submit" className={`absolute right-2 top-1/2 transform -translate-y-1/2 rounded-full bg-gray-100 p-1 text-gray-600 ${errors.code ? "top-[38px]" : ""}`}>
               <svg
-                xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={2}
@@ -109,6 +107,7 @@ const UserLoginModal = ({ isOpen, closeModal, selectedUser, onSubmit }) => {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-7-7l7 7-7 7" />
               </svg>
             </button>
+            {errors.code && <p className="text-red-500 text-sm">{errors.code.message}</p>}
             {/* </NavLink> */}
           </div>
 
