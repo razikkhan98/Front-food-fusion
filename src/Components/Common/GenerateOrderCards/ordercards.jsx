@@ -1,6 +1,6 @@
 
 import React from 'react'
-import Button from "../button/button";
+import Button from "../Button/button";
 
 // Role Json 
 const items = [
