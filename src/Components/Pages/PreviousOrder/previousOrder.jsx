@@ -66,7 +66,7 @@ const PreviousOrder = () => {
 
       {/* Main Content Area */}
 
-      <div className={`flex-grow p-4 transition-all duration-300`}>
+      <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
         <div>
           {/* Breadcrumb */}
           <div className="text-sm text-gray-500 mb-4">
@@ -91,16 +91,16 @@ const PreviousOrder = () => {
                   </div>
                 </div>
                 <div className="col-span-4">
-                  <div className="text-xs text-gray-400 font-semibold flex justify-between  ">{items.title}
+                  <div className="text-xs text-gray-400 font-medium flex justify-between  ">{items.title}
                     {/* Check if it's the last item */}
                     {index === CustomerDetailsCard.length - 1 && (
-                      <div className="flex bg-light-yellow rounded-md px-1">
+                      <div className="flex bg-light-yellow rounded-md px-1 mb-2">
                         <img src={Coin} alt="Loading" />
                         <div className="text-sm font-medium ms-2">120 Pt</div>
                       </div>
                     )}
                   </div>
-                  <div className="font-semibold text-sm">
+                  <div className="font-medium text-sm">
                     {items.name}
 
                   </div>
@@ -113,7 +113,7 @@ const PreviousOrder = () => {
         </div>
 
         {/* Previous Order Cards */}
-        <div className={`grid h-full hidden-scroll overflow-auto ${isRightSidebarOpen === true ? "grid-cols-2" : "grid-cols-3"} gap-1`}>
+        <div className={`grid h-3/4 hidden-scroll overflow-auto ${isRightSidebarOpen === true ? "grid-cols-2" : "grid-cols-3"} gap-1`}>
           <PreviousOrderCards />
         </div>
       </div>

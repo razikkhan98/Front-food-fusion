@@ -89,20 +89,20 @@ const UserLoginModal = ({ isOpen, closeModal, selectedUser, onSubmit }) => {
 
           <div className="relative">
             <input
-              className={`${selectedUser?.bgClass} opacity-60 w-[452px] h-14 rounded-full mt-4 border-0 py-3 text-center tracking-widest font-normal text-2xl text-color-black`}
+              className={`${selectedUser?.bgClass} opacity-60 w-[452px] rounded-full mt-4 border-0 py-3 text-center tracking-widest font-normal text-2xl text-color-black`}
               type="text"
               id="code"
               {...register("code", { required: "Code is required" })}
             />
             {/* Arrow Button */}
             {/* <NavLink to={"/home"}> */}
-            <button type="submit" className={`absolute right-2 top-1/2 transform -translate-y-1/2 rounded-full bg-gray-100 p-1 text-gray-600 ${errors.code ? "top-[38px]" : ""}`}>
+            <button type="submit" className={`absolute right-7 top-2/3 transform -translate-y-2/3 rounded-full bg-gray-100 p-1.5 text-gray-600 ${errors.code ? "top-[50px]" : ""}`}>
               <svg
                 fill="none"
                 viewBox="0 0 24 24"
-                strokeWidth={2}
+                strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-5 h-5 text-center"
+                className="w-6 h-6 text-center"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-7-7l7 7-7 7" />
               </svg>

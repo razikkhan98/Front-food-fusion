@@ -31,7 +31,7 @@ const KitchenIcons = [
     { nav_img: bell },
 ];
 
-
+const kitchenHeading = ["Orders"];
 const SendToKitchen = () => {
     // ========
     // State
@@ -55,7 +55,7 @@ const SendToKitchen = () => {
 
                 {/* Main Content here */}
                 <div className={`flex-grow p-6 transition-all duration-300 flex flex-col justify-center`}>
-                    <Navbar buttons={KitchenButtons} icons={KitchenIcons} />
+                    <Navbar buttons={KitchenButtons} icons={KitchenIcons} pageHeading={kitchenHeading} />
                     <div className="overflow-auto h-full hidden-scroll">
                         <h2 className="text-base font-semibold mt-2">In Progress</h2>
                         <div
