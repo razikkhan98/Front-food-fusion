@@ -229,7 +229,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                 <input
                   type="text"
                   placeholder="Customer's contact no here"
-                  className={`w-full mt-1 px-2 py-3 border rounded-lg ${
+                  className={`w-full mt-1 px-2 py-3 text-base font-medium border rounded-lg ${
                     numberInptField ? "" : "bg-light-color text-xs border-0"
                   } focus-visible:bg-white`}
                   {...register("number")}

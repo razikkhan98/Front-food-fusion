@@ -24,6 +24,9 @@
 body {
   font-family: poppins;
 }
+html, body {
+  overflow: hidden;
+}
 
 /* 
  ========================== 
@@ -574,7 +577,7 @@ background-color: var(--gray-light-color);
 .background-img {
   background-image: url(../src/Components/Assets/Images/background/background-img.png);
   background-position: center, center;
-  background-size: contain;
+  background-size: contain;  
 }
 
 /* ---------right side bar-------------- */
