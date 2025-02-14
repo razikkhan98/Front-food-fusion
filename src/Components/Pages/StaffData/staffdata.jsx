@@ -11,6 +11,7 @@ import bell from "../../Assets/Images/navbar-img/bell.svg";
 import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
 import Sort from "../../Assets/Images/navbar-img/SortAscending.svg";
 import ChatBot from "../../Common/ChatBot/chatbot.jsx";
+import { MdOutlineKeyboardDoubleArrowLeft, MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 // Role JSON Data
 const employees = [
 
@@ -317,21 +318,26 @@ const StaffData = () => {
                 </div>
                 {/* Table End */}
             </div>
-            {/* Right Side Panel */}
-            <div
-                className={`bg-gray-200 transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "w-80" : "w-7"
-                    }`}
-            >
+            {/* Right Sidebar */}
+      <div
+        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${
+          isRightSidebarOpen ? "w-[360px]" : "w-7"
+        }`}
+      >
+        <span
+          className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
+          onClick={toggleRightSidebar}
+        >
+          {/* <img src={Toggle} alt="Loading" /> */}
+          {isRightSidebarOpen ? (
+            <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
+          ) : (
+            <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
+          )}
+        </span>
 
-                <span
-                    className="bg-blue-700 hover:bg-blue-700 font-bold p-3 cursor-pointer rounded-full absolute top-1/2 -left-5"
-                    onClick={toggleRightSidebar}
-                >
-                    <img src={Toggle} alt="Loading" />
-                </span>
-
-                <RightSidebar />
-            </div>
+        <RightSidebar />
+      </div>
 
         </div>
 

@@ -12,7 +12,7 @@ import Coin from "../../Assets/Images/previous/coin_16821589.svg";
 
 // Import ICONS from react-icons
 import { IoCallOutline } from "react-icons/io5";
-import { MdOutlineKeyboardDoubleArrowLeft, MdOutlineMailOutline } from "react-icons/md";
+import { MdOutlineKeyboardDoubleArrowLeft, MdOutlineKeyboardDoubleArrowRight, MdOutlineMailOutline } from "react-icons/md";
 import { GoHome } from "react-icons/go";
 
 // Role JSON Data
@@ -119,14 +119,24 @@ const PreviousOrder = () => {
       </div>
 
       {/* Right Sidebar */}
-      <div className={`bg-gray-200 transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "w-80" : "w-7"}`}
+      <div
+        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${
+          isRightSidebarOpen ? "w-[360px]" : "w-7"
+        }`}
       >
-        <span className="bg-blue-700 hover:bg-blue-700 font-bold p-1 rounded-full cursor-pointer absolute top-1/2 -left-5" onClick={toggleRightSidebar}>
+        <span
+          className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
+          onClick={toggleRightSidebar}
+        >
           {/* <img src={Toggle} alt="Loading" /> */}
-          <MdOutlineKeyboardDoubleArrowLeft className='text-3xl text-white font-semibold' />
+          {isRightSidebarOpen ? (
+            <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
+          ) : (
+            <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
+          )}
         </span>
+
         <RightSidebar />
-        {/* <FoodCard/> */}
       </div>
     </div>
   );

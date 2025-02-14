@@ -1,30 +1,41 @@
 import React, { useEffect, useState } from "react";
+import { connect, useDispatch } from "react-redux";
+import {
+  ChangeInputItemQuantityRedux,
+  DecreaseItemQuantityRedux,
+  IncreaseItemQuantityRedux,
+} from "../../Redux/Slice/Menu/MenuSlice";
 
-const IncrementDecrementFunctionality = ({prevCount , GetQuantity,ItemId}) => {
+const IncrementDecrementFunctionality = ({
+  prevCount,
+  GetQuantity,
+  ItemId,
+  MenuFromRedux,
+}) => {
   const [count, setCount] = useState(1);
+  const dispatch = useDispatch();
 
   const increment = () => {
     setCount((prevCount) => prevCount + 1);
-
+    dispatch(IncreaseItemQuantityRedux(ItemId));
   };
 
   const decrement = () => {
     setCount((prevCount) => (prevCount > 0 ? prevCount - 1 : 0)); // avoid negative values
+    dispatch(DecreaseItemQuantityRedux(ItemId));
   };
 
   const handleInputChange = (e) => {
-    const value = e.target.value;
-
+    const value = Number(e?.target?.value);
+    const payload = {
+      value,ItemId
+    }
+    dispatch(ChangeInputItemQuantityRedux(payload));
     // Ensure that we only set numerical values
     if (value === "" || /^[0-9]*$/.test(value)) {
       setCount(value === "" ? 0 : parseInt(value, 10)); // Set to 0 if input is empty
-  }
+    }
   };
-
-  // Useeffects
-  useEffect(() => {
-    GetQuantity({ count, ItemId });
-  }, [count, ItemId]);
 
   return (
     <div className="w-24 h-8 rounded-md flex justify-evenly items-center bg-[--cashier-light-color]">
@@ -36,9 +47,12 @@ const IncrementDecrementFunctionality = ({prevCount , GetQuantity,ItemId}) => {
       </button>
       <input
         type="text"
-        value={count}
-        onChange={handleInputChange}
-        className="bg-transparent focus-visible:border-0 w-6 text-center"
+  // console.log('prevCount: ', prevCount);
+        value={MenuFromRedux?.Menu?.find((i) => i?.customerID == ItemId)?.quantity}
+        // value={count}
+        // onChange={handleInputChange}
+        readOnly
+        className="bg-transparent focus-visible:border-0 focus-visible:ring-0   border-0  w-6 text-center"
       />
       <button
         onClick={increment}
@@ -50,4 +64,8 @@ const IncrementDecrementFunctionality = ({prevCount , GetQuantity,ItemId}) => {
   );
 };
 
-export default IncrementDecrementFunctionality;
+const mapStateToProps = (state) => ({
+  MenuFromRedux: state?.menu,
+});
+
+export default connect(mapStateToProps, {})(IncrementDecrementFunctionality);

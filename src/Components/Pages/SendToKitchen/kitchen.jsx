@@ -16,7 +16,7 @@ import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
 
 
 // import React-Icons
-import { MdOutlineKeyboardDoubleArrowLeft } from 'react-icons/md';
+import { MdOutlineKeyboardDoubleArrowLeft, MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md';
 
 
 // Json
@@ -59,7 +59,7 @@ const SendToKitchen = () => {
                     <div className="overflow-auto h-full hidden-scroll">
                         <h2 className="text-base font-semibold mt-2">In Progress</h2>
                         <div
-                            className={`grid justify-center ${isRightSidebarOpen === true ? "md:grid-cols-1 lg:grid-cols-3" : "md:grid-cols-2 lg:grid-cols-4"
+                            className={`grid justify-center ${isRightSidebarOpen === true ? "md:grid-cols-1 lg:grid-cols-2" : "md:grid-cols-2 lg:grid-cols-3"
                                 } gap-4`}
                         >
                             {[1, 2, 3, 4, 5,].map((i, index) => (
@@ -89,20 +89,25 @@ const SendToKitchen = () => {
 
 
                 {/* Right Sidebar */}
-                <div
-                    className={`bg-gray-200 transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "w-80" : "w-7"
-                        }`}
-                >
-                    <span
-                        className="bg-blue-700 hover:bg-blue-700 font-bold p-1 cursor-pointer rounded-full absolute top-1/2 -left-5"
-                        onClick={toggleRightSidebar}
-                    >
-                        <MdOutlineKeyboardDoubleArrowLeft className='text-3xl text-white font-semibold' />
-                    </span>
+      <div
+        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${
+          isRightSidebarOpen ? "w-[360px]" : "w-7"
+        }`}
+      >
+        <span
+          className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
+          onClick={toggleRightSidebar}
+        >
+          {/* <img src={Toggle} alt="Loading" /> */}
+          {isRightSidebarOpen ? (
+            <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
+          ) : (
+            <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
+          )}
+        </span>
 
-
-                    <RightSidebar />
-                </div>
+        <RightSidebar />
+      </div>
             </div>
 
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
 // IMPORT IMAGES
-import logo from "../../Assets/Images/logo/logo.png";
+import logo from "../../Assets/Images/logo/logo-svg.svg";
 import userImg from "../../Assets/Images/logo/userImg.png";
 import CircleIcons from "../CircleIcons/circleIcons";
 import Home from "../../Assets/icons/House.svg";
@@ -58,19 +58,19 @@ const LeftSideNavbar = () => {
 
   return (
     <div>
-      <div className="lg:w-64 md:w-40 bg-white flex-none h-screen rounded-r-3xl shadow-[rgba(0,0,0,0.15)_1.95px_1.95px_2.6px]">
-        <div className="flex pt-10 justify-center">
+      <div className="lg:w-[275px] md:w-40 bg-white flex-none h-screen rounded-r-3xl shadow-[rgba(0,0,0,0.15)_1.95px_1.95px_2.6px]">
+        <div className="flex pt-10 justify-center items-center">
           <img src={logo} className="h-8 w-8" alt="Loading" />
-          <h1 className="lg:text-2xl md:text-base mx-2 drop-shadow-md font-bold text-gray-800">
-            FOOD SKILL
+          <h1 className="lg:text-xl md:text-base mx-2 right-sidebar-dropshadow montserrat-alternates-semibold cashier-main-text-color">
+            FOOD FUSION
           </h1>
         </div>
-        <div className="grid my-5 text-center justify-center">
+        <div className="grid mt-7 text-center justify-center">
           <div className="text-center flex justify-center">
             <img src={userImg} className="rounded-full" alt="Loading" />
           </div>
-          <h5 className="font-semibold">Admin Panel</h5>
-          <h6>Cashier</h6>
+          <h5 className="text-sm font-medium mt-2">Admin Panel</h5>
+          <h6 className="text-sm font-normal ">Cashier</h6>
         </div>
         <ul className="my-3">
           {navItems.map((item, index) => (

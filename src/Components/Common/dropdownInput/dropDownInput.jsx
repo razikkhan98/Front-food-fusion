@@ -54,7 +54,7 @@ const DropDownInput = () => {
   return (
     <div className="relative">
       {/* Search Input   */}
-      <div className="flex items-center bg-transparent border-white border rounded-full px-4 py-2 w-full max-w-md hover:bg-white">
+      <div className={`flex items-center bg-transparent border rounded-full px-4 py-2 w-full max-w-md hover:bg-white ${inputValue?.length > 0 ? "relative z-10 bg-white border-[#EAEAEA] border-[1px]" : "" }`}>
         <span className="text-gray-400">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -85,10 +85,10 @@ const DropDownInput = () => {
 
       {/* Search Card  */}
       {isOpen && inputValue && (
-        <div className="absolute left-0 text-sm w-full max-h-60 py-4 px-3 bg-white mt-1 rounded-3xl shadow-md">
+        <div className="absolute left-0 text-sm w-full max-h-60 py-4 px-3 bg-white top-5 rounded-b-3xl shadow-md overflow-scroll hidden-scroll">
           {filteredOptions.length > 0 ? (
             filteredOptions.map((order, index) => (
-              <div className="cursor-pointer" onMouseDown={() => handleSelect(order)}>
+              <div className="cursor-pointer pt-1" onMouseDown={() => handleSelect(order)}>
                 <div className="flex justify-between border-b py-2">
                   <span className="font-medium">Order Details :</span>
                   <span className="font-semibold">{order.table}</span>

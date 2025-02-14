@@ -15,9 +15,9 @@ import DropDownInput from "../dropdownInput/dropDownInput";
 
 // Json
 const tableData = [
-  { count: 6, label: "Active Tables", color: "bg-green-400" },
-  { count: 3, label: "Available Tables", color: "bg-yellow-400" },
-  { count: 20, label: "Reservations", color: "bg-red-400" },
+  { count: 6, label: "Active Tables", color: "bg-[--green-color]" },
+  { count: 3, label: "Available Tables", color: "bg-[--yellow-color]" },
+  { count: 20, label: "Reservations", color: "bg-[--red-color] text-white" },
 ];
 const orders = [
   {
@@ -56,7 +56,7 @@ const RightSidebar = () => {
   };
 
   return (
-    <div className="h-screen">
+    <div className="h-screen w-[360px]">
       {/* Sidebar */}
       <div className="cashier-light-bg-color h-full rounded-l-3xl p-6 shadow-md z-0">
         {/* Create New Order Button */}

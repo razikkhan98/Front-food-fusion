@@ -825,29 +825,7 @@ const AutoSuggestSearch = ({ inputValue, MenuFromRedux }) => {
   // };
 
   //
-  const GetQuantity = (data) => {
-    const payload = {
-      customerID: data?.ItemId,
-      menuID: 0,
-      floorName: "",
-      tableNumber: 0,
-      orderID: 0,
-      categoriesName: "",
-      subcategoriesName: "",
-      subcategoriesAmount: 0,
-      subcategoriesType: "",
-      quantity: data?.count,
-      totalAmount: 0,
-      totalitemTax: 0,
-      discount: "",
-      addonNotes: "",
-      addonName: "",
-      addonAmount: 0,
-      addonQuantity: 0,
-    };
-    dispatch(AddMenuRedux(payload));
-    return setIncrDecrQuantity(data);
-  };
+
 
   // Function to handle Add FOOD Item
   const HandleItemAdd = (item) => {
@@ -861,8 +839,7 @@ const AutoSuggestSearch = ({ inputValue, MenuFromRedux }) => {
       subcategoriesName: item?.name,
       subcategoriesAmount: item?.price,
       subcategoriesType: "",
-      quantity:
-        IncrDecrQuantity?.ItemId == item?.id ? IncrDecrQuantity?.count : 0,
+      quantity:1,
       totalAmount: 0,
       totalitemTax: 0,
       discount: "",
@@ -901,7 +878,8 @@ const AutoSuggestSearch = ({ inputValue, MenuFromRedux }) => {
 
           {/* Suggestions dropdown */}
           {filteredOptions?.length > 0 && (
-            <ul className="absolute left-0 w-full h-[280px] overflow-y-scroll hidden-scroll bg-white border border-gray-300 rounded-lg shadow-lg z-10">
+            <ul className="absolute left-0 top-[-20px] w-full h-[280px]  overflow-y-scroll hidden-scroll bg-white border border-gray-300 border-t-0 rounded-lg rounded-t-none shadow-lg z-10">
+              <li className="h-4"></li>
               {filteredOptions?.map((option, index) => (
                 <>
                   <li
@@ -915,7 +893,8 @@ const AutoSuggestSearch = ({ inputValue, MenuFromRedux }) => {
                     ) ? (
                       <IncrementDecrementFunctionality
                         ItemId={option?.id}
-                        GetQuantity={GetQuantity}
+                        prevCount={MenuFromRedux?.Menu?.find((i) => i?.customerID == option?.id)?.quantity}
+                        // GetQuantity={GetQuantity}
                       />
                     ) : (
                       <button
