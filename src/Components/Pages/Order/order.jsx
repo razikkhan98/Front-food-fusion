@@ -198,7 +198,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                   type="text"
                   placeholder="Customer's name here"
                   className={`w-full mt-1 text-base font-medium px-2 py-3 border rounded-lg  ${
-                    nameInptField ? "" : "bg-light-color text-xs border-0"
+                    nameInptField ? "" : "bg-light-color border-0"
                   } focus-visible:bg-white`}
                   {...register("name")}
                 />
@@ -230,7 +230,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                   type="text"
                   placeholder="Customer's contact no here"
                   className={`w-full mt-1 px-2 py-3 border rounded-lg ${
-                    numberInptField ? "" : "bg-light-color text-xs border-0"
+                    numberInptField ? "" : "bg-light-color  border-0"
                   } focus-visible:bg-white`}
                   {...register("number")}
                 />
@@ -247,7 +247,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                 </label>
                 <select
                   className={`w-full mt-1 px-2 py-3 border text-base font-medium rounded-lg ${
-                    orderTypeInptField ? "" : "bg-light-color text-xs border-0"
+                    orderTypeInptField ? "" : "bg-light-color  border-0"
                   } focus-visible:bg-white`}
                   {...register("orderType")}
                 >
@@ -271,7 +271,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                   type="email"
                   placeholder="Customer's E-mail ID here"
                   className={`w-full mt-1 px-2 py-3 border text-base font-medium rounded-lg ${
-                    emailInptField ? "" : "bg-light-color text-xs border-0"
+                    emailInptField ? "" : "bg-light-color  border-0"
                   } focus-visible:bg-white`}
                   {...register("email")}
                 />
