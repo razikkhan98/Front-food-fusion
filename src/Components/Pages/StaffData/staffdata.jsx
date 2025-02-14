@@ -270,7 +270,7 @@ const StaffData = () => {
             <LeftSideNavbar />
             <ChatBot />
             {/* Main Content Area */}
-            <div className={`flex-grow py-4 px-6 transition-all duration-300`}>
+            <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
 
 
                 {/* <Navbar /> */}

@@ -184,7 +184,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
       {/* Chatbot Section End */}
 
       {/* Main Content Area */}
-      <div className={`flex-grow p-4 transition-all duration-300`}>
+      <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
         <Navbar icons={OrderIcons} pageHeading={OrderHeading} />
 
         {/* Order Details */}
@@ -361,9 +361,11 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
 
         {/* Add Item Section */}
         <div className="my-8 flex items-center justify-between">
-          <button className="px-10 py-2 text-base font-normal bg-purple-btn text-white rounded-full">
+         <NavLink to={"/menu"}>
+         <button className="px-10 py-2 text-base font-normal bg-purple-btn text-white rounded-full">
             Add Item
           </button>
+         </NavLink>
           <div className="w-1/2 relative">
             <input
               type="text"
