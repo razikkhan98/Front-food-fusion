@@ -26,6 +26,7 @@ const InvoiceIcons = [
     { nav_img: magnify },
     { nav_img: bell },
 ];
+const InvoiceHeading = ["Orders" , "All Invoices"];
 const AllInvoice = () => {
     // ========
     // State
@@ -48,8 +49,8 @@ const AllInvoice = () => {
 
 
                 {/* Main Content here */}
-                <div className={`flex-grow p-6 transition-all duration-300 flex flex-col justify-center`}>
-                    <Navbar buttons={InvoiceButtons} icons={InvoiceIcons} />
+                <div className={`flex-grow py-4 px-9 transition-all duration-300 flex flex-col justify-center`}>
+                    <Navbar buttons={InvoiceButtons} icons={InvoiceIcons} pageHeading={InvoiceHeading} />
                     <div className="overflow-auto h-full hidden-scroll">
                         <div className="grid grid-cols-6 grid-rows-1">
                             <div

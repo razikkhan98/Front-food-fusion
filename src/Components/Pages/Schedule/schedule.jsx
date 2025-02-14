@@ -66,7 +66,7 @@ const Schedule = () => {
                 <ChatBot />
 
                 {/* Main Content Area */}
-                <div className={`flex-grow p-4 transition-all duration-300`}>
+                <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
                     <Navbar buttons={ScheduleButtons} icons={ScheduleIcons} pageHeading={ScheduleHeading} />
 
                     <p className='my-5 text-color-gray text-base font-medium'>Personal Details</p>
@@ -178,7 +178,7 @@ const Schedule = () => {
                                     No of Members
                                 </label>
                                 <select
-                                    className={`w-1/7 mt-1 p-3 border rounded-lg ${memberInputField ? "" : "bg-light-color"} focus-visible:bg-white`}
+                                    className={`w-1/7 mt-1 p-3 text-base font-medium border rounded-lg ${memberInputField ? "" : "bg-light-color text-xs border-0"} focus-visible:bg-white`}
                                     {...register("member")}
                                 >
                                     <option value={""}>No. of Members</option>
@@ -199,7 +199,7 @@ const Schedule = () => {
                                             Ground Floor
                                         </label>
                                         <select
-                                            className={`w-40 mt-1 p-3 border rounded-lg ${tableInputField ? "" : "bg-light-color"} focus-visible:bg-white`}
+                                            className={`w-40 mt-1 p-3 text-base font-medium  border rounded-lg ${tableInputField ? "" : "bg-light-color text-xs border-0"} focus-visible:bg-white`}
                                             {...register("tableNo")}
                                         >
                                             <option value={""}>Select table</option>
@@ -219,7 +219,7 @@ const Schedule = () => {
                                             First Floor
                                         </label>
                                         <select
-                                            className={`w-40 mt-1 p-3 border rounded-lg ${tableInputField ? "" : "bg-light-color"} focus-visible:bg-white`}
+                                            className={`w-40 mt-1 p-3 border text-base font-medium rounded-lg ${tableInputField ? "" : "bg-light-color text-xs border-0"} focus-visible:bg-white`}
                                             {...register("table")}
                                         >
                                             <option value={""}>Select table</option>
@@ -239,7 +239,7 @@ const Schedule = () => {
                                             Second Floor
                                         </label>
                                         <select
-                                            className={`w-40 mt-1 p-3 border rounded-lg ${tableInputField ? "" : "bg-light-color"} focus-visible:bg-white`}
+                                            className={`w-40 mt-1 p-3 text-base font-medium border rounded-lg ${tableInputField ? "" : "bg-light-color"} focus-visible:bg-white`}
                                             {...register("table")}
                                         >
                                             <option value={""}>Select table</option>
@@ -280,7 +280,7 @@ const Schedule = () => {
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="House/flat no"
+                                                // placeholder="House/flat no"
                                                 className={` mt-1 p-2 border rounded-lg focus-visible:bg-white`}
                                             />
 
@@ -291,7 +291,7 @@ const Schedule = () => {
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="Appartment"
+                                                // placeholder="Appartment"
                                                 className={` mt-1 p-2 border rounded-lg focus-visible:bg-white`}
                                             />
 
@@ -302,7 +302,7 @@ const Schedule = () => {
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="pincode"
+                                                // placeholder="pincode"
                                                 className={`mt-1 p-2 border rounded-lg focus-visible:bg-white`}
                                             />
 
@@ -313,7 +313,7 @@ const Schedule = () => {
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder='city'
+                                                // placeholder='city'
                                                 className={`mt-1 p-2 border rounded-lg focus-visible:bg-white`}
                                             />
 
@@ -324,7 +324,7 @@ const Schedule = () => {
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder='State'
+                                                // placeholder='State'
                                                 className={`mt-1 p-2 border rounded-lg focus-visible:bg-white`}
                                             />
 
@@ -351,7 +351,6 @@ const Schedule = () => {
                             </>
                         ) : orderTypeInptField === "Pickup" ? (
                             <>
-
                                 <div>
                                     <p className='my-5 text-color-gray text-base font-medium'>Payment</p>
 
@@ -368,47 +367,45 @@ const Schedule = () => {
                                     </div>
                                 </div>
                             </>
-                        )
-
-                            : (
-                                <></>
-                            )}
+                        ) : (
+                            <></>
+                        )}
 
                         <div>
 
-                            {orderTypeInptField === "Dine In" || "Delivery" || "Pickup" & orderTypeInptField === " " ? (
-                                <button className='px-8 py-2 bg-gray-200 text-gray-600 rounded-full mt-7'>Schedule Button</button>
-
-                            ) : (
+                            {/* {orderTypeInptField === "Dine In" || "Delivery" || "Pickup"  ? (
+                                
                                 <button className='px-8 py-2 bg-gray-200 text-gray-600 rounded-full mt-7'>Add Item</button>
 
-                            )
-                            }
+                            ) : (
+                                <> </>
+                            )} */}
+                            <button className='px-8 py-2 bg-gray-200 text-gray-600 rounded-full mt-7'>Schedule Button</button>
+
                         </div>
                     </form>
                 </div>
 
 
                 {/* Right Sidebar */}
-      <div
-        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${
-          isRightSidebarOpen ? "w-[360px]" : "w-7"
-        }`}
-      >
-        <span
-          className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
-          onClick={toggleRightSidebar}
-        >
-          {/* <img src={Toggle} alt="Loading" /> */}
-          {isRightSidebarOpen ? (
-            <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
-          ) : (
-            <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
-          )}
-        </span>
+                <div
+                    className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "w-[360px]" : "w-7"
+                        }`}
+                >
+                    <span
+                        className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
+                        onClick={toggleRightSidebar}
+                    >
+                        {/* <img src={Toggle} alt="Loading" /> */}
+                        {isRightSidebarOpen ? (
+                            <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
+                        ) : (
+                            <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
+                        )}
+                    </span>
 
-        <RightSidebar />
-      </div>
+                    <RightSidebar />
+                </div>
             </div>
 
         </>

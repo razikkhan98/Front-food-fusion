@@ -40,7 +40,7 @@ const Table = () => {
         <LeftSideNavbar />
         <ChatBot />
         {/* Main Content Area */}
-        <div className={`flex-grow p-4 transition-all duration-300`}>
+        <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
           <Navbar buttons={HomeButtons} icons={HomeIcons}  pageHeading={HomeHeading}/>
           {/* -------- for 2 member table ---------- */}
           {/* <hr className="mt-3 mb-1" /> */}
