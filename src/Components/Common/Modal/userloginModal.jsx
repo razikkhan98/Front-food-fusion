@@ -55,7 +55,7 @@ const UserLoginModal = ({ isOpen, closeModal, selectedUser, onSubmit }) => {
       />
 
       {/* Modal Content */}
-      <div className="bg-white p-6 rounded-2xl shadow-lg z-20 w-[450px]">
+      <div className="bg-white p-6 rounded-2xl shadow-lg z-20 w-[540px] h-[440px]">
         {/* Close Button */}
         <div className="flex justify-end">
           <button
@@ -77,19 +77,19 @@ const UserLoginModal = ({ isOpen, closeModal, selectedUser, onSubmit }) => {
           />
 
         </div>
-        <div className="poppins-medium text-2xl text-color-black text-center my-3">
+        <div className="poppins-medium text-3xl text-color-black text-center my-3">
           {selectedUser?.label}
         </div>
 
         {/* Login Form */}
-        <form className="text-center mt-8" onSubmit={handleSubmit(onSubmitHandler)}>
+        <form className="text-center mt-14" onSubmit={handleSubmit(onSubmitHandler)}>
           <label className="poppins-regular text-2xl text-color-gray">
             Please enter your code
           </label>
 
           <div className="relative">
             <input
-              className={`${selectedUser?.bgClass} opacity-60 w-full rounded-full my-4 border-0 py-3 text-center tracking-widest font-normal text-2xl text-color-black sm:text-sm`}
+              className={`${selectedUser?.bgClass} opacity-60 w-[452px] h-14 rounded-full mt-4 border-0 py-3 text-center tracking-widest font-normal text-2xl text-color-black`}
               type="text"
               id="code"
               {...register("code", { required: "Code is required" })}
@@ -102,7 +102,7 @@ const UserLoginModal = ({ isOpen, closeModal, selectedUser, onSubmit }) => {
                 viewBox="0 0 24 24"
                 strokeWidth={2}
                 stroke="currentColor"
-                className="w-5 h-5"
+                className="w-5 h-5 text-center"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-7-7l7 7-7 7" />
               </svg>

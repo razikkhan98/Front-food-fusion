@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { FaPaperPlane } from "react-icons/fa";
 
 // images
 import ChatBotImg from "../../Assets/Images/chatbot-img/chatbot.svg";
 import Profile from "../../Assets/Images/chatbot-img/user.png";
+import { RxPaperPlane } from "react-icons/rx";
 
 const Message = [
   {
@@ -50,14 +50,14 @@ const ChatBot = () => {
 
       {/* Chat Pop-up */}
       {isChatOpen && (
-        <div className="absolute bottom-24 right-0 w-80 bg-white rounded-lg shadow-xl border border-gray-200">
+        <div className="absolute bottom-24 right-0 w-80  bg-white rounded-lg shadow-xl border border-gray-200">
           
           {/* Messages */}
           <div className="p-3 max-h-80 overflow-auto">
             {Message.map((items, index) => (
               <>
-                <div className={`px-3 py-1 my-2 text-sm bg-gray-100 rounded-lg max-w-[75%] `}>
-                  <p className="font-semibold text-md cashier-main-text-color ">{items.title}</p>
+                <div className={`px-3 py-1 my-3 text-sm bg-gray-light-color rounded-lg max-w-[75%] `}>
+                  <p className="font-medium text-xs cashier-main-text-color ">{items.title}</p>
                   <p className="text-xs">{items.sender}</p>
                   <p className="text-xs text-gray-500 text-right">{items.time}</p>
                 </div>
@@ -82,10 +82,10 @@ const ChatBot = () => {
               placeholder="Type here"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              className="w-full px-3 py-2 bg-gray-100 rounded-full focus:outline-none"
+              className="w-full px-3 text-xs py-2 bg-gray-light-color rounded-full focus:outline-none"
             />
             <button type="submit" className="absolute right-2 top-1/2 transform -translate-y-1/2 ml-2 p-2">
-              <FaPaperPlane className="text-gray-800" />
+              < RxPaperPlane className="text-color-gray fw-bold" />
             </button>
           </div>
         </div>

@@ -1,20 +1,22 @@
 import React from "react";
 
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+
 
 const Navbar = ({ pageHeading = [], buttons = [], icons = [] }) => {
   return (
     <div>
       {pageHeading.length > 0 && (
-        <div className="text-sm text-gray-500 mb-1">
+        <div className="text-sm text-gray-500 mb-1 flex items-center">
           {pageHeading.length === 1 ? (
-            <span className="mr-2 font-medium text-base text-color-black"> &lt; {pageHeading[0]}</span> // Show "< Table" if only one
+            <span className="mr-2 font-medium text-base text-color-black flex items-center"> <span className="text-color-gray me-2"><IoIosArrowBack /></span> {pageHeading[0]}</span> // Show "< Table" if only one
           ) : (
             pageHeading.map((heading, index) => (
               <span
                 key={index}
-                className={`mr-2 font-medium text-base ${index === 0 ? "text-gray-500" : "text-black "}`}
+                className={`font-medium text-base flex items-center ${index === 0 ? "text-color-gray" : "text-black "}`}
               >
-                {heading} {index < pageHeading.length - 1 && <span className="text-gray-500">&gt;</span>}
+                {heading} {index < pageHeading.length - 1 && <span className="text-color-gray mx-2"> <IoIosArrowForward /></span>}
               </span>
             ))
           )}
