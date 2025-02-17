@@ -11,24 +11,25 @@
 
 @font-face {
   font-family: Montserrat Alternates;
-  src: url("../src/Components/Assets/fonts/MontserratAlternates-Regular.ttf")
-    format("truetype");
+  src: url("../src/Components/Assets/fonts/MontserratAlternates-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: poppins;
-  src: url("../src/Components/Assets/fonts/Poppins-Regular.ttf")
-    format("truetype");
+  src: url("../src/Components/Assets/fonts/Poppins-Regular.ttf") format("truetype");
 }
 
 body {
   font-family: poppins;
 }
+
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
   transition: background-color 0s 600000s, color 0s 600000s !important;
 }
-html, body {
+
+html,
+body {
   overflow: hidden;
 }
 
@@ -46,6 +47,7 @@ html, body {
   --cashier-main-color: #d79555;
   --cashier-color: #ffdab9;
   --cashier-light-color: #ffe9d5;
+  --cashier-hover-color: #F6F0E9;
   --staff-color: #fff9b0;
   --captain-color: #e3d6f7;
   --chef-color: #ffb3ab;
@@ -63,6 +65,10 @@ html, body {
   --dark-green-color: #7A8450;
   --light-purple-color: #CFBCDF;
   --dark-bule-color: #469DCF;
+  --status--orange-color: #DA6A2F;
+  --status--pink-color: #FF5C83;
+  --whatsapp-green-color: #25D366;
+  --blue-color: #4285F4;
 }
 
 
@@ -143,9 +149,29 @@ html, body {
   background-color: var(--light-purple-color);
 }
 
-.bg-gray-light-color{
-background-color: var(--gray-light-color);
+.bg-gray-light-color {
+  background-color: var(--gray-light-color);
 }
+
+.bg-light-purple-color {
+  background-color: rgba(106, 90, 205, 0.1);
+}
+
+.bg-light-orange-color {
+  background-color: rgba(218, 106, 47, 0.05);
+}
+
+.bg-light-pink-color {
+  background-color: rgba(255, 92, 131, 0.05);
+}
+
+.bg-whatsapp-light-green {
+  background-color: rgba(37, 211, 102, 0.1);
+}
+.bg-blue-light-color{
+  background-color: rgba(66, 133, 244, 0.1);
+}
+
 /* 
   =========================
 
@@ -178,6 +204,30 @@ background-color: var(--gray-light-color);
   color: var(--light-gray-color);
 }
 
+.text-purple-color {
+  color: var(--purple-color);
+}
+
+.text-color-orange {
+  color: var(--status--orange-color);
+}
+
+.text-color-pink {
+  color: var(--status--pink-color);
+}
+
+.text-color-green {
+  color: #94D82D;
+}
+
+.text-whatspp-green-color {
+  color: var(--whatsapp-green-color);
+}
+
+.text-blue-color{
+  color: var(--blue-color);
+}
+
 /* 
   =========================
 
@@ -200,6 +250,18 @@ background-color: var(--gray-light-color);
 
 .border-light-gray {
   border: 1px solid var(--light-gray-color);
+}
+
+.border-green-color {
+  border: 1px solid #94D82D;
+}
+
+.border-whatsapp-green {
+  border: 1px solid var(--whatsapp-green-color);
+}
+
+.border-blue-color{
+  border: 1px solid var(--blue-color);
 }
 
 /* 
@@ -464,6 +526,22 @@ background-color: var(--gray-light-color);
 }
 
 /* 
+==================================
+
+Home Page 
+
+===================================
+*/
+
+.background-img {
+  background-image: url(../src/Components/Assets/Images/background/background-img.png);
+  background-position: center, center;
+  background-size: contain;
+  min-height: 100vh;
+}
+
+
+/* 
   =========================
 
   Sidebar CSS Design
@@ -578,14 +656,6 @@ background-color: var(--gray-light-color);
   }
 }
 
-.background-img {
-  background-image: url(../src/Components/Assets/Images/background/background-img.png);
-  background-position: center, center;
-  background-size: contain;
-  min-height: 100vh;
-}
-
-/* ---------right side bar-------------- */
 
 /* --------------- scroll bar css ----------------- */
 .hidden-scroll::-webkit-scrollbar {
@@ -599,4 +669,10 @@ background-color: var(--gray-light-color);
   border-radius: 15px;
 }
 
-/* --------------------- Schedule Page Css-------------------------- */
+/* 
+--------------------- 
+Schedule Page Css
+------------------------ */
+.schedule-popup-hover:hover {
+  background-color: var(--cashier-hover-color);
+}

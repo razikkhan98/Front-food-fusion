@@ -46,7 +46,7 @@ const Home = ({ tableDetailsFromRedux }) => {
 
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex h-dvh overflow-hidden">
       {/* Left Sidebar */}
       <LeftSideNavbar />
 
@@ -55,7 +55,9 @@ const Home = ({ tableDetailsFromRedux }) => {
 
       {/* Main Content Area */}
       <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
-        <Navbar icons={HomeIcons} pageHeading={HomeHeading} />
+       <div className="border-b">
+       <Navbar icons={HomeIcons} pageHeading={HomeHeading} />
+       </div>
         <div
           className={`grid ${isRightSidebarOpen === true ? "grid-cols-4" : "grid-cols-5"
             } gap-4`}

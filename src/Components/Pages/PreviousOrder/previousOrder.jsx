@@ -8,6 +8,8 @@ import Navbar from "../../Common/Navbar/navbar.jsx";
 // import img
 import PreviousOrderCards from "../../Common/PreviousOrderCards/previousOrderCards.jsx";
 import Coin from "../../Assets/Images/previous/coin_16821589.svg";
+import bell from "../../Assets/Images/navbar-img/bell.svg";
+import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
 // import FoodCard from "../../Common/Test/menuItems.jsx";
 
 // Import ICONS from react-icons
@@ -45,6 +47,19 @@ const CustomerDetailsCard = [
     name: "132 main street Appartment 4B, Indore Madhya Pradesh, 85558",
   },
 ];
+
+// Json
+const PreviousIcons = [
+  { nav_img: magnify },
+  { nav_img: bell },
+];
+const PreviousHeading = [
+  "Book Table", "Generate Orders"
+];
+const PreviousButtons = [
+  { btn_name: "All", btn_color: "bg-orange-100" },
+  { btn_name: "Frequently Ordered", btn_color: "bg-transparent" },
+]
 const PreviousOrder = () => {
   // ===========
   // State
@@ -54,7 +69,7 @@ const PreviousOrder = () => {
   // =========
   // Function
   // =========
-  
+
   const toggleRightSidebar = () => {
     setIsRightSidebarOpen(!isRightSidebarOpen);
   };
@@ -67,20 +82,14 @@ const PreviousOrder = () => {
       {/* Main Content Area */}
 
       <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
-        <div>
-          {/* Breadcrumb */}
-          <div className="text-sm text-gray-500 mb-4">
-            <span className="mr-2">Book Table</span> &gt;{" "}
-            <span className="ml-2">Generate Order</span>
-          </div>
-
-          {/* Navbar start */}
-          <Navbar />
+        {/* Navbar start */}
+        <div className="border-b">
+          <Navbar icons={PreviousIcons} buttons={PreviousButtons} pageHeading={PreviousHeading} />
 
         </div>
 
 
-        <div className="bg-white border rounded-md py-4 px-3 my-2">
+        <div className="bg-white border rounded-md py-4 px-3 my-4">
           {/* <div className="flex"> */}
           <div className={`grid  ${isRightSidebarOpen ? "grid-cols-2" : "grid-cols-4"} gap-1`}>
             {CustomerDetailsCard.map((items, index) => (
@@ -120,9 +129,8 @@ const PreviousOrder = () => {
 
       {/* Right Sidebar */}
       <div
-        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${
-          isRightSidebarOpen ? "w-[360px]" : "w-7"
-        }`}
+        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "w-[360px]" : "w-7"
+          }`}
       >
         <span
           className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"

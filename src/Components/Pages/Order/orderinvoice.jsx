@@ -26,7 +26,7 @@ const InvoiceIcons = [
     { nav_img: magnify },
     { nav_img: bell },
 ];
-const InvoiceHeading = ["Orders" , "All Invoices"];
+const InvoiceHeading = ["Orders", "All Invoices"];
 const AllInvoice = () => {
     // ========
     // State
@@ -50,7 +50,9 @@ const AllInvoice = () => {
 
                 {/* Main Content here */}
                 <div className={`flex-grow py-4 px-9 transition-all duration-300 flex flex-col justify-center`}>
-                    <Navbar buttons={InvoiceButtons} icons={InvoiceIcons} pageHeading={InvoiceHeading} />
+                    <div className="border-b">
+                        <Navbar buttons={InvoiceButtons} icons={InvoiceIcons} pageHeading={InvoiceHeading} />
+                    </div>
                     <div className="overflow-auto h-full hidden-scroll">
                         <div className="grid grid-cols-6 grid-rows-1">
                             <div
@@ -72,25 +74,24 @@ const AllInvoice = () => {
                 </div>
 
                 {/* Right Sidebar */}
-      <div
-        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${
-          isRightSidebarOpen ? "w-[360px]" : "w-7"
-        }`}
-      >
-        <span
-          className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
-          onClick={toggleRightSidebar}
-        >
-          {/* <img src={Toggle} alt="Loading" /> */}
-          {isRightSidebarOpen ? (
-            <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
-          ) : (
-            <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
-          )}
-        </span>
+                <div
+                    className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "w-[360px]" : "w-7"
+                        }`}
+                >
+                    <span
+                        className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
+                        onClick={toggleRightSidebar}
+                    >
+                        {/* <img src={Toggle} alt="Loading" /> */}
+                        {isRightSidebarOpen ? (
+                            <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
+                        ) : (
+                            <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
+                        )}
+                    </span>
 
-        <RightSidebar />
-      </div>
+                    <RightSidebar />
+                </div>
             </div>
 
         </>
