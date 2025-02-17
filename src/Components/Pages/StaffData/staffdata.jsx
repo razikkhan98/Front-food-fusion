@@ -6,7 +6,7 @@ import RightSidebar from "../../Common/SideNavbar/rightSideNavbar.jsx";
 
 // Images
 import Navbar from "../../Common/Navbar/navbar.jsx";
-import Toggle from "../../Assets/Images/sidebarImg/toggle.png";
+// import Toggle from "../../Assets/Images/sidebarImg/toggle.png";
 import bell from "../../Assets/Images/navbar-img/bell.svg";
 import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
 import Sort from "../../Assets/Images/navbar-img/SortAscending.svg";
@@ -247,7 +247,7 @@ const StaffIcons = [
 ];
 const StaffHeading = [
     "Staff Data"
-]
+];
 const StaffData = () => {
     // ==========  
     // State 
@@ -274,8 +274,10 @@ const StaffData = () => {
 
 
                 {/* <Navbar /> */}
-                <Navbar icons={StaffIcons} pageHeading={StaffHeading} />
+                <div className="border-b">
+                    <Navbar icons={StaffIcons} pageHeading={StaffHeading} />
 
+                </div>
                 {/* Table Start */}
                 <div className="bg-white mt-4 border rounded-xl overflow-auto h-3/4 hidden-scroll">
                     <table className="w-full border rounded-xl shadow-md">
@@ -319,25 +321,24 @@ const StaffData = () => {
                 {/* Table End */}
             </div>
             {/* Right Sidebar */}
-      <div
-        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${
-          isRightSidebarOpen ? "w-[360px]" : "w-7"
-        }`}
-      >
-        <span
-          className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
-          onClick={toggleRightSidebar}
-        >
-          {/* <img src={Toggle} alt="Loading" /> */}
-          {isRightSidebarOpen ? (
-            <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
-          ) : (
-            <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
-          )}
-        </span>
+            <div
+                className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "w-[360px]" : "w-7"
+                    }`}
+            >
+                <span
+                    className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
+                    onClick={toggleRightSidebar}
+                >
+                    {/* <img src={Toggle} alt="Loading" /> */}
+                    {isRightSidebarOpen ? (
+                        <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
+                    ) : (
+                        <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
+                    )}
+                </span>
 
-        <RightSidebar />
-      </div>
+                <RightSidebar />
+            </div>
 
         </div>
 

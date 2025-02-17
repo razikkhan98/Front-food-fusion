@@ -70,7 +70,9 @@ const Schedule = () => {
 
                 {/* Main Content Area */}
                 <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
-                    <Navbar buttons={ScheduleButtons} icons={ScheduleIcons} pageHeading={ScheduleHeading} />
+                    <div className='border-b'>
+                        <Navbar buttons={ScheduleButtons} icons={ScheduleIcons} pageHeading={ScheduleHeading} />
+                    </div>
 
                     <p className='my-5 text-color-gray text-base font-medium'>Personal Details</p>
 
@@ -389,7 +391,14 @@ const Schedule = () => {
                     </form>
 
 
-                    <ScheduleCards />
+                    <div className='flex justify-evenly'>
+                        <ScheduleCards scheduleStatus={"Dine In"} />
+
+                        <ScheduleCards scheduleStatus={"Delivery"} orderType={"Pickup"} />
+                        {/* <ScheduleCards scheduleStatus={"Completed"} orderStatus={"complete"} /> */}
+                        <ScheduleCards scheduleStatus={"Completed"} orderStatus={"cancel"} orderType={"Dine In"} />
+
+                    </div>
 
                 </div>
 
