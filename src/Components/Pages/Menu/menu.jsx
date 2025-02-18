@@ -8,11 +8,16 @@ import Food2 from "../../Assets/Images/menuCard-img/food-2.jpeg";
 import Food3 from "../../Assets/Images/menuCard-img/food-3.jpeg";
 import bell from "../../Assets/Images/navbar-img/bell.svg";
 import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
-import { MdOutlineKeyboardDoubleArrowLeft, MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
+import {
+  MdOutlineKeyboardDoubleArrowLeft,
+  MdOutlineKeyboardDoubleArrowRight,
+} from "react-icons/md";
 import MenuDetailsCardSlider from "../../Common/MenuSlider/menudetailscardslider";
 import MenuSlider from "../../Common/MenuSlider/menucategoryslider";
 import OrderSideMenu from "../../Common/OrderSideMenu/ordersidemenu";
 import Navbar from "../../Common/Navbar/navbar";
+import RecommendationsModal from "../../Common/Modal/AddOnsModal";
+import AddOnsModal from "../../Common/Modal/AddOnsModal";
 
 // JSON
 const MenuCard = [
@@ -23,6 +28,12 @@ const MenuCard = [
     status: "Available",
     price: 180,
     colorStatus: "text-light-green bg-light-green",
+    add_ons: [
+      { option: "Extra paneer skewer", price: 50 },
+      { option: "Mint chutney", price: 10 },
+      { option: "Spicy marinade", price: 0 },
+      { option: "Lemon garnish", price: 0 },
+    ],
   },
   {
     img: Food2,
@@ -31,6 +42,14 @@ const MenuCard = [
     status: "Available",
     price: 180,
     colorStatus: "text-light-green bg-light-green",
+    add_ons: [
+      { option: "Extra tamarind chutney", price: 10 },
+      { option: "Mint chutney", price: 10 },
+      { option: "Yogurt topping", price: 15 },
+      { option: "Mini samosas", price: 0 },
+      { option: "Spicy filling", price: 0 },
+      { option: "Cheese filling", price: 20 },
+    ],
   },
   {
     img: Food3,
@@ -57,25 +76,22 @@ const MenuCard = [
     colorStatus: "text-light-green bg-light-green",
   },
 ];
-const MenuButtons =[
+const MenuButtons = [
   { btn_name: "All", btn_color: "bg-orange-100" },
   { btn_name: "Veg", btn_color: "bg-transparent" },
   { btn_name: "Non Veg", btn_color: "bg-transparent" },
   { btn_name: "Chef's Special", btn_color: "bg-transparent" },
 ];
- const MenuIcons =[
-  { nav_img: magnify },
-  { nav_img: bell },
- ];
- const MenuHeading =[
-  "Generate Order" , "Add Item"
- ]
+const MenuIcons = [{ nav_img: magnify }, { nav_img: bell }];
+const MenuHeading = ["Generate Order", "Add Item"];
 const Menu = () => {
   //  States
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
   const [OrderDetailSidebar, setOrderDetailSidebar] = useState(false);
   const [MenuCardOpen, setMenuCardOpen] = useState(false);
-    const [selectedCard, setSelectedCard] = useState(null);
+  const [selectedCard, setSelectedCard] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [CurrentAddon, setCurrentAddon] = useState();
 
   // Functions
   const toggleRightSidebar = () => {
@@ -85,18 +101,25 @@ const Menu = () => {
     setOrderDetailSidebar(!OrderDetailSidebar);
   };
   const openMenuCardSlider = (item) => {
-    setSelectedCard(item)
+    setSelectedCard(item);
     setMenuCardOpen(true);
   };
 
   const closeMenuCardSlider = () => {
     setMenuCardOpen(false);
   };
+  // Open Modal for Addon function
+  const openModal = () => {
+    setIsOpen(true);
+  };
 
-    // // Function to close the Menu Detail Modal
-    // const closeModal = () => {
-    //   setOrderDetailSidebar(false);
-    // };
+  // Close Modal for Addon function
+  const closeModal = () => setIsOpen(false);
+
+  // // Function to close the Menu Detail Modal
+  // const closeModal = () => {
+  //   setOrderDetailSidebar(false);
+  // };
   return (
     <>
       <div className="flex h-screen overflow-hidden">
@@ -117,7 +140,7 @@ const Menu = () => {
                 : "lg:grid-cols-5 md:grid-cols-3"
             } gap-2`}
           >
-            {MenuCard.map((item, index) => (
+            {MenuCard?.map((item, index) => (
               <div
                 key={index}
                 className={`bg-white rounded-lg shadow-md px-2 py-2 w-56 h-32 ${item?.cardBorder}`}
@@ -159,7 +182,8 @@ const Menu = () => {
                 </div>
                 <div className="flex justify-between items-center">
                   <button
-                    onClick={toggleOrderSidebar}
+                    // onClick={toggleOrderSidebar}
+                    onClick={() => {openModal(); setCurrentAddon(item?.add_ons)}}
                     className={` text-sm ${
                       item?.status !== "Available"
                         ? "text-gray-400 border"
@@ -178,6 +202,8 @@ const Menu = () => {
                 </div>
               </div>
             ))}
+            {/* Add on Modal popup */}
+            <AddOnsModal isOpen={isOpen} addOns={CurrentAddon} onClose={closeModal} />
           </div>
         </div>
         {/* Right Order Details Sidebar  */}
@@ -190,38 +216,45 @@ const Menu = () => {
         </div>
 
         {/* Right Sidebar */}
-      <div
-        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${
-          isRightSidebarOpen ? "w-[360px]" : "w-7"
-        }`}
-      >
-        <span
-          className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
-          onClick={toggleRightSidebar}
+        <div
+          className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${
+            isRightSidebarOpen ? "w-[360px]" : "w-7"
+          }`}
         >
-          {/* <img src={Toggle} alt="Loading" /> */}
-          {isRightSidebarOpen ? (
-            <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
-          ) : (
-            <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
-          )}
-        </span>
+          <span
+            className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
+            onClick={toggleRightSidebar}
+          >
+            {/* <img src={Toggle} alt="Loading" /> */}
+            {isRightSidebarOpen ? (
+              <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
+            ) : (
+              <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
+            )}
+          </span>
 
-        <RightSidebar />
-      </div>
+          <RightSidebar />
+        </div>
       </div>
 
       {/* Menu Details Card Slider */}
       {MenuCardOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center  z-50">
-          <div className=" p-6 rounded-lg shadow-lg relative w-[100vw]">
+          <div
+            className=" p-6 rounded-lg shadow-lg relative w-[100vw]"
+            // onClick={closeMenuCardSlider}
+          >
             <button
               onClick={closeMenuCardSlider}
               className="absolute top-2 right-2 text-gray-500 hover:text-gray-800"
             >
               ✕
             </button>
-            <MenuDetailsCardSlider SliderDataJson={MenuCard} selectedCard={selectedCard} toggleMenuDetailModal={closeMenuCardSlider} />
+            <MenuDetailsCardSlider
+              SliderDataJson={MenuCard}
+              selectedCard={selectedCard}
+              toggleMenuDetailModal={closeMenuCardSlider}
+            />
           </div>
         </div>
       )}
