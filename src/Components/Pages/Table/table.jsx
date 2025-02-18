@@ -19,10 +19,10 @@ const HomeButtons = [
   { btn_name: "Second Floor", btn_color: "bg-transparent" },
 ];
 const HomeIcons = [
-  { nav_img: magnify},
+  { nav_img: magnify },
   { nav_img: bell },
 ];
-const HomeHeading =[
+const HomeHeading = [
   "Book Table"
 ]
 const Table = () => {
@@ -41,7 +41,11 @@ const Table = () => {
         <ChatBot />
         {/* Main Content Area */}
         <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
-          <Navbar buttons={HomeButtons} icons={HomeIcons}  pageHeading={HomeHeading}/>
+          {/* Navbar */}
+          <div className='border-b'>
+            <Navbar buttons={HomeButtons} icons={HomeIcons} pageHeading={HomeHeading} />
+          </div>
+
           {/* -------- for 2 member table ---------- */}
           {/* <hr className="mt-3 mb-1" /> */}
 
@@ -96,25 +100,24 @@ const Table = () => {
         </div>
 
         {/* Right Sidebar */}
-      <div
-        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${
-          isRightSidebarOpen ? "w-[360px]" : "w-7"
-        }`}
-      >
-        <span
-          className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
-          onClick={toggleRightSidebar}
+        <div
+          className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "w-[360px]" : "w-7"
+            }`}
         >
-          {/* <img src={Toggle} alt="Loading" /> */}
-          {isRightSidebarOpen ? (
-            <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
-          ) : (
-            <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
-          )}
-        </span>
+          <span
+            className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
+            onClick={toggleRightSidebar}
+          >
+            {/* <img src={Toggle} alt="Loading" /> */}
+            {isRightSidebarOpen ? (
+              <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
+            ) : (
+              <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
+            )}
+          </span>
 
-        <RightSidebar />
-      </div>
+          <RightSidebar />
+        </div>
       </div>
     </>
   );

@@ -125,14 +125,11 @@ const Menu = () => {
       <div className="flex h-screen overflow-hidden">
         <LeftSideNavbar />
         {/* Main Content Area */}
-        <div
-          className={`flex-grow w-3/5 py-4 px-9 transition-all duration-300`}
-        >
-          <Navbar
-            pageHeading={MenuHeading}
-            buttons={MenuButtons}
-            icons={MenuIcons}
-          />
+        <div className={`flex-grow w-3/5 py-4 px-9 transition-all duration-300`}>
+        <div className="border-b">
+        <Navbar pageHeading={MenuHeading} buttons={MenuButtons} icons={MenuIcons} />
+
+        </div>
           <MenuSlider />
           {/* <MenuDetailsCardSlider/> */}
           <h1 className="font-bold text-xl">Starters</h1>

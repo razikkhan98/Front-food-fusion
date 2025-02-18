@@ -23,7 +23,7 @@ const Navbar = ({ pageHeading = [], buttons = [], icons = [] }) => {
           )}
         </div>
       )}
-      <div class="flex gap-4 border-b pb-3">
+      <div class="flex gap-4 pb-3">
         {buttons.length > 0 &&
           buttons.map((floor, index) => (
             <NavLink to={floor.btn_path}>
