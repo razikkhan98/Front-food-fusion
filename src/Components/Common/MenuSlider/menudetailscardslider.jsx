@@ -248,7 +248,7 @@ const getSideCards = ()=>{
                 {/* Card Content (Same as previous implementation) */}
                 <div className="relative">
                   <img
-                    className="w-full h-40 object-cover border-4 border-white rounded-t-3xl"
+                    className={`w-full ${position == "center" ? 'h-[182px]' :'h-[160px]'} object-cover border-4 border-white rounded-t-3xl`}
                     src={card?.img}
                     alt="Veg Pizza"
                   />
@@ -263,7 +263,7 @@ const getSideCards = ()=>{
                 </div>
 
                 {/* Card content */}
-              <div className="p-4 pt-1">
+              <div className={`p-4 pt-1 ${position == "center" ? 'h-[252px] grid items-center' :''}`}>
                 {/* Title & Ratings */}
                 <div className="flex justify-between text-center">
                   <h2 className="text-base font-medium text-gray-800">
@@ -311,7 +311,7 @@ const getSideCards = ()=>{
                 </div>
 
                 {/* Description */}
-                <p className={`text-sm font-normal ${position == "center" ? 'h-[77px]' :'h-20'} text-[--gray-color] mt-3`}>
+                <p className={`text-sm font-normal ${position == "center" ? 'h-20' :'h-[77px]'} overflow-scroll hidden-scroll text-[--gray-color] mt-3`}>
                   A variety of delicious vegetarian pizzas made with fresh
                   ingredients, signature sauces, and cheesy
                 </p>

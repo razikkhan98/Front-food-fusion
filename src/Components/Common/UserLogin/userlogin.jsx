@@ -134,7 +134,7 @@ const UserLogin = () => {
               <span
                 key={user.name}
                 onClick={() => openModal(user)}
-                className="mx-10 cursor-pointer font-medium text-3xl transform transition-transform ease-in-out duration-100 hover:scale-150"
+                className="mx-10 cursor-pointer font-medium text-3xl transform"
               >
                 <div
                   className={`h-[120px] w-[120px] flex justify-center items-center ${user.bgClass} rounded-[16px] mb-3`}
