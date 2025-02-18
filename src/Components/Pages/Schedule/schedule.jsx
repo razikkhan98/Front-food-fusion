@@ -15,12 +15,13 @@ import { useForm } from 'react-hook-form';
 // Import Images
 import bell from "../../Assets/Images/navbar-img/bell.svg";
 import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
+import ScheduleCards from '../../Common/ScheduleCards/schedulecards';
 // import Calendar from "../../Assets/icons/calendar-tick.svg";
 
 // Json
 const ScheduleButtons = [
     { btn_name: "New Order", btn_color: "bg-orange-100" },
-    { btn_name: "Ongoing", btn_color: "bg-transparent" },
+    { btn_name: "Ongoing", btn_color: "bg-transparent", btn_path: "/scheduleongoing" },
     { btn_name: "Completed", btn_color: "bg-transparent" },
 ];
 const ScheduleIcons = [
@@ -55,6 +56,8 @@ const Schedule = () => {
     const timeInptField = watch("time");
     const memberInputField = watch("member");
     const tableInputField = watch("tableNo");
+
+
     const onSubmit = (data) => {
         console.log(data, "Schedule")
     }
@@ -67,7 +70,9 @@ const Schedule = () => {
 
                 {/* Main Content Area */}
                 <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
-                    <Navbar buttons={ScheduleButtons} icons={ScheduleIcons} pageHeading={ScheduleHeading} />
+                    <div className='border-b'>
+                        <Navbar buttons={ScheduleButtons} icons={ScheduleIcons} pageHeading={ScheduleHeading} />
+                    </div>
 
                     <p className='my-5 text-color-gray text-base font-medium'>Personal Details</p>
 
@@ -239,7 +244,7 @@ const Schedule = () => {
                                             Second Floor
                                         </label>
                                         <select
-                                            className={`w-40 mt-1 p-3 text-base font-medium border rounded-lg ${tableInputField ? "" : "bg-light-color"} focus-visible:bg-white`}
+                                            className={`w-40 mt-1 p-3 text-base font-medium border rounded-lg ${tableInputField ? "" : "bg-light-color text-xs border-0"} focus-visible:bg-white`}
                                             {...register("table")}
                                         >
                                             <option value={""}>Select table</option>
@@ -384,6 +389,17 @@ const Schedule = () => {
 
                         </div>
                     </form>
+
+
+                    <div className='flex justify-evenly'>
+                        <ScheduleCards scheduleStatus={"Dine In"} />
+
+                        <ScheduleCards scheduleStatus={"Delivery"} orderType={"Pickup"} />
+                        {/* <ScheduleCards scheduleStatus={"Completed"} orderStatus={"complete"} /> */}
+                        <ScheduleCards scheduleStatus={"Completed"} orderStatus={"cancel"} orderType={"Dine In"} />
+
+                    </div>
+
                 </div>
 
 

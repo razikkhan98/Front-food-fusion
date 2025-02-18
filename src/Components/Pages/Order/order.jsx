@@ -14,6 +14,10 @@ import {
   MdOutlineKeyboardDoubleArrowLeft,
   MdOutlineKeyboardDoubleArrowRight,
 } from "react-icons/md";
+import { IoSearch } from "react-icons/io5";
+
+// Import third Party components
+import { toast } from "react-toastify";
 
 // import img
 import ChatBot from "../../Common/ChatBot/chatbot.jsx";
@@ -102,14 +106,22 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
       deliveryAddress: data?.deliveryAddress,
       orderStatus: "reserve",
     };
-    dispatch(TableBookingRedux(payload));
-    dispatch(
-      TableNoRedux(
-        data?.orderType == "Takeaway" || data?.orderType == "Delivery"
-          ? ""
-          : data?.tableNo
-      )
-    );
+    try {
+      dispatch(TableBookingRedux(payload));
+      dispatch(
+        TableNoRedux(
+          data?.orderType === "Takeaway" || data?.orderType === "Delivery"
+            ? ""
+            : data?.tableNo
+        )
+      );
+  
+      // Success Toaster
+      toast.success("Table booked successfully!");
+    } catch (error) {
+      // Error Toaster
+      toast.error("Failed to book the table. Please try again.");
+    }
   };
 
   // function to get total amount 
@@ -198,7 +210,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                   type="text"
                   placeholder="Customer's name here"
                   className={`w-full mt-1 text-base font-medium px-2 py-3 border rounded-lg  ${
-                    nameInptField ? "" : "bg-light-color text-xs border-0"
+                    nameInptField ? "" : "bg-light-color border-0"
                   } focus-visible:bg-white`}
                   {...register("name")}
                 />
@@ -230,7 +242,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                   type="text"
                   placeholder="Customer's contact no here"
                   className={`w-full mt-1 px-2 py-3 border rounded-lg ${
-                    numberInptField ? "" : "bg-light-color text-xs border-0"
+                    numberInptField ? "" : "bg-light-color  border-0"
                   } focus-visible:bg-white`}
                   {...register("number")}
                 />
@@ -247,7 +259,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                 </label>
                 <select
                   className={`w-full mt-1 px-2 py-3 border text-base font-medium rounded-lg ${
-                    orderTypeInptField ? "" : "bg-light-color text-xs border-0"
+                    orderTypeInptField ? "" : "bg-light-color  border-0"
                   } focus-visible:bg-white`}
                   {...register("orderType")}
                 >
@@ -271,7 +283,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                   type="email"
                   placeholder="Customer's E-mail ID here"
                   className={`w-full mt-1 px-2 py-3 border text-base font-medium rounded-lg ${
-                    emailInptField ? "" : "bg-light-color text-xs border-0"
+                    emailInptField ? "" : "bg-light-color  border-0"
                   } focus-visible:bg-white`}
                   {...register("email")}
                 />
@@ -374,7 +386,9 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
               className="w-full py-2 pl-10 pr-4 z-20 relative cashier-light-bg-color border-2 border-[--cashier-main-color] rounded-full focus:outline-none  focus:ring-[--cashier-main-color] hover:bg-[--select-section] focus-within:bg-[--select-section]"
             />
             <AutoSuggestSearch inputValue={autoSearchFillValue} />
-            <svg
+            <IoSearch className="absolute left-3 top-1/2 z-20 transform -translate-y-1/2 text-color-gray" />
+
+            {/* <svg
               className="absolute left-3 top-1/2 z-20 transform -translate-y-1/2 text-gray-500"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -387,9 +401,9 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M21 21l-4.35-4.35M16.5 10.5a6 6 0 1 0-12 0 6 6 0 0 0 12 0z"
+                d="M21 21l-4.35-4.35M16.5 12.5a6 6 0 1 0-12 0 6 6 0 0 0 12 0z"
               />
-            </svg>
+            </svg> */}
           </div>
         </div>
 

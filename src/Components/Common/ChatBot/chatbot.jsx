@@ -57,7 +57,7 @@ const ChatBot = () => {
             {Message.map((items, index) => (
               <>
                 <div className={`px-3 py-1 my-3 text-sm bg-gray-light-color rounded-lg max-w-[75%] `}>
-                  <p className="font-medium text-xs cashier-main-text-color ">{items.title}</p>
+                  <p className="font-medium text-xs cashier-main-text-color mb-2">{items.title}</p>
                   <p className="text-xs">{items.sender}</p>
                   <p className="text-xs text-gray-500 text-right">{items.time}</p>
                 </div>

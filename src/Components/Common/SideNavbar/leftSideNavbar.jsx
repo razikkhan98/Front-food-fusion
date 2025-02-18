@@ -72,7 +72,7 @@ const LeftSideNavbar = () => {
           <h5 className="text-sm font-medium mt-2">Admin Panel</h5>
           <h6 className="text-sm font-normal ">Cashier</h6>
         </div>
-        <ul className="my-3">
+        <ul className="my-3 h-[65%] overflow-scroll hidden-scroll">
           {navItems.map((item, index) => (
             <NavLink key={index} to={item?.to}>
               <li

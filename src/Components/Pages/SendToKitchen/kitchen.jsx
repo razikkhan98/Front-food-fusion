@@ -55,7 +55,9 @@ const SendToKitchen = () => {
 
                 {/* Main Content here */}
                 <div className={`flex-grow p-6 transition-all duration-300 flex flex-col justify-center`}>
-                    <Navbar buttons={KitchenButtons} icons={KitchenIcons} pageHeading={kitchenHeading} />
+                    <div className='border-b'>
+                        <Navbar buttons={KitchenButtons} icons={KitchenIcons} pageHeading={kitchenHeading} />
+                    </div>
                     <div className="overflow-auto h-full hidden-scroll">
                         <h2 className="text-base font-semibold mt-2">In Progress</h2>
                         <div
@@ -89,25 +91,24 @@ const SendToKitchen = () => {
 
 
                 {/* Right Sidebar */}
-      <div
-        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${
-          isRightSidebarOpen ? "w-[360px]" : "w-7"
-        }`}
-      >
-        <span
-          className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
-          onClick={toggleRightSidebar}
-        >
-          {/* <img src={Toggle} alt="Loading" /> */}
-          {isRightSidebarOpen ? (
-            <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
-          ) : (
-            <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
-          )}
-        </span>
+                <div
+                    className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "w-[360px]" : "w-7"
+                        }`}
+                >
+                    <span
+                        className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
+                        onClick={toggleRightSidebar}
+                    >
+                        {/* <img src={Toggle} alt="Loading" /> */}
+                        {isRightSidebarOpen ? (
+                            <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
+                        ) : (
+                            <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
+                        )}
+                    </span>
 
-        <RightSidebar />
-      </div>
+                    <RightSidebar />
+                </div>
             </div>
 
 
