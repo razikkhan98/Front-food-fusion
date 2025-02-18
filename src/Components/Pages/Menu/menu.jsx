@@ -242,7 +242,7 @@ const Menu = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center  z-50">
           <div
             className=" p-6 rounded-lg shadow-lg relative w-[100vw]"
-            onClick={closeMenuCardSlider}
+            // onClick={closeMenuCardSlider}
           >
             <button
               onClick={closeMenuCardSlider}

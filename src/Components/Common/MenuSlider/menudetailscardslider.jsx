@@ -210,7 +210,6 @@ const getSideCards = ()=>{
 }
 
   const getCardClasses = (position) => {
-    console.log('position: ', position);
     const baseClasses = "absolute transition-all duration-500 ease-in-out transform";
     
     switch (position) {
