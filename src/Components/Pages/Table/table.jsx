@@ -49,7 +49,7 @@ const Table = () => {
           {/* -------- for 2 member table ---------- */}
           {/* <hr className="mt-3 mb-1" /> */}
 
-          <div className="overflow-auto h-full hidden-scroll">
+          <div className="overflow-auto h-5/6 hidden-scroll">
             <h2 className="text-base font-semibold my-3">Table for 2 members</h2>
             <div
               className={`grid ${isRightSidebarOpen === true ? "md:grid-cols-2 lg:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-6"

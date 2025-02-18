@@ -55,19 +55,24 @@ const Home = ({ tableDetailsFromRedux }) => {
 
       {/* Main Content Area */}
       <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
-       <div className="border-b">
-       <Navbar icons={HomeIcons} pageHeading={HomeHeading} />
-       </div>
-        <div
-          className={`grid ${isRightSidebarOpen === true ? "grid-cols-4" : "grid-cols-5"
-            } gap-4`}
-        >
-          {tableDetailsFromRedux?.TableBooking?.map((i, index) => (
-            <TableCard tableDetail={i} />
-          ))}
-          <div className=" p-4 w-56"></div>
+        <div className="border-b">
+          <Navbar icons={HomeIcons} pageHeading={HomeHeading} />
+        </div>
+
+        <div className="overflow-auto h-5/6 hidden-scroll">
+          <h2 className="text-base font-semibold my-3">Dine In</h2>
+          <div
+            className={`grid ${isRightSidebarOpen === true ? "grid-cols-4" : "grid-cols-5"
+              } gap-4`}
+          >
+            {tableDetailsFromRedux?.TableBooking?.map((i, index) => (
+              <TableCard tableDetail={i} />
+            ))}
+            <div className=" p-4 w-56"></div>
+          </div>
         </div>
       </div>
+
 
       {/* Right Sidebar */}
       <div
