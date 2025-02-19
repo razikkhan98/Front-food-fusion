@@ -196,7 +196,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
       {/* Chatbot Section End */}
 
       {/* Main Content Area */}
-      <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
+      <div className={`flex-grow py-4 px-9 transition-all duration-300 h-full overflow-auto hidden-scroll`}>
         <Navbar icons={OrderIcons} pageHeading={OrderHeading} />
 
         {/* Order Details */}

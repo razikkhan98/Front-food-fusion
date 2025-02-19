@@ -2,6 +2,8 @@ import React from 'react'
 
 // Third party components
 import { Dialog } from "@headlessui/react";
+
+// Import React Icons
 import { RxCross2 } from "react-icons/rx";
 
 
@@ -12,16 +14,12 @@ import Gmail from "../../Assets/Images/schedule-img/gmail_symbol.svg.svg";
 const ScheduleContactModal = ({ isOpen, closeModal, selectedItems }) => {
 
 
-    // ==========  
-    // State 
-    // ============ 
-
-    // ==========  
-    // Functions 
-    // ============ 
+ // ==========  
+// Functions 
+// ============ 
 
 
-    // Close the modal and reset the form
+    // Close the modal 
     const handleModalClose = () => {
         closeModal();
     };
@@ -58,17 +56,18 @@ const ScheduleContactModal = ({ isOpen, closeModal, selectedItems }) => {
                         <p className='text-sm font-normal text-color-gray my-5'>Choose an option to contact the customer</p>
 
                         <div className='flex justify-evenly'>
-
                             <button className='rounded-full px-4 py-2 text-xs font-medium bg-light-green text-color-green border-green-color flex items-center justify-center'>
                                 <img src={Call} className='me-2 w-3 h-3' alt="Loading" />
-                                Call</button>
+                                Call
+                            </button>
                             <button className='rounded-full px-4 py-2 text-xs font-medium bg-whatsapp-light-green text-whatspp-green-color border-whatsapp-green flex items-center justify-center'>
                                 <img src={Whatsapp} className='me-2 w-4 h-4' alt="Loading" />
-                                Whatsapp</button>
+                                Whatsapp
+                            </button>
                             <button className='rounded-full px-4 py-2 text-xs font-medium bg-blue-light-color text-blue-color border-blue-color flex items-center justify-center'>
                                 <img src={Gmail} className='me-2 h-3 w-4' alt="Loading" />
-                                Gmail</button>
-
+                                Gmail
+                            </button>
                         </div>
                     </div>
 
