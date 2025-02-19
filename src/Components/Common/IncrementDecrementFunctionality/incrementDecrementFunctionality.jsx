@@ -9,6 +9,7 @@ import {
 const IncrementDecrementFunctionality = ({
   prevCount,
   GetQuantity,
+  AddonKey,
   ItemId,
   MenuFromRedux,
 }) => {
@@ -17,25 +18,36 @@ const IncrementDecrementFunctionality = ({
 
   const increment = () => {
     setCount((prevCount) => prevCount + 1);
-    dispatch(IncreaseItemQuantityRedux(ItemId));
+    if (AddonKey !== "addOnQuantity") {
+      dispatch(IncreaseItemQuantityRedux(ItemId));
+    } else {
+      // GetQuantity(count);
+    }
   };
 
   const decrement = () => {
     setCount((prevCount) => (prevCount > 0 ? prevCount - 1 : 0)); // avoid negative values
-    dispatch(DecreaseItemQuantityRedux(ItemId));
+    if (AddonKey !== "addOnQuantity") {
+      dispatch(DecreaseItemQuantityRedux(ItemId));
+    } else {
+      // GetQuantity(count);
+    }
   };
 
   const handleInputChange = (e) => {
     const value = Number(e?.target?.value);
     const payload = {
-      value,ItemId
-    }
+      value,
+      ItemId,
+    };
     dispatch(ChangeInputItemQuantityRedux(payload));
     // Ensure that we only set numerical values
     if (value === "" || /^[0-9]*$/.test(value)) {
       setCount(value === "" ? 0 : parseInt(value, 10)); // Set to 0 if input is empty
     }
   };
+
+  // USEEFFECT
 
   return (
     <div className="w-24 h-8 rounded-md flex justify-evenly items-center bg-[--cashier-light-color]">
@@ -47,8 +59,13 @@ const IncrementDecrementFunctionality = ({
       </button>
       <input
         type="text"
-  // console.log('prevCount: ', prevCount);
-        value={MenuFromRedux?.Menu?.find((i) => i?.customerID == ItemId)?.quantity}
+        // console.log('prevCount: ', prevCount);
+        value={
+          AddonKey !== "addOnQuantity"
+            ? MenuFromRedux?.Menu?.find((i) => i?.customerID == ItemId)
+                ?.quantity
+            : count
+        }
         // value={count}
         // onChange={handleInputChange}
         readOnly
