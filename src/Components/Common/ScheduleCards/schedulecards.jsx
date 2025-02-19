@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 // Common Components
-import Button from '../button/button';
+import Button from '../Button/button';
 import ScheduleContactModal from "../../Common/Modal/scheduleContactModal";
 
 // Import Images

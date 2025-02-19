@@ -2,7 +2,7 @@ import React from "react";
 
 
 // Common Components
-import Button from "../button/button";
+import Button from "../Button/button";
 
 
 // Import React-Icons
