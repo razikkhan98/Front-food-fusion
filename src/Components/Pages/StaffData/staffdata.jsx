@@ -67,7 +67,7 @@ const employees = [
 
         phone: "+91-9715555555",
 
-        role: "Admin",
+        role: "Chef Supervisor",
 
         shift: "Morning",
 
@@ -284,12 +284,12 @@ const StaffData = () => {
                     <table className="w-full border rounded-xl shadow-md">
                         <thead className="sticky top-0 bg-white">
                             <tr className="cashier-bg-table-color text-center">
-                                <th className="px-6 py-3 font-normal text-sm text-left ">Employee Name</th>
-                                <th className="px-4 py-3 font-normal text-sm ">Role</th>
-                                <th className="px-4 py-3 font-normal text-sm ">Shift</th>
-                                <th className="px-4 py-3 font-normal text-sm ">Status</th>
-                                <th className="px-4 py-3 font-normal text-sm ">Notify</th>
-                                <th className="px-4 py-3 font-normal text-sm ">Assigned Task</th>
+                                <th className="px-6 py-3 font-normal text-sm text-left">Employee Name</th>
+                                <th className="px-4 py-3 font-normal text-sm">Role</th>
+                                <th className="px-4 py-3 font-normal text-sm">Shift</th>
+                                <th className="px-4 py-3 font-normal text-sm">Status</th>
+                                <th className="px-4 py-3 font-normal text-sm">Notify</th>
+                                <th className="px-4 py-3 font-normal text-sm">Assigned Task</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white">
