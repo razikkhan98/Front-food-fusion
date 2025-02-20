@@ -604,15 +604,40 @@ Home Page
 
 .menu-category-next {
   position: absolute;
-  top: 3.5rem;
-  right: 0;
+  top: 30px;
+  right: 15px;
 }
 
 .menu-category-prev {
   position: absolute;
-  top: 3.5rem;
-  left: 0;
+  top: 34px;
+  left: 15px;
 }
+
+.menu-category-slider .slick-list{
+  position: relative !important;
+  height: 130px;
+}
+.menu-category-slider .slick-track{
+  position: absolute !important;
+}
+
+.menu-category-slider .slick-track {
+  /* width: 3614px;/ */
+  /* opacity: 1; */
+  transform: translate(0px);
+  transition: opacity 0.5s ease-out; 
+}
+
+/* .menu-category-slider .slick-track:hover {
+  transform: translate3d(0px, 0px, 0px); 
+  opacity: 0.8; 
+}
+
+.menu-category-slider .slick-track.active {
+  transform: translate3d(0px, 0px, 0px); 
+  opacity: 1; 
+} */
 
 /* 
   =========================

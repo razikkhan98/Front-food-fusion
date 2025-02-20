@@ -74,7 +74,7 @@ const LeftSideNavbar = () => {
         </div>
         <ul className="my-3 h-[65%] overflow-scroll hidden-scroll">
           {navItems.map((item, index) => (
-            <NavLink key={index} to={item?.to}>
+            <NavLink className="grid justify-center" key={index} to={item?.to}>
               <li
                 onMouseOver={() => setHoveredItem(item?.label)}
                 onMouseOut={() => setHoveredItem(null)}
@@ -82,7 +82,7 @@ const LeftSideNavbar = () => {
                   item?.to == Location?.pathname
                     ? "sidebar-li-active bg-[--cashier-main-color] text-white rounded-full"
                     : ""
-                } sidebar-li  items-center lg:text-base md:text-xs font-medium hover:bg-[--cashier-main-color] hover:text-white hover:rounded-full lg:mx-10 md:mx-6 text-center my-4`}
+                } sidebar-li w-[170px]  items-center lg:text-base md:text-xs font-medium hover:bg-[--cashier-main-color] hover:text-white hover:rounded-full  text-center my-[14px]`}
               >
                 <CircleIcons
                   icon={

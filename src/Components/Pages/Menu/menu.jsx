@@ -130,7 +130,7 @@ const Menu = () => {
         <Navbar pageHeading={MenuHeading} buttons={MenuButtons} icons={MenuIcons} />
 
         </div>
-          <MenuSlider />
+          <MenuSlider Noslide={isRightSidebarOpen ? 6 : 9} />
           {/* <MenuDetailsCardSlider/> */}
           <h1 className="font-bold text-xl">Starters</h1>
           <div

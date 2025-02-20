@@ -145,14 +145,31 @@ import Menu1 from "../../Assets/Images/menuCategory/menu1.png";
 import Menu2 from "../../Assets/Images/menuCategory/menu2.png";
 import Menu3 from "../../Assets/Images/menuCategory/menu3.png";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+const items = [
+  { id: 1, src: Menu1, label: "Starters" },
+  { id: 2, src: Menu2, label: "Breads" },
+  { id: 3, src: Menu3, label: "Paneer" },
+  { id: 4, src: Menu1, label: "Chinese" },
+  { id: 5, src: Menu2, label: "Thali" },
+  { id: 6, src: Menu1, label: "Desserts" },
+  { id: 7, src: Menu3, label: "Chinese" },
+  { id: 8, src: Menu2, label: "Paneer" },
+  { id: 9, src: Menu3, label: "Chinese" },
+  { id: 10, src: Menu2, label: "Breads" },
+];
 
-function MenuSlider() {
+
+function MenuSlider({Noslide}) {
+  // =========
+  // State
+  // =========
   const [activeIndex, setActiveIndex] = useState(0);
+
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: Noslide,
     slidesToScroll: 1,
     prevArrow: <SamplePrevArrow />,
     nextArrow: <SampleNextArrow />,
@@ -174,62 +191,30 @@ function MenuSlider() {
     ],
   };
 
-  const colors = [
-    "bg-red-200",
-    "bg-green-200",
-    "bg-blue-200",
-    "bg-yellow-200",
-    "bg-purple-200",
-    "bg-pink-200",
-    "bg-gray-200",
-    "bg-orange-200",
-    "bg-teal-200",
-  ];
-  const items = [
-  { id: 1, src: Menu1, label: "Starters" },
-  { id: 2, src: Menu2, label: "Breads" },
-  { id: 3, src: Menu3, label: "Paneer" },
-  { id: 4, src: Menu1, label: "Chinese" },
-  { id: 5, src: Menu2, label: "Thali" },
-  { id: 6, src: Menu1, label: "Desserts" },
-  { id: 7, src: Menu3, label: "Chinese" },
-  { id: 8, src: Menu2, label: "Paneer" },
-  { id: 9, src: Menu3, label: "Chinese" },
-  { id: 10, src: Menu2, label: "Breads" },
-];
+    // =========
+  // Functions
+  // =========
+
+
 
   return (
-    // <div className="slider-container mx-4">
     <div className="slider-container">
     <h1 className="font-bold text-lg ">Categories</h1>
-    <div className="slider-overlay">
-      {/* <div
-        className="slider hidden-scroll w-screen"> */}
-        {/* // style={{
-        //   transform: `translateX(-${
-        //     (currentStartIndex / items.length) * 100
-        //   }%)`,
-        //   transition: "transform 0.5s ease-in-out",
-        // }} */}
+    <div className="slider-overlay menu-category-slider">
+
       <Slider {...settings}>
         {items?.map((item, index) => (
-          // <div key={index} className="px-2">
-          //   <div
-          //     className={`h-48 rounded-lg shadow-md flex items-center justify-center ${colors[index % colors.length]}`}
-          //   >
-          //     <h3 className="text-2xl font-semibold">{index + 1}</h3>
-          //   </div>
-          // </div>
+
             <div
             key={item.id}
-            className={`slider-item ${activeIndex === index ? "active" : ""}`}
+            className={`slider-item ${activeIndex === index ? "" : ""}`}
             // onClick={() => handleItemClick(index)}
           >
             <div className="flex justify-center mb-2">
               <img
                 src={item.src}
                 alt={item.label}
-                className={activeIndex === index ? "active-image" : ""}
+                className={activeIndex === index ? "" : ""}
               />{" "}
               {/* Optionally, you can add a class to the image itself */}
             </div>
@@ -248,7 +233,6 @@ function MenuSlider() {
           </div>
         ))}
       </Slider>
-    {/* </div> */}
     </div>
     </div>
   );
@@ -258,10 +242,7 @@ function MenuSlider() {
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
-    // <div
-    //   className={` w-10 bg-red-300`}
-    //   onClick={onClick}
-    // />
+
         <button className="menu-category-prev " onClick={onClick}>
           <IoIosArrowBack className="bg-white w-6 h-6 p-1 border border-[--cashier-main-color] text-[--cashier-main-color] rounded-full text-xl hover:bg-[--cashier-main-color] hover:text-white active:bg-[--cashier-main-color]" />
         </button>
@@ -271,11 +252,8 @@ function SampleNextArrow(props) {
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
   return (
-    // <div
-    //   className={className}
-    //   onClick={onClick}
-    // />
-          <button className="menu-category-next" onClick={onClick}>
+
+          <button className="menu-category-next z-10" onClick={onClick}>
           <IoIosArrowForward className="bg-white w-6 h-6 p-1 border border-[--cashier-main-color] text-[--cashier-main-color] rounded-full text-xl hover:bg-[--cashier-main-color] hover:text-white active:bg-[--cashier-main-color]" />
         </button>
   );
