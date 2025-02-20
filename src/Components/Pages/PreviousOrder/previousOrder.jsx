@@ -8,11 +8,13 @@ import Navbar from "../../Common/Navbar/navbar.jsx";
 // import img
 import PreviousOrderCards from "../../Common/PreviousOrderCards/previousOrderCards.jsx";
 import Coin from "../../Assets/Images/previous/coin_16821589.svg";
+import bell from "../../Assets/Images/navbar-img/bell.svg";
+import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
 // import FoodCard from "../../Common/Test/menuItems.jsx";
 
 // Import ICONS from react-icons
 import { IoCallOutline } from "react-icons/io5";
-import { MdOutlineKeyboardDoubleArrowLeft, MdOutlineMailOutline } from "react-icons/md";
+import { MdOutlineKeyboardDoubleArrowLeft, MdOutlineKeyboardDoubleArrowRight, MdOutlineMailOutline } from "react-icons/md";
 import { GoHome } from "react-icons/go";
 
 // Role JSON Data
@@ -45,6 +47,19 @@ const CustomerDetailsCard = [
     name: "132 main street Appartment 4B, Indore Madhya Pradesh, 85558",
   },
 ];
+
+// Json
+const PreviousIcons = [
+  { nav_img: magnify },
+  { nav_img: bell },
+];
+const PreviousHeading = [
+  "Book Table", "Generate Orders"
+];
+const PreviousButtons = [
+  { btn_name: "All", btn_color: "bg-[--cashier-very-light-color]" },
+  { btn_name: "Frequently Ordered", btn_color: "bg-transparent" },
+]
 const PreviousOrder = () => {
   // ===========
   // State
@@ -54,7 +69,7 @@ const PreviousOrder = () => {
   // =========
   // Function
   // =========
-  
+
   const toggleRightSidebar = () => {
     setIsRightSidebarOpen(!isRightSidebarOpen);
   };
@@ -66,21 +81,15 @@ const PreviousOrder = () => {
 
       {/* Main Content Area */}
 
-      <div className={`flex-grow p-4 transition-all duration-300`}>
-        <div>
-          {/* Breadcrumb */}
-          <div className="text-sm text-gray-500 mb-4">
-            <span className="mr-2">Book Table</span> &gt;{" "}
-            <span className="ml-2">Generate Order</span>
-          </div>
-
-          {/* Navbar start */}
-          <Navbar />
+      <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
+        {/* Navbar start */}
+        <div className="border-b">
+          <Navbar icons={PreviousIcons} buttons={PreviousButtons} pageHeading={PreviousHeading} />
 
         </div>
 
 
-        <div className="bg-white border rounded-md py-4 px-3 my-2">
+        <div className="bg-white border rounded-md py-4 px-3 my-4">
           {/* <div className="flex"> */}
           <div className={`grid  ${isRightSidebarOpen ? "grid-cols-2" : "grid-cols-4"} gap-1`}>
             {CustomerDetailsCard.map((items, index) => (
@@ -91,16 +100,16 @@ const PreviousOrder = () => {
                   </div>
                 </div>
                 <div className="col-span-4">
-                  <div className="text-xs text-gray-400 font-semibold flex justify-between  ">{items.title}
+                  <div className="text-xs text-gray-400 font-medium flex justify-between  ">{items.title}
                     {/* Check if it's the last item */}
                     {index === CustomerDetailsCard.length - 1 && (
-                      <div className="flex bg-light-yellow rounded-md px-1">
+                      <div className="flex bg-light-yellow rounded-md px-1 mb-2">
                         <img src={Coin} alt="Loading" />
                         <div className="text-sm font-medium ms-2">120 Pt</div>
                       </div>
                     )}
                   </div>
-                  <div className="font-semibold text-sm">
+                  <div className="font-medium text-sm">
                     {items.name}
 
                   </div>
@@ -113,20 +122,29 @@ const PreviousOrder = () => {
         </div>
 
         {/* Previous Order Cards */}
-        <div className={`grid h-full hidden-scroll overflow-auto ${isRightSidebarOpen === true ? "grid-cols-2" : "grid-cols-3"} gap-1`}>
+        <div className={`grid h-3/4 hidden-scroll overflow-auto ${isRightSidebarOpen === true ? "grid-cols-2" : "grid-cols-3"} gap-1`}>
           <PreviousOrderCards />
         </div>
       </div>
 
       {/* Right Sidebar */}
-      <div className={`bg-gray-200 transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "w-80" : "w-7"}`}
+      <div
+        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "w-[360px]" : "w-7"
+          }`}
       >
-        <span className="bg-blue-700 hover:bg-blue-700 font-bold p-1 rounded-full cursor-pointer absolute top-1/2 -left-5" onClick={toggleRightSidebar}>
+        <span
+          className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
+          onClick={toggleRightSidebar}
+        >
           {/* <img src={Toggle} alt="Loading" /> */}
-          <MdOutlineKeyboardDoubleArrowLeft className='text-3xl text-white font-semibold' />
+          {isRightSidebarOpen ? (
+            <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
+          ) : (
+            <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
+          )}
         </span>
+
         <RightSidebar />
-        {/* <FoodCard/> */}
       </div>
     </div>
   );

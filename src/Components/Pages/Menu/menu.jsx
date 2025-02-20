@@ -6,10 +6,19 @@ import RightSidebar from "../../Common/SideNavbar/rightSideNavbar";
 import Food1 from "../../Assets/Images/menuCard-img/food-1.jpeg";
 import Food2 from "../../Assets/Images/menuCard-img/food-2.jpeg";
 import Food3 from "../../Assets/Images/menuCard-img/food-3.jpeg";
-import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
+import bell from "../../Assets/Images/navbar-img/bell.svg";
+import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
+import {
+  MdOutlineKeyboardDoubleArrowLeft,
+  MdOutlineKeyboardDoubleArrowRight,
+} from "react-icons/md";
 import MenuDetailsCardSlider from "../../Common/MenuSlider/menudetailscardslider";
 import MenuSlider from "../../Common/MenuSlider/menucategoryslider";
 import OrderSideMenu from "../../Common/OrderSideMenu/ordersidemenu";
+import Navbar from "../../Common/Navbar/navbar";
+import RecommendationsModal from "../../Common/Modal/AddOnsModal";
+import AddOnsModal from "../../Common/Modal/AddOnsModal";
+import ChatBot from "../../Common/ChatBot/chatbot";
 
 // JSON
 const MenuCard = [
@@ -20,6 +29,12 @@ const MenuCard = [
     status: "Available",
     price: 180,
     colorStatus: "text-light-green bg-light-green",
+    add_ons: [
+      { option: "Extra paneer skewer", price: 50 },
+      { option: "Mint chutney", price: 10 },
+      { option: "Spicy marinade", price: 0 },
+      { option: "Lemon garnish", price: 0 },
+    ],
   },
   {
     img: Food2,
@@ -28,6 +43,14 @@ const MenuCard = [
     status: "Available",
     price: 180,
     colorStatus: "text-light-green bg-light-green",
+    add_ons: [
+      { option: "Extra tamarind chutney", price: 10 },
+      { option: "Mint chutney", price: 10 },
+      { option: "Yogurt topping", price: 15 },
+      { option: "Mini samosas", price: 0 },
+      { option: "Spicy filling", price: 0 },
+      { option: "Cheese filling", price: 20 },
+    ],
   },
   {
     img: Food3,
@@ -54,12 +77,22 @@ const MenuCard = [
     colorStatus: "text-light-green bg-light-green",
   },
 ];
+const MenuButtons = [
+  { btn_name: "All", btn_color: "bg-[--cashier-very-light-color]" },
+  { btn_name: "Veg", btn_color: "bg-transparent" },
+  { btn_name: "Non Veg", btn_color: "bg-transparent" },
+  { btn_name: "Chef's Special", btn_color: "bg-transparent" },
+];
+const MenuIcons = [{ nav_img: magnify }, { nav_img: bell }];
+const MenuHeading = ["Generate Order", "Add Item"];
 const Menu = () => {
   //  States
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
   const [OrderDetailSidebar, setOrderDetailSidebar] = useState(false);
   const [MenuCardOpen, setMenuCardOpen] = useState(false);
-    const [selectedCard, setSelectedCard] = useState(null);
+  const [selectedCard, setSelectedCard] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [CurrentAddon, setCurrentAddon] = useState();
 
   // Functions
   const toggleRightSidebar = () => {
@@ -69,38 +102,50 @@ const Menu = () => {
     setOrderDetailSidebar(!OrderDetailSidebar);
   };
   const openMenuCardSlider = (item) => {
-    setSelectedCard(item)
+    setSelectedCard(item);
     setMenuCardOpen(true);
   };
 
   const closeMenuCardSlider = () => {
     setMenuCardOpen(false);
   };
+  // Open Modal for Addon function
+  const openModal = () => {
+    setIsOpen(true);
+  };
 
-    // // Function to close the Menu Detail Modal
-    // const closeModal = () => {
-    //   setOrderDetailSidebar(false);
-    // };
+  // Close Modal for Addon function
+  const closeModal = () => setIsOpen(false);
+
+  // // Function to close the Menu Detail Modal
+  // const closeModal = () => {
+  //   setOrderDetailSidebar(false);
+  // };
   return (
     <>
       <div className="flex h-screen overflow-hidden">
         <LeftSideNavbar />
+        <ChatBot/>
         {/* Main Content Area */}
-        <div className={`flex-grow w-3/5 p-4 transition-all duration-300`}>
-          <MenuSlider />
+        <div className={`flex-grow w-3/5 py-4 px-9 transition-all duration-300`}>
+        <div className="border-b">
+        <Navbar pageHeading={MenuHeading} buttons={MenuButtons} icons={MenuIcons} />
+        </div>
+        
+          <MenuSlider Noslide={isRightSidebarOpen ? 6 : 9} />
           {/* <MenuDetailsCardSlider/> */}
           <h1 className="font-bold text-xl">Starters</h1>
           <div
             className={`grid mt-4 ${
               isRightSidebarOpen === true || OrderDetailSidebar === true
-                ? "lg:grid-cols-3 md:grid-cols-2 w-11/12"
-                : "lg:grid-cols-5 md:grid-cols-3"
+                ? "2xl:grid-cols-3 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 w-11/12"
+                : "lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 md:grid-cols-3"
             } gap-2`}
           >
-            {MenuCard.map((item, index) => (
+            {MenuCard?.map((item, index) => (
               <div
                 key={index}
-                className={`bg-white rounded-lg shadow-md px-2 py-2 w-56 ${item?.cardBorder}`}
+                className={`bg-white rounded-lg shadow-md px-2 py-2 w-56 h-32 ${item?.cardBorder}`}
               >
                 <div className="grid grid-cols-2">
                   <div className="me-1">
@@ -116,10 +161,10 @@ const Menu = () => {
                   <div>
                     <div className="flex justify-end">
                       <span
-                        className={`text-end flex items-center px-1 font-semibold ${item?.colorStatus}`}
+                        className={`text-end flex text-xs items-center px-1 font-semibold ${item?.colorStatus}`}
                       >
                         <span
-                          className={`${
+                          className={` ${
                             item?.status == "Available"
                               ? "bg-green-500"
                               : "bg-red-500"
@@ -131,7 +176,7 @@ const Menu = () => {
                     <p
                       className={`${
                         item?.status !== "Available" ? "text-gray-400" : ""
-                      } font-semibold text-left`}
+                      } font-medium text-sm text-left`}
                     >
                       {item?.name}
                     </p>
@@ -139,8 +184,9 @@ const Menu = () => {
                 </div>
                 <div className="flex justify-between items-center">
                   <button
-                    onClick={toggleOrderSidebar}
-                    className={`${
+                    // onClick={toggleOrderSidebar}
+                    onClick={() => {openModal(); setCurrentAddon(item?.add_ons)}}
+                    className={` text-sm ${
                       item?.status !== "Available"
                         ? "text-gray-400 border"
                         : "cashier-light-bg-color cursor-pointer"
@@ -151,13 +197,15 @@ const Menu = () => {
                   <p
                     className={`${
                       item?.status !== "Available" ? "text-gray-400" : ""
-                    } text-end text-lg font-semibold`}
+                    } text-end text-base font-semibold`}
                   >
                     ₹ {item?.price}
                   </p>
                 </div>
               </div>
             ))}
+            {/* Add on Modal popup */}
+            <AddOnsModal isOpen={isOpen} addOns={CurrentAddon} onClose={closeModal} />
           </div>
         </div>
         {/* Right Order Details Sidebar  */}
@@ -169,17 +217,22 @@ const Menu = () => {
           <OrderSideMenu />
         </div>
 
-        {/* Right Sidebar Start */}
+        {/* Right Sidebar */}
         <div
-          className={`bg-gray-200 transition-all duration-300 ease-in-out relative rounded-l-3xl ${
-            isRightSidebarOpen ? "w-80" : "w-7"
+          className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${
+            isRightSidebarOpen ? "w-[360px]" : "w-7"
           }`}
         >
           <span
-            className="bg-blue-700 hover:bg-blue-700 font-bold p-1 rounded-full absolute top-1/2 -left-5"
+            className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
             onClick={toggleRightSidebar}
           >
-            <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
+            {/* <img src={Toggle} alt="Loading" /> */}
+            {isRightSidebarOpen ? (
+              <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
+            ) : (
+              <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
+            )}
           </span>
 
           <RightSidebar />
@@ -189,14 +242,21 @@ const Menu = () => {
       {/* Menu Details Card Slider */}
       {MenuCardOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center  z-50">
-          <div className=" p-6 rounded-lg shadow-lg relative">
+          <div
+            className=" p-6 rounded-lg shadow-lg relative w-[100vw]"
+            // onClick={closeMenuCardSlider}
+          >
             <button
               onClick={closeMenuCardSlider}
               className="absolute top-2 right-2 text-gray-500 hover:text-gray-800"
             >
               ✕
             </button>
-            <MenuDetailsCardSlider SliderDataJson={MenuCard} selectedCard={selectedCard} toggleMenuDetailModal={closeMenuCardSlider} />
+            <MenuDetailsCardSlider
+              SliderDataJson={MenuCard}
+              selectedCard={selectedCard}
+              toggleMenuDetailModal={closeMenuCardSlider}
+            />
           </div>
         </div>
       )}
