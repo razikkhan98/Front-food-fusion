@@ -7,7 +7,8 @@ import trash from '../../Assets/Images/sidebarImg/Trash.svg'
 import clendar from '../../Assets/Images/sidebarImg/calendar-tick.svg'
 import openSchedule from '../../Assets/Images/sidebarImg/openSchedule.svg'
 import closeSchedule from '../../Assets/Images/sidebarImg/openSchedule.svg'
-
+import Plus from "../../Assets/Images/sidebarImg/Plus.svg";
+import PlusBlack from "../../Assets/Images/sidebarImg/Plus-black.svg";
 // Third Party Components
 import { NavLink } from "react-router-dom";
 // Common
@@ -15,7 +16,7 @@ import DropDownInput from "../DropdownInput/dropDownInput";
 
 // Json
 const tableData = [
-  { count: 6, label: "Active Tables", color: "bg-[--green-color]" },
+  { count: 6, label: "Active Tables", color: "bg-green-status-color" },
   { count: 3, label: "Available Tables", color: "bg-[--yellow-color]" },
   { count: 20, label: "Reservations", color: "bg-[--red-color] text-white" },
 ];
@@ -61,13 +62,13 @@ const RightSidebar = () => {
       <div className="cashier-light-bg-color h-full rounded-l-3xl p-6 shadow-md z-0">
         {/* Create New Order Button */}
         <NavLink to={"/order"}>
-          <button className="w-full cashier-main-bg-color text-white py-2 px-4 rounded-full font-semibold">
-            + Create New Order
+          <button className="w-full cashier-main-bg-color text-white py-2 px-4 rounded-full font-medium text-base flex items-center justify-center">
+            <img src={Plus} className="me-2 h-5 w-5" alt="Loading" /> Create New Order
           </button>
         </NavLink>
 
-        <div className="my-2 py-2 px-5 bg-[#ffffff4d] rounded-xl">
-          <div className="text-center">
+        <div className="mt-5 py-2 px-5 bg-[#ffffff4d] rounded-2xl">
+          <div className="text-center mb-8 mt-5">
             <DropDownInput />
           </div>
           <div>
@@ -90,12 +91,12 @@ const RightSidebar = () => {
         </div>
 
         {/* Schedule New Order Button */}
-        <button className="w-full text-base font-medium bg-[#ffffff4d] py-2 mb-3 mt-2 px-4 rounded-full border-white border">
-          + Schedule New Order
+        <button className="w-full text-base font-medium bg-[#ffffff4d] py-2 my-5 px-4 rounded-full border-white border flex items-center justify-center">
+          <img src={PlusBlack} className="me-2 h-5 w-5" alt="Loading" />  Schedule New Order
         </button>
 
         {/* Scheduled Orders */}
-        <div className="w-full max-w-md mx-auto px-2 pt-1 pb-1  bg-[#ffffff4d] rounded-lg shadow-md">
+        <div className="w-full max-w-md mx-auto px-2 pt-1 pb-1  bg-[#ffffff4d] rounded-2xl shadow-md">
           {/* Accordion Header */}
           <div
             onClick={toggleAccordion}
@@ -113,7 +114,7 @@ const RightSidebar = () => {
 
           {/* Schedule Accordion Content */}
           {isOpen && (
-            <div className="h-96 overflow-auto hidden-scroll">
+            <div className="h-80 overflow-auto hidden-scroll">
               {orders.map((order, index) => (
                 <div key={index}>
                   <hr className="h-[1px] bg-white my-0 border-white" />
@@ -136,9 +137,9 @@ const RightSidebar = () => {
 
                     {/* Action Icons */}
                     <div className="">
-                      <div className="w-6 h-6 my-2 bg-[#ffffff66] rounded-full flex items-center justify-center"><img className="w-100 h-4" src={edit} alt="Loading" /></div>
+                      <div className="w-6 h-6 my-3 bg-[#ffffff66] rounded-full flex items-center justify-center"><img className="w-100 h-4" src={edit} alt="Loading" /></div>
                       <div className="w-6 h-6 my-4 bg-[#ffffff66] rounded-full flex items-center justify-center"><img className="w-100 h-4" src={call} alt="Loading" /></div>
-                      <div className="w-6 h-6 my-2 bg-[#ffffff66] rounded-full flex items-center justify-center"><img className="w-100 h-4" src={trash} alt="Loading" /></div>
+                      <div className="w-6 h-6 my-3 bg-[#ffffff66] rounded-full flex items-center justify-center"><img className="w-100 h-4" src={trash} alt="Loading" /></div>
                     </div>
                   </div>
                   {/* <hr className="h-[1px] bg-white my-0 border-white" /> */}

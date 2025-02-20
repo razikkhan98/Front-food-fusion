@@ -13,7 +13,7 @@ import RightSidebar from '../../Common/SideNavbar/rightSideNavbar';
 // Import Images
 import bell from "../../Assets/Images/navbar-img/bell.svg";
 import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
-
+import Sort from "../../Assets/Images/navbar-img/SortAscending.svg";
 
 // import React-Icons
 import { MdOutlineKeyboardDoubleArrowLeft, MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md';
@@ -28,6 +28,7 @@ const KitchenButtons = [
 ];
 const KitchenIcons = [
     { nav_img: magnify },
+    { nav_img: Sort },
     { nav_img: bell },
 ];
 
