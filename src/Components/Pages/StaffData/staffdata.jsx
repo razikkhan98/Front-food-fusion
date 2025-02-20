@@ -47,13 +47,13 @@ const employees = [
 
         role: "Admin",
 
-        shift: "Morning",
+        shift: "Afternoon",
 
         status: "Present",
 
         statuscolor: "text-light-green bg-light-green",
 
-        task: "-",
+        task: "Serving Table 2",
 
         color: "bg-dark-green-color",
 
@@ -91,7 +91,7 @@ const employees = [
 
         role: "Admin",
 
-        shift: "Morning",
+        shift: "Afternoon",
 
         status: "Present",
 
@@ -113,7 +113,7 @@ const employees = [
 
         role: "Admin",
 
-        shift: "Morning",
+        shift: "Afternoon",
 
         status: "Present",
 
@@ -128,7 +128,7 @@ const employees = [
 
     {
 
-        initials: "SK",
+        initials: "RK",
 
         name: "Razik Khan",
 
@@ -136,13 +136,13 @@ const employees = [
 
         role: "Cashier",
 
-        shift: "Morning",
+        shift: "Afternoon",
 
         status: "On Leave",
 
         statuscolor: "text-color-red bg-color-red",
 
-        task: "Orders & Payments",
+        task: "Serving Table 2",
 
         color: "bg-dark-blue-color",
 
@@ -150,7 +150,7 @@ const employees = [
     },
     {
 
-        initials: "RK",
+        initials: "SK",
 
         name: "Shumaila Khan",
 
@@ -173,7 +173,7 @@ const employees = [
     },
     {
 
-        initials: "SK",
+        initials: "RK",
 
         name: "Razik Khan",
 
@@ -217,7 +217,7 @@ const employees = [
     },
     {
 
-        initials: "SK",
+        initials: "RK",
 
         name: "Razik Khan",
 
@@ -269,26 +269,27 @@ const StaffData = () => {
             {/* Left Sidebar */}
             <LeftSideNavbar />
             <ChatBot />
+
+
             {/* Main Content Area */}
             <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
-
 
                 {/* <Navbar /> */}
                 <div className="border-b">
                     <Navbar icons={StaffIcons} pageHeading={StaffHeading} />
-
                 </div>
+                
                 {/* Table Start */}
-                <div className="bg-white mt-4 border rounded-xl overflow-auto h-3/4 hidden-scroll">
+                <div className="bg-white mt-4 border rounded-xl overflow-auto h-5/6 hidden-scroll">
                     <table className="w-full border rounded-xl shadow-md">
                         <thead className="sticky top-0 bg-white">
                             <tr className="cashier-bg-table-color text-center">
-                                <th className="px-6 py-3 font-normal text-sm text-left w-[20%]">Employee Name</th>
-                                <th className="px-4 py-3 font-normal text-sm w-[15%]">Role</th>
-                                <th className="px-4 py-3 font-normal text-sm w-[15%]">Shift</th>
-                                <th className="px-4 py-3 font-normal text-sm w-[15%]">Status</th>
-                                <th className="px-4 py-3 font-normal text-sm w-[15%]">Notify</th>
-                                <th className="px-4 py-3 font-normal text-sm w-[20%">Assigned Task</th>
+                                <th className="px-6 py-3 font-normal text-sm text-left ">Employee Name</th>
+                                <th className="px-4 py-3 font-normal text-sm ">Role</th>
+                                <th className="px-4 py-3 font-normal text-sm ">Shift</th>
+                                <th className="px-4 py-3 font-normal text-sm ">Status</th>
+                                <th className="px-4 py-3 font-normal text-sm ">Notify</th>
+                                <th className="px-4 py-3 font-normal text-sm ">Assigned Task</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white">
@@ -309,7 +310,7 @@ const StaffData = () => {
                                         </span>
                                     </td>
                                     <td className="px-4 py-3">
-                                        <button className="px-3 py-1 border border-[--cashier-main-color] cashier-main-text-color rounded-full hover:bg-[--cashier-main-color] hover:text-white">Notify</button>
+                                        <button className="px-7 py-2 border border-[--cashier-main-color] text-xs font-medium cashier-main-text-color rounded-full hover:bg-[--cashier-main-color] hover:text-white">Notify</button>
                                     </td>
                                     <td className="px-4 py-3 text-color-black text-sm font-normal">{employee.task}</td>
                                 </tr>

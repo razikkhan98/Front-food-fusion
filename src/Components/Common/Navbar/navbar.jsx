@@ -8,7 +8,7 @@ const Navbar = ({ pageHeading = [], buttons = [], icons = [] }) => {
   return (
     <div>
       {pageHeading.length > 0 && (
-        <div className="text-sm text-gray-500 mb-2 flex items-center">
+        <div className="text-sm my-3 flex items-center">
           {pageHeading.length === 1 ? (
             <span className="mr-2 font-medium text-base text-color-black flex items-center"> <span className="text-color-gray me-2"><IoIosArrowBack /></span> {pageHeading[0]}</span> // Show "< Table" if only one
           ) : (
@@ -41,12 +41,14 @@ const Navbar = ({ pageHeading = [], buttons = [], icons = [] }) => {
         {icons.length > 0 && (
           <div className="flex gap-4 ml-auto">
             {icons.map((item, index) => (
-              <div key={index} className="cashier-light-bg-color rounded-full p-2">
+              <div key={index} className="navbar-icon-bg-color rounded-full p-2 z-0">
                 <img src={item.nav_img} alt={item.alt} />
               </div>
             ))}
           </div>
         )}
+
+        {/* <button className="px-10 py-2 text-base font-normal bg-purple-btn text-white rounded-full">See All Invoice</button> */}
       </div>
     </div>
   );

@@ -59,7 +59,7 @@ const LeftSideNavbar = () => {
   return (
     <div>
       <div className="lg:w-[275px] md:w-40 bg-white flex-none h-screen rounded-r-3xl shadow-[rgba(0,0,0,0.15)_1.95px_1.95px_2.6px]">
-        <div className="flex pt-10 justify-center items-center">
+        <div className="flex pt-6 justify-center items-center">
           <img src={logo} className="h-8 w-8" alt="Loading" />
           <h1 className="lg:text-xl md:text-base mx-2 right-sidebar-dropshadow montserrat-alternates-semibold cashier-main-text-color">
             FOOD FUSION

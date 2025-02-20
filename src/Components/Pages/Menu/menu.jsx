@@ -18,6 +18,7 @@ import OrderSideMenu from "../../Common/OrderSideMenu/ordersidemenu";
 import Navbar from "../../Common/Navbar/navbar";
 import RecommendationsModal from "../../Common/Modal/AddOnsModal";
 import AddOnsModal from "../../Common/Modal/AddOnsModal";
+import ChatBot from "../../Common/ChatBot/chatbot";
 
 // JSON
 const MenuCard = [
@@ -124,6 +125,7 @@ const Menu = () => {
     <>
       <div className="flex h-screen overflow-hidden">
         <LeftSideNavbar />
+        <ChatBot/>
         {/* Main Content Area */}
         <div className={`flex-grow w-3/5 py-4 px-9 transition-all duration-300`}>
         <div className="border-b">

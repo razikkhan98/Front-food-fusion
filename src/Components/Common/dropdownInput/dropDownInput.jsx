@@ -87,7 +87,7 @@ const DropDownInput = () => {
 
       {/* Search Card  */}
       {isOpen && inputValue && (
-        <div className="absolute left-0 text-sm w-full max-h-60 py-4 px-3 bg-white top-5 rounded-b-3xl shadow-md overflow-scroll hidden-scroll">
+        <div className="absolute left-0 text-sm w-full max-h-60 py-4 px-3 bg-white top-5 rounded-b-[32px] shadow-md overflow-scroll hidden-scroll">
           {filteredOptions.length > 0 ? (
             filteredOptions.map((order, index) => (
               <div className="cursor-pointer pt-1" onMouseDown={() => handleSelect(order)}>

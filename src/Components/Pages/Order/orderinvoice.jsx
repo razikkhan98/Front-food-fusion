@@ -5,6 +5,8 @@ import RightSidebar from "../../Common/SideNavbar/rightSideNavbar";
 import Navbar from "../../Common/Navbar/navbar";
 import ChatBot from "../../Common/ChatBot/chatbot";
 import LeftSideNavbar from "../../Common/SideNavbar/leftSideNavbar";
+import InvoiceCards from "../../Common/InvoiceCards/invoicecards";
+import InvoiceReceipt from "../../Common/InvoiceReceipt/invoicereceipt";
 
 // Import third Party component
 import { MdOutlineKeyboardDoubleArrowLeft, MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
@@ -12,8 +14,7 @@ import { MdOutlineKeyboardDoubleArrowLeft, MdOutlineKeyboardDoubleArrowRight } f
 // Import Images
 import bell from "../../Assets/Images/navbar-img/bell.svg";
 import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
-import InvoiceCards from "../../Common/InvoiceCards/invoicecards";
-import InvoiceReceipt from "../../Common/InvoiceReceipt/invoicereceipt";
+import Sort from "../../Assets/Images/navbar-img/SortAscending.svg";
 
 // Json
 const InvoiceButtons = [
@@ -24,6 +25,7 @@ const InvoiceButtons = [
 ];
 const InvoiceIcons = [
     { nav_img: magnify },
+    { nav_img: Sort },
     { nav_img: bell },
 ];
 const InvoiceHeading = ["Orders", "All Invoices"];

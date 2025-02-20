@@ -13,6 +13,7 @@ import Tick from "../../Assets/Images/schedule-img/tick.svg";
 
 // Import React Icons
 import { IoIosArrowForward } from "react-icons/io";
+import SuccessModal from '../Modal/SuccessModal';
 
 const ScheduleCards = ({ scheduleStatus, orderType, orderStatus }) => {
   // ===========
@@ -20,16 +21,24 @@ const ScheduleCards = ({ scheduleStatus, orderType, orderStatus }) => {
   // ===========
 
   const [isOpen, setIsOpen] = useState(false);
-const [ModalOpen, setModalOpen]= useState(false)
-const [selectedItems, setSelectedItems] = useState(null);
- // Open Modal for user login function
- const openModal = () => {
-  setSelectedItems();
-  setModalOpen(true);
-};
+  const [ModalOpen, setModalOpen] = useState(false)
+  const [DeleteModalOpen, setDeleteModalOpen] = useState(false)
+  const [selectedItems, setSelectedItems] = useState(null);
+  // Open Modal for user login function
+  const openModal = () => {
+    setSelectedItems();
+    setModalOpen(true);
+  };
+  const OpenDeleteModal = () => {
+    setDeleteModalOpen(true);
+  }
 
- // Close Modal for user login function
- const closeModal = () => setModalOpen (false);
+  // Close Modal for user login function
+  const closeModal = () => {
+    setModalOpen(false);
+    setDeleteModalOpen(false);
+  }
+
 
   return (
     <>
@@ -168,15 +177,15 @@ const [selectedItems, setSelectedItems] = useState(null);
                 {isOpen && (
                   < div className="absolute right-0 mt-2 w-40 h-32 bg-white border rounded-lg shadow-lg">
                     <div className='m-2'>
-                      <button className="flex items-center gap-2 w-full px-4 border-b py-2 text-color-gray hover:text-black text-sm font-medium schedule-popup-hover" 
-                       onClick={() => openModal()}
+                      <button className="flex items-center gap-2 w-full px-4 border-b py-2 text-color-gray hover:text-black text-sm font-medium schedule-popup-hover"
+                        onClick={() => openModal()}
                       >
                         <img src={call} className='w-3 h-3' alt="call" /> Contact
                       </button>
                       <button className="flex items-center gap-2 w-full border-b px-4 py-2 text-color-gray hover:text-black text-sm font-medium schedule-popup-hover">
                         <img src={edit} className='w-3 h-3' alt="edit" /> Edit
                       </button>
-                      <button className="flex items-center gap-2 w-full px-4 py-2 text-sm text-color-gray hover:text-black font-medium schedule-popup-hover">
+                      <button onClick={() => OpenDeleteModal()} className="flex items-center gap-2 w-full px-4 py-2 text-sm text-color-gray hover:text-black font-medium schedule-popup-hover">
                         <img src={trash} className='w-4 h-4' alt="Trash" /> Cancel
                       </button>
                     </div>
@@ -272,9 +281,17 @@ const [selectedItems, setSelectedItems] = useState(null);
         closeModal={closeModal}
         selectedItems={selectedItems}
       />
-      
-      
-     
+
+      <SuccessModal
+        isOpen={DeleteModalOpen}
+        closeModal={closeModal}
+        // image={Tick}
+        title={"Cancel Scheduled?"}
+        description={"Are you sure want to cancel the schedule?"}
+        buttonTexts={["Yes, Cancel", "No Don't Cancel"]}
+      />
+
+
 
     </>
   )
