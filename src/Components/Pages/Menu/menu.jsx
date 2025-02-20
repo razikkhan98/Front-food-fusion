@@ -130,8 +130,8 @@ const Menu = () => {
         <div className={`flex-grow w-3/5 py-4 px-9 transition-all duration-300`}>
         <div className="border-b">
         <Navbar pageHeading={MenuHeading} buttons={MenuButtons} icons={MenuIcons} />
-
         </div>
+        
           <MenuSlider Noslide={isRightSidebarOpen ? 6 : 9} />
           {/* <MenuDetailsCardSlider/> */}
           <h1 className="font-bold text-xl">Starters</h1>

@@ -205,12 +205,12 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
             <div className="grid grid-cols-2 gap-6 lg:grid-cols-3">
               {/* Name */}
               <div>
-                <label className="text-black font-medium text-sm">Name</label>
+                <label className="text-color-black font-medium text-sm">Name</label>
                 <input
                   type="text"
                   placeholder="Customer's name here"
-                  className={`w-full mt-1 text-base font-medium px-2 py-3 border rounded-lg  ${
-                    nameInptField ? "" : "bg-light-color border-0"
+                  className={`w-full mt-1 text-base text-color-black font-medium px-2 py-3 border-gray-color rounded-lg  ${
+                    nameInptField ? "" : "bg-light-color font-xs font-normal border-light-color"
                   } focus-visible:bg-white`}
                   {...register("name")}
                 />
@@ -235,14 +235,14 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
               </div>
               {/* Contact No */}
               <div>
-                <label className="text-black font-medium text-sm">
+                <label className="text-color-black font-medium text-sm">
                   Contact No
                 </label>
                 <input
                   type="text"
                   placeholder="Customer's contact no here"
-                  className={`w-full mt-1 px-2 py-3 border rounded-lg ${
-                    numberInptField ? "" : "bg-light-color  border-0"
+                  className={`w-full mt-1 px-2 text-color-black py-3 border-gray-color rounded-lg ${
+                    numberInptField ? "" : "bg-light-color font-xs font-normal border-light-color"
                   } focus-visible:bg-white`}
                   {...register("number")}
                 />
@@ -254,12 +254,12 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
               </div>
               {/* Order Type */}
               <div>
-                <label className="text-black font-medium text-sm">
+                <label className="text-color-black font-medium text-sm">
                   Order Type
                 </label>
                 <select
-                  className={`w-full mt-1 px-2 py-3 border text-base font-medium rounded-lg ${
-                    orderTypeInptField ? "" : "bg-light-color  border-0"
+                  className={`w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${
+                    orderTypeInptField ? "" : "bg-light-color font-xs font-normal border-light-color"
                   } focus-visible:bg-white`}
                   {...register("orderType")}
                 >
@@ -276,14 +276,14 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
               </div>
               {/* Email */}
               <div>
-                <label className="text-black font-medium text-sm">
+                <label className="text-color-black font-medium text-sm">
                   E-mail (Optional)
                 </label>
                 <input
                   type="email"
                   placeholder="Customer's E-mail ID here"
-                  className={`w-full mt-1 px-2 py-3 border text-base font-medium rounded-lg ${
-                    emailInptField ? "" : "bg-light-color  border-0"
+                  className={`w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${
+                    emailInptField ? "" : "bg-light-color font-xs font-normal border-light-color"
                   } focus-visible:bg-white`}
                   {...register("email")}
                 />
@@ -296,11 +296,11 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
               {/* Table No if Dine In */}
               {orderTypeInptField == "Dine In" || orderTypeInptField == "" ? (
                 <div>
-                  <label className="text-black font-medium text-sm block">
+                  <label className="text-color-black font-medium text-sm block">
                     Table No
                   </label>
                   <select
-                    className="w-1/3 mt-1 px-2 py-3 border rounded-lg focus-visible:bg-white"
+                    className="w-2/5 mt-2 px-2 py-3 border-gray-color rounded-lg text-base font-medium focus-visible:bg-white"
                     {...register("tableNo")}
                   >
                     <option value={""}>Table No.</option>
@@ -324,8 +324,8 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                     <input
                       type="text"
                       placeholder="Customer's Address here"
-                      className={`w-full mt-1 px-2 py-3 border rounded-lg ${
-                        orderTypeInptField ? "" : "bg-light-color"
+                      className={`w-full mt-1 px-2 text-color-black py-3 border-gray-color text-base font-medium rounded-lg ${
+                        orderTypeInptField ? "" : "bg-light-color font-xs font-normal border-light-color"
                       } focus-visible:bg-white`}
                       {...register("deliveryAddress")}
                     />
@@ -345,10 +345,10 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
               {/* <Button title={"Save"}/> */}
               <NavLink to={"/previousorder"}>
                 <button
-                  className={`px-6 py-2 ${
+                  className={`px-6 py-2 text-base font-medium ${
                     nameInptField && numberInptField && orderTypeInptField
                       ? "border-cashier cashier-main-text-color hover:text-white hover:bg-[--cashier-main-color]"
-                      : "text-gray-600 bg-gray-50 opacity-50 cursor-not-allowed"
+                      : "text-light-gray-color bg-white opacity-50 cursor-not-allowed"
                   } rounded-full border border-gray-400`}
                   disabled={
                     !(nameInptField || numberInptField || orderTypeInptField)
@@ -361,8 +361,8 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                 className={`px-7 py-2 ${
                   nameInptField && orderTypeInptField
                     ? "cashier-main-bg-color text-white"
-                    : "bg-gray-300 text-gray-700 opacity-50 cursor-not-allowed"
-                } text-gray-600 rounded-full`}
+                    : "btn-bg-gray-color text-light-gray-color cursor-not-allowed"
+                } text-white rounded-full`}
                 type="submit"
               >
                 Save
@@ -383,7 +383,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
               type="text"
               placeholder="Search for items"
               onChange={HandleAutoSearchInp}
-              className="w-full py-2 pl-10 pr-4 z-20 relative cashier-light-bg-color border-2 border-[--cashier-main-color] rounded-full focus:outline-none  focus:ring-[--cashier-main-color] hover:bg-[--select-section] focus-within:bg-[--select-section]"
+              className="w-full py-2 pl-10 pr-4 z-20 relative navbar-icon-bg-color border-2 border-[--cashier-main-color] rounded-full focus:outline-none  focus:ring-[--cashier-main-color] hover:bg-[--select-section] focus-within:bg-[--select-section]"
             />
             <AutoSuggestSearch inputValue={autoSearchFillValue} />
             <IoSearch className="absolute left-3 top-1/2 z-20 transform -translate-y-1/2 text-color-gray" />
@@ -467,12 +467,12 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
           {/* <Button title={" Generate Invoice"}/>
           <Button title={"Send to Kitchen"}/> */}
           <NavLink to={"/allinvoice"}>
-            <button className="px-8 py-2 bg-gray-100 text-gray-500 rounded-full border border-gray-300">
+            <button className="px-8 py-2.5 bg-white text-light-gray-color text-base font-medium rounded-full border-light-gray">
               Generate Invoice
             </button>
           </NavLink>
           <NavLink to={"/sendtokitchen"}>
-            <button className="px-8 py-2 bg-gray-300 text-gray-600 rounded-full">
+            <button className="px-8 py-2.5 text-light-gray-color btn-bg-gray-color text-base font-medium rounded-full">
               Send To Kitchen
             </button>
           </NavLink>

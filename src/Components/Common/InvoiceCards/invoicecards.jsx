@@ -4,7 +4,7 @@ const InvoiceCards = () => {
 
     return (
         <>
-            <div class="bg-white shadow-lg border rounded-xl p-4 flex flex-col my-3">
+            <div class="bg-white border rounded-xl p-4 flex flex-col my-3">
                 <div class="flex justify-between items-center">
                 <div className='flex'>
                         <div className='uppercase rounded-md bg-white p-2 text-base text-center border mr-2'>RV</div>
@@ -13,9 +13,9 @@ const InvoiceCards = () => {
                             <div className='text-color-gray text-xs'>Table 2</div>
                         </div>
                     </div>
-                    <span class="text-orange-400 font-semibold text-lg">&#8377; 1234</span>
+                    <span class="cashier-main-text-color bg-[#D795550D] rounded-md px-2 py-1 font-medium text-sm">&#8377; 1234</span>
                 </div>
-                <div class="border-t border-gray-200 mt-4 pt-4 grid grid-cols-3 gap-4 text-sm text-gray-600">
+                <div class="border-t border-gray-200 mt-4 pt-4 grid grid-cols-3 gap-4 text-sm">
                     <div className="text-sm font-medium border-r">
                         <p><span class="text-color-gray">Booking ID:</span> <span className="text-color-black">123456789</span></p>
                         <p><span class="text-color-gray">Order No:</span> <span className="text-color-black">#320</span></p>

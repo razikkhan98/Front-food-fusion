@@ -53,7 +53,7 @@ const AllInvoice = () => {
                 {/* Main Content here */}
                 <div className={`flex-grow py-4 px-9 transition-all duration-300 flex flex-col justify-center`}>
                     <div className="border-b">
-                        <Navbar buttons={InvoiceButtons} icons={InvoiceIcons} pageHeading={InvoiceHeading} />
+                        <Navbar buttons={InvoiceButtons} icons={InvoiceIcons} pageHeading={InvoiceHeading} btn_purple={"See All Invoices"} />
                     </div>
                     <div className="overflow-auto h-full hidden-scroll">
                         <div className="grid grid-cols-6 grid-rows-1">

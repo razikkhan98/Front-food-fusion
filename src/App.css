@@ -69,6 +69,7 @@ body {
   --status--pink-color: #FF5C83;
   --whatsapp-green-color: #25D366;
   --blue-color: #4285F4;
+  --btn-gray-color: #EAEAEA;
 }
 
 
@@ -254,6 +255,9 @@ body {
   border: 1px solid var(--light-gray-color);
 }
 
+.border-gray-color{
+  border: 1px solid var(--gray-color);
+}
 .border-green-color {
   border: 1px solid #94D82D;
 }
@@ -264,6 +268,12 @@ body {
 
 .border-blue-color{
   border: 1px solid var(--blue-color);
+}
+.border-purple-color{
+  border: 1px solid var(--purple-color);
+}
+.border-light-color{
+  border: 1px solid var(--light-color);
 }
 
 /* 
@@ -525,6 +535,9 @@ body {
   padding: 10px 20px;
   border-radius: 15px;
   cursor: pointer;
+}
+.btn-bg-gray-color{
+  background-color: var(--btn-gray-color);
 }
 
 /* 
