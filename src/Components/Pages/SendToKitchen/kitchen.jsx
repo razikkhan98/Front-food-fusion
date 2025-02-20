@@ -55,14 +55,14 @@ const SendToKitchen = () => {
 
 
                 {/* Main Content here */}
-                <div className={`flex-grow p-6 transition-all duration-300 flex flex-col justify-center`}>
+                <div className={`flex-grow py-4 px-9 transition-all duration-300 flex flex-col justify-center`}>
                     <div className='border-b'>
-                        <Navbar buttons={KitchenButtons} icons={KitchenIcons} pageHeading={kitchenHeading} />
+                        <Navbar buttons={KitchenButtons} icons={KitchenIcons} pageHeading={kitchenHeading} btn_purple={"See All Invoices"} />
                     </div>
                     <div className="overflow-auto h-full hidden-scroll">
                         <h2 className="text-base font-semibold mt-2">In Progress</h2>
                         <div
-                            className={`grid justify-center ${isRightSidebarOpen === true ? "md:grid-cols-1 lg:grid-cols-2" : "md:grid-cols-2 lg:grid-cols-3"
+                            className={`grid justify-center ${isRightSidebarOpen === true ? "md:grid-cols-1 lg:grid-cols-3" : "md:grid-cols-2 lg:grid-cols-4"
                                 } gap-4`}
                         >
                             {[1, 2, 3, 4, 5,].map((i, index) => (
@@ -75,7 +75,7 @@ const SendToKitchen = () => {
 
                         <h2 className="text-base font-semibold mt-2">Completed</h2>
                         <div
-                            className={`grid ${isRightSidebarOpen === true ? "md:grid-cols-1 lg:grid-cols-2" : "md:grid-cols-2 lg:grid-cols-3"
+                            className={`grid ${isRightSidebarOpen === true ? "md:grid-cols-1 lg:grid-cols-3" : "md:grid-cols-2 lg:grid-cols-4"
                                 } gap-4`}
                         >
                             {[1, 2, 3, 4, 5,].map((i, index) => (
@@ -85,6 +85,34 @@ const SendToKitchen = () => {
                             ))}
                         </div>
 
+                    </div>
+
+                    <div className='flex items-center'>
+
+                        <div className='flex items-center justify-between mr-7'>
+                            <p className='me-3'>Rows per page</p>
+                            <div>
+
+                                <select
+                                    className=" mt-2 px-2 py-2 border-gray-color rounded-lg text-base font-medium focus-visible:bg-white"
+
+                                >
+                                    <option value={"1"}>1</option>
+                                    <option value={"2"}>2</option>
+                                    <option value={"3"}>3</option>
+                                    <option value={"4"}>4</option>
+                                    <option value={"5"}>5</option>
+                                    <option value={"6"}>6</option>
+                                    <option value={"7"}>7</option>
+                                    <option value={"8"}>8</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div className='flex items-center mt-2'>
+                            <button className='px-3 py-1 bg-white border rounded-lg mr-3 text-light-gray-color'>Previous</button>
+                            <button className='px-3 py-1 bg-white border rounded-lg shadow-lg'>Next</button>
+
+                        </div>
                     </div>
 
                 </div>
