@@ -18,7 +18,7 @@ import Sort from "../../Assets/Images/navbar-img/SortAscending.svg";
 
 // Json
 const InvoiceButtons = [
-    { btn_name: "All", btn_color: "bg-orange-100" },
+    { btn_name: "All", btn_color: "bg-[--cashier-very-light-color]" },
     { btn_name: "Dine In", btn_color: "bg-transparent" },
     { btn_name: "Take Away", btn_color: "bg-transparent" },
     { btn_name: "Online Orders", btn_color: "bg-transparent" },

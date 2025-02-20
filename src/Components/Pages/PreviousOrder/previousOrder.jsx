@@ -57,7 +57,7 @@ const PreviousHeading = [
   "Book Table", "Generate Orders"
 ];
 const PreviousButtons = [
-  { btn_name: "All", btn_color: "bg-orange-100" },
+  { btn_name: "All", btn_color: "bg-[--cashier-very-light-color]" },
   { btn_name: "Frequently Ordered", btn_color: "bg-transparent" },
 ]
 const PreviousOrder = () => {

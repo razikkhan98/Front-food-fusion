@@ -47,6 +47,7 @@ body {
   --cashier-main-color: #d79555;
   --cashier-color: #ffdab9;
   --cashier-light-color: #ffe9d5;
+  --cashier-very-light-color:#FFFBF7;
   --cashier-hover-color: #F6F0E9;
   --staff-color: #fff9b0;
   --captain-color: #e3d6f7;
@@ -595,7 +596,6 @@ Home Page
   /* Set width based on items to show */
   box-sizing: border-box;
   /* Ensure padding and border are included in total width */
-  padding: 10px;
   /* Optional padding */
 }
 
@@ -606,14 +606,14 @@ Home Page
 
 .menu-category-next {
   position: absolute;
-  top: 30px;
-  right: 15px;
+  top: 20px;
+  right: 1px;
 }
 
 .menu-category-prev {
   position: absolute;
-  top: 34px;
-  left: 15px;
+  top: 20px;
+  left: 1px;
 }
 
 .menu-category-slider .slick-list{
@@ -631,12 +631,13 @@ Home Page
   transition: opacity 0.5s ease-out; 
 }
 
-/* .menu-category-slider .slick-track:hover {
-  transform: translate3d(0px, 0px, 0px); 
-  opacity: 0.8; 
+.menu-category-slider .slick-slide {
+  width: 100px !important;
+  height: 110px !important;
+  margin: 0px 18px !important;
 }
 
-.menu-category-slider .slick-track.active {
+/* .menu-category-slider .slick-track.active {
   transform: translate3d(0px, 0px, 0px); 
   opacity: 1; 
 } */

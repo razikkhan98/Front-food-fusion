@@ -214,18 +214,18 @@ function MenuSlider({Noslide}) {
               <img
                 src={item.src}
                 alt={item.label}
-                className={activeIndex === index ? "" : ""}
+                className={`w-16 h-16 rounded-lg ${activeIndex === index ? "" : ""}`}
               />{" "}
               {/* Optionally, you can add a class to the image itself */}
             </div>
-            <div className="flex justify-evenly">
+            <div className="flex justify-between">
               <p className="text-base font-normal">{item.label}</p>
               <span
                 className={`${
                   activeIndex === index
                     ? "bg-[--cashier-main-color] text-white"
                     : "bg-[#EAEAEA]"
-                }  rounded-md text-sm px-2 pt-0.5`}
+                }  rounded-md text-sm w-5 h-5 flex justify-center items-center`}
               >
                 0
               </span>

@@ -20,7 +20,7 @@ import ScheduleForm from '../../Common/ScheduleForm/scheduleform';
 
 // Json
 const ScheduleButtons = [
-    { btn_name: "New Order", btn_color: "bg-orange-100" },
+    { btn_name: "New Order", btn_color: "bg-[--cashier-very-light-color]" },
     { btn_name: "Ongoing", btn_color: "bg-transparent", btn_path: "/scheduleongoing" },
     { btn_name: "Completed", btn_color: "bg-transparent" },
 ];

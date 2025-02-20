@@ -78,7 +78,7 @@ const MenuCard = [
   },
 ];
 const MenuButtons = [
-  { btn_name: "All", btn_color: "bg-orange-100" },
+  { btn_name: "All", btn_color: "bg-[--cashier-very-light-color]" },
   { btn_name: "Veg", btn_color: "bg-transparent" },
   { btn_name: "Non Veg", btn_color: "bg-transparent" },
   { btn_name: "Chef's Special", btn_color: "bg-transparent" },
@@ -138,8 +138,8 @@ const Menu = () => {
           <div
             className={`grid mt-4 ${
               isRightSidebarOpen === true || OrderDetailSidebar === true
-                ? "lg:grid-cols-3 md:grid-cols-2 w-11/12"
-                : "lg:grid-cols-5 md:grid-cols-3"
+                ? "2xl:grid-cols-3 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 w-11/12"
+                : "lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 md:grid-cols-3"
             } gap-2`}
           >
             {MenuCard?.map((item, index) => (

@@ -368,6 +368,8 @@ import React, { useState, useCallback, useEffect } from "react";
 import { PiChefHatFill, PiPizzaLight } from "react-icons/pi";
 import { IoIosArrowBack, IoIosArrowForward, IoMdClose } from "react-icons/io";
 import sparkleStar from "../../Assets/Images/menuPageImages/svgs/Sparkle.svg";
+import { FaStar } from "react-icons/fa6";
+import { TiStarFullOutline, TiStarHalfOutline, TiStarOutline } from "react-icons/ti";
 
 function MenuDetailsCardSlider({
   toggleMenuDetailModal,
@@ -414,6 +416,27 @@ function MenuDetailsCardSlider({
   };
 
 
+  // starts rating functionality 
+  const renderStars = (rating) => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+    if (i <= Math.floor(rating)) {
+    stars.push(
+    <TiStarFullOutline key={i} className="text-[--yellow-color]" fontSize={19} />
+    );
+    } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
+    stars.push(
+    <TiStarHalfOutline key={i} className="text-[--yellow-color]" fontSize={19} />
+    );
+    } else {
+    stars.push(
+    <TiStarOutline key={i} className="text-[--yellow-color]" fontSize={19} />
+    );
+    }
+    }
+    return stars;
+    };
+
   const getCardClasses = (position) => {
     const baseClasses = "absolute transition-all duration-500 ease-in-out transform";
     
@@ -428,6 +451,7 @@ function MenuDetailsCardSlider({
         return `${baseClasses} opacity-0`;
     }
   };
+
 
   return (
     <div className="relative flex justify-center items-center h-screen w-full overflow-hidden">
@@ -484,7 +508,7 @@ function MenuDetailsCardSlider({
                 </div>
                 <div className="flex items-center text-gray-600 mt-1">
                   {/* Star Icon */}
-
+                      <span className="flex me-1.5">{renderStars(2.5)}</span>
                   <span className="mr-1 text-xs font-normal">4.5</span>
                   <span className="text-xs font-normal">(48 ratings)</span>
                 </div>

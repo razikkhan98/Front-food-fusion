@@ -14,7 +14,7 @@ import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
 
 // Json
 const HomeButtons = [
-  { btn_name: "Ground Floor", btn_color: "bg-orange-100" },
+  { btn_name: "Ground Floor", btn_color: "bg-[--cashier-very-light-color]" },
   { btn_name: "First Floor", btn_color: "bg-transparent" },
   { btn_name: "Second Floor", btn_color: "bg-transparent" },
 ];

@@ -6,7 +6,7 @@ import call from '../../Assets/Images/sidebarImg/call.svg'
 import trash from '../../Assets/Images/sidebarImg/Trash.svg'
 import clendar from '../../Assets/Images/sidebarImg/calendar-tick.svg'
 import openSchedule from '../../Assets/Images/sidebarImg/openSchedule.svg'
-import closeSchedule from '../../Assets/Images/sidebarImg/openSchedule.svg'
+import closeSchedule from '../../Assets/Images/sidebarImg/closeSchedule.svg'
 import Plus from "../../Assets/Images/sidebarImg/Plus.svg";
 import PlusBlack from "../../Assets/Images/sidebarImg/Plus-black.svg";
 // Third Party Components
@@ -46,6 +46,7 @@ const RightSidebar = () => {
   // State 
   // ============ 
   const [isOpen, setIsOpen] = useState(true);
+  console.log('isOpen: ', isOpen);
 
 
   // ==========  

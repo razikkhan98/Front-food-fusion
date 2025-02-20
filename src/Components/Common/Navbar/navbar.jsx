@@ -30,7 +30,7 @@ const Navbar = ({ pageHeading = [], buttons = [], icons = [] }) => {
               <button
                 key={index}
                 type="button"
-                className={`${floor.btn_color} hover:bg-orange-100 text-gray-600 font-semibold hover:text-black py-1 px-4 border border-orange-100 hover:border-transparent rounded-full`}
+                className={`hover:bg-[--cashier-light-color] bg-[--cashier-very-light-color] text-[--gray-color] font-medium hover:text-[--black-color] py-1 px-4 border border-orange-100 hover:border-transparent rounded-full`}
               >
                 {floor.btn_name}
               </button>
