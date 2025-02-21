@@ -133,7 +133,7 @@ const Navbar = ({
     <input
       type="text"
       id={`btn-search-${index}`} // Unique ID for each input
-      className={`${index === 0 ? `${inputBar ? 'w-[400px]': 'w-0'} ser`  : "hidden"} `}
+      className={`${index === 0 ? `${inputBar ? 'nav-search': 'w-0'} ser`  : "hidden"} `}
       // value={inputValue}
       onBlur={handleBlur}
       onFocus={handleFocus}

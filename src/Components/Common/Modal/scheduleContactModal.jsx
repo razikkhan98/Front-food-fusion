@@ -71,7 +71,7 @@ const ScheduleContactModal = ({ isOpen, closeModal }) => {
             <div className="fixed inset-0 bg-black bg-opacity-50" aria-hidden="true" onClick={handleModalClose} />
 
             {/* Modal Content */}
-            <div className="bg-white p-6 rounded-2xl shadow-lg z-20 w-[427px] h-auto">
+            <div className="schedule-contact-modal bg-white p-6 rounded-2xl shadow-lg z-20 h-auto">
                 {/* Close Button */}
                 <div className="flex justify-end">
                     <button onClick={handleModalClose} className="flex justify-center items-center bg-color-gray h-9 w-9 rounded-full">

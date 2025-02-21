@@ -37,7 +37,8 @@ const AllInvoice = () => {
     // ========
     const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const [rowsPerPage, setRowsPerPage] = useState(5); // Default rows per page      const [CurrentTab, setCurrentTab] = useState();
+    const [rowsPerPage, setRowsPerPage] = useState(5); // Default rows per page      
+    const [CurrentTab, setCurrentTab] = useState();
       console.log('CurrentTab: ', CurrentTab);
 
 

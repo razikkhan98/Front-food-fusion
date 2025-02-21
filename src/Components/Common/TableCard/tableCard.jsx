@@ -164,15 +164,15 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking,tableDetail }) =>
           </div>
         </>
       ) : (
-        <div className=" flex items-center">
+        <div className="flex items-center">
           <Link
-            className="w-36 h-40"
+            className="w-36 h-40 table"
             to={`/order/${tableNo}`}
             onClick={() => HandleTableNo(tableNo)}
           >
             <div className="py-2 px-1 bg-white border border-black rounded-2xl ">
               <div className="flex justify-center mt-1 ">
-                <img className="w-[105px] h-[102px]" src={Table} alt="Loading" />
+                <img src={Table} alt="Loading" />
               </div>
               <div className="text-center my-2">
                 <span className="">Table {tableNo}</span>

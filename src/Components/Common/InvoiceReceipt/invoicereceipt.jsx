@@ -4,7 +4,7 @@ import Button from '../Button/button';
 const InvoiceReceipt = () => {
     return (
         <>
-            <div class="invoice-receipt xl:h-4/5 lg:h-2/3 md:h-3/5 mx-auto bg-white shadow-lg rounded-2xl p-4 flex flex-col items-center">
+            <div class="invoice-receipt mx-auto bg-white shadow-lg rounded-2xl p-4 flex flex-col items-center">
                 <div class="bg-gray-100 w-full p-4 rounded-lg text-center border-gray-400 mb-6">
                     <p class="text-2xl font-medium tracking-wider text-color-gray">RECEIPT</p>
                     <hr class="my-2 border-dashed border-gray-400" />
