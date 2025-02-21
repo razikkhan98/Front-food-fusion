@@ -705,9 +705,14 @@ Home Page
 
 /* --------------------------- */
 
-.slick-current img {
+.menu-category-slider-img-active {
   border: 4px solid var(--cashier-main-color);
   border-radius: 15px;
+}
+
+.menu-category-slider-title-active {
+background-color: var(--cashier-main-color) !important;
+color: white;
 }
 
 /* 

@@ -74,6 +74,8 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
   // ============
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
   const [autoSearchFillValue, setautoSearchFillValue] = useState();
+    const [CurrentTab, setCurrentTab] = useState();
+    console.log('CurrentTab: ', CurrentTab);
 
   // ==========
   // Functions
@@ -197,7 +199,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
 
       {/* Main Content Area */}
       <div className={`flex-grow py-4 px-9 transition-all duration-300 h-full overflow-auto hidden-scroll`}>
-        <Navbar icons={OrderIcons} pageHeading={OrderHeading} />
+        <Navbar icons={OrderIcons} pageHeading={OrderHeading} selectedTab={setCurrentTab}/>
 
         {/* Order Details */}
         <div className="bg-white rounded-lg border p-6 mt-2">

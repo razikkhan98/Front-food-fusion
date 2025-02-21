@@ -253,6 +253,8 @@ const StaffData = () => {
     // State 
     // ============ 
     const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
+      const [CurrentTab, setCurrentTab] = useState();
+      console.log('CurrentTab: ', CurrentTab);
 
 
     // ==========  
@@ -276,7 +278,7 @@ const StaffData = () => {
 
                 {/* <Navbar /> */}
                 <div className="border-b">
-                    <Navbar icons={StaffIcons} pageHeading={StaffHeading} />
+                    <Navbar icons={StaffIcons} pageHeading={StaffHeading} selectedTab={setCurrentTab} />
                 </div>
                 
                 {/* Table Start */}

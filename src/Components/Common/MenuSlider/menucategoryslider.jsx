@@ -28,7 +28,7 @@
 
 //   const [itemsToShow, setItemsToShow] = useState(1);
 //   const [currentStartIndex, setCurrentStartIndex] = useState(0);
-  // const [activeIndex, setActiveIndex] = useState(0); // Active index state
+// const [activeIndex, setActiveIndex] = useState(0); // Active index state
 
 //   // ==========
 //   //  Functions
@@ -75,67 +75,61 @@
 //   }, []);
 
 //   return (
-    // <div className="slider-container">
-    //   <h1 className="font-bold text-lg ">Categories</h1>
-    //   <div className="slider-overlay">
-    //     <div
-    //       className="slider hidden-scroll w-screen"
-    //       style={{
-    //         transform: `translateX(-${
-    //           (currentStartIndex / items.length) * 100
-    //         }%)`,
-    //         transition: "transform 0.5s ease-in-out",
-    //       }}
-    //     >
-    //       {items.map((item, index) => (
-    //         <div
-    //           key={item.id}
-    //           className={`slider-item ${activeIndex === index ? "active" : ""}`}
-    //           onClick={() => handleItemClick(index)}
-    //         >
-    //           <div className="flex justify-center mb-2">
-    //             <img
-    //               src={item.src}
-    //               alt={item.label}
-    //               className={activeIndex === index ? "active-image" : ""}
-    //             />{" "}
-    //             {/* Optionally, you can add a class to the image itself */}
-    //           </div>
-    //           <div className="flex justify-evenly">
-    //             <p className="text-base font-normal">{item.label}</p>
-    //             <span
-    //               className={`${
-    //                 activeIndex === index
-    //                   ? "bg-[--cashier-main-color] text-white"
-    //                   : "bg-[#EAEAEA]"
-    //               }  rounded-md text-sm px-2 pt-0.5`}
-    //             >
-    //               0
-    //             </span>
-    //           </div>
-    //         </div>
-    //       ))}
-    //     </div>
-    //   </div>
-    //   <div className="slider-controls">
-    //     <button className="menu-category-prev " onClick={handlePrev}>
-    //       <IoIosArrowBack className="bg-white w-6 h-6 p-1 border border-[--cashier-main-color] text-[--cashier-main-color] rounded-full text-xl hover:bg-[--cashier-main-color] hover:text-white active:bg-[--cashier-main-color]" />
-    //     </button>
-    //     <button className="menu-category-next" onClick={handleNext}>
-    //       <IoIosArrowForward className="bg-white w-6 h-6 p-1 border border-[--cashier-main-color] text-[--cashier-main-color] rounded-full text-xl hover:bg-[--cashier-main-color] hover:text-white active:bg-[--cashier-main-color]" />
-    //     </button>
-    //   </div>
-    // </div>
-  // );
+// <div className="slider-container">
+//   <h1 className="font-bold text-lg ">Categories</h1>
+//   <div className="slider-overlay">
+//     <div
+//       className="slider hidden-scroll w-screen"
+//       style={{
+//         transform: `translateX(-${
+//           (currentStartIndex / items.length) * 100
+//         }%)`,
+//         transition: "transform 0.5s ease-in-out",
+//       }}
+//     >
+//       {items.map((item, index) => (
+//         <div
+//           key={item.id}
+//           className={`slider-item ${activeIndex === index ? "active" : ""}`}
+//           onClick={() => handleItemClick(index)}
+//         >
+//           <div className="flex justify-center mb-2">
+//             <img
+//               src={item.src}
+//               alt={item.label}
+//               className={activeIndex === index ? "active-image" : ""}
+//             />{" "}
+//             {/* Optionally, you can add a class to the image itself */}
+//           </div>
+//           <div className="flex justify-evenly">
+//             <p className="text-base font-normal">{item.label}</p>
+//             <span
+//               className={`${
+//                 activeIndex === index
+//                   ? "bg-[--cashier-main-color] text-white"
+//                   : "bg-[#EAEAEA]"
+//               }  rounded-md text-sm px-2 pt-0.5`}
+//             >
+//               0
+//             </span>
+//           </div>
+//         </div>
+//       ))}
+//     </div>
+//   </div>
+//   <div className="slider-controls">
+//     <button className="menu-category-prev " onClick={handlePrev}>
+//       <IoIosArrowBack className="bg-white w-6 h-6 p-1 border border-[--cashier-main-color] text-[--cashier-main-color] rounded-full text-xl hover:bg-[--cashier-main-color] hover:text-white active:bg-[--cashier-main-color]" />
+//     </button>
+//     <button className="menu-category-next" onClick={handleNext}>
+//       <IoIosArrowForward className="bg-white w-6 h-6 p-1 border border-[--cashier-main-color] text-[--cashier-main-color] rounded-full text-xl hover:bg-[--cashier-main-color] hover:text-white active:bg-[--cashier-main-color]" />
+//     </button>
+//   </div>
+// </div>
+// );
 // };
 
 // export default MenuSlider;
-
-
-
-
-
-
 
 import React, { useState } from "react";
 import Slider from "react-slick";
@@ -158,8 +152,7 @@ const items = [
   { id: 10, src: Menu2, label: "Breads" },
 ];
 
-
-function MenuSlider({Noslide}) {
+function MenuSlider({ Noslide }) {
   // =========
   // State
   // =========
@@ -191,49 +184,48 @@ function MenuSlider({Noslide}) {
     ],
   };
 
-    // =========
+  // =========
   // Functions
   // =========
-
-
+  const handleItemClick = (index) => {
+    setActiveIndex(index)
+  };
 
   return (
     <div className="slider-container">
-    <h1 className="font-bold text-lg ">Categories</h1>
-    <div className="slider-overlay menu-category-slider">
-
-      <Slider {...settings}>
-        {items?.map((item, index) => (
-
+      <h1 className="font-bold text-lg ">Categories</h1>
+      <div className="slider-overlay menu-category-slider">
+        <Slider {...settings}>
+          {items?.map((item, index) => (
             <div
-            key={item.id}
-            className={`slider-item ${activeIndex === index ? "" : ""}`}
-            // onClick={() => handleItemClick(index)}
-          >
-            <div className="flex justify-center mb-2">
-              <img
-                src={item.src}
-                alt={item.label}
-                className={`w-16 h-16 rounded-lg ${activeIndex === index ? "" : ""}`}
-              />{" "}
-              {/* Optionally, you can add a class to the image itself */}
+              key={item.id}
+              className={`slider-item `}
+              onClick={() => handleItemClick(index)}
+            >
+              <div className="flex justify-center mb-2">
+                <img
+                  src={item.src}
+                  alt={item.label}
+                  className={`menu-category-slider-img-${
+                    activeIndex == index? "active" : ""
+                  } w-16 h-16 rounded-lg `}
+                />{" "}
+                {/* Optionally, you can add a class to the image itself */}
+              </div>
+              <div className="flex justify-between">
+                <p className="text-base font-normal">{item.label}</p>
+                <span
+                  className={`menu-category-slider-title-${
+                    activeIndex == index? "active" : ""
+                  } bg-[--btn-gray-color] rounded-md text-sm w-5 h-5 flex justify-center items-center`}
+                >
+                  0
+                </span>
+              </div>
             </div>
-            <div className="flex justify-between">
-              <p className="text-base font-normal">{item.label}</p>
-              <span
-                className={`${
-                  activeIndex === index
-                    ? "bg-[--cashier-main-color] text-white"
-                    : "bg-[#EAEAEA]"
-                }  rounded-md text-sm w-5 h-5 flex justify-center items-center`}
-              >
-                0
-              </span>
-            </div>
-          </div>
-        ))}
-      </Slider>
-    </div>
+          ))}
+        </Slider>
+      </div>
     </div>
   );
 }
@@ -242,22 +234,19 @@ function MenuSlider({Noslide}) {
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
-
-        <button className="menu-category-prev " onClick={onClick}>
-          <IoIosArrowBack className="bg-white w-6 h-6 p-1 border border-[--cashier-main-color] text-[--cashier-main-color] rounded-full text-xl hover:bg-[--cashier-main-color] hover:text-white active:bg-[--cashier-main-color]" />
-        </button>
+    <button className="menu-category-prev " onClick={onClick}>
+      <IoIosArrowBack className="bg-white w-6 h-6 p-1 border border-[--cashier-main-color] text-[--cashier-main-color] rounded-full text-xl hover:bg-[--cashier-main-color] hover:text-white active:bg-[--cashier-main-color]" />
+    </button>
   );
 }
 
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
   return (
-
-          <button className="menu-category-next z-10" onClick={onClick}>
-          <IoIosArrowForward className="bg-white w-6 h-6 p-1 border border-[--cashier-main-color] text-[--cashier-main-color] rounded-full text-xl hover:bg-[--cashier-main-color] hover:text-white active:bg-[--cashier-main-color]" />
-        </button>
+    <button className="menu-category-next z-10" onClick={onClick}>
+      <IoIosArrowForward className="bg-white w-6 h-6 p-1 border border-[--cashier-main-color] text-[--cashier-main-color] rounded-full text-xl hover:bg-[--cashier-main-color] hover:text-white active:bg-[--cashier-main-color]" />
+    </button>
   );
 }
-
 
 export default MenuSlider;

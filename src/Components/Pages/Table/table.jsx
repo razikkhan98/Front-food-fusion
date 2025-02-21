@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
-import LeftSideNavbar from '../../Common/SideNavbar/leftSideNavbar.jsx'
+import React, { useState } from "react";
+import LeftSideNavbar from "../../Common/SideNavbar/leftSideNavbar.jsx";
 import RightSidebar from "../../Common/SideNavbar/rightSideNavbar.jsx";
 import TableCard from "../../Common/TableCard/tableCard.jsx";
 import Navbar from "../../Common/Navbar/navbar.jsx";
 // import Icon
-import { MdOutlineKeyboardDoubleArrowLeft, MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
-import ChatBot from '../../Common/ChatBot/chatbot.jsx';
-
+import {
+  MdOutlineKeyboardDoubleArrowLeft,
+  MdOutlineKeyboardDoubleArrowRight,
+} from "react-icons/md";
+import ChatBot from "../../Common/ChatBot/chatbot.jsx";
 
 // Import Images
 import bell from "../../Assets/Images/navbar-img/bell.svg";
@@ -18,23 +20,72 @@ const HomeButtons = [
   { btn_name: "First Floor", btn_color: "bg-transparent" },
   { btn_name: "Second Floor", btn_color: "bg-transparent" },
 ];
-const HomeIcons = [
-  { nav_img: magnify },
-  { nav_img: bell },
-];
-const HomeHeading = [
-  "Book Table"
+const TableDataJson = [
+  {
+    "tables": {
+      "Ground Floor": {
+        "tables": [
+          "Table 1",
+          "Table 2",
+          "Table 3",
+          "Table 4",
+          "Table 5",
+          "Table 6",
+          "Table 7",
+          "Table 8"
+        ]
+      },
+      "First Floor": {
+        "tables": [
+          "Table 1",
+          "Table 2",
+          "Table 3",
+          "Table 4",
+          "Table 5",
+          "Table 6"
+        ]
+      },
+      "Second Floor": {
+        "tables": [
+          "Table 1",
+          "Table 2",
+          "Table 3",
+          "Table 4",
+          "Table 5",
+          "Table 6",
+          "Table 7",
+          "Table 8",
+          "Table 9"
+        ]
+      }
+    }
+  }
 ]
-const Table = () => {
-  const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
 
+const HomeIcons = [{ nav_img: magnify }, { nav_img: bell }];
+const HomeHeading = ["Book Table"];
+const Table = () => {
+  // ========
+  // States
+  // ========
+  const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
+  const [CurrentTab, setCurrentTab] = useState();
+  console.log('CurrentTab: ', CurrentTab);
+  // ========
+  // functions
+  // ========
   const toggleRightSidebar = () => {
     setIsRightSidebarOpen(!isRightSidebarOpen);
   };
 
+  // functions for table filter 
+  // const fil = TableDataJson?.tables?.map((i)=>
+  // console.log('i: ', i)
+// )
+// console.log('fil: ', fil);
+
   return (
     <>
-
       <div className="flex h-screen overflow-hidden">
         {/* Left Sidebar */}
         <LeftSideNavbar />
@@ -42,18 +93,28 @@ const Table = () => {
         {/* Main Content Area */}
         <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
           {/* Navbar */}
-          <div className='border-b'>
-            <Navbar buttons={HomeButtons} icons={HomeIcons} pageHeading={HomeHeading} />
+          <div className="border-b">
+            <Navbar
+              buttons={HomeButtons}
+              icons={HomeIcons}
+              pageHeading={HomeHeading}
+              selectedTab={setCurrentTab}
+            />
           </div>
 
           {/* -------- for 2 member table ---------- */}
           {/* <hr className="mt-3 mb-1" /> */}
 
           <div className="overflow-auto h-5/6 hidden-scroll">
-            <h2 className="text-base font-semibold my-3">Table for 2 members</h2>
+            <h2 className="text-base font-semibold my-3">
+              Table for 2 members
+            </h2>
             <div
-              className={`grid ${isRightSidebarOpen === true ? "md:grid-cols-2 lg:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-6"
-                } gap-4`}
+              className={`grid ${
+                isRightSidebarOpen === true
+                  ? "md:grid-cols-2 lg:grid-cols-4"
+                  : "md:grid-cols-3 lg:grid-cols-6"
+              } gap-4`}
             >
               {[1, 2, 3, 4, 5, 6, 7, 8].map((i, index) => (
                 <>
@@ -67,10 +128,15 @@ const Table = () => {
             </div>
             {/* -------- for 4 member table ---------- */}
             <hr className="mt-3 mb-1" />
-            <h2 className="text-base font-semibold my-3">Table for 4 members</h2>
+            <h2 className="text-base font-semibold my-3">
+              Table for 4 members
+            </h2>
             <div
-              className={`grid ${isRightSidebarOpen === true ? "md:grid-cols-2 lg:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-6"
-                } gap-4`}
+              className={`grid ${
+                isRightSidebarOpen === true
+                  ? "md:grid-cols-2 lg:grid-cols-4"
+                  : "md:grid-cols-3 lg:grid-cols-6"
+              } gap-4`}
             >
               {[1, 2, 3, 4, 5, 6].map((i, index) => (
                 <>
@@ -84,11 +150,16 @@ const Table = () => {
               <span className="text-base font-semibold">
                 Table for family members
               </span>
-              <span className="text-sm font-light ">Max Capacity 12 members</span>
+              <span className="text-sm font-light ">
+                Max Capacity 12 members
+              </span>
             </div>
             <div
-              className={`grid ${isRightSidebarOpen === true ? "md:grid-cols-2 lg:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-6"
-                } gap-4`}
+              className={`grid ${
+                isRightSidebarOpen === true
+                  ? "md:grid-cols-2 lg:grid-cols-4"
+                  : "md:grid-cols-3 lg:grid-cols-6"
+              } gap-4`}
             >
               {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i, index) => (
                 <>
@@ -101,8 +172,9 @@ const Table = () => {
 
         {/* Right Sidebar */}
         <div
-          className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "w-[360px]" : "w-7"
-            }`}
+          className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${
+            isRightSidebarOpen ? "w-[360px]" : "w-7"
+          }`}
         >
           <span
             className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"

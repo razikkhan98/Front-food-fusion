@@ -65,6 +65,8 @@ const PreviousOrder = () => {
   // State
   // ==========
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
+    const [CurrentTab, setCurrentTab] = useState();
+    console.log('CurrentTab: ', CurrentTab);
 
   // =========
   // Function
@@ -84,7 +86,7 @@ const PreviousOrder = () => {
       <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
         {/* Navbar start */}
         <div className="border-b">
-          <Navbar icons={PreviousIcons} buttons={PreviousButtons} pageHeading={PreviousHeading} />
+          <Navbar icons={PreviousIcons} buttons={PreviousButtons} pageHeading={PreviousHeading} selectedTab={setCurrentTab}/>
 
         </div>
 

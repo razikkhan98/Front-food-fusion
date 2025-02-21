@@ -37,6 +37,8 @@ const Schedule = () => {
     // State
     // ------------
     const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
+      const [CurrentTab, setCurrentTab] = useState();
+      console.log('CurrentTab: ', CurrentTab);
 
     // ------------
     // Function
@@ -58,7 +60,7 @@ const Schedule = () => {
                 {/* Main Content Area */}
                 <div className={`flex-grow py-4 px-9 transition-all duration-300 h-full overflow-auto hidden-scroll`}>
                     <div className='border-b'>
-                        <Navbar buttons={ScheduleButtons} icons={ScheduleIcons} pageHeading={ScheduleHeading} />
+                        <Navbar buttons={ScheduleButtons} icons={ScheduleIcons} pageHeading={ScheduleHeading} selectedTab={setCurrentTab}/>
                     </div>
 
                    <ScheduleForm/>

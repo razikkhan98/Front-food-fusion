@@ -93,6 +93,8 @@ const Menu = () => {
   const [selectedCard, setSelectedCard] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [CurrentAddon, setCurrentAddon] = useState();
+    const [CurrentTab, setCurrentTab] = useState();
+    console.log('CurrentTab: ', CurrentTab);
 
   // Functions
   const toggleRightSidebar = () => {
@@ -129,7 +131,7 @@ const Menu = () => {
         {/* Main Content Area */}
         <div className={`flex-grow w-3/5 py-4 px-9 transition-all duration-300`}>
         <div className="border-b">
-        <Navbar pageHeading={MenuHeading} buttons={MenuButtons} icons={MenuIcons} />
+        <Navbar pageHeading={MenuHeading} buttons={MenuButtons} icons={MenuIcons} selectedTab={setCurrentTab} />
         </div>
         
           <MenuSlider Noslide={isRightSidebarOpen ? 6 : 9} />

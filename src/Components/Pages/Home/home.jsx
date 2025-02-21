@@ -35,6 +35,8 @@ const Home = ({ tableDetailsFromRedux }) => {
   // State
   // --------
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
+    const [CurrentTab, setCurrentTab] = useState();
+    console.log('CurrentTab: ', CurrentTab);
 
 
   // ---------
@@ -56,7 +58,7 @@ const Home = ({ tableDetailsFromRedux }) => {
       {/* Main Content Area */}
       <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
         <div className="border-b">
-          <Navbar icons={HomeIcons} pageHeading={HomeHeading} />
+          <Navbar icons={HomeIcons} pageHeading={HomeHeading} selectedTab={setCurrentTab} />
         </div>
 
         <div className="overflow-auto h-5/6 hidden-scroll">
