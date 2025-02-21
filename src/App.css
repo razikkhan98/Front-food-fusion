@@ -47,7 +47,7 @@ body {
   --cashier-main-color: #d79555;
   --cashier-color: #ffdab9;
   --cashier-light-color: #ffe9d5;
-  --cashier-very-light-color:#FFFBF7;
+  --cashier-very-light-color: #FFFBF7;
   --cashier-hover-color: #F6F0E9;
   --staff-color: #fff9b0;
   --captain-color: #e3d6f7;
@@ -128,7 +128,7 @@ body {
 }
 
 .bg-green-status-color {
-  background-color:#94D82D;
+  background-color: #94D82D;
 }
 
 .bg-red-color {
@@ -150,6 +150,7 @@ body {
 .bg-light-purple-color {
   background-color: var(--light-purple-color);
 }
+
 .bg-gray-light-color {
   background-color: var(--gray-light-color);
 }
@@ -169,10 +170,12 @@ body {
 .bg-whatsapp-light-green {
   background-color: rgba(37, 211, 102, 0.1);
 }
-.bg-blue-light-color{
+
+.bg-blue-light-color {
   background-color: rgba(66, 133, 244, 0.1);
 }
-.navbar-icon-bg-color{
+
+.navbar-icon-bg-color {
   background-color: rgba(215, 149, 85, 0.1);
 }
 
@@ -228,7 +231,7 @@ body {
   color: var(--whatsapp-green-color);
 }
 
-.text-blue-color{
+.text-blue-color {
   color: var(--blue-color);
 }
 
@@ -256,9 +259,10 @@ body {
   border: 1px solid var(--light-gray-color);
 }
 
-.border-gray-color{
+.border-gray-color {
   border: 1px solid var(--gray-color);
 }
+
 .border-green-color {
   border: 1px solid #94D82D;
 }
@@ -267,13 +271,15 @@ body {
   border: 1px solid var(--whatsapp-green-color);
 }
 
-.border-blue-color{
+.border-blue-color {
   border: 1px solid var(--blue-color);
 }
-.border-purple-color{
+
+.border-purple-color {
   border: 1px solid var(--purple-color);
 }
-.border-light-color{
+
+.border-light-color {
   border: 1px solid var(--light-color);
 }
 
@@ -537,7 +543,8 @@ body {
   border-radius: 15px;
   cursor: pointer;
 }
-.btn-bg-gray-color{
+
+.btn-bg-gray-color {
   background-color: var(--btn-gray-color);
 }
 
@@ -629,11 +636,12 @@ Home Page
   left: 1px;
 }
 
-.menu-category-slider .slick-list{
+.menu-category-slider .slick-list {
   position: relative !important;
   height: 130px;
 }
-.menu-category-slider .slick-track{
+
+.menu-category-slider .slick-track {
   position: absolute !important;
 }
 
@@ -641,7 +649,7 @@ Home Page
   /* width: 3614px;/ */
   /* opacity: 1; */
   transform: translate(0px);
-  transition: opacity 0.5s ease-out; 
+  transition: opacity 0.5s ease-out;
 }
 
 .menu-category-slider .slick-slide {
@@ -711,8 +719,8 @@ Home Page
 }
 
 .menu-category-slider-title-active {
-background-color: var(--cashier-main-color) !important;
-color: white;
+  background-color: var(--cashier-main-color) !important;
+  color: white;
 }
 
 /* 
@@ -726,7 +734,7 @@ Schedule Page Css
 /* -----------------
 Common Box Shadow Css
 */
-.card-box-shadow{
+.card-box-shadow {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
@@ -736,22 +744,95 @@ Common Box Shadow Css
 height & Width CSS
 
 ================== */
-.chatbot{
+.chatbot {
   height: 326px;
   width: 328px;
 }
-.generate-order-card{
+
+.generate-order-card {
   width: 312px;
   height: 362px;
 }
-.invoice-receipt{
+
+.invoice-receipt {
   width: 312px;
 }
-.menu-slider-center-card{
+
+.menu-slider-center-card {
   width: 310px;
   height: 440px;
 }
-.menu-slider-side-card{
+
+.menu-slider-side-card {
   width: 273px;
   height: 388px;
+}
+
+.addons-modal {
+  height: 540px;
+  width: 420px;
+}
+
+.schedule-contact-modal {
+  width: 427px;
+}
+
+.Success-modal {
+  height: 440px;
+  width: 422px;
+}
+
+.Success-modal img {
+  height: 85.5px;
+  width: 85.5px;
+}
+
+.login-modal {
+  height: 440px;
+  width: 540px;
+}
+
+.login-modal .user-img {
+  height: 108px;
+  width: 108px;
+}
+
+.login-modal input {
+  width: 452px;
+}
+
+.nav-search {
+  width: 400px;
+}
+
+.previous-order {
+  width: 312px;
+  height: 338px;
+}
+
+.leftside-panel {
+  width: 275px;
+  ;
+}
+
+.leftside-panel li {
+  width: 170px;
+}
+
+.rightside-panel {
+  width: 360px;
+}
+
+.table img {
+  width: 105px;
+  height: 102px;
+}
+
+.logo {
+  width: 108.24px;
+  height: 108.24px;
+}
+.user-box {
+  height: 120px;
+  width: 120px;
 }

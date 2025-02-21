@@ -40,7 +40,7 @@ const SuccessModal = ({ isOpen, closeModal, image, title, description, buttonTex
                 />
 
                 {/* Modal Content */}
-                <div className="bg-white p-6 rounded-2xl shadow-lg z-20 w-[422px] h-[440px]">
+                <div className="bg-white p-6 rounded-2xl shadow-lg z-20 Success-modal">
                     {/* Close Button */}
                     <div className="flex justify-end">
                         <button
@@ -52,7 +52,7 @@ const SuccessModal = ({ isOpen, closeModal, image, title, description, buttonTex
                     </div>
 
                     <div className='flex flex-col items-center justify-center text-center'>
-                        <img src={image} className='h-[85.5px] w-[85.5px] mb-3' alt="Loading" />
+                        <img src={image} className='mb-3' alt="Loading" />
                         <p className='text-2xl font-semibold text-color-black'>{title}</p>
                         <p className='text-sm font-medium text-color-gray mt-3'>{description}</p>
                         <div className='mt-6'>
