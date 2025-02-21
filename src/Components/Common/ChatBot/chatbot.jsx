@@ -5,11 +5,19 @@ import ChatBotImg from "../../Assets/Images/chatbot-img/chatbot.svg";
 import Profile from "../../Assets/Images/chatbot-img/user.png";
 import { RxPaperPlane } from "react-icons/rx";
 
+// Json
 const Message = [
   {
     title: "AI Helper",
     sender: "hii how can i help you",
     user: "Send one plate samosa table no.2",
+    user_img: Profile,
+    time: "16:40",
+  },
+  {
+    title: "AI Helper",
+    sender: "Sure, I have send the notification to the chef",
+    user: "Send one plate samosa",
     user_img: Profile,
     time: "16:40",
   },
@@ -50,10 +58,10 @@ const ChatBot = () => {
 
       {/* Chat Pop-up */}
       {isChatOpen && (
-        <div className="absolute bottom-24 right-0 w-80  bg-white rounded-lg shadow-xl border border-gray-200">
-          
+        <div className="absolute bottom-24 right-3 chatbot bg-white rounded-lg shadow-xl border border-gray-200">
+
           {/* Messages */}
-          <div className="p-3 max-h-80 overflow-auto">
+          <div className="p-3 max-h-64 overflow-auto hidden-scroll">
             {Message.map((items, index) => (
               <>
                 <div className={`px-3 py-1 my-3 text-sm bg-gray-light-color rounded-lg max-w-[75%] `}>
@@ -76,7 +84,7 @@ const ChatBot = () => {
           </div>
 
           {/* Input Field */}
-          <div className="relative flex items-center  border-gray-300 p-2">
+          <div className="relative flex items-center  border-gray-300 p-2 mt-3 mx-2">
             <input
               type="text"
               placeholder="Type here"

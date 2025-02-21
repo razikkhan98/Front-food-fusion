@@ -729,3 +729,29 @@ Common Box Shadow Css
 .card-box-shadow{
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
+
+/* =================
+
+
+height & Width CSS
+
+================== */
+.chatbot{
+  height: 326px;
+  width: 328px;
+}
+.generate-order-card{
+  width: 312px;
+  height: 362px;
+}
+.invoice-receipt{
+  width: 312px;
+}
+.menu-slider-center-card{
+  width: 310px;
+  height: 440px;
+}
+.menu-slider-side-card{
+  width: 273px;
+  height: 388px;
+}

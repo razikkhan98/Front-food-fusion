@@ -442,11 +442,11 @@ function MenuDetailsCardSlider({
     
     switch (position) {
       case 'center':
-        return `${baseClasses} scale-125 z-20 w-[310px] h-[440px] opacity-100 top-0 left-1/2 -translate-x-1/2`;
+        return `${baseClasses} scale-125 z-20 menu-slider-center-card opacity-100 top-0 left-1/2 -translate-x-1/2`;
       case 'left':
-        return `${baseClasses}  z-10 w-[273px] h-[388px]  top-0 left-0 -translate-x-1/2`;
+        return `${baseClasses}  z-10 menu-slider-side-card top-0 left-0 -translate-x-1/2`;
       case 'right':
-        return `${baseClasses}  z-10 w-[273px] h-[388px]  top-0 right-0 translate-x-1/2`;
+        return `${baseClasses}  z-10 menu-slider-side-card top-0 right-0 translate-x-1/2`;
       default:
         return `${baseClasses} opacity-0`;
     }
@@ -455,7 +455,7 @@ function MenuDetailsCardSlider({
 
   return (
     <div className="relative flex justify-center items-center h-screen w-full overflow-hidden">
-      <div className="relative w-full max-w-4xl h-[500px]">
+      <div className="relative w-full max-w-4xl h-1/2">
         {SliderDataJson?.map((card, index) => {
           const position = getCardPosition(index);
           
