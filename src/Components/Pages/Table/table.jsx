@@ -52,10 +52,10 @@ const Table = () => {
           <div className="overflow-auto h-5/6 hidden-scroll">
             <h2 className="text-base font-semibold my-3">Table for 2 members</h2>
             <div
-              className={`grid ${isRightSidebarOpen === true ? "md:grid-cols-2 lg:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-6"
-                } gap-4`}
+              className={`grid ${isRightSidebarOpen === true ? "grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-5 2xl:grid-cols-6"
+                : "grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-7 2xl:grid-cols-7"} gap-4`}
             >
-              {[1, 2, 3, 4, 5, 6, 7, 8].map((i, index) => (
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i, index) => (
                 <>
                   {/* <div key={i} onClick={toggleRightSidebar} className="bg-white rounded-lg shadow-md p-4 ">
               <h2>Card {i}</h2>

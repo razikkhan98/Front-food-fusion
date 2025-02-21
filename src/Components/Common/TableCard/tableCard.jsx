@@ -172,7 +172,7 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking,tableDetail }) =>
           >
             <div className="py-2 px-1 bg-white border border-black rounded-2xl ">
               <div className="flex justify-center mt-1 ">
-                <img className="w-[105px] h-[102px      ]" src={Table} alt="Loading" />
+                <img className="w-[105px] h-[102px]" src={Table} alt="Loading" />
               </div>
               <div className="text-center my-2">
                 <span className="">Table {tableNo}</span>
