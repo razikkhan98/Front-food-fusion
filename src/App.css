@@ -717,3 +717,10 @@ Schedule Page Css
 .schedule-popup-hover:hover {
   background-color: var(--cashier-hover-color);
 }
+
+/* -----------------
+Common Box Shadow Css
+*/
+.card-box-shadow{
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}

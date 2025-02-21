@@ -18,7 +18,7 @@ const GenerateOrderCards = ({ OrderStatus }) => {
 
             {/* <div> */}
             {/* {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => ( */}
-            <div className="max-w-xs h-[362px] bg-white rounded-3xl shadow-lg p-4 mb-4">
+            <div className="max-w-xs h-[362px] bg-white rounded-3xl card-box-shadow mx-2 p-4 mb-4">
                 {/* Date & Time */}
                 <div className="flex justify-between text-sm pb-3">
                     <div className='flex'>
