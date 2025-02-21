@@ -55,69 +55,62 @@ const UserLoginModal = ({ isOpen, closeModal, selectedUser, onSubmit }) => {
       />
 
       {/* Modal Content */}
-      <div className="bg-white p-6 rounded-2xl shadow-lg z-20 w-[450px]">
+      <div className="bg-white p-6 rounded-2xl shadow-lg z-20 login-modal">
         {/* Close Button */}
         <div className="flex justify-end">
           <button
             onClick={handleModalClose}
-            className="flex justify-center items-center bg-gray-200 h-9 w-9 rounded-full"
+            className="flex justify-center items-center bg-color-gray h-9 w-9 rounded-full"
           >
-            <RxCross2 className="text-gray-400 text-lg cursor-pointer" />
+            <RxCross2 className="text-color-gray text-lg cursor-pointer" />
           </button>
         </div>
 
         {/* User Image */}
         <div
-          className={`h-[108px] w-[108px] shadow-xl text-center m-auto rounded-full ${selectedUser?.bgClass}`}
+          className={`user-img shadow-xl text-center m-auto rounded-full ${selectedUser?.bgClass}`}
         >
           <img
             src={selectedUser?.image}
             className="my-3 p-4"
             alt={selectedUser?.image}
           />
-           
+
         </div>
-        <div className="poppins-medium text-2xl text-color-black text-center my-3">
-            {selectedUser?.label}
-           </div>
+        <div className="poppins-medium text-3xl text-color-black text-center my-3">
+          {selectedUser?.label}
+        </div>
 
         {/* Login Form */}
-        <form className="text-center" onSubmit={handleSubmit(onSubmitHandler)}>
-            <label className="poppins-regular text-2xl text-color-gray">
-              Please enter your code
-            </label>
+        <form className="text-center mt-14" onSubmit={handleSubmit(onSubmitHandler)}>
+          <label className="poppins-regular text-2xl text-color-gray">
+            Please enter your code
+          </label>
 
-            <div className="relative">
-              <input
-                className={`${selectedUser?.bgClass} opacity-60 w-full rounded-full my-2 border-0 py-2 pl-4 pr-12 text-gray-900 sm:text-sm`}
-                type="text"
-                id="code"
-                {...register("code", { required: "Code is required" })}
-              />
-              {errors.code && <p className="text-red-500 text-sm">{errors.code.message}</p>}
-              {/* Arrow Button */}
-              {/* <NavLink to={"/home"}> */}
-              <button type="submit" className="absolute right-2 top-1/2 transform -translate-y-1/2 rounded-full bg-gray-100 p-1 text-gray-600">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-5 h-5"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-7-7l7 7-7 7" />
-                </svg>
-              </button>
-              {/* </NavLink> */}
-            </div>
-          
-
-
-          {/* Submit Button */}
-          <div className="flex justify-center">
-
+          <div className="relative">
+            <input
+              className={`${selectedUser?.bgClass} opacity-60 rounded-full mt-4 border-0 py-3 text-center tracking-widest font-normal text-2xl text-color-black`}
+              type="text"
+              id="code"
+              {...register("code", { required: "Code is required" })}
+            />
+            {/* Arrow Button */}
+            {/* <NavLink to={"/home"}> */}
+            <button type="submit" className={`absolute right-7 top-[50px] transform -translate-y-2/3 rounded-full bg-white p-1.5 text-gray-600 ${errors.code ? "top-[50px]" : ""}`}>
+              <svg
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6 text-center"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-7-7l7 7-7 7" />
+              </svg>
+            </button>
+            {errors.code && <p className="text-red-500 text-sm">{errors.code.message}</p>}
+            {/* </NavLink> */}
           </div>
+
         </form>
       </div>
     </Dialog>
