@@ -65,8 +65,8 @@ const PreviousOrder = () => {
   // State
   // ==========
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
-    const [CurrentTab, setCurrentTab] = useState();
-    console.log('CurrentTab: ', CurrentTab);
+  const [CurrentTab, setCurrentTab] = useState();
+  console.log('CurrentTab: ', CurrentTab);
 
   // =========
   // Function
@@ -86,7 +86,7 @@ const PreviousOrder = () => {
       <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
         {/* Navbar start */}
         <div className="border-b">
-          <Navbar icons={PreviousIcons} buttons={PreviousButtons} pageHeading={PreviousHeading} selectedTab={setCurrentTab}/>
+          <Navbar icons={PreviousIcons} buttons={PreviousButtons} pageHeading={PreviousHeading} selectedTab={setCurrentTab} />
 
         </div>
 
@@ -124,8 +124,19 @@ const PreviousOrder = () => {
         </div>
 
         {/* Previous Order Cards */}
-        <div className={`grid h-3/4 hidden-scroll overflow-auto ${isRightSidebarOpen === true ? "grid-cols-2" : "grid-cols-3"} gap-1`}>
-          <PreviousOrderCards />
+
+        <div className="h-3/4 hidden-scroll overflow-auto pb-3">
+          <div className={`grid grid-cols-[repeat(auto-fill,minmax(336px,336px))]`}>
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((i, index) => (
+              <PreviousOrderCards key={index} OrderStatus={index === 0 ? "Dine In" : index === 1 ? "Paid" :
+                index === 2 ? "Handed Over" :
+                  index === 3 ? "Ready" :
+                    index === 4 ? "In Progress" :
+                      index === 5 ? "Delivered" :
+                        index === 6 ? "Unsuccessful" :
+                          "Dine In"} />
+            ))}
+          </div>
         </div>
       </div>
 
