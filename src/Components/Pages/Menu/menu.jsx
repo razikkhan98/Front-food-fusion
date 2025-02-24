@@ -142,7 +142,7 @@ const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [CurrentAddon, setCurrentAddon] = useState();
   const [CurrentTab, setCurrentTab] = useState();
-  console.log('CurrentTab: ', CurrentTab);
+  console.log("CurrentTab: ", CurrentTab);
 
   // Functions
   const toggleRightSidebar = () => {
@@ -177,27 +177,30 @@ const Menu = () => {
         <LeftSideNavbar />
         <ChatBot />
         {/* Main Content Area */}
-        <div className={`flex-grow w-3/5 py-4 px-9 transition-all duration-300`}>
+        <div
+          className={`flex-grow w-3/5 py-4 px-9 transition-all duration-300`}
+        >
           <div className="border-b">
-            <Navbar pageHeading={MenuHeading} buttons={MenuButtons} icons={MenuIcons} selectedTab={setCurrentTab} />
+            <Navbar
+              pageHeading={MenuHeading}
+              buttons={MenuButtons}
+              icons={MenuIcons}
+              selectedTab={setCurrentTab}
+            />
           </div>
 
           <MenuSlider Noslide={isRightSidebarOpen ? 6 : 9} />
           {/* <MenuDetailsCardSlider/> */}
           <h1 className="font-bold text-xl ms-2">Starters</h1>
-          <div
-            className="grid grid-cols-[repeat(auto-fill,minmax(240px,240px))]"
-          >
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(240px,240px))]">
             {MenuCard?.map((item, index) => (
-
               <div key={index} className="flex justify-center items-center m-2">
-
                 <div
                 //  className={`card-box-shadow bg-white rounded-lg p-2 h-32 w-56 ${item?.cardBorder}`}
-                 >
+                >
                   <div
                     // className=""
-                  className={`bg-white rounded-lg card-box-shadow p-2 w-56 h-32 ${item?.cardBorder}`}
+                    className={`bg-white rounded-lg card-box-shadow p-2 w-56 h-32 ${item?.cardBorder}`}
                   >
                     <div className="grid grid-cols-2">
                       <div className="me-1">
@@ -205,8 +208,11 @@ const Menu = () => {
                           src={item?.img}
                           alt="Loading"
                           onClick={() => openMenuCardSlider(item)}
-                          className={`${item?.status !== "Available" ? "filter grayscale" : ""
-                            } cursor-pointer h-[70px] w-[86px] rounded-md`}
+                          className={`${
+                            item?.status !== "Available"
+                              ? "filter grayscale"
+                              : ""
+                          } cursor-pointer menu-item-img rounded-md`}
                         />
                       </div>
                       <div>
@@ -215,17 +221,19 @@ const Menu = () => {
                             className={`text-end flex text-xs items-center px-1 font-semibold ${item?.colorStatus}`}
                           >
                             <span
-                              className={` ${item?.status == "Available"
-                                ? "bg-green-500"
-                                : "bg-red-500"
-                                } inline-block h-1 me-1 p-0.5 rounded-full`}
+                              className={` ${
+                                item?.status == "Available"
+                                  ? "bg-green-500"
+                                  : "bg-red-500"
+                              } inline-block h-1 me-1 p-0.5 rounded-full`}
                             ></span>
                             {item?.status}
                           </span>
                         </div>
                         <p
-                          className={`${item?.status !== "Available" ? "text-gray-400" : ""
-                            } font-medium text-sm text-left`}
+                          className={`${
+                            item?.status !== "Available" ? "text-gray-400" : ""
+                          } font-medium text-sm text-left`}
                         >
                           {item?.name}
                         </p>
@@ -234,17 +242,22 @@ const Menu = () => {
                     <div className="flex justify-between items-center">
                       <button
                         // onClick={toggleOrderSidebar}
-                        onClick={() => { openModal(); setCurrentAddon(item?.add_ons) }}
-                        className={` text-sm ${item?.status !== "Available"
-                          ? "text-gray-400 border"
-                          : "cashier-light-bg-color cursor-pointer"
-                          } uppercase  px-6 py-1 mt-2 rounded-md`}
+                        onClick={() => {
+                          openModal();
+                          setCurrentAddon(item?.add_ons);
+                        }}
+                        className={` text-sm ${
+                          item?.status !== "Available"
+                            ? "text-gray-400 border"
+                            : "cashier-light-bg-color cursor-pointer"
+                        } uppercase  px-6 py-1 mt-2 rounded-md`}
                       >
                         Add
                       </button>
                       <p
-                        className={`${item?.status !== "Available" ? "text-gray-400" : ""
-                          } text-end text-base font-semibold`}
+                        className={`${
+                          item?.status !== "Available" ? "text-gray-400" : ""
+                        } text-end text-base font-semibold`}
                       >
                         ₹ {item?.price}
                       </p>
@@ -252,24 +265,29 @@ const Menu = () => {
                   </div>
                 </div>
               </div>
-
             ))}
             {/* Add on Modal popup */}
-            <AddOnsModal isOpen={isOpen} addOns={CurrentAddon} onClose={closeModal} />
+            <AddOnsModal
+              isOpen={isOpen}
+              addOns={CurrentAddon}
+              onClose={closeModal}
+            />
           </div>
         </div>
         {/* Right Order Details Sidebar  */}
         <div
-          className={`transition-all duration-300 ease-in-out relative right-4 rounded-l-3xl ${OrderDetailSidebar ? " w-80" : "hidden"
-            } ${isRightSidebarOpen ? "hidden" : ""}`}
+          className={`transition-all duration-300 ease-in-out relative right-4 rounded-l-3xl ${
+            OrderDetailSidebar ? " w-80" : "hidden"
+          } ${isRightSidebarOpen ? "hidden" : ""}`}
         >
           <OrderSideMenu />
         </div>
 
         {/* Right Sidebar */}
         <div
-          className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "w-[360px]" : "w-7"
-            }`}
+          className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${
+            isRightSidebarOpen ? "rightside-panel" : "w-7"
+          }`}
         >
           <span
             className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
@@ -291,8 +309,8 @@ const Menu = () => {
       {MenuCardOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center  z-50">
           <div
-            className=" p-6 rounded-lg shadow-lg relative w-[100vw]"
-          // onClick={closeMenuCardSlider}
+            className=" p-6 rounded-lg shadow-lg relative width-100vw"
+            // onClick={closeMenuCardSlider}
           >
             <button
               onClick={closeMenuCardSlider}

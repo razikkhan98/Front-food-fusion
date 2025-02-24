@@ -11,12 +11,14 @@
 
 @font-face {
   font-family: Montserrat Alternates;
-  src: url("../src/Components/Assets/fonts/MontserratAlternates-Regular.ttf") format("truetype");
+  src: url("../src/Components/Assets/fonts/MontserratAlternates-Regular.ttf")
+    format("truetype");
 }
 
 @font-face {
   font-family: poppins;
-  src: url("../src/Components/Assets/fonts/Poppins-Regular.ttf") format("truetype");
+  src: url("../src/Components/Assets/fonts/Poppins-Regular.ttf")
+    format("truetype");
 }
 
 body {
@@ -47,33 +49,31 @@ body {
   --cashier-main-color: #d79555;
   --cashier-color: #ffdab9;
   --cashier-light-color: #ffe9d5;
-  --cashier-very-light-color: #FFFBF7;
-  --cashier-hover-color: #F6F0E9;
+  --cashier-very-light-color: #fffbf7;
+  --cashier-hover-color: #f6f0e9;
   --staff-color: #fff9b0;
   --captain-color: #e3d6f7;
   --chef-color: #ffb3ab;
   --light-color: #f5f5f5;
-  --gray-light-color: #FAFAFA;
+  --gray-light-color: #fafafa;
   --red-color: #dc143c;
-  --green-color: #2FDA32;
+  --green-color: #2fda32;
   --yellow-color: #ffd700;
   --purple-color: #6a5acd;
   --sidebar-light: #db9f66;
   --black-color: #111111;
   --gray-color: #707070;
-  --select-section: #F6F0E9;
-  --light-gray-color: #A1A1A1;
-  --dark-green-color: #7A8450;
-  --light-purple-color: #CFBCDF;
-  --dark-bule-color: #469DCF;
-  --status--orange-color: #DA6A2F;
-  --status--pink-color: #FF5C83;
-  --whatsapp-green-color: #25D366;
-  --blue-color: #4285F4;
-  --btn-gray-color: #EAEAEA;
+  --select-section: #f6f0e9;
+  --light-gray-color: #a1a1a1;
+  --dark-green-color: #7a8450;
+  --light-purple-color: #cfbcdf;
+  --dark-bule-color: #469dcf;
+  --status--orange-color: #da6a2f;
+  --status--pink-color: #ff5c83;
+  --whatsapp-green-color: #25d366;
+  --blue-color: #4285f4;
+  --btn-gray-color: #eaeaea;
 }
-
-
 
 /* 
  =========================
@@ -128,7 +128,7 @@ body {
 }
 
 .bg-green-status-color {
-  background-color: #94D82D;
+  background-color: #94d82d;
 }
 
 .bg-red-color {
@@ -224,7 +224,7 @@ body {
 }
 
 .text-color-green {
-  color: #94D82D;
+  color: #94d82d;
 }
 
 .text-whatspp-green-color {
@@ -264,7 +264,7 @@ body {
 }
 
 .border-green-color {
-  border: 1px solid #94D82D;
+  border: 1px solid #94d82d;
 }
 
 .border-whatsapp-green {
@@ -563,7 +563,6 @@ Home Page
   min-height: 100vh;
 }
 
-
 /* 
   =========================
 
@@ -582,7 +581,6 @@ Home Page
 .right-sidebar-dropshadow {
   filter: drop-shadow(2px 4px 2px rgba(0, 0, 0, 0.15));
   /* box-shadow: 2px 0px 12px 1px rgba(0, 0, 0, 0.15); */
-
 }
 
 /* 
@@ -705,7 +703,6 @@ Home Page
   }
 }
 
-
 /* --------------- scroll bar css ----------------- */
 .hidden-scroll::-webkit-scrollbar {
   display: none;
@@ -747,6 +744,10 @@ height & Width CSS
 .chatbot {
   height: 326px;
   width: 328px;
+}
+
+.chatbot-heading {
+  max-width: 75%;
 }
 
 .generate-order-card {
@@ -812,7 +813,6 @@ height & Width CSS
 
 .leftside-panel {
   width: 275px;
-  ;
 }
 
 .leftside-panel li {
@@ -822,7 +822,7 @@ height & Width CSS
 .rightside-panel {
   width: 360px;
 }
-.table-card{
+.table-card {
   width: 144px;
   height: 150px;
 }
@@ -839,4 +839,23 @@ height & Width CSS
 .user-box {
   height: 120px;
   width: 120px;
+}
+.menu-item-img {
+  height: 70px;
+  width: 86px;
+}
+.order-page-search-short {
+  width: 573px;
+}
+.order-page-search-long {
+  width: 849px;
+}
+.width-100vw{
+  width: 100vw;
+}
+.auto-suggest{
+  height: 280px;
+}
+.menudetailSliderimg{
+  height: 182px;
 }

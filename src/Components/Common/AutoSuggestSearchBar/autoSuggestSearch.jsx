@@ -898,7 +898,7 @@ const AutoSuggestSearch = ({ inputValue, MenuFromRedux }) => {
 
           {/* Suggestions dropdown */}
           {filteredOptions?.length >= 0 && (
-            <ul ref={dropdownRef} className={`absolute left-0 top-[-20px] w-full h-[280px]  overflow-y-scroll hidden-scroll bg-white border border-gray-300 border-t-0 rounded-lg rounded-t-none shadow-lg z-10 ${showDropdown? "" : ""}`}>
+            <ul ref={dropdownRef} className={`absolute left-0 top-[-20px] w-full auto-suggest  overflow-y-scroll hidden-scroll bg-white border border-gray-300 border-t-0 rounded-lg rounded-t-none shadow-lg z-10 ${showDropdown? "" : ""}`}>
               <li className="h-4"></li>
               {filteredOptions?.map((option, index) => (
                 <>

@@ -64,8 +64,8 @@ const RightSidebar = () => {
 
   return (
     <div
-      className={`h-screen transition-all duration-300 ease-in-out absolute right-1 ${
-        isRightSidebarOpen ? "w-[360px]" : "w-5"
+      className={`h-screen transition-all duration-300 ease-in-out absolute right-1 z-50 ${
+        isRightSidebarOpen ? "rightside-panel" : "w-5"
       }`}
     >
       <span

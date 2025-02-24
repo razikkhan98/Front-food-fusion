@@ -57,7 +57,7 @@ const customerData = [
 const OrderIcons = [{ nav_img: bell }];
 const OrderHeading = ["Book Table", "Generate Order"];
 const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
-  console.log('MenuFromRedux: ', MenuFromRedux?.Menu);
+  console.log("MenuFromRedux: ", MenuFromRedux?.Menu);
   // ==========
   // UseFrom
   // ============
@@ -74,8 +74,8 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
   // ============
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
   const [autoSearchFillValue, setautoSearchFillValue] = useState();
-    const [CurrentTab, setCurrentTab] = useState();
-    console.log('CurrentTab: ', CurrentTab);
+  const [CurrentTab, setCurrentTab] = useState();
+  console.log("CurrentTab: ", CurrentTab);
 
   // ==========
   // Functions
@@ -117,7 +117,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
             : data?.tableNo
         )
       );
-  
+
       // Success Toaster
       toast.success("Table booked successfully!");
     } catch (error) {
@@ -126,15 +126,14 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
     }
   };
 
-  // function to get total amount 
+  // function to get total amount
   const calculateTotalAmount = () => {
     let total = 0;
-    MenuFromRedux?.Menu?.forEach(item => {
+    MenuFromRedux?.Menu?.forEach((item) => {
       total += item?.subcategoriesAmount * item?.quantity;
     });
     return total;
   };
-
 
   // Filter Functionality
   const filterInpFildFromPrevOrder =
@@ -146,29 +145,29 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
   const HandleAutoSearchInp = (e) => {
     setautoSearchFillValue(e.target.value);
   };
-    const GetQuantity = (data) => {
-      const payload = {
-        customerID: data?.ItemId,
-        menuID: 0,
-        floorName: "",
-        tableNumber: 0,
-        orderID: 0,
-        categoriesName: "",
-        subcategoriesName: "",
-        subcategoriesAmount: 0,
-        subcategoriesType: "",
-        quantity: data?.count,
-        totalAmount: 0,
-        totalitemTax: 0,
-        discount: "",
-        addonNotes: "",
-        addonName: "",
-        addonAmount: 0,
-        addonQuantity: 0,
-      };
-      dispatch(AddMenuRedux(payload));
-      // return setIncrDecrQuantity(data);
+  const GetQuantity = (data) => {
+    const payload = {
+      customerID: data?.ItemId,
+      menuID: 0,
+      floorName: "",
+      tableNumber: 0,
+      orderID: 0,
+      categoriesName: "",
+      subcategoriesName: "",
+      subcategoriesAmount: 0,
+      subcategoriesType: "",
+      quantity: data?.count,
+      totalAmount: 0,
+      totalitemTax: 0,
+      discount: "",
+      addonNotes: "",
+      addonName: "",
+      addonAmount: 0,
+      addonQuantity: 0,
     };
+    dispatch(AddMenuRedux(payload));
+    // return setIncrDecrQuantity(data);
+  };
 
   //==========
   // useEffect
@@ -198,8 +197,14 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
       {/* Chatbot Section End */}
 
       {/* Main Content Area */}
-      <div className={`flex-grow py-4 px-9 transition-all duration-300 h-full overflow-auto hidden-scroll`}>
-        <Navbar icons={OrderIcons} pageHeading={OrderHeading} selectedTab={setCurrentTab}/>
+      <div
+        className={`flex-grow py-4 px-9 transition-all duration-300 h-full overflow-auto hidden-scroll`}
+      >
+        <Navbar
+          icons={OrderIcons}
+          pageHeading={OrderHeading}
+          selectedTab={setCurrentTab}
+        />
 
         {/* Order Details */}
         <div className="bg-white rounded-lg border p-6 mt-2">
@@ -207,12 +212,16 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
             <div className="grid grid-cols-2 gap-6 lg:grid-cols-3">
               {/* Name */}
               <div>
-                <label className="text-color-black font-medium text-sm">Name</label>
+                <label className="text-color-black font-medium text-sm">
+                  Name
+                </label>
                 <input
                   type="text"
                   placeholder="Customer's name here"
                   className={`w-full mt-1 text-base text-color-black font-medium px-2 py-3 border-gray-color rounded-lg  ${
-                    nameInptField ? "" : "bg-light-color font-xs font-normal border-light-color"
+                    nameInptField
+                      ? ""
+                      : "bg-light-color font-xs font-normal border-light-color"
                   } focus-visible:bg-white`}
                   {...register("name")}
                 />
@@ -244,7 +253,9 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                   type="text"
                   placeholder="Customer's contact no here"
                   className={`w-full mt-1 px-2 text-color-black py-3 border-gray-color rounded-lg ${
-                    numberInptField ? "" : "bg-light-color font-xs font-normal border-light-color"
+                    numberInptField
+                      ? ""
+                      : "bg-light-color font-xs font-normal border-light-color"
                   } focus-visible:bg-white`}
                   {...register("number")}
                 />
@@ -261,7 +272,9 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                 </label>
                 <select
                   className={`w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${
-                    orderTypeInptField ? "" : "bg-light-color font-xs font-normal border-light-color"
+                    orderTypeInptField
+                      ? ""
+                      : "bg-light-color font-xs font-normal border-light-color"
                   } focus-visible:bg-white`}
                   {...register("orderType")}
                 >
@@ -285,7 +298,9 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                   type="email"
                   placeholder="Customer's E-mail ID here"
                   className={`w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${
-                    emailInptField ? "" : "bg-light-color font-xs font-normal border-light-color"
+                    emailInptField
+                      ? ""
+                      : "bg-light-color font-xs font-normal border-light-color"
                   } focus-visible:bg-white`}
                   {...register("email")}
                 />
@@ -327,7 +342,9 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                       type="text"
                       placeholder="Customer's Address here"
                       className={`w-full mt-1 px-2 text-color-black py-3 border-gray-color text-base font-medium rounded-lg ${
-                        orderTypeInptField ? "" : "bg-light-color font-xs font-normal border-light-color"
+                        orderTypeInptField
+                          ? ""
+                          : "bg-light-color font-xs font-normal border-light-color"
                       } focus-visible:bg-white`}
                       {...register("deliveryAddress")}
                     />
@@ -375,12 +392,18 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
 
         {/* Add Item Section */}
         <div className="my-8 flex items-center justify-between">
-         <NavLink to={"/menu"}>
-         <button className="px-10 py-2 text-base font-normal bg-purple-btn text-white rounded-full">
-            Add Item
-          </button>
-         </NavLink>
-          <div className={`${isRightSidebarOpen ? "w-[537px]transition-all duration-300 ease-in-out" : "w-[849px] transition-all duration-300 ease-in-out"} bg-white  relative`}>
+          <NavLink to={"/menu"}>
+            <button className="px-10 py-2 text-base font-normal bg-purple-btn text-white rounded-full">
+              Add Item
+            </button>
+          </NavLink>
+          <div
+            className={`${
+              isRightSidebarOpen
+                ? " transition-all duration-300 ease-in-out"
+                : " transition-all duration-300 ease-in-out"
+            } bg-white order-page-search-long relative`}
+          >
             <input
               type="text"
               placeholder="Search for items"
@@ -389,23 +412,6 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
             />
             <AutoSuggestSearch inputValue={autoSearchFillValue} />
             <IoSearch className="absolute left-3 top-1/2 z-20 transform -translate-y-1/2 text-color-gray" />
-
-            {/* <svg
-              className="absolute left-3 top-1/2 z-20 transform -translate-y-1/2 text-gray-500"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              width="20"
-              height="20"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-4.35-4.35M16.5 12.5a6 6 0 1 0-12 0 6 6 0 0 0 12 0z"
-              />
-            </svg> */}
           </div>
         </div>
 
@@ -414,52 +420,66 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
           <table className="w-full">
             <thead className="bg-white">
               <tr className="cashier-bg-table-color text-center text-color-black rounded-t-2xl">
-                <th className="border-b rounded-ss-xl p-3 text-sm font-medium">S.No.</th>
-                <th className="border-b p-3 text-sm font-medium">Item's Name</th>
-                <th className="border-b p-3 text-sm font-medium">Notes/Add Ons</th>
+                <th className="border-b rounded-ss-xl p-3 text-sm font-medium">
+                  S.No.
+                </th>
+                <th className="border-b p-3 text-sm font-medium">
+                  Item's Name
+                </th>
+                <th className="border-b p-3 text-sm font-medium">
+                  Notes/Add Ons
+                </th>
                 <th className="border-b p-3 text-sm font-medium">Quantity</th>
                 <th className="border-b p-3 text-sm font-medium">Price</th>
-                <th className="border-b rounded-tr-xl p-3 text-sm font-medium">Amount</th>
+                <th className="border-b rounded-tr-xl p-3 text-sm font-medium">
+                  Amount
+                </th>
               </tr>
             </thead>
             <tbody>
               {/* Placeholder for dynamic items */}
-              {MenuFromRedux?.Menu?.map((item, index) => 
-              <>
-                <tr className="border-b">
-                  <td className="py-4 text-center text-sm font-normal text-[--gray-color] ">
-                    {++index}
-                  </td>
-                  <td className="py-4 text-center text-sm font-normal text-[--gray-color] ">
-                    {item?.subcategoriesName}
-                  </td>
-                  <td className="py-4 text-center text-sm font-normal text-[--gray-color] ">
-                    {item?.addonNotes || '-'}
-                  </td>
-                  <td className="py-4 text-center ">
-                  <IncrementDecrementFunctionality
+              {MenuFromRedux?.Menu?.map((item, index) => (
+                <>
+                  <tr className="border-b">
+                    <td className="py-4 text-center text-sm font-normal text-[--gray-color] ">
+                      {++index}
+                    </td>
+                    <td className="py-4 text-center text-sm font-normal text-[--gray-color] ">
+                      {item?.subcategoriesName}
+                    </td>
+                    <td className="py-4 text-center text-sm font-normal text-[--gray-color] ">
+                      {item?.addonNotes || "-"}
+                    </td>
+                    <td className="py-4 text-center ">
+                      <IncrementDecrementFunctionality
                         ItemId={item?.customerID}
                         GetQuantity={GetQuantity}
                         prevCount={item?.quantity}
                       />
-                  </td>
-                  <td className="py-4 text-center text-sm font-normal text-[--gray-color] ">
-                    ₹ {item?.subcategoriesAmount}
-                  </td>
-                  <td className="py-4 text-center text-sm font-normal">
-                    ₹ {item?.subcategoriesAmount * item?.quantity }
-                  </td>
-                </tr>
+                    </td>
+                    <td className="py-4 text-center text-sm font-normal text-[--gray-color] ">
+                      ₹ {item?.subcategoriesAmount}
+                    </td>
+                    <td className="py-4 text-center text-sm font-normal">
+                      ₹ {item?.subcategoriesAmount * item?.quantity}
+                    </td>
+                  </tr>
                 </>
-              )}
-                {MenuFromRedux?.Menu?.length > 0 ? <tr>
+              ))}
+              {MenuFromRedux?.Menu?.length > 0 ? (
+                <tr>
                   <td className="py-4 text-center"></td>
                   <td className="py-4 text-center"></td>
                   <td className="py-4 text-center"></td>
                   <td className="py-4 text-center"></td>
                   <td className="py-4 text-center">Total</td>
-                  <td className="py-4 text-center text-sm font-medium">₹ {calculateTotalAmount() || 0}</td>
-                </tr> : <></>}
+                  <td className="py-4 text-center text-sm font-medium">
+                    ₹ {calculateTotalAmount() || 0}
+                  </td>
+                </tr>
+              ) : (
+                <></>
+              )}
             </tbody>
           </table>
         </div>
@@ -483,22 +503,8 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
 
       {/* Right Sidebar */}
       <div
-        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${
-          isRightSidebarOpen ? "w-[360px]" : "w-7"
-        }`}
+        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl `}
       >
-        <span
-          className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
-          onClick={toggleRightSidebar}
-        >
-          {/* <img src={Toggle} alt="Loading" /> */}
-          {isRightSidebarOpen ? (
-            <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
-          ) : (
-            <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
-          )}
-        </span>
-
         <RightSidebar />
       </div>
     </div>

@@ -64,13 +64,13 @@ const ChatBot = () => {
           <div className="p-3 max-h-64 overflow-auto hidden-scroll">
             {Message.map((items, index) => (
               <>
-                <div className={`px-3 py-1 my-3 text-sm bg-gray-light-color rounded-lg max-w-[75%] `}>
+                <div className={`px-3 py-1 my-3 text-sm bg-gray-light-color rounded-lg chatbot-heading `}>
                   <p className="font-medium text-xs cashier-main-text-color mb-2">{items.title}</p>
                   <p className="text-xs">{items.sender}</p>
                   <p className="text-xs text-gray-500 text-right">{items.time}</p>
                 </div>
                 <div className="flex justify-end items-end">
-                  <div className=" rounded-lg cashier-light-bg-color px-3 py-1 max-w-[75%]">
+                  <div className=" rounded-lg cashier-light-bg-color px-3 py-1 chatbot-heading">
                     <p className="text-xs">{items.user}</p>
                     <p className="text-xs text-gray-500 text-right">16:40</p>
                   </div>

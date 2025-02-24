@@ -115,7 +115,7 @@ const SendToKitchen = () => {
 
                 {/* Right Sidebar */}
                 <div
-                    className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "w-[360px]" : "w-7"
+                    className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "rightside-panel" : "w-7"
                         }`}
                 >
                     <span

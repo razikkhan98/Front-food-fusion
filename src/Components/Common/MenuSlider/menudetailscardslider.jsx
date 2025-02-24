@@ -108,7 +108,7 @@ function MenuDetailsCardSlider({
                 {/* Card Content (Same as previous implementation) */}
                 <div className="relative">
                   <img
-                    className={`w-full ${position == "center" ? 'h-[182px]' :'h-40'} object-cover border-4 border-white rounded-t-3xl`}
+                    className={`w-full ${position == "center" ? 'menudetailSliderimg' :'h-40'} object-cover border-4 border-white rounded-t-3xl`}
                     src={card?.img}
                     alt="Veg Pizza"
                   />

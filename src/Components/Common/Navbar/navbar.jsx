@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../../Assets/css/menuSearchBar.css";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { NavLink, useLocation } from "react-router-dom";
+import AutoSuggestSearch from "../AutoSuggestSearchBar/autoSuggestSearch";
 
 const Navbar = ({
   pageHeading = [],
@@ -15,7 +16,8 @@ const Navbar = ({
   // ===========
   const [CurrentSelectTab, setCurrentSelectTab] = useState();
   const [inputBar, setInputBar] = useState(false);
-  const location = useLocation()
+  const location = useLocation();
+  const [autoSearchFillValue, setautoSearchFillValue] = useState();
   // =========
   // Functions
   // ===========
@@ -32,6 +34,11 @@ const Navbar = ({
 
   const handleCloseSearchBar = () => {
     setInputBar(false);
+  };
+
+  // Auto Search Input Field
+  const HandleAutoSearchInp = (e) => {
+    setautoSearchFillValue(e.target.value);
   };
 
   // =========
@@ -107,20 +114,26 @@ const Navbar = ({
               <div
                 key={index}
                 onClick={() => handleOpenSearchBar(index)} // Set focus on click
-                className="menu-search-bar flex navbar-icon-bg-color rounded-full p-2 z-0"
+                className="menu-search-bar relative flex navbar-icon-bg-color rounded-full p-2 z-0"
               >
                 <img src={item.nav_img} alt={item.alt} />
-                <input
-                  type="text"
-                  id={`btn-search-${index}`} // Unique ID for each input
-                  className={`${
-                    index === 0
-                      ? `${
-                          inputBar ? "nav-search" : "w-0"
-                        } bg-transparent outline-none cursor-pointer transition-[width] duration-[0.3s] border-[none]`
-                      : "hidden"
-                  } `}
-                />
+                <div>
+                  <input
+                    type="text"
+                    id={`btn-search-${index}`} // Unique ID for each input
+                    onChange={HandleAutoSearchInp}
+                    className={`${
+                      index === 0
+                        ? `${
+                            inputBar ? "nav-search" : "w-0"
+                          } bg-transparent outline-none cursor-pointer transition-[width] duration-[0.3s] border-[none]`
+                        : "hidden"
+                    } `}
+                  />
+                  {index == 0 && (
+                    <AutoSuggestSearch inputValue={autoSearchFillValue} />
+                  )}
+                </div>
               </div>
             ))}
           </div>
