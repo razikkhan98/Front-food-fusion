@@ -221,7 +221,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                   className={`w-full mt-1 text-base text-color-black font-medium px-2 py-3 border-gray-color rounded-lg  ${
                     nameInptField
                       ? ""
-                      : "bg-light-color font-xs font-normal border-light-color"
+                      : "bg-light-color text-sm font-normal border-light-color"
                   } focus-visible:bg-white`}
                   {...register("name")}
                 />
@@ -255,7 +255,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                   className={`w-full mt-1 px-2 text-color-black py-3 border-gray-color rounded-lg ${
                     numberInptField
                       ? ""
-                      : "bg-light-color font-xs font-normal border-light-color"
+                      : "bg-light-color text-sm font-normal border-light-color"
                   } focus-visible:bg-white`}
                   {...register("number")}
                 />
@@ -300,7 +300,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                   className={`w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${
                     emailInptField
                       ? ""
-                      : "bg-light-color font-xs font-normal border-light-color"
+                      : "bg-light-color text-sm font-normal border-light-color"
                   } focus-visible:bg-white`}
                   {...register("email")}
                 />
@@ -393,7 +393,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
         {/* Add Item Section */}
         <div className="my-8 flex items-center justify-between">
           <NavLink to={"/menu"}>
-            <button className="px-10 py-2 text-base font-normal bg-purple-btn text-white rounded-full">
+            <button className="px-10 py-3 text-sm font-medium bg-purple-btn text-white rounded-full">
               Add Item
             </button>
           </NavLink>

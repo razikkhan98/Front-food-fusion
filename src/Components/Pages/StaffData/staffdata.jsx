@@ -282,9 +282,9 @@ const StaffData = () => {
                 </div>
                 
                 {/* Table Start */}
-                <div className="bg-white mt-4 border rounded-xl overflow-auto h-5/6 hidden-scroll">
-                    <table className="w-full border rounded-xl shadow-md">
-                        <thead className="sticky top-0 bg-white">
+                <div className="mt-4 border rounded-xl overflow-auto h-5/6 hidden-scroll">
+                    <table className="w-full rounded-xl shadow-md">
+                        <thead className="sticky top-0 bg-white mt-0">
                             <tr className="cashier-bg-table-color text-center">
                                 <th className="px-6 py-3 font-normal text-sm text-left">Employee Name</th>
                                 <th className="px-4 py-3 font-normal text-sm">Role</th>

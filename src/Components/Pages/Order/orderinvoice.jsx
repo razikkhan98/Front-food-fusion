@@ -80,7 +80,7 @@ const AllInvoice = () => {
                         <div
                             className="col-span-4"
                         >
-                            <div className="overflow-auto xl:h-[75vh] lg:h-[65vh] md:h-[60vh] hidden-scroll">
+                            <div className="overflow-auto 2xl:h-5/6 xl:h-3/4 lg:h-2/5 md:h-2/5 hidden-scroll">
                                 <h2 className="text-base font-semibold mt-2">Today</h2>
                                 {currentInvoices.map((i, index) => (
                                     <>
@@ -92,7 +92,7 @@ const AllInvoice = () => {
                             </div>
 
                             {/* Pagination Buttons Start */}
-                            <div className='flex items-center mt-3'>
+                            <div className='flex items-center mb-1'>
                                 <div className='flex items-center justify-between mr-7'>
                                     <p className='me-3'>Rows per page</p>
                                     <div>
