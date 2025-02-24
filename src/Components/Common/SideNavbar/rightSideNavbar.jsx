@@ -107,7 +107,7 @@ const RightSidebar = () => {
                   {item.label}
                 </span>
                 {index !== tableData.length - 1 && (
-                  <hr className="h-[1px] my-2 bg-white border-white" />
+                  <hr className="my-2 bg-white border-white" />
                 )}
               </div>
             ))}
@@ -143,10 +143,10 @@ const RightSidebar = () => {
 
           {/* Schedule Accordion Content */}
           {isOpen && (
-            <div className="h-[312px] overflow-auto hidden-scroll">
+            <div className="h-80 overflow-auto hidden-scroll">
               {orders.map((order, index) => (
                 <div key={index}>
-                  <hr className="h-[1px] bg-white my-0 border-white" />
+                  <hr className="bg-white my-0 border-white" />
                   <div className="px-2 my-2 flex justify-between rounded-lg">
                     {/* Booking Details */}
                     <div>
@@ -183,7 +183,6 @@ const RightSidebar = () => {
                       </div>
                     </div>
                   </div>
-                  {/* <hr className="h-[1px] bg-white my-0 border-white" /> */}
                 </div>
               ))}
             </div>
