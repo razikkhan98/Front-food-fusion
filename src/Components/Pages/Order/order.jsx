@@ -380,7 +380,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
             Add Item
           </button>
          </NavLink>
-          <div className={`${isRightSidebarOpen ? "w-[537px] transition-all duration-300 ease-in-out" : "w-[849px] transition-all duration-300 ease-in-out"}  relative`}>
+          <div className={`${isRightSidebarOpen ? "w-[537px]transition-all duration-300 ease-in-out" : "w-[849px] transition-all duration-300 ease-in-out"} bg-white  relative`}>
             <input
               type="text"
               placeholder="Search for items"

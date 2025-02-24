@@ -111,18 +111,15 @@ const UserLogin = () => {
   // UseEffect 
   // ========= 
 
-  let height = window?.screen?.height
-  // console.log('height: ', height);
-
   return (
     <>
     {/* <section> */}
-    <div className={`h-[${height}]`}>  <div className="h-screen flex justify-center items-center">
-        <div className="grid grid-cols-1 grid-rows-4 gap-1">
+      <div className=" flex justify-center items-center" style={{height:window?.screen?.height}}>
+        <div className="grid grid-cols-1 grid-rows-6 gap-1">
           {/* Logo & Title */}
           <div className="row-span-2 flex justify-center items-center mb-32">
             <img
-              className="logo inline me-5"
+              className="w-[108.24px] h-[108.24px] inline me-5"
               src={Logo}
               alt="Food Fusion Logo"
             />
@@ -140,7 +137,7 @@ const UserLogin = () => {
                 className="mx-10 cursor-pointer font-medium text-3xl transform ease-in-out transation-transform duration-100 hover:scale-150"
               >
                 <div
-                  className={`user-box flex justify-center items-center ${user.bgClass} rounded-[16px] mb-3`}
+                  className={`h-[120px] w-[120px] flex justify-center items-center ${user.bgClass} rounded-[16px] mb-3`}
                 >
                   <img
                     className="w-20 m-auto p-2"
@@ -156,7 +153,7 @@ const UserLogin = () => {
             ))}
           </div>
         </div>
-      </div></div>
+      </div>
 
       {/* User Login Modal */}
       {selectedUser && (

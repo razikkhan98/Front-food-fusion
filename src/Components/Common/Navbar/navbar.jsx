@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import  '../../Assets/css/menuSearchBar.css'
+import React, { useEffect, useState } from "react";
+import "../../Assets/css/menuSearchBar.css";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const Navbar = ({
   pageHeading = [],
@@ -14,8 +14,8 @@ const Navbar = ({
   // states
   // ===========
   const [CurrentSelectTab, setCurrentSelectTab] = useState();
-  const [inputValue, setInputValue] = useState('');
   const [inputBar, setInputBar] = useState(false);
+  const location = useLocation()
   // =========
   // Functions
   // ===========
@@ -24,22 +24,32 @@ const Navbar = ({
     selectedTab(e);
   };
 
-  // const [inputValue, setInputValue] = useState('');
-  
-  const handleFocus = () => {
-    setInputValue('');
-  };
-
-  const handleBlur = () => {
-    if (inputValue === '') {
-      setInputValue('search');
+  const handleOpenSearchBar = (searchIndex) => {
+    if (searchIndex == 0 && location?.pathname == "/menu") {
+      setInputBar(true);
     }
-    setInputBar(!inputBar)
   };
 
-  const handleClick = () => {
-      setInputBar(true)
+  const handleCloseSearchBar = () => {
+    setInputBar(false);
   };
+
+  // =========
+  // useEffect
+  // ===========
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event?.target?.closest(".menu-search-bar")) {
+        handleCloseSearchBar();
+      }
+    };
+    if (inputBar) {
+      document?.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document?.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [inputBar]);
 
   return (
     <div>
@@ -76,14 +86,15 @@ const Navbar = ({
                 key={index}
                 type="button"
                 onClick={() => HandleTabFunctionality(floor?.btn_name)}
-                onBlur={handleBlur}
                 className={`${
                   CurrentSelectTab
                     ? floor?.btn_name == CurrentSelectTab
                       ? "bg-[--cashier-light-color] text-[--black-color]"
-                      : "bg-[--cashier-very-light-color]"
-                    : index == 0 ? "bg-[--cashier-light-color] text-[--black-color]" :"bg-[--cashier-very-light-color]"
-                } hover:bg-[--cashier-light-color] text-[--gray-color] font-medium hover:text-[--black-color] py-1 px-4 border border-[--cashier-light-color] hover:border-transparent rounded-full`}
+                      : "bg-[--cashier-very-light-color] text-[--gray-color]"
+                    : index == 0
+                    ? "bg-[--cashier-light-color] text-[--black-color]"
+                    : "bg-[--cashier-very-light-color] text-[--gray-color]"
+                } hover:bg-[--cashier-light-color]  font-medium hover:text-[--black-color] py-1 px-4 border border-[--cashier-light-color] hover:border-transparent rounded-full`}
               >
                 {floor?.btn_name}
               </button>
@@ -93,21 +104,24 @@ const Navbar = ({
         {icons?.length > 0 && (
           <div className="flex gap-4 ml-auto">
             {icons.map((item, index) => (
-    <div
-    key={index}
-    onClick={() => handleClick(index)} // Set focus on click
-    className="menu-search-bar flex navbar-icon-bg-color rounded-full p-2 z-0"
-  >
-    <img src={item.nav_img} alt={item.alt} />
-    <input
-      type="text"
-      id={`btn-search-${index}`} // Unique ID for each input
-      className={`${index === 0 ? `${inputBar ? 'nav-search': 'w-0'} bg-transparent outline-none cursor-pointer transition-[width] duration-[0.3s] border-[none]`  : "hidden"} `}
-      // value={inputValue}
-      onBlur={handleBlur}
-      onFocus={handleFocus}
-    />
-  </div>
+              <div
+                key={index}
+                onClick={() => handleOpenSearchBar(index)} // Set focus on click
+                className="menu-search-bar flex navbar-icon-bg-color rounded-full p-2 z-0"
+              >
+                <img src={item.nav_img} alt={item.alt} />
+                <input
+                  type="text"
+                  id={`btn-search-${index}`} // Unique ID for each input
+                  className={`${
+                    index === 0
+                      ? `${
+                          inputBar ? "nav-search" : "w-0"
+                        } bg-transparent outline-none cursor-pointer transition-[width] duration-[0.3s] border-[none]`
+                      : "hidden"
+                  } `}
+                />
+              </div>
             ))}
           </div>
         )}

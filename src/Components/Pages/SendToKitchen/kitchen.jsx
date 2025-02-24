@@ -64,9 +64,7 @@ const SendToKitchen = () => {
                     <div className="overflow-auto h-full hidden-scroll">
                         <h2 className="text-base font-semibold mt-2">In Progress</h2>
                         <div
-                            className={`grid justify-center ${isRightSidebarOpen === true ? "2xl:grid-cols-3 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2"
-                                : "lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 md:grid-cols-2"
-                                } gap-2`}
+                            className={`grid grid-cols-[repeat(auto-fill,minmax(336px,336px))]`}
                         >
                             {[1, 2, 3, 4, 5,].map((i, index) => (
                                 <>
@@ -78,9 +76,7 @@ const SendToKitchen = () => {
 
                         <h2 className="text-base font-semibold mt-2">Completed</h2>
                         <div
-                            className={`grid justify-center ${isRightSidebarOpen === true ? "2xl:grid-cols-3 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2"
-                                : "lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 md:grid-cols-2"
-                                } gap-2`}
+                            className={`grid grid-cols-[repeat(auto-fill,minmax(336px,336px))]`}
                         >
                             {[1, 2, 3, 4, 5,].map((i, index) => (
                                 <>
