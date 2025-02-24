@@ -822,8 +822,12 @@ height & Width CSS
 .rightside-panel {
   width: 360px;
 }
+.table-card{
+  width: 140px;
+  height: 150px;
+}
 
-.table img {
+.table-card .table-img {
   width: 105px;
   height: 102px;
 }
