@@ -178,6 +178,12 @@ body {
 .navbar-icon-bg-color {
   background-color: rgba(215, 149, 85, 0.1);
 }
+.note-bg-color{
+  background-color: #F7F7F7;
+}
+.bg-light-status-orage-color{
+  background-color: rgba(218, 106, 47, 0.05);
+}
 
 /* 
   =========================
@@ -233,6 +239,9 @@ body {
 
 .text-blue-color {
   color: var(--blue-color);
+}
+.text-yellow-color{
+  color: var(--yellow-color);
 }
 
 /* 
