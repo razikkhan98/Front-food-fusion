@@ -76,6 +76,54 @@ const MenuCard = [
     price: 180,
     colorStatus: "text-light-green bg-light-green",
   },
+  {
+    img: Food1,
+    name: "Cheese Balls",
+    cardBorder: "menu-green-borderCard",
+    status: "Available",
+    price: 180,
+    colorStatus: "text-light-green bg-light-green",
+  },
+  {
+    img: Food1,
+    cardBorder: "menu-green-borderCard",
+    name: "Cheese Balls",
+    status: "Available",
+    price: 180,
+    colorStatus: "text-light-green bg-light-green",
+  },
+  {
+    img: Food1,
+    name: "Cheese Balls",
+    cardBorder: "menu-green-borderCard",
+    status: "Available",
+    price: 180,
+    colorStatus: "text-light-green bg-light-green",
+  },
+  {
+    img: Food1,
+    cardBorder: "menu-green-borderCard",
+    name: "Cheese Balls",
+    status: "Available",
+    price: 180,
+    colorStatus: "text-light-green bg-light-green",
+  },
+  {
+    img: Food1,
+    name: "Cheese Balls",
+    cardBorder: "menu-green-borderCard",
+    status: "Available",
+    price: 180,
+    colorStatus: "text-light-green bg-light-green",
+  },
+  {
+    img: Food1,
+    cardBorder: "menu-green-borderCard",
+    name: "Cheese Balls",
+    status: "Available",
+    price: 180,
+    colorStatus: "text-light-green bg-light-green",
+  },
 ];
 const MenuButtons = [
   { btn_name: "All", btn_color: "bg-[--cashier-very-light-color]" },
@@ -93,8 +141,8 @@ const Menu = () => {
   const [selectedCard, setSelectedCard] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [CurrentAddon, setCurrentAddon] = useState();
-    const [CurrentTab, setCurrentTab] = useState();
-    console.log('CurrentTab: ', CurrentTab);
+  const [CurrentTab, setCurrentTab] = useState();
+  console.log('CurrentTab: ', CurrentTab);
 
   // Functions
   const toggleRightSidebar = () => {
@@ -127,84 +175,84 @@ const Menu = () => {
     <>
       <div className="flex h-screen overflow-hidden">
         <LeftSideNavbar />
-        <ChatBot/>
+        <ChatBot />
         {/* Main Content Area */}
         <div className={`flex-grow w-3/5 py-4 px-9 transition-all duration-300`}>
-        <div className="border-b">
-        <Navbar pageHeading={MenuHeading} buttons={MenuButtons} icons={MenuIcons} selectedTab={setCurrentTab} />
-        </div>
-        
+          <div className="border-b">
+            <Navbar pageHeading={MenuHeading} buttons={MenuButtons} icons={MenuIcons} selectedTab={setCurrentTab} />
+          </div>
+
           <MenuSlider Noslide={isRightSidebarOpen ? 6 : 9} />
           {/* <MenuDetailsCardSlider/> */}
-          <h1 className="font-bold text-xl">Starters</h1>
+          <h1 className="font-bold text-xl ms-2">Starters</h1>
           <div
-            className={`grid mt-4 ${
-              isRightSidebarOpen === true || OrderDetailSidebar === true
-                ? "2xl:grid-cols-3 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 w-11/12"
-                : "lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 md:grid-cols-3"
-            } gap-2`}
+            className="grid grid-cols-[repeat(auto-fill,minmax(240px,240px))]"
           >
             {MenuCard?.map((item, index) => (
-              <div
-                key={index}
-                className={`bg-white rounded-lg shadow-md px-2 py-2 w-56 h-32 ${item?.cardBorder}`}
-              >
-                <div className="grid grid-cols-2">
-                  <div className="me-1">
-                    <img
-                      src={item?.img}
-                      alt="Loading"
-                      onClick={() => openMenuCardSlider(item)}
-                      className={`${
-                        item?.status !== "Available" ? "filter grayscale" : ""
-                      } cursor-pointer h-[70px] w-[86px] rounded-md`}
-                    />
-                  </div>
-                  <div>
-                    <div className="flex justify-end">
-                      <span
-                        className={`text-end flex text-xs items-center px-1 font-semibold ${item?.colorStatus}`}
-                      >
-                        <span
-                          className={` ${
-                            item?.status == "Available"
-                              ? "bg-green-500"
-                              : "bg-red-500"
-                          } inline-block h-1 me-1 p-0.5 rounded-full`}
-                        ></span>
-                        {item?.status}
-                      </span>
+
+              <div key={index} className="flex justify-center items-center m-2">
+
+                <div
+                //  className={`card-box-shadow bg-white rounded-lg p-2 h-32 w-56 ${item?.cardBorder}`}
+                 >
+                  <div
+                    // className=""
+                  className={`bg-white rounded-lg card-box-shadow p-2 w-56 h-32 ${item?.cardBorder}`}
+                  >
+                    <div className="grid grid-cols-2">
+                      <div className="me-1">
+                        <img
+                          src={item?.img}
+                          alt="Loading"
+                          onClick={() => openMenuCardSlider(item)}
+                          className={`${item?.status !== "Available" ? "filter grayscale" : ""
+                            } cursor-pointer h-[70px] w-[86px] rounded-md`}
+                        />
+                      </div>
+                      <div>
+                        <div className="flex justify-end">
+                          <span
+                            className={`text-end flex text-xs items-center px-1 font-semibold ${item?.colorStatus}`}
+                          >
+                            <span
+                              className={` ${item?.status == "Available"
+                                ? "bg-green-500"
+                                : "bg-red-500"
+                                } inline-block h-1 me-1 p-0.5 rounded-full`}
+                            ></span>
+                            {item?.status}
+                          </span>
+                        </div>
+                        <p
+                          className={`${item?.status !== "Available" ? "text-gray-400" : ""
+                            } font-medium text-sm text-left`}
+                        >
+                          {item?.name}
+                        </p>
+                      </div>
                     </div>
-                    <p
-                      className={`${
-                        item?.status !== "Available" ? "text-gray-400" : ""
-                      } font-medium text-sm text-left`}
-                    >
-                      {item?.name}
-                    </p>
+                    <div className="flex justify-between items-center">
+                      <button
+                        // onClick={toggleOrderSidebar}
+                        onClick={() => { openModal(); setCurrentAddon(item?.add_ons) }}
+                        className={` text-sm ${item?.status !== "Available"
+                          ? "text-gray-400 border"
+                          : "cashier-light-bg-color cursor-pointer"
+                          } uppercase  px-6 py-1 mt-2 rounded-md`}
+                      >
+                        Add
+                      </button>
+                      <p
+                        className={`${item?.status !== "Available" ? "text-gray-400" : ""
+                          } text-end text-base font-semibold`}
+                      >
+                        ₹ {item?.price}
+                      </p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex justify-between items-center">
-                  <button
-                    // onClick={toggleOrderSidebar}
-                    onClick={() => {openModal(); setCurrentAddon(item?.add_ons)}}
-                    className={` text-sm ${
-                      item?.status !== "Available"
-                        ? "text-gray-400 border"
-                        : "cashier-light-bg-color cursor-pointer"
-                    } uppercase  px-6 py-1 mt-2 rounded-md`}
-                  >
-                    Add
-                  </button>
-                  <p
-                    className={`${
-                      item?.status !== "Available" ? "text-gray-400" : ""
-                    } text-end text-base font-semibold`}
-                  >
-                    ₹ {item?.price}
-                  </p>
                 </div>
               </div>
+
             ))}
             {/* Add on Modal popup */}
             <AddOnsModal isOpen={isOpen} addOns={CurrentAddon} onClose={closeModal} />
@@ -212,18 +260,16 @@ const Menu = () => {
         </div>
         {/* Right Order Details Sidebar  */}
         <div
-          className={`transition-all duration-300 ease-in-out relative right-4 rounded-l-3xl ${
-            OrderDetailSidebar ? " w-80" : "hidden"
-          } ${isRightSidebarOpen ? "hidden" : ""}`}
+          className={`transition-all duration-300 ease-in-out relative right-4 rounded-l-3xl ${OrderDetailSidebar ? " w-80" : "hidden"
+            } ${isRightSidebarOpen ? "hidden" : ""}`}
         >
           <OrderSideMenu />
         </div>
 
         {/* Right Sidebar */}
         <div
-          className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${
-            isRightSidebarOpen ? "w-[360px]" : "w-7"
-          }`}
+          className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "w-[360px]" : "w-7"
+            }`}
         >
           <span
             className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
@@ -246,7 +292,7 @@ const Menu = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center  z-50">
           <div
             className=" p-6 rounded-lg shadow-lg relative w-[100vw]"
-            // onClick={closeMenuCardSlider}
+          // onClick={closeMenuCardSlider}
           >
             <button
               onClick={closeMenuCardSlider}
