@@ -24,7 +24,7 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking, tableDetail }) =
       {/* // ------- booked table ------- */}
       {tableStatus === "book" || tableDetail?.orderStatus === "book" ? (
         <>
-          <div className=" flex items-center mx-3 w-36">
+          <div className=" flex items-center m-3 w-36">
             <Link className="" to={`/order/${tableDetail?.tableNo || tableNo}`}>
               <div className="px-3 py-2 bg-white rounded-2xl shadow-lg cashier-light-bg-color h-full table-card">
                 <div className="flex justify-between">
@@ -63,7 +63,7 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking, tableDetail }) =
       ) : tableStatus === "pending" ? (
         <>
           {/* ------- pending table ------- */}
-          <div className=" flex items-center mx-3 w-36">
+          <div className=" flex items-center m-3 w-36">
             <Link className="" to={`/order/${tableNo}`}>
               <div className="px-3 py-2 bg-white rounded-2xl shadow-lg cashier-light-bg-color h-full table-card">
                 <div className="flex justify-between">
@@ -102,7 +102,7 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking, tableDetail }) =
       ) : tableStatus === "process" ? (
         <>
           {/* ------- process table ------- */}
-          <div className=" flex items-center mx-3 w-36">
+          <div className=" flex items-center m-3 w-36">
             <Link className="" to={`/order/${tableNo}`}>
               <div className=" px-3 py-2 bg-white rounded-2xl shadow-lg cashier-light-bg-color h-full table-card">
                 <div className="flex justify-between my-1">
@@ -127,7 +127,7 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking, tableDetail }) =
       ) : tableStatus === "reserve" || tableDetail?.orderStatus === "reserve" ? (
         <>
           {/* ------- reserve table ------- */}
-          <div className="flex items-center mx-3 w-36">
+          <div className="flex items-center m-3 w-36">
             <Link className="" to={`/order/${tableDetail?.tableNo || tableNo}`}>
               <div className="px-3 py-2 bg-white rounded-2xl shadow-lg cashier-light-bg-color h-full table-card">
                 <div className="flex justify-between">
@@ -164,7 +164,7 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking, tableDetail }) =
           </div>
         </>
       ) : (
-        <div className="flex items-center mx-3 w-36">
+        <div className="flex items-center m-3 w-36">
           <Link
             className=""
             to={`/order/${tableNo}`}
