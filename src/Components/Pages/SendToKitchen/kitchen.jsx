@@ -38,8 +38,8 @@ const SendToKitchen = () => {
     // State
     // ========
     const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
-      const [CurrentTab, setCurrentTab] = useState();
-      console.log('CurrentTab: ', CurrentTab);
+    const [CurrentTab, setCurrentTab] = useState();
+    console.log('CurrentTab: ', CurrentTab);
 
 
     // ========
@@ -59,16 +59,22 @@ const SendToKitchen = () => {
                 {/* Main Content here */}
                 <div className={`flex-grow py-4 px-9 transition-all duration-300 flex flex-col justify-center`}>
                     <div className='border-b'>
-                        <Navbar buttons={KitchenButtons} icons={KitchenIcons} pageHeading={kitchenHeading} btn_purple={"See All Invoices"} selectedTab={setCurrentTab}/>
+                        <Navbar buttons={KitchenButtons} icons={KitchenIcons} pageHeading={kitchenHeading} btn_purple={"See All Invoices"} selectedTab={setCurrentTab} />
                     </div>
                     <div className="overflow-auto h-full hidden-scroll">
                         <h2 className="text-base font-semibold mt-2">In Progress</h2>
                         <div
                             className={`grid grid-cols-[repeat(auto-fill,minmax(336px,336px))]`}
                         >
-                            {[1, 2, 3, 4, 5,].map((i, index) => (
+                            {[1, 2, 3, 4, 5,6,7,8].map((i, index) => (
                                 <>
-                                    <GenerateOrderCards />
+                                    <GenerateOrderCards key={index} OrderStatus={index === 0 ? "Dine In" : index === 1 ? "Unsuccessful" :
+                                        index === 2 ? "Handed Over" :
+                                            index === 3 ? "Paid" :
+                                                index === 4 ? "In Progress" :
+                                                    index === 5 ? "Delivered" :
+                                                        index === 6 ? "Unsuccessful" :
+                                                            "Dine In"} />
                                 </>
                             ))}
                         </div>
@@ -80,7 +86,7 @@ const SendToKitchen = () => {
                         >
                             {[1, 2, 3, 4, 5,].map((i, index) => (
                                 <>
-                                    <GenerateOrderCards />
+                                    <GenerateOrderCards key={index} OrderStatus={"In Progress"} />
                                 </>
                             ))}
                         </div>
