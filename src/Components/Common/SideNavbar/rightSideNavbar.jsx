@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 
 // import images
-import edit from '../../Assets/Images/sidebarImg/edit.svg'
-import call from '../../Assets/Images/sidebarImg/call.svg'
-import trash from '../../Assets/Images/sidebarImg/Trash.svg'
-import clendar from '../../Assets/Images/sidebarImg/calendar-tick.svg'
-import openSchedule from '../../Assets/Images/sidebarImg/openSchedule.svg'
-import closeSchedule from '../../Assets/Images/sidebarImg/closeSchedule.svg'
+import edit from "../../Assets/Images/sidebarImg/edit.svg";
+import call from "../../Assets/Images/sidebarImg/call.svg";
+import trash from "../../Assets/Images/sidebarImg/Trash.svg";
+import clendar from "../../Assets/Images/sidebarImg/calendar-tick.svg";
+import openSchedule from "../../Assets/Images/sidebarImg/openSchedule.svg";
+import closeSchedule from "../../Assets/Images/sidebarImg/closeSchedule.svg";
 import Plus from "../../Assets/Images/sidebarImg/Plus.svg";
 import PlusBlack from "../../Assets/Images/sidebarImg/Plus-black.svg";
 // Third Party Components
 import { NavLink } from "react-router-dom";
 // Common
 import DropDownInput from "../DropdownInput/dropDownInput";
+import {
+  MdOutlineKeyboardDoubleArrowLeft,
+  MdOutlineKeyboardDoubleArrowRight,
+} from "react-icons/md";
 
 // Json
 const tableData = [
@@ -42,29 +46,48 @@ const orders = [
 ];
 
 const RightSidebar = () => {
-  // ==========  
-  // State 
-  // ============ 
+  // ==========
+  // State
+  // ============
   const [isOpen, setIsOpen] = useState(true);
-  console.log('isOpen: ', isOpen);
-
-
-  // ==========  
-  // Functions 
-  // ============ 
+  const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
+  // ==========
+  // Functions
+  // ============
 
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
   };
+  const toggleRightSidebar = () => {
+    setIsRightSidebarOpen(!isRightSidebarOpen);
+  };
 
   return (
-    <div className="h-screen w-[360px]">
+    <div
+      className={`h-screen transition-all duration-300 ease-in-out absolute right-1 ${
+        isRightSidebarOpen ? "w-[360px]" : "w-5"
+      }`}
+    >
+      <span
+        className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 left-[-1.5rem] z-10"
+        onClick={toggleRightSidebar}
+      >
+        {isRightSidebarOpen ? (
+          <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
+        ) : (
+          <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
+        )}
+      </span>
       {/* Sidebar */}
       <div className="cashier-light-bg-color h-full rounded-l-3xl p-6 shadow-md z-0">
         {/* Create New Order Button */}
-        <NavLink to={"/order"}>
+        <NavLink
+          className={`${isRightSidebarOpen ? "" : "hidden"}`}
+          to={"/order"}
+        >
           <button className="w-full cashier-main-bg-color text-white py-2 px-4 rounded-full font-medium text-base flex items-center justify-center">
-            <img src={Plus} className="me-2 h-5 w-5" alt="Loading" /> Create New Order
+            <img src={Plus} className="me-2 h-5 w-5" alt="Loading" /> Create New
+            Order
           </button>
         </NavLink>
 
@@ -92,8 +115,9 @@ const RightSidebar = () => {
         </div>
 
         {/* Schedule New Order Button */}
-        <button className="w-full text-base font-medium bg-[#ffffff4d] py-2 my-5 px-4 rounded-full border-white border flex items-center justify-center">
-          <img src={PlusBlack} className="me-2 h-5 w-5" alt="Loading" />  Schedule New Order
+        <button className={`${isRightSidebarOpen ? "" : "hidden"}  w-full text-base font-medium bg-[#ffffff4d] py-2 my-5 px-4 rounded-full border-white border flex items-center justify-center`}>
+          <img src={PlusBlack} className="me-2 h-5 w-5" alt="Loading" />{" "}
+          Schedule New Order
         </button>
 
         {/* Scheduled Orders */}
@@ -110,7 +134,11 @@ const RightSidebar = () => {
               <h2 className="font-normal text-base">Scheduled Orders</h2>
             </div>
 
-            <img className="me-2" src={isOpen ? openSchedule : closeSchedule} alt="Loading" />
+            <img
+              className="me-2"
+              src={isOpen ? openSchedule : closeSchedule}
+              alt="Loading"
+            />
           </div>
 
           {/* Schedule Accordion Content */}
@@ -128,9 +156,15 @@ const RightSidebar = () => {
                         { label: "Date & Time", value: order.dateTime },
                         { label: "Booking for", value: order.bookingFor },
                       ].map((item, i) => (
-                        <div key={i} className="flex justify-between items-center my-2">
+                        <div
+                          key={i}
+                          className="flex justify-between items-center my-2"
+                        >
                           <p className="text-xs flex items-center">
-                            {item.label}: <span className="font-medium text-sm ps-1">{item.value}</span>
+                            {item.label}:{" "}
+                            <span className="font-medium text-sm ps-1">
+                              {item.value}
+                            </span>
                           </p>
                         </div>
                       ))}
@@ -138,9 +172,15 @@ const RightSidebar = () => {
 
                     {/* Action Icons */}
                     <div className="">
-                      <div className="w-6 h-6 my-3 bg-[#ffffff66] rounded-full flex items-center justify-center"><img className="w-100 h-4" src={edit} alt="Loading" /></div>
-                      <div className="w-6 h-6 my-4 bg-[#ffffff66] rounded-full flex items-center justify-center"><img className="w-100 h-4" src={call} alt="Loading" /></div>
-                      <div className="w-6 h-6 my-3 bg-[#ffffff66] rounded-full flex items-center justify-center"><img className="w-100 h-4" src={trash} alt="Loading" /></div>
+                      <div className="w-6 h-6 my-3 bg-[#ffffff66] rounded-full flex items-center justify-center">
+                        <img className="w-100 h-4" src={edit} alt="Loading" />
+                      </div>
+                      <div className="w-6 h-6 my-4 bg-[#ffffff66] rounded-full flex items-center justify-center">
+                        <img className="w-100 h-4" src={call} alt="Loading" />
+                      </div>
+                      <div className="w-6 h-6 my-3 bg-[#ffffff66] rounded-full flex items-center justify-center">
+                        <img className="w-100 h-4" src={trash} alt="Loading" />
+                      </div>
                     </div>
                   </div>
                   {/* <hr className="h-[1px] bg-white my-0 border-white" /> */}
@@ -149,11 +189,7 @@ const RightSidebar = () => {
             </div>
           )}
         </div>
-
       </div>
-
-      {/* Main Content */}
-      {/* <div className="flex-1 p-6">Main Content Here</div> */}
     </div>
   );
 };

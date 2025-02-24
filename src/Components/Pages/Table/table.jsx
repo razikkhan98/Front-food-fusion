@@ -70,19 +70,13 @@ const Table = () => {
   // ========
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
   const [CurrentTab, setCurrentTab] = useState();
-  console.log('CurrentTab: ', CurrentTab);
   // ========
   // functions
   // ========
-  const toggleRightSidebar = () => {
-    setIsRightSidebarOpen(!isRightSidebarOpen);
-  };
+
 
   // functions for table filter 
-  // const fil = TableDataJson?.tables?.map((i)=>
-  // console.log('i: ', i)
-// )
-// console.log('fil: ', fil);
+
 
   return (
     <>
@@ -169,22 +163,8 @@ const Table = () => {
 
         {/* Right Sidebar */}
         <div
-          className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${
-            isRightSidebarOpen ? "w-[360px]" : "w-7"
-          }`}
+          className={`transition-all duration-300 ease-in-out relative rounded-l-3xl`}
         >
-          <span
-            className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
-            onClick={toggleRightSidebar}
-          >
-            {/* <img src={Toggle} alt="Loading" /> */}
-            {isRightSidebarOpen ? (
-              <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
-            ) : (
-              <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
-            )}
-          </span>
-
           <RightSidebar />
         </div>
       </div>

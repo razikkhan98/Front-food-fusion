@@ -38,7 +38,7 @@ const AllInvoice = () => {
     const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [rowsPerPage, setRowsPerPage] = useState(5); // Default rows per page      const [CurrentTab, setCurrentTab] = useState();
-      console.log('CurrentTab: ', CurrentTab);
+    //   console.log('CurrentTab: ', CurrentTab);
 
 
     // ========
@@ -73,7 +73,7 @@ const AllInvoice = () => {
                 {/* Main Content here */}
                 <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
                     <div className="border-b">
-                        <Navbar buttons={InvoiceButtons} icons={InvoiceIcons} pageHeading={InvoiceHeading} btn_purple={"See All Invoices"} selectedTab={setCurrentTab}/>
+                        <Navbar buttons={InvoiceButtons} icons={InvoiceIcons} pageHeading={InvoiceHeading} btn_purple={"See All Invoices"}/>
                     </div>
                     <div className="grid grid-cols-6 grid-rows-1">
                         <div

@@ -111,10 +111,13 @@ const UserLogin = () => {
   // UseEffect 
   // ========= 
 
+  let height = window?.screen?.height
+  // console.log('height: ', height);
+
   return (
     <>
     {/* <section> */}
-      <div className="h-screen flex justify-center items-center">
+    <div className={`h-[${height}]`}>  <div className="h-screen flex justify-center items-center">
         <div className="grid grid-cols-1 grid-rows-4 gap-1">
           {/* Logo & Title */}
           <div className="row-span-2 flex justify-center items-center mb-32">
@@ -153,7 +156,7 @@ const UserLogin = () => {
             ))}
           </div>
         </div>
-      </div>
+      </div></div>
 
       {/* User Login Modal */}
       {selectedUser && (

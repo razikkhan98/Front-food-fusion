@@ -33,21 +33,12 @@ const Navbar = ({
   const handleBlur = () => {
     if (inputValue === '') {
       setInputValue('search');
-      setInputBar(!inputBar)
     }
+    setInputBar(!inputBar)
   };
 
-  const handleClick = (index) => {
-    // if (inputValue === '') {
-      // setInputValue('search');
+  const handleClick = () => {
       setInputBar(true)
-    // }
-    // console.log('index: ', index);
-    // This function can be called to set focus on the input
-    // const inputElement = document.getElementById(`btn-search-${index}`);
-    // if (inputElement) {
-    //   inputElement.focus();
-    // }
   };
 
   return (
@@ -85,6 +76,7 @@ const Navbar = ({
                 key={index}
                 type="button"
                 onClick={() => HandleTabFunctionality(floor?.btn_name)}
+                onBlur={handleBlur}
                 className={`${
                   CurrentSelectTab
                     ? floor?.btn_name == CurrentSelectTab
@@ -101,48 +93,19 @@ const Navbar = ({
         {icons?.length > 0 && (
           <div className="flex gap-4 ml-auto">
             {icons.map((item, index) => (
-    //           <div
-    //             key={index}
-    //             onFocus={handleFocus}
-    //             Value={inputValue}
-    //             className="material-icons flex navbar-icon-bg-color rounded-full p-2 z-0"
-    //           >
-    //             <img src={item.nav_img} alt={item.alt} />
-    //             <input
-    //   type="text"
-    //   id="btn-search"
-    //   className={`${index == 0 ? "ser h-11" : "hidden"} `}
-      
-      
-    //   onBlur={handleBlur}
-    //   style={{
-    //     height: inputValue === 'search' ? '' : '',
-    //     width: inputValue === 'search' ? '' : '400px',
-    //     fontSize: inputValue === 'search' ? '' : '',
-    //     padding: inputValue === 'search' ? '' : ''
-    //   }}
-      
-    // />
-    //           </div>
     <div
     key={index}
     onClick={() => handleClick(index)} // Set focus on click
-    className="material-icons flex navbar-icon-bg-color rounded-full p-2 z-0"
+    className="menu-search-bar flex navbar-icon-bg-color rounded-full p-2 z-0"
   >
     <img src={item.nav_img} alt={item.alt} />
     <input
       type="text"
       id={`btn-search-${index}`} // Unique ID for each input
-      className={`${index === 0 ? `${inputBar ? 'w-[400px]': 'w-0'} ser`  : "hidden"} `}
+      className={`${index === 0 ? `${inputBar ? 'w-[400px]': 'w-0'} bg-transparent outline-none cursor-pointer transition-[width] duration-[0.3s] border-[none]`  : "hidden"} `}
       // value={inputValue}
       onBlur={handleBlur}
       onFocus={handleFocus}
-      // style={{
-      //   height: inputBar ? '' : '',
-      //   width: inputBar ? '400px': '', // Adjust width as needed
-      //   fontSize: inputBar ? '' : '',
-      //   padding: inputBar ? '' : ''
-      // }}
     />
   </div>
             ))}
