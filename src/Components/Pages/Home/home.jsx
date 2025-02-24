@@ -64,8 +64,7 @@ const Home = ({ tableDetailsFromRedux }) => {
         <div className="overflow-auto h-5/6 hidden-scroll">
           <h2 className="text-base font-semibold my-3">Dine In</h2>
           <div
-            className={`grid ${isRightSidebarOpen === true ? "grid-cols-4" : "grid-cols-5"
-              } gap-4`}
+            className="grid grid-cols-[repeat(auto-fill,minmax(168px,168px))]"
           >
             {tableDetailsFromRedux?.TableBooking?.map((i, index) => (
               <TableCard tableDetail={i} />
