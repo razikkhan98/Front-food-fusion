@@ -1,13 +1,10 @@
 import React, { useState } from "react";
+
+// Common Componets
 import LeftSideNavbar from "../../Common/SideNavbar/leftSideNavbar.jsx";
 import RightSidebar from "../../Common/SideNavbar/rightSideNavbar.jsx";
 import TableCard from "../../Common/TableCard/tableCard.jsx";
 import Navbar from "../../Common/Navbar/navbar.jsx";
-// import Icon
-import {
-  MdOutlineKeyboardDoubleArrowLeft,
-  MdOutlineKeyboardDoubleArrowRight,
-} from "react-icons/md";
 import ChatBot from "../../Common/ChatBot/chatbot.jsx";
 
 // Import Images
@@ -68,14 +65,11 @@ const Table = () => {
   // ========
   // States
   // ========
-  const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
   const [CurrentTab, setCurrentTab] = useState();
   // ========
   // functions
   // ========
 
-
-  // functions for table filter 
 
 
   return (

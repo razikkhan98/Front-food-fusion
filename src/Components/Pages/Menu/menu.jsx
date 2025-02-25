@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import LeftSideNavbar from "../../Common/SideNavbar/leftSideNavbar";
-import RightSidebar from "../../Common/SideNavbar/rightSideNavbar";
+
 
 // import img
 import Food1 from "../../Assets/Images/menuCard-img/food-1.jpeg";
@@ -8,10 +7,16 @@ import Food2 from "../../Assets/Images/menuCard-img/food-2.jpeg";
 import Food3 from "../../Assets/Images/menuCard-img/food-3.jpeg";
 import bell from "../../Assets/Images/navbar-img/bell.svg";
 import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
-import {
-  MdOutlineKeyboardDoubleArrowLeft,
-  MdOutlineKeyboardDoubleArrowRight,
-} from "react-icons/md";
+
+// import {
+//   MdOutlineKeyboardDoubleArrowLeft,
+//   MdOutlineKeyboardDoubleArrowRight,
+// } from "react-icons/md";
+
+
+// Common Components 
+import LeftSideNavbar from "../../Common/SideNavbar/leftSideNavbar";
+import RightSidebar from "../../Common/SideNavbar/rightSideNavbar";
 import MenuDetailsCardSlider from "../../Common/MenuSlider/menudetailscardslider";
 import MenuSlider from "../../Common/MenuSlider/menucategoryslider";
 import OrderSideMenu from "../../Common/OrderSideMenu/ordersidemenu";
@@ -236,7 +241,7 @@ const Menu = () => {
                           </span>
                         </div>
                         <p
-                          className={`${
+                          className={` mt-1 line-clamp-2  ${
                             item?.status !== "Available" ? "text-gray-400" : ""
                           } font-medium text-sm text-left`}
                         >
@@ -281,7 +286,7 @@ const Menu = () => {
         </div>
         {/* Right Order Details Sidebar  */}
         <div
-          className={`transition-all duration-300 ease-in-out relative right-4 rounded-l-3xl ${
+          className={`transition-all duration-300 ease-in-out mb-2 relative right-4 rounded-l-3xl ${
             OrderDetailSidebar ? " w-80" : "hidden"
           } ${isRightSidebarOpen ? "hidden" : ""}`}
         >
@@ -290,24 +295,10 @@ const Menu = () => {
 
         {/* Right Sidebar */}
         <div
-          className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${
-            isRightSidebarOpen ? "rightside-panel" : "w-7"
-          }`}
-        >
-          <span
-            className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
-            onClick={toggleRightSidebar}
-          >
-            {/* <img src={Toggle} alt="Loading" /> */}
-            {isRightSidebarOpen ? (
-              <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
-            ) : (
-              <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
-            )}
-          </span>
+        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl`}>
+        <RightSidebar />
 
-          <RightSidebar />
-        </div>
+      </div>
       </div>
 
       {/* Menu Details Card Slider */}
