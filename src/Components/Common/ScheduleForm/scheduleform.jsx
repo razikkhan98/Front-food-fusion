@@ -25,8 +25,9 @@ const ScheduleForm = () => {
     const dateInptField = watch("date");
     const timeInptField = watch("time");
     const memberInputField = watch("member");
-    const tableInputField = watch("tableNo");
-
+    const tableInputField1 = watch("groundfloor_tableNo");
+    const tableInputField2 = watch("firstfloor_tableNo"); 
+    const tableInputField3 = watch("secondfloor_tableNo");
     // ----------
     // Function
     // ----------
@@ -54,7 +55,7 @@ const ScheduleForm = () => {
                         <input
                             type="text"
                             placeholder="Customer's name here"
-                            className={`w-full mt-1 p-2 rounded-lg border ${nameInptField ? "" : "bg-light-color"
+                            className={`w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${nameInptField ? "" : "bg-light-color text-sm font-normal border-light-color py-3.5"
                                 } focus-visible:bg-white`}
                             {...register("name")}
                         />
@@ -73,7 +74,7 @@ const ScheduleForm = () => {
                         <input
                             type="text"
                             placeholder="Customer's contact no here"
-                            className={`w-full mt-1 p-2 rounded-lg border ${numberInptField ? "" : "bg-light-color"} focus-visible:bg-white`}
+                            className={`w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${numberInptField ? "" : "bg-light-color text-sm font-normal border-light-color py-3.5"} focus-visible:bg-white`}
                             {...register("number")}
                         />
                         {errors.customer_mobile_no && (
@@ -91,7 +92,7 @@ const ScheduleForm = () => {
                         <input
                             type="email"
                             placeholder="Customer's E-mail ID here"
-                            className={`w-full mt-1 p-2 border rounded-lg ${emailInptField ? "" : "bg-light-color"
+                            className={`w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${emailInptField ? "" : "bg-light-color text-sm font-normal border-light-color py-3.5"
                                 } focus-visible:bg-white`}
                             {...register("email")}
                         />
@@ -110,7 +111,7 @@ const ScheduleForm = () => {
                         <input
                             type="date"
                             placeholder="select date"
-                            className={`w-full mt-1 p-2 rounded-lg border ${dateInptField ? "" : "bg-light-color"
+                            className={`w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${dateInptField ? "" : "bg-light-color text-sm font-normal border-light-color py-3.5"
                                 } focus-visible:bg-white`}
                             {...register("date")}
                         />
@@ -121,7 +122,7 @@ const ScheduleForm = () => {
                         <input
                             type="time"
                             // placeholder=""
-                            className={`w-full mt-1 p-2 rounded-lg border ${timeInptField ? "" : "bg-light-color"} focus-visible:bg-white`}
+                            className={`w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${timeInptField ? "" : "bg-light-color text-sm font-normal border-light-color py-3.5"} focus-visible:bg-white`}
                             {...register("time")}
 
                         />
@@ -153,7 +154,7 @@ const ScheduleForm = () => {
                             No of Members
                         </label>
                         <select
-                            className={`w-1/7 mt-1 p-3 text-base font-medium border rounded-lg ${memberInputField ? "" : "bg-light-color text-xs border-0"} focus-visible:bg-white`}
+                            className={`w-1/7 custom-select mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${memberInputField ? "" : "bg-light-color text-sm font-normal border-light-color py-3.5"} focus-visible:bg-white`}
                             {...register("member")}
                         >
                             <option value={""}>No. of Members</option>
@@ -167,15 +168,15 @@ const ScheduleForm = () => {
                             <option value={"8"}>8</option>
                         </select>
 
-                        <div className='grid grid-cols-8 gap-2 mt-2'>
+                        <div className='grid grid-cols-7 gap-2 mt-2'>
 
                             <div>
                                 <label className="text-color-black font-medium text-sm block mt-3">
                                     Ground Floor
                                 </label>
                                 <select
-                                    className={`w-40 mt-1 p-3 text-base font-medium  border rounded-lg ${tableInputField ? "" : "bg-light-color text-xs border-0"} focus-visible:bg-white`}
-                                    {...register("tableNo")}
+                                    className={`w-40 custom-select mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${tableInputField1 ? "" : "bg-light-color text-sm font-normal border-light-color py-3.5"} focus-visible:bg-white`}
+                                    {...register("groundfloor_tableNo")}
                                 >
                                     <option value={""}>Select table</option>
                                     <option value={"1"}>1</option>
@@ -194,8 +195,8 @@ const ScheduleForm = () => {
                                     First Floor
                                 </label>
                                 <select
-                                    className={`w-40 mt-1 p-3 border text-base font-medium rounded-lg ${tableInputField ? "" : "bg-light-color text-xs border-0"} focus-visible:bg-white`}
-                                    {...register("table")}
+                                    className={`w-40 custom-select mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${tableInputField2 ? "" : "bg-light-color text-sm font-normal border-light-color py-3.5"} focus-visible:bg-white`}
+                                    {...register("firstfloor_tableNo")}
                                 >
                                     <option value={""}>Select table</option>
                                     <option value={"1"}>1</option>
@@ -214,8 +215,8 @@ const ScheduleForm = () => {
                                     Second Floor
                                 </label>
                                 <select
-                                    className={`w-40 mt-1 p-3 text-base font-medium border rounded-lg ${tableInputField ? "" : "bg-light-color text-xs border-0"} focus-visible:bg-white`}
-                                    {...register("table")}
+                                    className={`w-40 custom-select mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${tableInputField3 ? "" : "bg-light-color text-sm font-normal border-light-color py-3.5"} focus-visible:bg-white`}
+                                    {...register("secondfloor_tableNo")}
                                 >
                                     <option value={""}>Select table</option>
                                     <option value={"1"}>1</option>

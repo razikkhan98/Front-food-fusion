@@ -184,6 +184,9 @@ body {
 .bg-light-status-orage-color{
   background-color: rgba(218, 106, 47, 0.05);
 }
+.orderside-menu-status{
+  background-color: rgba(255, 233, 213, 0.5);
+}
 
 /* 
   =========================
@@ -741,7 +744,7 @@ Schedule Page Css
 Common Box Shadow Css
 */
 .card-box-shadow {
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  box-shadow: 0px 4px 12px 1px rgba(0, 0, 0, 0.15);
 }
 
 /* =================
@@ -867,4 +870,23 @@ height & Width CSS
 }
 .menudetailSliderimg{
   height: 182px;
+}
+.orderside-menu{
+  width: 330px;
+}
+
+/* ======================
+
+Input Selector Css (Arrow)
+
+======================== */
+.custom-select {
+  appearance: none; /* Default arrow hide */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("././Components//Assets/Images/schedule-img/down-arrow.svg");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 15px; /* Arrow ka size */
+  padding-right: 35px; /* Arrow aur text ke beech gap */
 }

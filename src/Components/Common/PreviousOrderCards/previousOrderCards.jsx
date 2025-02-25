@@ -48,7 +48,7 @@ const PreviousOrderCards = ({OrderStatus}) => {
 
             {/* <div> */}
 
-            <div className="previous-order bg-white rounded-3xl card-box-shadow mx-2 p-4 mb-4">
+            <div className="previous-order bg-white rounded-3xl card-box-shadow m-3 p-4">
                 {/* Date & Time */}
                 <div className="flex justify-between text-sm pb-3">
                     <div className="font-medium">
