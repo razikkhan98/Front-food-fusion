@@ -45,7 +45,7 @@ const OrderSideMenu = () => {
   return (
     <>
       {/* Order SideMenu Start */}
-      <div className="h-full py-3 orderside-menu ms-1 mt-3">
+      <div className="h-full py-3 orderside-menu ms-1 mt-3 ">
         <div className="max-w-sm mx-auto grid  grid-cols-1 grid-rows-3 bg-white shadow-2xl rounded-2xl h-full">
           <div>
             <div className="cashier-light-bg-color rounded-t-2xl p-3">
@@ -83,7 +83,7 @@ const OrderSideMenu = () => {
                 </span>
               ))}
             </div>
-            <div className="mt-4 mx-3 space-y-4 px- h-96 hidden-scroll overflow-y-scroll">
+            <div className="mt-4 mx-3 space-y-4 h-96 hidden-scroll overflow-y-scroll">
               {[
                 { name: "Veg Pizza", qty: 2, price: 360 },
                 { name: "French Fries", qty: 1, price: 180 },
@@ -145,7 +145,7 @@ const OrderSideMenu = () => {
               </div>
             </div>
           </div>
-          <div className="mt-4 pb-3 text-center mx-4 flex items-end row-start-3 align-baseline">
+          <div className="mt-4 pb-3 bg-white text-center rounded-b-2xl px-4 flex items-end row-start-3 align-baseline">
             <div>
               <Button title="Generate Order" />
               <Button title="Send To Kitchen" />

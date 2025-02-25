@@ -1,11 +1,9 @@
 import React, { useState } from "react";
+
+// Common Componets
 import LeftSideNavbar from "../../Common/SideNavbar/leftSideNavbar";
 import ChatBot from "../../Common/ChatBot/chatbot";
 import RightSidebar from "../../Common/SideNavbar/rightSideNavbar";
-import {
-  MdOutlineKeyboardDoubleArrowLeft,
-  MdOutlineKeyboardDoubleArrowRight,
-} from "react-icons/md";
 import Navbar from "../../Common/Navbar/navbar";
 
 // Import React-Icons
@@ -34,17 +32,12 @@ const Schedule = () => {
   // -----------
   // State
   // ------------
-  const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
   const [CurrentTab, setCurrentTab] = useState();
   console.log("CurrentTab: ", CurrentTab);
 
   // ------------
   // Function
   // ------------
-
-  const toggleRightSidebar = () => {
-    setIsRightSidebarOpen(!isRightSidebarOpen);
-  };
 
   return (
     <>
@@ -74,9 +67,11 @@ const Schedule = () => {
                 Today
               </p>
               <div className="grid grid-cols-[repeat(auto-fill,minmax(336px,336px))]">
-                {[1, 2, 3, 4, 5, 6, 7]?.map((i) => (
+                {[1, 2, 3, 4, 5, 6, 7]?.map((i, index) => (
                   <ScheduleCards
-                    scheduleStatus={"Delivery"}
+                    scheduleStatus={index === 3 ? "Delivery" :
+                      "Dine In"
+                    }
                     orderType={"Pickup"}
                   />
                 ))}
@@ -88,11 +83,13 @@ const Schedule = () => {
                 Today
               </p>
               <div className="grid grid-cols-[repeat(auto-fill,minmax(336px,336px))]">
-                {[1, 2, 3, 4, 5, 6, 7]?.map((i) => (
+                {[1, 2, 3, 4, 5, 6, 7]?.map((i, index) => (
                   <ScheduleCards
-                  scheduleStatus={"Completed"}
-                  orderStatus={"complete"}
-                  orderType={"Dine In"}
+                    scheduleStatus={"Completed"}
+                    orderStatus={index === 1 ? "cancel" :
+                      "complete"
+                    }
+                    orderType={"Dine In"}
                   />
                 ))}
               </div>
@@ -116,22 +113,8 @@ const Schedule = () => {
 
         {/* Right Sidebar */}
         <div
-          className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${
-            isRightSidebarOpen ? "rightside-panel" : "w-7"
-          }`}
+          className={`transition-all duration-300 ease-in-out relative rounded-l-3xl`}
         >
-          <span
-            className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
-            onClick={toggleRightSidebar}
-          >
-            {/* <img src={Toggle} alt="Loading" /> */}
-            {isRightSidebarOpen ? (
-              <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
-            ) : (
-              <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
-            )}
-          </span>
-
           <RightSidebar />
         </div>
       </div>

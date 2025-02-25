@@ -44,7 +44,7 @@ const navItems = [
     iconHover: Setting_light,
     label: "Settings",
   },
-  { to: "/logout", icon: Logout, iconHover: Logout_light, label: "Logout" },
+  { to: "/", icon: Logout, iconHover: Logout_light, label: "Logout" },
 ];
 const LeftSideNavbar = () => {
   // States

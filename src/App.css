@@ -873,8 +873,11 @@ height & Width CSS
 }
 .orderside-menu{
   width: 330px;
+  /* height: 931px; */
 }
-
+.invoice-card-scroll{
+  height: 75vh;
+}
 /* ======================
 
 Input Selector Css (Arrow)

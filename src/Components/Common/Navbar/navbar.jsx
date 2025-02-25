@@ -94,7 +94,7 @@ const Navbar = ({
                 key={index}
                 type="button"
                 onClick={() => HandleTabFunctionality(floor?.btn_name)}
-                className={`${
+                className={`text-sm ${
                   CurrentSelectTab
                     ? floor?.btn_name == CurrentSelectTab
                       ? "bg-[--cashier-light-color] text-[--black-color]"
@@ -102,7 +102,7 @@ const Navbar = ({
                     : index == 0
                     ? "bg-[--cashier-light-color] text-[--black-color]"
                     : "bg-[--cashier-very-light-color] text-[--gray-color]"
-                } hover:bg-[--cashier-light-color]  font-medium hover:text-[--black-color] py-1 px-4 border border-[--cashier-light-color] hover:border-transparent rounded-full`}
+                } hover:bg-[--cashier-light-color] font-medium hover:text-[--black-color] py-1 px-4 border border-[--cashier-light-color] hover:border-transparent rounded-full`}
               >
                 {floor?.btn_name}
               </button>

@@ -9,7 +9,7 @@ import InvoiceCards from "../../Common/InvoiceCards/invoicecards";
 import InvoiceReceipt from "../../Common/InvoiceReceipt/invoicereceipt";
 
 // Import third Party component
-import { MdOutlineKeyboardDoubleArrowLeft, MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
+// import { MdOutlineKeyboardDoubleArrowLeft, MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 
 // Import Images
 import bell from "../../Assets/Images/navbar-img/bell.svg";
@@ -35,21 +35,16 @@ const AllInvoice = () => {
     // ========
     // State
     // ========
-    const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [rowsPerPage, setRowsPerPage] = useState(5); // Default rows per page      
     const [CurrentTab, setCurrentTab] = useState();
-      console.log('CurrentTab: ', CurrentTab);
+    console.log('CurrentTab: ', CurrentTab);
 
 
     // ========
     // Functions
     // ========
-    const toggleRightSidebar = () => {
-        setIsRightSidebarOpen(!isRightSidebarOpen);
-    };
-
-
+  
     // ======== Pagination Logic ========
     const indexOfLastInvoice = currentPage * rowsPerPage;
     const indexOfFirstInvoice = indexOfLastInvoice - rowsPerPage;
@@ -74,13 +69,13 @@ const AllInvoice = () => {
                 {/* Main Content here */}
                 <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
                     <div className="border-b">
-                        <Navbar buttons={InvoiceButtons} icons={InvoiceIcons} pageHeading={InvoiceHeading} btn_purple={"See All Invoices"}/>
+                        <Navbar buttons={InvoiceButtons} icons={InvoiceIcons} pageHeading={InvoiceHeading} btn_purple={"See All Invoices"} />
                     </div>
                     <div className="grid grid-cols-6 grid-rows-1">
                         <div
                             className="col-span-4"
                         >
-                            <div className="overflow-auto 2xl:h-3/4 xl:h-3/4 lg:h-2/5 md:h-2/5 hidden-scroll">
+                            <div className="overflow-auto invoice-card-scroll md:h-2/5 hidden-scroll">
                                 <h2 className="text-base font-semibold mt-2">Today</h2>
                                 {currentInvoices.map((i, index) => (
                                     <>
@@ -92,7 +87,7 @@ const AllInvoice = () => {
                             </div>
 
                             {/* Pagination Buttons Start */}
-                            <div className='flex items-center mb-1'>
+                            <div className='flex items-center mt-4'>
                                 <div className='flex items-center justify-between mr-7'>
                                     <p className='me-3'>Rows per page</p>
                                     <div>
@@ -145,21 +140,8 @@ const AllInvoice = () => {
 
                 {/* Right Sidebar */}
                 <div
-                    className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "rightside-panel" : "w-7"
-                        }`}
+                    className={`transition-all duration-300 ease-in-out relative rounded-l-3xl`}
                 >
-                    <span
-                        className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
-                        onClick={toggleRightSidebar}
-                    >
-                        {/* <img src={Toggle} alt="Loading" /> */}
-                        {isRightSidebarOpen ? (
-                            <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
-                        ) : (
-                            <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
-                        )}
-                    </span>
-
                     <RightSidebar />
                 </div>
             </div>

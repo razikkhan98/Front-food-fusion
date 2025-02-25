@@ -14,7 +14,7 @@ import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
 
 // Import ICONS from react-icons
 import { IoCallOutline } from "react-icons/io5";
-import { MdOutlineKeyboardDoubleArrowLeft, MdOutlineKeyboardDoubleArrowRight, MdOutlineMailOutline } from "react-icons/md";
+import { MdOutlineMailOutline } from "react-icons/md";
 import { GoHome } from "react-icons/go";
 
 // Role JSON Data
@@ -64,7 +64,6 @@ const PreviousOrder = () => {
   // ===========
   // State
   // ==========
-  const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
   const [CurrentTab, setCurrentTab] = useState();
   console.log('CurrentTab: ', CurrentTab);
 
@@ -72,9 +71,7 @@ const PreviousOrder = () => {
   // Function
   // =========
 
-  const toggleRightSidebar = () => {
-    setIsRightSidebarOpen(!isRightSidebarOpen);
-  };
+ 
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -93,7 +90,7 @@ const PreviousOrder = () => {
 
         <div className="bg-white border rounded-md py-4 px-3 my-4">
           {/* <div className="flex"> */}
-          <div className={`grid  ${isRightSidebarOpen ? "grid-cols-2" : "grid-cols-4"} gap-1`}>
+          <div className={`grid grid-cols-4 gap-1`}>
             {CustomerDetailsCard.map((items, index) => (
               <div key={index} className={`grid grid-cols-5 gap-4 ps-2 ${items.border}`}>
                 <div>
@@ -142,21 +139,8 @@ const PreviousOrder = () => {
 
       {/* Right Sidebar */}
       <div
-        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "rightside-panel" : "w-7"
-          }`}
+        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl`}
       >
-        <span
-          className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
-          onClick={toggleRightSidebar}
-        >
-          {/* <img src={Toggle} alt="Loading" /> */}
-          {isRightSidebarOpen ? (
-            <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
-          ) : (
-            <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
-          )}
-        </span>
-
         <RightSidebar />
       </div>
     </div>
