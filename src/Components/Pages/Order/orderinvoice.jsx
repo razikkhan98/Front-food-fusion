@@ -92,7 +92,7 @@ const AllInvoice = () => {
                                     <p className='me-3'>Rows per page</p>
                                     <div>
                                         <select
-                                            className=" mt-2 px-2 py-2 border-gray-color rounded-lg text-base font-medium focus-visible:bg-white"
+                                            className="custom-select px-2 py-1 border-gray-color rounded-lg text-base font-medium focus-visible:bg-white"
                                             value={rowsPerPage}
                                             onChange={(e) => {
                                                 setRowsPerPage(Number(e.target.value));
@@ -110,7 +110,7 @@ const AllInvoice = () => {
                                 {/* Pagination Buttons */}
                                 <div className="flex items-center">
                                     <button
-                                        className={`px-3 py-1 bg-white border rounded-lg mr-3 text-sm font-medium ${currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
+                                        className={`px-3 py-1.5 bg-gray-50 border rounded-lg mr-3 text-sm font-medium ${currentPage === 1 ? "cursor-not-allowed" : ""
                                             }`}
                                         onClick={handlePrevious}
                                         disabled={currentPage === 1}
@@ -118,7 +118,7 @@ const AllInvoice = () => {
                                         Previous
                                     </button>
                                     <button
-                                        className={`px-3 py-1 bg-white border rounded-lg text-sm font-medium ${currentPage === totalPages ? "opacity-50 cursor-not-allowed" : ""
+                                        className={`px-3 py-1.5 bg-white border rounded-lg text-sm font-medium ${currentPage === totalPages ? "opacity-50 cursor-not-allowed" : ""
                                             }`}
                                         onClick={handleNext}
                                         disabled={currentPage === totalPages}

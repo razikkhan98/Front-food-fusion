@@ -286,7 +286,7 @@ const Menu = () => {
         </div>
         {/* Right Order Details Sidebar  */}
         <div
-          className={`transition-all duration-300 ease-in-out mb-2 relative right-4 rounded-l-3xl ${
+          className={`transition-all duration-300 ease-in-out mb-2 relative right-6 mr-6 rounded-l-3xl ${
             OrderDetailSidebar ? " w-80" : "hidden"
           } ${isRightSidebarOpen ? "hidden" : ""}`}
         >
