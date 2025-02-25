@@ -10,10 +10,6 @@ import { useParams } from "react-router-dom";
 import { TableBookingRedux } from "../../Redux/Slice/Order/tableBookingSlice.jsx";
 
 // import React-icons
-import {
-  MdOutlineKeyboardDoubleArrowLeft,
-  MdOutlineKeyboardDoubleArrowRight,
-} from "react-icons/md";
 import { IoSearch } from "react-icons/io5";
 
 // Import third Party components
@@ -503,7 +499,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
 
       {/* Right Sidebar */}
       <div
-        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl `}
+        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl`}
       >
         <RightSidebar />
       </div>

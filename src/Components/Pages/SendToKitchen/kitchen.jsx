@@ -15,9 +15,6 @@ import bell from "../../Assets/Images/navbar-img/bell.svg";
 import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
 import Sort from "../../Assets/Images/navbar-img/SortAscending.svg";
 
-// import React-Icons
-import { MdOutlineKeyboardDoubleArrowLeft, MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md';
-
 
 // Json
 const KitchenButtons = [
@@ -31,13 +28,12 @@ const KitchenIcons = [
     { nav_img: Sort },
     { nav_img: bell },
 ];
-
 const kitchenHeading = ["Orders"];
+
 const SendToKitchen = () => {
     // ========
     // State
     // ========
-    const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
     const [CurrentTab, setCurrentTab] = useState();
     console.log('CurrentTab: ', CurrentTab);
 
@@ -45,9 +41,7 @@ const SendToKitchen = () => {
     // ========
     // Functions
     // ========
-    const toggleRightSidebar = () => {
-        setIsRightSidebarOpen(!isRightSidebarOpen);
-    };
+   
     return (
         <>
             <div className="flex h-screen overflow-hidden">
@@ -66,7 +60,7 @@ const SendToKitchen = () => {
                         <div
                             className={`grid grid-cols-[repeat(auto-fill,minmax(330px,330px))]`}
                         >
-                            {[1, 2, 3, 4, 5,6,7,8].map((i, index) => (
+                            {[1, 2, 3, 4, 5, 6, 7, 8].map((i, index) => (
                                 <>
                                     <GenerateOrderCards key={index} OrderStatus={index === 0 ? "Dine In" : index === 1 ? "Unsuccessful" :
                                         index === 2 ? "Handed Over" :
@@ -121,21 +115,8 @@ const SendToKitchen = () => {
 
                 {/* Right Sidebar */}
                 <div
-                    className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "rightside-panel" : "w-7"
-                        }`}
+                    className={`transition-all duration-300 ease-in-out relative rounded-l-3xl`}
                 >
-                    <span
-                        className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
-                        onClick={toggleRightSidebar}
-                    >
-                        {/* <img src={Toggle} alt="Loading" /> */}
-                        {isRightSidebarOpen ? (
-                            <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
-                        ) : (
-                            <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
-                        )}
-                    </span>
-
                     <RightSidebar />
                 </div>
             </div>

@@ -1,10 +1,5 @@
 import React, { useState } from "react";
 
-// import Icon
-import {
-  MdOutlineKeyboardDoubleArrowLeft,
-  MdOutlineKeyboardDoubleArrowRight,
-} from "react-icons/md";
 
 // Import Third Party componets
 import { connect } from "react-redux";
@@ -34,7 +29,6 @@ const Home = ({ tableDetailsFromRedux }) => {
   // --------
   // State
   // --------
-  const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
     const [CurrentTab, setCurrentTab] = useState();
     console.log('CurrentTab: ', CurrentTab);
 
@@ -42,9 +36,7 @@ const Home = ({ tableDetailsFromRedux }) => {
   // ---------
   // Functions
   // ---------
-  const toggleRightSidebar = () => {
-    setIsRightSidebarOpen(!isRightSidebarOpen);
-  };
+  
 
 
   return (
@@ -77,21 +69,8 @@ const Home = ({ tableDetailsFromRedux }) => {
 
       {/* Right Sidebar */}
       <div
-        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "rightside-panel" : "w-7"
-          }`}
+        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl`}
       >
-        <span
-          className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
-          onClick={toggleRightSidebar}
-        >
-          {/* <img src={Toggle} alt="Loading" /> */}
-          {isRightSidebarOpen ? (
-            <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
-          ) : (
-            <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
-          )}
-        </span>
-
         <RightSidebar />
       </div>
     </div>

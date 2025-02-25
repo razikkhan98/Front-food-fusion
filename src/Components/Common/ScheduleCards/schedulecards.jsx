@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 // Common Components
-import Button from "../Button/button";
+// import Button from "../Button/button";
 import ScheduleContactModal from "../../Common/Modal/scheduleContactModal";
 
 // Import Images
@@ -44,7 +44,7 @@ const ScheduleCards = ({ scheduleStatus, orderType, orderStatus }) => {
 
       {scheduleStatus === "Dine In" ? (
         <>
-          <div className="relative bg-white card-box-shadow rounded-xl p-4 w-80">
+          <div className="relative bg-white card-box-shadow rounded-xl m-3 p-4 invoice-receipt">
             {/* Booking Details */}
             <div className="font-medium text-color-black mb-3">
               <p className="text-xs py-1">
@@ -60,7 +60,9 @@ const ScheduleCards = ({ scheduleStatus, orderType, orderStatus }) => {
 
             {/* Button (Placeholder) */}
             <div className="border-b pb-2">
-              <Button title={"Generate Order"} />
+              {/* <Button title={"Generate Order"} /> */}
+              <button className="w-full py-2 cashier-main-text-color text-xs font-medium rounded-full border-[--cashier-main-color] border-2 my-1 hover:bg-[--cashier-main-color] hover:text-white">Generate Order</button>
+
             </div>
 
             {/* Dine In Badge & Guests Count */}
@@ -222,7 +224,8 @@ const ScheduleCards = ({ scheduleStatus, orderType, orderStatus }) => {
 
             {/* Button (Placeholder) */}
             <div className="border-b pb-2">
-              <Button title={"Order-Details"} />
+              {/* <Button title={"Order-Details"} /> */}
+              <button className="w-full py-2 cashier-main-text-color text-xs font-medium rounded-full border-[--cashier-main-color] border-2 my-1 hover:bg-[--cashier-main-color] hover:text-white">Order-Details</button>
             </div>
 
             {/* Dine In Badge & Guests Count */}

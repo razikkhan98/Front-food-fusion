@@ -11,7 +11,7 @@ import bell from "../../Assets/Images/navbar-img/bell.svg";
 import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
 import Sort from "../../Assets/Images/navbar-img/SortAscending.svg";
 import ChatBot from "../../Common/ChatBot/chatbot.jsx";
-import { MdOutlineKeyboardDoubleArrowLeft, MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
+// import { MdOutlineKeyboardDoubleArrowLeft, MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 // Role JSON Data
 const employees = [
 
@@ -252,7 +252,6 @@ const StaffData = () => {
     // ==========  
     // State 
     // ============ 
-    const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
       const [CurrentTab, setCurrentTab] = useState();
       console.log('CurrentTab: ', CurrentTab);
 
@@ -261,11 +260,7 @@ const StaffData = () => {
     // Function 
     // ============
 
-    // Open & Close Function For RightSide Panel 
-    const toggleRightSidebar = () => {
-        setIsRightSidebarOpen(!isRightSidebarOpen);
-    };
-
+  
     return (
         <div className="flex h-screen overflow-hidden">
             {/* Left Sidebar */}
@@ -274,7 +269,7 @@ const StaffData = () => {
 
 
             {/* Main Content Area */}
-            <div className={`flex-grow py-4 px-9 transition-all duration-300 hidden-scroll overflow-auto`}>
+            <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
 
                 {/* <Navbar /> */}
                 <div className="border-b">
@@ -282,8 +277,8 @@ const StaffData = () => {
                 </div>
                 
                 {/* Table Start */}
-                <div className="mt-4 border rounded-xl overflow-auto h-5/6 hidden-scroll">
-                    <table className="w-full rounded-xl shadow-md">
+                <div className="mt-4 border-t rounded-xl overflow-auto h-5/6 hidden-scroll">
+                    <table className="w-full border border-t-0 rounded-xl">
                         <thead className="sticky top-0 bg-white mt-0">
                             <tr className="cashier-bg-table-color text-center">
                                 <th className="px-6 py-3 font-normal text-sm text-left">Employee Name</th>
@@ -325,21 +320,9 @@ const StaffData = () => {
             </div>
             {/* Right Sidebar */}
             <div
-                className={`transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "rightside-panel" : "w-7"
-                    }`}
+                className={`transition-all duration-300 ease-in-out relative rounded-l-3xl 
+                `}
             >
-                <span
-                    className="bg-[--purple-color] w-11 h-11 flex justify-center items-center hover:bg-[--purple-color] cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5"
-                    onClick={toggleRightSidebar}
-                >
-                    {/* <img src={Toggle} alt="Loading" /> */}
-                    {isRightSidebarOpen ? (
-                        <MdOutlineKeyboardDoubleArrowRight className="text-3xl text-white font-semibold" />
-                    ) : (
-                        <MdOutlineKeyboardDoubleArrowLeft className="text-3xl text-white font-semibold" />
-                    )}
-                </span>
-
                 <RightSidebar />
             </div>
 
