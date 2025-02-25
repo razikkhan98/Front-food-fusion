@@ -90,9 +90,9 @@ const Schedule = () => {
               <div className="grid grid-cols-[repeat(auto-fill,minmax(336px,336px))]">
                 {[1, 2, 3, 4, 5, 6, 7]?.map((i) => (
                   <ScheduleCards
-                  scheduleStatus={"Completed"}
-                  orderStatus={"complete"}
-                  orderType={"Dine In"}
+                    scheduleStatus={"Completed"}
+                    orderStatus={"complete"}
+                    orderType={"Dine In"}
                   />
                 ))}
               </div>
@@ -100,18 +100,6 @@ const Schedule = () => {
           ) : (
             <ScheduleForm />
           )}
-
-          {/* <ScheduleCards scheduleStatus={"Dine In"} /> */}
-          {/* <ScheduleCards scheduleStatus={"Completed"} orderStatus={"complete"} /> */}
-          {/* <div className="flex justify-evenly">
-
-            <ScheduleCards scheduleStatus={"Delivery"} orderType={"Pickup"} />
-            <ScheduleCards
-              scheduleStatus={"Completed"}
-              orderStatus={"cancel"}
-              orderType={"Dine In"}
-            />
-          </div> */}
         </div>
 
         {/* Right Sidebar */}

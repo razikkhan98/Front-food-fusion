@@ -142,7 +142,7 @@ const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [CurrentAddon, setCurrentAddon] = useState();
   const [CurrentTab, setCurrentTab] = useState();
-  console.log("CurrentTab: ", CurrentTab);
+
 
   // Functions
   const toggleRightSidebar = () => {
@@ -166,6 +166,11 @@ const Menu = () => {
 
   // Close Modal for Addon function
   const closeModal = () => setIsOpen(false);
+
+    // Open side order menu on  Addon submit
+    const HandleAddonSumbit = () => {
+      toggleOrderSidebar()
+    };
 
   // // Function to close the Menu Detail Modal
   // const closeModal = () => {
@@ -241,11 +246,10 @@ const Menu = () => {
                     </div>
                     <div className="flex justify-between items-center">
                       <button
-                        onClick={toggleOrderSidebar}
-                        // onClick={() => {
-                        //   openModal();
-                        //   setCurrentAddon(item?.add_ons);
-                        // }}
+                        onClick={() => {
+                          openModal();
+                          setCurrentAddon(item?.add_ons);
+                        }}
                         className={` text-sm ${
                           item?.status !== "Available"
                             ? "text-gray-400 border"
@@ -271,6 +275,7 @@ const Menu = () => {
               isOpen={isOpen}
               addOns={CurrentAddon}
               onClose={closeModal}
+              onSubmitFunc={HandleAddonSumbit}
             />
           </div>
         </div>

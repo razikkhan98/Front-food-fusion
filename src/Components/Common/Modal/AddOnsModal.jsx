@@ -8,8 +8,7 @@ import IncrementDecrementFunctionality from "../IncrementDecrementFunctionality/
 
 // Images
 
-const AddOnsModal = ({ isOpen, onClose, onSubmit, addOns }) => {
-  console.log("addOns: ", addOns);
+const AddOnsModal = ({ isOpen, onClose, onSubmitFunc,addOns }) => {
   // ==========
   // UseFrom
   // ============
@@ -23,12 +22,7 @@ const AddOnsModal = ({ isOpen, onClose, onSubmit, addOns }) => {
   // ==========
   // State
   // ============
-  const [selectedItems, setSelectedItems] = useState({
-    greenChutney: true,
-    dahi: false,
-    podinaChutney: false,
-    curry: false,
-  });
+  const [selectedItems, setSelectedItems] = useState({});
   const [notes, setNotes] = useState("");
 
   // ==========
@@ -48,7 +42,10 @@ const AddOnsModal = ({ isOpen, onClose, onSubmit, addOns }) => {
   };
 
   //
-//   const 
+    const onSubmit = () => {
+      onClose()
+      onSubmitFunc()
+    }
 
   return (
     <Dialog
@@ -80,35 +77,12 @@ const AddOnsModal = ({ isOpen, onClose, onSubmit, addOns }) => {
             item you have just added!!
           </p>
           <div className="h-48 overflow-scroll hidden-scroll">
-            {/* {addOns?.map((item, index) => 
-              { return<>
-                {console.log("item11: ", item)}
-                <label key={index} className="flex my-6 items-center">
-                  <input
-                    type="checkbox"
-                    checked={selectedItems.greenChutney}
-                    onChange={() => handleCheckboxChange("greenChutney")}
-                    className="w-4 h-4 me-3"
-                  />
-                  <span className="flex-grow text-base font-normal">
-                    {item?.option}
-                  </span>
-                  <span className="text-[--cashier-main-color] text-sm font-normal me-3">
-                    ₹ {item?.price}
-                  </span>
-                  <IncrementDecrementFunctionality
-                    AddonKey={"addOnQuantity"}
-                    //   ItemId={item?.customerID}
-                  />
-                </label>
-              </>}
-            )} */}
             {addOns?.map((item, index) => (
               <label key={index} className="flex my-6 items-center">
                 <input
                   type="checkbox"
                   // checked={!!selectedItems[index]} // Check if add-on is selected
-                  onChange={() => handleCheckboxChange(index)}
+                  onChange={() => handleCheckboxChange(item?.option)}
                   className="w-4 h-4 me-3"
                 />
                 <span className="flex-grow text-base font-normal">
@@ -120,9 +94,9 @@ const AddOnsModal = ({ isOpen, onClose, onSubmit, addOns }) => {
                       ₹ {item.price}
                     </span>
                     <IncrementDecrementFunctionality
-                    AddonKey={'addOnQuantity'} // Pass add-on ID
-                    // quantity={addOnQuantities[item.id] || 0} // Pass current quantity, default to 0
-                    // onQuantityChange={handleQuantityChange}/
+                      AddonKey={"addOnQuantity"} // Pass add-on ID
+                      // quantity={addOnQuantities[item.id] || 0} // Pass current quantity, default to 0
+                      // onQuantityChange={handleQuantityChange}/
                     />
                   </>
                 ) : (
@@ -132,20 +106,6 @@ const AddOnsModal = ({ isOpen, onClose, onSubmit, addOns }) => {
                 )}
               </label>
             ))}
-            {/* <label className="flex my-6 items-center">
-                <input
-                  type="checkbox"
-                  checked={selectedItems.greenChutney}
-                  onChange={() => handleCheckboxChange("greenChutney")}
-                  className="w-4 h-4 me-3"
-                />
-                <span className="flex-grow text-base font-normal">
-                  Green Chutney
-                </span>
-                <span className="text-[--cashier-main-color] text-sm font-normal">
-                  Free
-                </span>
-              </label> */}
           </div>
           <hr />
           <div className="mt-4">
@@ -161,7 +121,7 @@ const AddOnsModal = ({ isOpen, onClose, onSubmit, addOns }) => {
           </div>
           <button
             className="w-full mt-6 cashier-main-bg-color text-base text-white py-2 px-4 rounded-full font-medium"
-            onClick={handleSubmit}
+            onClick={onSubmit}
           >
             Save & Proceed
           </button>
