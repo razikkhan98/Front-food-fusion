@@ -44,7 +44,7 @@ const ScheduleCards = ({ scheduleStatus, orderType, orderStatus }) => {
 
       {scheduleStatus === "Dine In" ? (
         <>
-          <div className="relative bg-white shadow-md rounded-xl p-4 w-80">
+          <div className="relative bg-white card-box-shadow rounded-xl p-4 w-80">
             {/* Booking Details */}
             <div className="font-medium text-color-black mb-3">
               <p className="text-xs py-1">
@@ -116,7 +116,7 @@ const ScheduleCards = ({ scheduleStatus, orderType, orderStatus }) => {
         </>
       ) : scheduleStatus === "Delivery" || scheduleStatus === "Pickup" ? (
         <>
-          <div className="relative bg-white shadow-md rounded-xl p-4 m-3 invoice-receipt">
+          <div className="relative bg-white card-box-shadow rounded-xl p-4 m-3 invoice-receipt">
             {/* Booking Details */}
             <div className="font-medium text-color-black mb-3">
               <p className="text-xs py-1">
@@ -206,7 +206,7 @@ const ScheduleCards = ({ scheduleStatus, orderType, orderStatus }) => {
         </>
       ) : scheduleStatus === "Completed" ? (
         <>
-          <div className="relative bg-white shadow-md rounded-xl p-4 m-3 invoice-receipt h-56">
+          <div className="relative bg-white card-box-shadow rounded-xl p-4 m-3 invoice-receipt h-56">
             {/* Booking Details */}
             <div className="font-medium text-color-black mb-3">
               <p className="text-xs py-1">

@@ -64,7 +64,7 @@ const SendToKitchen = () => {
                     <div className="overflow-auto h-full hidden-scroll">
                         <h2 className="text-base font-semibold mt-2">In Progress</h2>
                         <div
-                            className={`grid grid-cols-[repeat(auto-fill,minmax(336px,336px))]`}
+                            className={`grid grid-cols-[repeat(auto-fill,minmax(330px,330px))]`}
                         >
                             {[1, 2, 3, 4, 5,6,7,8].map((i, index) => (
                                 <>
@@ -82,7 +82,7 @@ const SendToKitchen = () => {
 
                         <h2 className="text-base font-semibold mt-2">Completed</h2>
                         <div
-                            className={`grid grid-cols-[repeat(auto-fill,minmax(336px,336px))]`}
+                            className={`grid grid-cols-[repeat(auto-fill,minmax(333px,333px))]`}
                         >
                             {[1, 2, 3, 4, 5,].map((i, index) => (
                                 <>

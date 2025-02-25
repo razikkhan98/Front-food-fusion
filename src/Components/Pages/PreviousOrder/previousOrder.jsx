@@ -105,9 +105,9 @@ const PreviousOrder = () => {
                   <div className="text-xs text-gray-400 font-medium flex justify-between  ">{items.title}
                     {/* Check if it's the last item */}
                     {index === CustomerDetailsCard.length - 1 && (
-                      <div className="flex bg-light-yellow rounded-md px-1 mb-2">
-                        <img src={Coin} alt="Loading" />
-                        <div className="text-sm font-medium ms-2">120 Pt</div>
+                      <div className="flex items-center bg-light-yellow rounded-md px-1 mb-2 -mt-2 py-0.5">
+                        <img src={Coin} className="h-4 w-4" alt="Loading" />
+                        <div className="text-sm font-medium ms-2 text-color-black">120 Pt</div>
                       </div>
                     )}
                   </div>

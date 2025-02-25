@@ -171,7 +171,7 @@ function MenuDetailsCardSlider({
                 </div>
 
                 {/* Description */}
-                <p className={`text-sm font-normal ${position == "center" ? 'h-20' :'h-[77px]'} overflow-scroll hidden-scroll text-[--gray-color] mt-3`}>
+                <p className={`text-sm font-normal ${position == "center" ? 'h-20' :'h-20'} overflow-scroll hidden-scroll text-[--gray-color] mt-3`}>
                   A variety of delicious vegetarian pizzas made with fresh
                   ingredients, signature sauces, and cheesy
                 </p>

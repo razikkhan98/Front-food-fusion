@@ -52,7 +52,7 @@ const GenerateOrderCards = ({ OrderStatus }) => {
 
             {/* <div> */}
             {/* {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => ( */}
-            <div className="generate-order-card bg-white rounded-3xl card-box-shadow mx-2 p-4 my-3">
+            <div className="generate-order-card bg-white rounded-3xl card-box-shadow m-3 p-4">
                 {/* Date & Time */}
                 <div className="flex justify-between text-sm pb-3">
                     <div className='flex'>
@@ -73,61 +73,61 @@ const GenerateOrderCards = ({ OrderStatus }) => {
                 </div>
 
 
-            <div className="flex justify-between pb-2">
-                <div className="font-medium text-xs">
-                    <div className='text-color-gray pb-1'>Booking ID : <span className='text-color-black'>123456789</span> </div>
-                    <div className='text-color-gray'>Order No: <span className=' text-color-black'>312</span> </div>
+                <div className="flex justify-between pb-2">
+                    <div className="font-medium text-xs">
+                        <div className='text-color-gray pb-1'>Booking ID : <span className='text-color-black'>123456789</span> </div>
+                        <div className='text-color-gray'>Order No: <span className=' text-color-black'>312</span> </div>
+                    </div>
+
+
+                    {/* Dine In Tag */}
+                    <div className="h-full text-xs text-color-black font-normal bg-light-color px-3 py-2 rounded-md inline-block ">
+                        05:22
+                    </div>
+
                 </div>
 
 
-                {/* Dine In Tag */}
-                <div className="h-full text-xs text-color-black font-normal bg-light-color px-3 py-2 rounded-md inline-block ">
-                    05:22
+                {/* Items Table */}
+                <div className="mt-0 border-t border-gray-200">
+                    <div className="grid grid-cols-3 text-light-gray-color text-xs font-medium py-1">
+                        <span>Items</span>
+                        <span className="text-center">Qty</span>
+                        <span className="text-right">Price</span>
+                    </div>
+
+
+                    <div className="h-14 overflow-auto hidden-scroll text-xs/5">
+                        {items.map((item, index) => (
+                            <div key={index} className="grid grid-cols-3 py-1">
+                                <span>{item.name}</span>
+                                <span className="text-center">{item.quantity}</span>
+                                <span className="text-right">₹ {item.price}</span>
+                            </div>
+                        ))}
+                    </div>
+
+
+                    {/* Total */}
+                    <div className="grid grid-cols-3 text-color-black font-normal text-xs border-t border-gray-200 mt-1 py-2">
+                        <span>Total</span>
+                        <span></span>
+                        <span className="text-right">₹ 280</span>
+                    </div>
                 </div>
 
-            </div>
 
-
-            {/* Items Table */}
-            <div className="mt-0 border-t border-gray-200">
-                <div className="grid grid-cols-3 text-light-gray-color text-xs font-medium py-1">
-                    <span>Items</span>
-                    <span className="text-center">Qty</span>
-                    <span className="text-right">Price</span>
+                {/* Notes Section */}
+                <div className="mb-2 px-3 py-2 rounded-md note-bg-color text-color-gray text-xs font-normal h-12 overflow-auto hidden-scroll">
+                    Notes: Lorem ipsum dolor sit amet ipsum dolor sit amet
                 </div>
 
 
-                <div className="h-14 overflow-auto hidden-scroll text-xs/5">
-                    {items.map((item, index) => (
-                        <div key={index} className="grid grid-cols-3 py-1">
-                            <span>{item.name}</span>
-                            <span className="text-center">{item.quantity}</span>
-                            <span className="text-right">₹ {item.price}</span>
-                        </div>
-                    ))}
-                </div>
-
-
-                {/* Total */}
-                <div className="grid grid-cols-3 text-color-black font-normal text-xs border-t border-gray-200 mt-1 py-2">
-                    <span>Total</span>
-                    <span></span>
-                    <span className="text-right">₹ 280</span>
-                </div>
-            </div>
-
-
-            {/* Notes Section */}
-            <div className="mb-2 px-3 py-2 rounded-md note-bg-color text-color-gray text-xs font-normal h-12 overflow-auto hidden-scroll">
-                Notes: Lorem ipsum dolor sit amet ipsum dolor sit amet
-            </div>
-
-
-            {/* Generate invoice Button */}
-            <Button title={"Generate Invoice"} />
-        </div >
-            {/* ))} */ }
-    {/* </div> */ }
+                {/* Generate invoice Button */}
+                <Button title={"Generate Invoice"} />
+            </div >
+            {/* ))} */}
+            {/* </div> */}
         </>
     )
 }
