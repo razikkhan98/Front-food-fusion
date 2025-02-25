@@ -3,6 +3,7 @@ import "../../Assets/css/menuSearchBar.css";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { NavLink, useLocation } from "react-router-dom";
 import AutoSuggestSearch from "../AutoSuggestSearchBar/autoSuggestSearch";
+import { IoSearch } from "react-icons/io5";
 
 const Navbar = ({
   pageHeading = [],
@@ -114,26 +115,19 @@ const Navbar = ({
               <div
                 key={index}
                 onClick={() => handleOpenSearchBar(index)} // Set focus on click
-                className="menu-search-bar relative flex navbar-icon-bg-color rounded-full p-2 z-0"
+                className={`menu-search-bar flex navbar-icon-bg-color rounded-full h-10   ${inputBar && index == 0 ? 'z-10' : 'p-2 z-0' }`}
               >
-                <img src={item.nav_img} alt={item.alt} />
-                <div>
+                <img className={`${inputBar && index == 0 ? 'hidden' : '' }`} src={item.nav_img} alt={item.alt} />
+                {inputBar && index == 0 ?<div className={` bg-white  relative`}>
                   <input
                     type="text"
-                    id={`btn-search-${index}`} // Unique ID for each input
+                    placeholder="Search for items"
                     onChange={HandleAutoSearchInp}
-                    className={`${
-                      index === 0
-                        ? `${
-                            inputBar ? "nav-search" : "w-0"
-                          } bg-transparent outline-none cursor-pointer transition-[width] duration-[0.3s] border-[none]`
-                        : "hidden"
-                    } `}
+                    className="w-full nav-search  h-10 py-2 pl-10 pr-4 z-20  relative navbar-icon-bg-color border-2 border-[--cashier-main-color] rounded-full focus:outline-none  focus:ring-[--cashier-main-color] hover:bg-[--select-section] focus-within:bg-[--select-section]  "
                   />
-                  {index == 0 && (
-                    <AutoSuggestSearch inputValue={autoSearchFillValue} />
-                  )}
-                </div>
+                  <AutoSuggestSearch inputValue={autoSearchFillValue} />
+                  <IoSearch className="absolute left-3 top-1/2 z-20 transform -translate-y-1/2 text-color-gray" />
+                </div> : null}
               </div>
             ))}
           </div>

@@ -241,11 +241,11 @@ const Menu = () => {
                     </div>
                     <div className="flex justify-between items-center">
                       <button
-                        // onClick={toggleOrderSidebar}
-                        onClick={() => {
-                          openModal();
-                          setCurrentAddon(item?.add_ons);
-                        }}
+                        onClick={toggleOrderSidebar}
+                        // onClick={() => {
+                        //   openModal();
+                        //   setCurrentAddon(item?.add_ons);
+                        // }}
                         className={` text-sm ${
                           item?.status !== "Available"
                             ? "text-gray-400 border"
