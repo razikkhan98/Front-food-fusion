@@ -102,7 +102,7 @@ const Navbar = ({
                     : index == 0
                     ? "bg-[--cashier-light-color] text-[--black-color]"
                     : "bg-[--cashier-very-light-color] text-[--gray-color]"
-                } hover:bg-[--cashier-light-color] font-medium hover:text-[--black-color] py-1 px-4 border border-[--cashier-light-color] hover:border-transparent rounded-full`}
+                } hover:bg-[--cashier-light-color] font-medium hover:text-[--black-color] py-1 px-4 border border-[--cashier-light-color] hover:border-transparent rounded-full h-9`}
               >
                 {floor?.btn_name}
               </button>
@@ -115,19 +115,27 @@ const Navbar = ({
               <div
                 key={index}
                 onClick={() => handleOpenSearchBar(index)} // Set focus on click
-                className={`menu-search-bar flex navbar-icon-bg-color rounded-full h-10   ${inputBar && index == 0 ? 'z-10' : 'p-2 z-0' }`}
+                className={`menu-search-bar flex navbar-icon-bg-color rounded-full h-10   ${
+                  inputBar && index == 0 ? "z-10 " : "p-2 z-0"
+                }`}
               >
-                <img className={`${inputBar && index == 0 ? 'hidden' : '' }`} src={item.nav_img} alt={item.alt} />
-                {inputBar && index == 0 ?<div className={` bg-white  relative`}>
-                  <input
-                    type="text"
-                    placeholder="Search for items"
-                    onChange={HandleAutoSearchInp}
-                    className="w-full nav-search  h-10 py-2 pl-10 pr-4 z-20  relative navbar-icon-bg-color border-2 border-[--cashier-main-color] rounded-full focus:outline-none  focus:ring-[--cashier-main-color] hover:bg-[--select-section] focus-within:bg-[--select-section]  "
-                  />
-                  <AutoSuggestSearch inputValue={autoSearchFillValue} />
-                  <IoSearch className="absolute left-3 top-1/2 z-20 transform -translate-y-1/2 text-color-gray" />
-                </div> : null}
+                <img
+                  className={`${inputBar && index == 0 ? "hidden" : ""}`}
+                  src={item.nav_img}
+                  alt={item.alt}
+                />
+                {inputBar && index == 0 ? (
+                  <div className={` bg-white relative`}>
+                    <input
+                      type="text"
+                      placeholder="Search for items"
+                      onChange={HandleAutoSearchInp}
+                      className="w-full menu-nav-search h-10 py-2 pl-10 pr-4 z-20 relative navbar-icon-bg-color border-2 border-[--cashier-main-color] rounded-full focus:outline-none  focus:ring-[--cashier-main-color] hover:bg-[--select-section] focus-within:bg-[--select-section]  "
+                    />
+                    <AutoSuggestSearch inputValue={autoSearchFillValue} />
+                    <IoSearch className="absolute left-3 top-1/2 z-20 transform -translate-y-1/2 text-color-gray" />
+                  </div>
+                ) : null}
               </div>
             ))}
           </div>

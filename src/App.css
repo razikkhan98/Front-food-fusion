@@ -660,6 +660,8 @@ Home Page
   /* opacity: 1; */
   transform: translate(0px);
   transition: opacity 0.5s ease-out;
+  height: 75% !important;
+  overflow: hidden !important;;
 }
 
 .menu-category-slider .slick-slide {
@@ -814,10 +816,6 @@ height & Width CSS
   width: 452px;
 }
 
-.nav-search {
-  width: 300px;
-}
-
 .previous-order {
   width: 312px;
   height: 338px;
@@ -893,3 +891,39 @@ Input Selector Css (Arrow)
   background-size: 15px; /* Arrow ka size */
   padding-right: 35px; /* Arrow aur text ke beech gap */
 }
+
+
+/* ============================================================== */
+
+/* ==================== MEDIA QUERY ============================== */
+
+/* =============================================================== */
+
+.menu-nav-search {
+  width: 320px;
+}
+
+/* @media only screen and (min-width: 1024px) and (max-width: 1280px) {
+  .menu-nav-search {
+    width: 300px;
+  }
+  .menu-nav-search-sideOrder-active {
+    width: 300px;
+  }
+}
+@media only screen and (min-width: 1280px) and (max-width: 1536px) {
+  .menu-nav-search {
+    width: 30rem;
+  }
+  .menu-nav-search-sideOrder-active {
+    width: 12rem;
+  }
+}
+@media only screen and (min-width: 1536px){
+  .menu-nav-search {
+    width: 300px;
+  }
+  .menu-nav-search-sideOrder-active {
+    width: 300px;
+  }
+} */

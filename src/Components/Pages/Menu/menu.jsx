@@ -188,7 +188,7 @@ const Menu = () => {
         <ChatBot />
         {/* Main Content Area */}
         <div
-          className={`flex-grow w-3/5 py-4 px-9 transition-all duration-300`}
+          className={`flex-grow w-3/5 py-4 px-9 transition-all duration-300 overflow-scroll hidden-scroll`}
         >
           <div className="border-b">
             <Navbar

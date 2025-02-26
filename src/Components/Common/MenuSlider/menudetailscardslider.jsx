@@ -91,7 +91,7 @@ function MenuDetailsCardSlider({
 
   return (
     <div className="relative flex justify-center items-center h-screen w-full overflow-hidden">
-      <div className="relative w-full max-w-4xl h-1/2">
+      <div className="relative w-full sm:max-w-lg md:max-w-lg lg:max-w-2xl xl:max-w-3xl h-2/3">
         {SliderDataJson?.map((card, index) => {
           const position = getCardPosition(index);
           
