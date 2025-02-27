@@ -4,6 +4,7 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { NavLink, useLocation } from "react-router-dom";
 import AutoSuggestSearch from "../AutoSuggestSearchBar/autoSuggestSearch";
 import { IoSearch } from "react-icons/io5";
+import NotificationModal from "../Modal/notificationModal";
 
 const Navbar = ({
   pageHeading = [],
@@ -19,6 +20,7 @@ const Navbar = ({
   const [inputBar, setInputBar] = useState(false);
   const location = useLocation();
   const [autoSearchFillValue, setautoSearchFillValue] = useState();
+  const [isOpen, setIsOpen] = useState(false);
   // =========
   // Functions
   // ===========
@@ -27,9 +29,12 @@ const Navbar = ({
     selectedTab(e);
   };
 
-  const handleOpenSearchBar = (searchIndex) => {
+  const handleOpenSearchBar = (searchIndex, item) => {
     if (searchIndex == 0 && location?.pathname == "/menu") {
-      setInputBar(true);
+      return setInputBar(true);
+    }
+    if (item?.nav_imgname == "bell") {
+      setIsOpen(!isOpen)
     }
   };
 
@@ -41,6 +46,9 @@ const Navbar = ({
   const HandleAutoSearchInp = (e) => {
     setautoSearchFillValue(e.target.value);
   };
+
+    // Close Notification Modal function
+    const closeModal = () => setIsOpen(false);
 
   // =========
   // useEffect
@@ -114,7 +122,7 @@ const Navbar = ({
             {icons.map((item, index) => (
               <div
                 key={index}
-                onClick={() => handleOpenSearchBar(index)} // Set focus on click
+                onClick={() => handleOpenSearchBar(index, item)} // Set focus on click
                 className={`menu-search-bar flex navbar-icon-bg-color rounded-full h-10   ${
                   inputBar && index == 0 ? "z-10 " : "p-2 z-0"
                 }`}
@@ -146,6 +154,13 @@ const Navbar = ({
             {btn_purple}
           </button>
         )}
+      {/* Notification Modal popup */}
+      <NotificationModal
+        isOpen={isOpen}
+        // addOns={CurrentAddon}
+        onClose={closeModal}
+        // onSubmitFunc={HandleAddonSumbit}
+      />
       </div>
     </div>
   );

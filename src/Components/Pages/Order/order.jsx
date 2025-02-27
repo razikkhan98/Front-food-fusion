@@ -194,7 +194,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
 
       {/* Main Content Area */}
       <div
-        className={`flex-grow py-4 px-9 transition-all duration-300 h-full overflow-auto hidden-scroll`}
+        className={`flex-grow py-4 px-9 transition-all duration-300 h-full overflow-auto hidden-scroll me-6`}
       >
         <Navbar
           icons={OrderIcons}

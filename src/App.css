@@ -311,6 +311,10 @@ body {
   font-size: 18px;
 }
 
+.text-exs{
+  font-size: 10px;
+}
+
 /* 
   =========================
 
@@ -572,7 +576,7 @@ Home Page
   background-image: url(../src/Components/Assets/Images/background/background-img.png);
   background-position: center, center;
   background-size: contain;
-  min-height: 100vh;
+  /* min-height: 100vh; */
 }
 
 /* 
@@ -748,6 +752,9 @@ Common Box Shadow Css
 .card-box-shadow {
   box-shadow: 0px 4px 12px 1px rgba(0, 0, 0, 0.15);
 }
+.notification-modal-box{
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
 
 /* =================
 
@@ -876,6 +883,14 @@ height & Width CSS
 .invoice-card-scroll{
   height: 75vh;
 }
+.notification-modal{
+  width: 465px;
+  height: 634px;
+}
+.notification-modal-content{
+  height: 580px;
+}
+
 /* ======================
 
 Input Selector Css (Arrow)

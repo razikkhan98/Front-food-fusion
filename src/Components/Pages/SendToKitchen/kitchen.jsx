@@ -56,7 +56,7 @@ const SendToKitchen = () => {
                         <Navbar buttons={KitchenButtons} icons={KitchenIcons} pageHeading={kitchenHeading} btn_purple={"See All Invoices"} selectedTab={setCurrentTab} />
                     </div>
                     <div className="overflow-auto h-full hidden-scroll">
-                        <h2 className="text-base font-semibold mt-2">In Progress</h2>
+                        <h2 className="text-base font-medium mt-2">In Progress</h2>
                         <div
                             className={`grid grid-cols-[repeat(auto-fill,minmax(330px,330px))]`}
                         >
@@ -74,7 +74,7 @@ const SendToKitchen = () => {
                         </div>
 
 
-                        <h2 className="text-base font-semibold mt-2">Completed</h2>
+                        <h2 className="text-base font-medium mt-2">Completed</h2>
                         <div
                             className={`grid grid-cols-[repeat(auto-fill,minmax(333px,333px))]`}
                         >

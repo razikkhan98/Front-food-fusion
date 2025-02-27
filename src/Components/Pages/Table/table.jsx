@@ -59,7 +59,7 @@ const TableDataJson = [
   }
 ]
 
-const HomeIcons = [{ nav_img: magnify }, { nav_img: bell }];
+const HomeIcons = [{ nav_img: magnify,nav_imgname:"magnify" }, { nav_img: bell,nav_imgname:"bell" }];
 const HomeHeading = ["Book Table"];
 const Table = () => {
   // ========

@@ -81,7 +81,7 @@ const DropDownInput = () => {
           onFocus={() => setIsOpen(true)}
           onBlur={() => setIsOpen(false)} // Optional: You can keep the dropdown open by managing this state differently
           placeholder="Table or Order status"
-          className="bg-transparent text-gray-400 text-base font-normal placeholder-gray-400 focus:outline-none focus:ring-0 border-none ml-2 w-full"
+          className="bg-transparent  text-base font-normal placeholder-gray-400 focus:outline-none focus:ring-0 border-none ml-2 w-full"
         />
       </div>
 
