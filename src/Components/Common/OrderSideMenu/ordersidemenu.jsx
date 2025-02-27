@@ -57,7 +57,7 @@ const OrderSideMenu = () => {
               </div>
               <div className="flex justify-between text-center mt-1 text-sm">
                 <span className="text-color-gray text-sm font-medium">
-                  Order No: <span className="text-color-black">#123</span>
+                  {/* Order No: <span className="text-color-black">#123</span> */}
                 </span>
                 <div className="mx-2 text-xs font-normal bg-white px-2 py-1 rounded-lg">05:22</div>
               </div>

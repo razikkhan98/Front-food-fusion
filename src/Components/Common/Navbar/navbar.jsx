@@ -123,7 +123,7 @@ const Navbar = ({
               <div
                 key={index}
                 onClick={() => handleOpenSearchBar(index, item)} // Set focus on click
-                className={`menu-search-bar flex navbar-icon-bg-color rounded-full h-10   ${
+                className={`menu-search-bar flex navbar-icon-bg-color rounded-full h-10 ${
                   inputBar && index == 0 ? "z-10 " : "p-2 z-0"
                 }`}
               >
@@ -133,12 +133,12 @@ const Navbar = ({
                   alt={item.alt}
                 />
                 {inputBar && index == 0 ? (
-                  <div className={` bg-white relative`}>
+                  <div className={`bg-white relative w-full`}>
                     <input
                       type="text"
                       placeholder="Search for items"
                       onChange={HandleAutoSearchInp}
-                      className="w-full menu-nav-search h-10 py-2 pl-10 pr-4 z-20 relative navbar-icon-bg-color border-2 border-[--cashier-main-color] rounded-full focus:outline-none  focus:ring-[--cashier-main-color] hover:bg-[--select-section] focus-within:bg-[--select-section]  "
+                      className="menu-nav-search h-10 py-2 pl-10 pr-4 z-20 relative navbar-icon-bg-color border-2 border-[--cashier-main-color] rounded-full focus:outline-none  focus:ring-[--cashier-main-color] hover:bg-[--select-section] focus-within:bg-[--select-section]  "
                     />
                     <AutoSuggestSearch inputValue={autoSearchFillValue} />
                     <IoSearch className="absolute left-3 top-1/2 z-20 transform -translate-y-1/2 text-color-gray" />
