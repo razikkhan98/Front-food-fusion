@@ -23,7 +23,7 @@ const contactOptions = [
     {
         name: "Whatsapp",
         img: Whatsapp,
-        color: "bg-whatsapp-light-green text-whatsapp-green border-whatsapp-green",
+        color: "bg-whatsapp-light-green text-whatsapp-green-color border-whatsapp-green",
     },
     {
         name: "Gmail",
@@ -105,7 +105,7 @@ const ScheduleContactModal = ({ isOpen, closeModal }) => {
                             />
                             <button type="submit">
                                 {selectedOption === "Call" && <img src={Copy} className="h-7 w-7" alt="Loading" />}
-                                {selectedOption === "Whatsapp" && <p className="text-whatspp-green-color text-base font-medium mr-2">Send</p>}
+                                {selectedOption === "Whatsapp" && <p className="text-whatsapp-green-color text-base font-medium mr-2">Send</p>}
                                 {selectedOption === "Gmail" && <p className="text-blue-color text-base font-medium mr-2">Send</p>}
 
                             </button>

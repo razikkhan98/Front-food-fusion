@@ -305,7 +305,7 @@ const StaffData = () => {
                     {/* Table Start */}
                     <div className="mt-4 border-t rounded-xl overflow-auto h-5/6 hidden-scroll">
                         <table className="w-full border border-t-0 rounded-xl">
-                            <thead className="sticky top-0 bg-white mt-0">
+                            <thead className="sticky top-0 bg-white mt-0 z-20">
                                 <tr className="cashier-bg-table-color text-center">
                                     <th className="px-6 py-3 font-normal text-sm text-left">Employee Name</th>
                                     <th className="px-4 py-3 font-normal text-sm">Role</th>
@@ -339,7 +339,7 @@ const StaffData = () => {
 
 
                                             {visibleRow === index && (
-                                                <div className="absolute top-[100%] left-1/2 transform -translate-x-1/2 -translate-y-3 flex space-x-8 p-2 z-50">
+                                                <div className="absolute top-[100%] left-1/2 transform -translate-x-1/2 -translate-y-3 flex space-x-8 p-2 z-10">
                                                     <button className="rounded-full bg-gray-light-color border p-2 notify-chat"
                                                         onClick={() => openModal()}
                                                     >

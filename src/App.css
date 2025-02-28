@@ -236,7 +236,7 @@ body {
   color: #94d82d;
 }
 
-.text-whatspp-green-color {
+.text-whatsapp-green-color {
   color: var(--whatsapp-green-color);
 }
 
@@ -943,9 +943,10 @@ Input Selector Css (Arrow)
   }
 } */
 
-/* =================
-Staff Data
-=================== */
+/* =========================================================
+                             Staff Data
+========================================================== */
+
 .notify-bell{
   color: var(--yellow-color);
 }
@@ -966,4 +967,19 @@ Staff Data
 .notify-call:hover{
   background-color: #94D82D;
   color: white;
+}
+.dropdown-list-light-color{
+  background-color: rgba(255, 233, 213, 0.1);
+}
+.dropdown-list-color {
+  background-color: #F6F0E9;
+}
+
+/* ===============================================
+
+User Details Css
+
+=================================================*/
+.icon-bg-color{
+  background-color: rgba(234, 234, 234, 0.2);
 }
