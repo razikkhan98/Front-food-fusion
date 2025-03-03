@@ -12,6 +12,7 @@ import Navbar from "../../Common/Navbar/navbar";
 // Import Images
 import bell from "../../Assets/Images/navbar-img/bell.svg";
 import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
+import Sort from "../../Assets/Images/navbar-img/SortAscending.svg";
 import ScheduleCards from "../../Common/ScheduleCards/schedulecards";
 import ScheduleForm from "../../Common/ScheduleForm/scheduleform";
 // import Calendar from "../../Assets/icons/calendar-tick.svg";
@@ -26,7 +27,7 @@ const ScheduleButtons = [
   },
   { btn_name: "Completed", btn_color: "bg-transparent" },
 ];
-const ScheduleIcons = [{ nav_img: magnify }, { nav_img: bell }];
+const ScheduleIcons = [{ nav_img: magnify },{nav_imgname:"sort", nav_img: Sort },, { nav_img: bell }];
 const ScheduleHeading = ["Schedule Order"];
 const Schedule = () => {
   // -----------

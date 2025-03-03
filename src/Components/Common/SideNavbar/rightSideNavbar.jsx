@@ -143,7 +143,7 @@ const RightSidebar = () => {
 
           {/* Schedule Accordion Content */}
           {isOpen && (
-            <div className="h-80 overflow-auto hidden-scroll">
+            <div className="rightside-shedule-order-height overflow-auto hidden-scroll">
               {orders.map((order, index) => (
                 <div key={index}>
                   <hr className="bg-white my-0 border-white" />
