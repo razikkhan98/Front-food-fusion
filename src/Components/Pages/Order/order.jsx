@@ -178,8 +178,8 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
     setValue(
       "tableNo",
       filterInpFildFromPrevOrder[0]?.tableNo ||
-        params.tableNo ||
-        tableNoFromRedux?.tableNo
+      params.tableNo ||
+      tableNoFromRedux?.tableNo
     );
   }, []);
 
@@ -214,11 +214,10 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                 <input
                   type="text"
                   placeholder="Customer's name here"
-                  className={`w-full mt-1 text-base text-color-black font-medium px-2 py-3 border-gray-color rounded-lg  ${
-                    nameInptField
+                  className={`w-full mt-1 text-base text-color-black font-medium px-2 py-3 border-gray-color rounded-lg  ${nameInptField
                       ? ""
                       : "bg-light-color text-sm font-normal border-light-color py-3.5"
-                  } focus-visible:bg-white`}
+                    } focus-visible:bg-white`}
                   {...register("name")}
                 />
                 {errors?.customer_name && (
@@ -248,11 +247,10 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                 <input
                   type="text"
                   placeholder="Customer's contact no here"
-                  className={`w-full mt-1 px-2 text-color-black py-3 border-gray-color rounded-lg ${
-                    numberInptField
+                  className={`w-full mt-1 px-2 text-color-black py-3 border-gray-color rounded-lg ${numberInptField
                       ? ""
                       : "bg-light-color text-sm font-normal border-light-color py-3.5"
-                  } focus-visible:bg-white`}
+                    } focus-visible:bg-white`}
                   {...register("number")}
                 />
                 {errors.customer_mobile_no && (
@@ -267,11 +265,10 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                   Order Type
                 </label>
                 <select
-                  className={`custom-select w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${
-                    orderTypeInptField
+                  className={`custom-select w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${orderTypeInptField
                       ? ""
                       : "bg-light-color font-xs font-normal border-light-color"
-                  } focus-visible:bg-white`}
+                    } focus-visible:bg-white`}
                   {...register("orderType")}
                 >
                   <option value="">Select Order Type</option>
@@ -293,11 +290,10 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                 <input
                   type="email"
                   placeholder="Customer's E-mail ID here"
-                  className={`w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${
-                    emailInptField
+                  className={`w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${emailInptField
                       ? ""
                       : "bg-light-color text-sm font-normal border-light-color py-3.5"
-                  } focus-visible:bg-white`}
+                    } focus-visible:bg-white`}
                   {...register("email")}
                 />
                 {errors.customer_email && (
@@ -337,11 +333,10 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                     <input
                       type="text"
                       placeholder="Customer's Address here"
-                      className={`w-full mt-1 px-2 text-color-black py-3 border-gray-color text-base font-medium rounded-lg ${
-                        orderTypeInptField
+                      className={`w-full mt-1 px-2 text-color-black py-3 border-gray-color text-base font-medium rounded-lg ${orderTypeInptField
                           ? ""
                           : "bg-light-color font-xs font-normal border-light-color"
-                      } focus-visible:bg-white`}
+                        } focus-visible:bg-white`}
                       {...register("deliveryAddress")}
                     />
                     {/* {errors.deliveryaddress && (
@@ -360,11 +355,10 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
               {/* <Button title={"Save"}/> */}
               <NavLink to={"/previousorder"}>
                 <button
-                  className={`px-6 py-2 text-base font-medium ${
-                    nameInptField && numberInptField && orderTypeInptField
+                  className={`px-6 py-2 text-base font-medium ${nameInptField && numberInptField && orderTypeInptField
                       ? "border-cashier cashier-main-text-color hover:text-white hover:bg-[--cashier-main-color]"
                       : "text-light-gray-color bg-white opacity-50 cursor-not-allowed"
-                  } rounded-full border border-gray-400`}
+                    } rounded-full border border-gray-400`}
                   disabled={
                     !(nameInptField || numberInptField || orderTypeInptField)
                   } // Disable the button if none of the fields are filled
@@ -373,11 +367,10 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                 </button>
               </NavLink>
               <button
-                className={`px-7 py-2 ${
-                  nameInptField && orderTypeInptField
+                className={`px-7 py-2 ${nameInptField && orderTypeInptField
                     ? "cashier-main-bg-color text-white"
                     : "btn-bg-gray-color text-light-gray-color cursor-not-allowed"
-                } text-white rounded-full`}
+                  } text-white rounded-full`}
                 type="submit"
               >
                 Save
@@ -389,32 +382,28 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
         {/* Add Item Section */}
         <div className="my-8 flex items-center justify-between">
           <NavLink to={"/menu"}>
-            <button className="px-10 py-3 text-sm font-medium bg-purple-btn text-white rounded-full">
+            <button className="px-10 w-44 py-3 text-sm font-medium bg-purple-btn text-white rounded-full">
               Add Item
             </button>
           </NavLink>
           <div
-            className={`${
-              isRightSidebarOpen
-                ? " transition-all duration-300 ease-in-out"
-                : " transition-all duration-300 ease-in-out"
-            } bg-white order-page-search-long relative`}
+            className={`bg-white rounded-full relative w-full ms-8`}
           >
             <input
               type="text"
               placeholder="Search for items"
               onChange={HandleAutoSearchInp}
-              className={`w-full py-2 pl-10 pr-4 z-20 relative  border-2 border-[--cashier-main-color] rounded-full focus:outline-none  focus:ring-[--cashier-main-color] ${autoSearchFillValue ? 'bg-[--select-section]' :  "navbar-icon-bg-color"} hover:bg-[--select-section] focus-within:bg-[--select-section]`}
+              className={`w-full py-2 pl-10 pr-4 z-50 relative  border-2 border-[--cashier-main-color] rounded-full focus:outline-none  focus:ring-[--cashier-main-color] ${autoSearchFillValue ? 'bg-[--select-section]' :  "navbar-icon-bg-color"} hover:bg-[--select-section] focus-within:bg-[--select-section]`}
             />
             <AutoSuggestSearch inputValue={autoSearchFillValue} />
             <IoSearch className="absolute left-3 top-1/2 z-20 transform -translate-y-1/2 text-color-gray" />
           </div>
         </div>
 
-        <div className="bg-white rounded-xl border shadow-md mt-3 h-48 hidden-scroll overflow-auto">
+        <div className="bg-white rounded-xl border shadow-md mt-3 h-56 hidden-scroll overflow-auto">
           {/* Table */}
           <table className="w-full">
-            <thead className="bg-white">
+            <thead className="bg-white sticky top-0">
               <tr className="cashier-bg-table-color text-center text-color-black rounded-t-2xl">
                 <th className="border-b rounded-ss-xl p-3 text-sm font-medium">
                   S.No.
@@ -437,26 +426,26 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
               {MenuFromRedux?.Menu?.map((item, index) => (
                 <>
                   <tr className="border-b">
-                    <td className="py-4 text-center text-sm font-normal text-[--gray-color] ">
+                    <td className="py-3 text-center text-sm font-normal text-[--gray-color] ">
                       {++index}
                     </td>
-                    <td className="py-4 text-center text-sm font-normal text-[--gray-color] ">
+                    <td className="py-3 text-center text-sm font-normal text-[--gray-color] ">
                       {item?.subcategoriesName}
                     </td>
-                    <td className="py-4 text-center text-sm font-normal text-[--gray-color] ">
+                    <td className="py-3 text-center text-sm font-normal text-[--gray-color] ">
                       {item?.addonNotes || "-"}
                     </td>
-                    <td className="py-4 text-center ">
+                    <td className="py-3 text-center ">
                       <IncrementDecrementFunctionality
                         ItemId={item?.customerID}
                         GetQuantity={GetQuantity}
                         prevCount={item?.quantity}
                       />
                     </td>
-                    <td className="py-4 text-center text-sm font-normal text-[--gray-color] ">
+                    <td className="py-3 text-center text-sm font-normal text-[--gray-color] ">
                       ₹ {item?.subcategoriesAmount}
                     </td>
-                    <td className="py-4 text-center text-sm font-normal">
+                    <td className="py-3 text-center text-sm font-normal">
                       ₹ {item?.subcategoriesAmount * item?.quantity}
                     </td>
                   </tr>
@@ -464,12 +453,12 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
               ))}
               {MenuFromRedux?.Menu?.length > 0 ? (
                 <tr>
-                  <td className="py-4 text-center"></td>
-                  <td className="py-4 text-center"></td>
-                  <td className="py-4 text-center"></td>
-                  <td className="py-4 text-center"></td>
-                  <td className="py-4 text-center">Total</td>
-                  <td className="py-4 text-center text-sm font-medium">
+                  <td className="py-3 text-center"></td>
+                  <td className="py-3 text-center"></td>
+                  <td className="py-3 text-center"></td>
+                  <td className="py-3 text-center"></td>
+                  <td className="py-3 text-center">Total</td>
+                  <td className="py-3 text-center text-sm font-medium">
                     ₹ {calculateTotalAmount() || 0}
                   </td>
                 </tr>

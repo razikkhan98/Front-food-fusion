@@ -131,7 +131,7 @@ const Navbar = ({
               <div
                 key={index}
                 onClick={() => handleOpenSearchBar(index, item)} // Set focus on click
-                className={`menu-search-bar flex navbar-icon-bg-color rounded-full h-10   ${
+                className={`menu-search-bar flex navbar-icon-bg-color rounded-full h-10 ${
                   inputBar && index == 0 ? "z-10 " : "p-2 z-0"
                 }`}
               >
@@ -141,7 +141,7 @@ const Navbar = ({
                   alt={item.alt}
                 />
                 {inputBar && index == 0 ? (
-                  <div className={` bg-white relative`}>
+                  <div className={`bg-white relative w-full`}>
                     <input
                       type="text"
                       placeholder="Search for items"

@@ -72,11 +72,11 @@ const AddOnsModal = ({ isOpen, onClose, onSubmitFunc,addOns }) => {
               <RxCross2 className="text-color-gray text-lg cursor-pointer" />
             </button>
           </div>
-          <p className="text-sm font-normal text-[--gray-color] mt-2">
+          <p className="text-sm font-normal text-[--gray-color] my-2">
             Looks like the below recommended items will be required with the
             item you have just added!!
           </p>
-          <div className="h-48 overflow-scroll hidden-scroll">
+          <div className="h-56 overflow-scroll hidden-scroll">
             {addOns?.map((item, index) => (
               <label key={index} className="flex my-6 items-center">
                 <input
@@ -90,7 +90,7 @@ const AddOnsModal = ({ isOpen, onClose, onSubmitFunc,addOns }) => {
                 </span>
                 {item.price > 0 ? (
                   <>
-                    <span className="text-[--cashier-main-color] text-sm font-normal me-3">
+                    <span className="cashier-main-text-color text-sm font-normal me-3">
                       ₹ {item.price}
                     </span>
                     <IncrementDecrementFunctionality
@@ -109,13 +109,13 @@ const AddOnsModal = ({ isOpen, onClose, onSubmitFunc,addOns }) => {
           </div>
           <hr />
           <div className="mt-4">
-            <span className="block text-[--gray-color] my-3 text-sm font-normal">
+            <span className="block text-color-gray mb-3 mt-5 text-sm font-normal">
               Additional notes (If any)
             </span>
             <textarea
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              className="w-full p-2 mt-1 focus-visible:border-0 hidden-scroll"
+              className="w-full bg-gray-light-color ps-5 text-xs font-normal p-2 mt-1 focus-visible:border-0 hidden-scroll rounded-xl resize-none"
               placeholder="Type Here"
             />
           </div>

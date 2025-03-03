@@ -171,7 +171,7 @@ function MenuDetailsCardSlider({
                 </div>
 
                 {/* Description */}
-                <p className={`text-sm font-normal ${position == "center" ? 'h-20' :'h-20'} overflow-scroll hidden-scroll text-[--gray-color] mt-3`}>
+                <p className={`text-sm font-normal ${position == "center" ? 'h-20' :'h-20'} overflow-scroll hidden-scroll text-color-gray mt-3`}>
                   A variety of delicious vegetarian pizzas made with fresh
                   ingredients, signature sauces, and cheesy
                 </p>
@@ -190,8 +190,8 @@ function MenuDetailsCardSlider({
                   <button
                     className={` ${
                       card?.status !== "Available"
-                        ? "border-2 text-[--gray-color] cursor-not-allowed"
-                        : "cashier-light-bg-color text-black"
+                        ? "border-2 text-color-gray cursor-not-allowed"
+                        : "cashier-light-bg-color text-color-black"
                     } px-5 py-1 w-20 h-8 text-sm font-normal rounded-md`}
                   >
                     ADD
@@ -209,13 +209,13 @@ function MenuDetailsCardSlider({
         className="absolute left-10 top-1/2 transform -translate-y-1/2 z-30" 
         onClick={handlePrev}
       >
-        <IoIosArrowBack className="bg-white w-10 h-10 p-2 border border-[--cashier-main-color] text-[--cashier-main-color] rounded-full text-xl hover:bg-[--cashier-main-color] hover:text-white" />
+        <IoIosArrowBack className="bg-white w-10 h-10 p-2 border-cashier cashier-main-text-color rounded-full text-xl hover:bg-[--cashier-main-color] hover:text-white" />
       </button>
       <button 
         className="absolute right-10 top-1/2 transform -translate-y-1/2 z-30" 
         onClick={handleNext}
       >
-        <IoIosArrowForward className="bg-white w-10 h-10 p-2 border border-[--cashier-main-color] text-[--cashier-main-color] rounded-full text-xl hover:bg-[--cashier-main-color] hover:text-white" />
+        <IoIosArrowForward className="bg-white w-10 h-10 p-2 border-cashier cashier-main-text-color rounded-full text-xl hover:bg-[--cashier-main-color] hover:text-white" />
       </button>
     </div>
   );

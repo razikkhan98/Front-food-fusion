@@ -236,7 +236,7 @@ body {
   color: #94d82d;
 }
 
-.text-whatspp-green-color {
+.text-whatsapp-green-color {
   color: var(--whatsapp-green-color);
 }
 
@@ -864,9 +864,9 @@ height & Width CSS
 .order-page-search-short {
   width: 573px;
 }
-.order-page-search-long {
+/* .order-page-search-long {
   width: 849px;
-}
+} */
 .width-100vw{
   width: 100vw;
 }
@@ -926,7 +926,7 @@ Input Selector Css (Arrow)
 /* =============================================================== */
 
 .menu-nav-search {
-  width: 320px;
+  width: 30vw;
 }
 
 /* @media only screen and (min-width: 1024px) and (max-width: 1280px) {
@@ -953,3 +953,44 @@ Input Selector Css (Arrow)
     width: 300px;
   }
 } */
+
+/* =========================================================
+                             Staff Data
+========================================================== */
+
+.notify-bell{
+  color: var(--yellow-color);
+}
+.notify-bell:hover{
+  background-color: var(--yellow-color);
+  color: white;
+}
+.notify-chat{
+  color: var(--blue-color);
+}
+.notify-chat:hover{
+  background-color: var(--blue-color);
+  color: white;
+}
+.notify-call {
+  color: #94D82D;
+}
+.notify-call:hover{
+  background-color: #94D82D;
+  color: white;
+}
+.dropdown-list-light-color{
+  background-color: rgba(255, 233, 213, 0.1);
+}
+.dropdown-list-color {
+  background-color: #F6F0E9;
+}
+
+/* ===============================================
+
+User Details Css
+
+=================================================*/
+.icon-bg-color{
+  background-color: rgba(234, 234, 234, 0.2);
+}

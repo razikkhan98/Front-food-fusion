@@ -16,21 +16,23 @@ import CheckCircle from "../../Assets/icons/CheckCircle.svg";
 
 // Role Json
 const contactOptions = [
-  {
-    name: "Call",
-    img: Call,
-    color: "bg-light-green text-color-green border-green-color",
-  },
-  {
-    name: "Whatsapp",
-    img: Whatsapp,
-    color: "bg-whatsapp-light-green text-whatsapp-green border-whatsapp-green",
-  },
-  {
-    name: "Gmail",
-    img: Gmail,
-    color: "bg-blue-light-color border-blue-color text-blue-color",
-  },
+    {
+        name: "Call",
+        img: Call,
+        color: "bg-light-green text-color-green border-green-color"
+
+    },
+    {
+        name: "Whatsapp",
+        img: Whatsapp,
+        color: "bg-whatsapp-light-green text-whatsapp-green-color border-whatsapp-green",
+    },
+    {
+        name: "Gmail",
+        img: Gmail,
+        color: "bg-blue-light-color border-blue-color text-blue-color",
+
+    }
 ];
 
 const optionColors = {

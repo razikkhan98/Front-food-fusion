@@ -160,7 +160,7 @@ const NotificationModal = ({ isOpen, onClose }) => {
         <div className="fixed notification-modal notification-modal-box rounded-2xl bg-white top-28 right-14 z-50 transition-all overflow-hidden duration-300 ease-in-out">
           <div className="h-36 bg-[--cashier-light-color] rounded-t-2xl py-6 px-4 mb-1">
             <div className="flex justify-between items-center">
-              <NavLink className="flex justify-center items-center bg-white h-9 w-9 rounded-full">
+              <NavLink to={"/notification"} className="flex justify-center items-center bg-white h-9 w-9 rounded-full">
                 <img
                   className="w-full h-5 text-color-gray text-lg cursor-pointer"
                   src={inLarge}
