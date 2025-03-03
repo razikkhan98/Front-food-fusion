@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // third Party Components
 import { useForm } from "react-hook-form";
 import SuccessModal from "../Modal/SuccessModal";
+import CalenderInput from "../../Common/CalenderInput/CalenderInput.jsx";
+import AlertNotifyPopup from "../AlertNotifyPopup/alertNotifyPopup.jsx";
 
+// Images
 import Tick from "../../Assets/Images/schedule-img/Success-icon.svg";
+import CheckCircle from "../../Assets/icons/CheckCircle.svg";
 
 const ScheduleForm = () => {
   // -----------
@@ -22,6 +26,8 @@ const ScheduleForm = () => {
   // -----------
   const [orderTypeInptField, setOrderTypeInptField] = useState(" ");
   const [ModalOpen, setModalOpen] = useState(false);
+  const [notifyPopup, setnotifyPopup] = useState(false);
+  const [selectedDate, setselectedDate] = useState();
 
   const nameInptField = watch("name");
   const numberInptField = watch("number");
@@ -36,7 +42,12 @@ const ScheduleForm = () => {
   // Function
   // ----------
   const onSubmit = (data) => {
-    console.log(data, "Schedule");
+    const payload = {
+      ...data,
+      selectedDate,
+    };
+    console.log(payload, "Schedule");
+    setnotifyPopup(true);
   };
 
   // Open Modal for user login function
@@ -46,6 +57,24 @@ const ScheduleForm = () => {
 
   // Close Modal for user login function
   const closeModal = () => setModalOpen(false);
+
+  // Close Notify Popup
+  // const  = () => setModalOpen(false);
+
+  // handle Date select input
+  const handleDateSelect = (date) => {
+    setselectedDate(date);
+  };
+
+  // =========
+  // useeffect
+  // =========
+
+  useEffect(() => {
+    setTimeout(() => {
+      setnotifyPopup(false);
+    }, 2000);
+  }, [notifyPopup]);
 
   return (
     <>
@@ -123,7 +152,7 @@ const ScheduleForm = () => {
           Date & Time
         </p>
         <div className="grid grid-cols-7  grid-rows-1 gap-6 border-b pb-5">
-          <div>
+          {/* <div>
             <input
               type="date"
               placeholder="select date"
@@ -134,7 +163,8 @@ const ScheduleForm = () => {
               } focus-visible:bg-white`}
               {...register("date")}
             />
-          </div>
+          </div> */}
+          <CalenderInput handleSelectedDate={handleDateSelect} />
 
           <div>
             <input
@@ -291,7 +321,7 @@ const ScheduleForm = () => {
                   >
                     <input
                       type="radio"
-                      name="orderType"
+                      name="address"
                       className="hidden peer"
                     />
                     <div className="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center peer-checked:border-[--green-color] peer-checked:bg-[--green-color]">
@@ -368,7 +398,7 @@ const ScheduleForm = () => {
                     >
                       <input
                         type="radio"
-                        name="orderType"
+                        name="payment1"
                         className="hidden peer"
                       />
                       <div className="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center peer-checked:border-[--green-color] peer-checked:bg-[--green-color]">
@@ -396,7 +426,7 @@ const ScheduleForm = () => {
                   >
                     <input
                       type="radio"
-                      name="orderType"
+                      name="payment2"
                       className="hidden peer"
                     />
                     <div className="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center peer-checked:border-[--green-color] peer-checked:bg-[--green-color]">
@@ -421,7 +451,7 @@ const ScheduleForm = () => {
             <> </>
         )} */}
           <button
-            onClick={() => openModal()}
+            // onClick={() => openModal()}
             className="px-8 py-2 bg-gray-200 text-gray-600 rounded-full mt-7"
           >
             Schedule Button
@@ -436,6 +466,12 @@ const ScheduleForm = () => {
         title={"Order Scheduled Successfully!!"}
         description={"Lorem ipsum dolor sit amet consectetur"}
         buttonTexts={["Schedule New Order", "Go to Homepage"]}
+      />
+      <AlertNotifyPopup
+        isOpen={notifyPopup}
+        text={"Number copied to clipboard"}
+        icon={CheckCircle}
+        // closeModal={closeModal}
       />
     </>
   );

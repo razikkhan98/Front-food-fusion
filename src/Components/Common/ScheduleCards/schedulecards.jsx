@@ -33,6 +33,7 @@ const ScheduleCards = ({ scheduleStatus, orderType, orderStatus }) => {
     setDeleteModalOpen(true);
   };
 
+
   // Close Modal for user login function
   const closeModal = () => {
     setModalOpen(false);
@@ -73,7 +74,7 @@ const ScheduleCards = ({ scheduleStatus, orderType, orderStatus }) => {
               <div className="flex items-center gap-1 text-light-green">
                 <span className="font-medium text-xs text-color-black">4</span>
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
+                  
                   fill="currentColor"
                   viewBox="0 0 16 16"
                   className="w-4 h-4"

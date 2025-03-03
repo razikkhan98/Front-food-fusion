@@ -18,7 +18,7 @@ const datePickerMonthNames = [
 ];
 
 const datePickerDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-const DatePicker = ({ handleSelectedDate }) => {
+const CalenderInput = ({ handleSelectedDate }) => {
   // ========
   // states
   // ========
@@ -224,4 +224,4 @@ const DatePicker = ({ handleSelectedDate }) => {
   );
 };
 
-export default DatePicker;
+export default CalenderInput;

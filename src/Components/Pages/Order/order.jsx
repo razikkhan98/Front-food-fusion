@@ -404,7 +404,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
               type="text"
               placeholder="Search for items"
               onChange={HandleAutoSearchInp}
-              className="w-full py-2 pl-10 pr-4 z-20 relative navbar-icon-bg-color border-2 border-[--cashier-main-color] rounded-full focus:outline-none  focus:ring-[--cashier-main-color] hover:bg-[--select-section] focus-within:bg-[--select-section]"
+              className={`w-full py-2 pl-10 pr-4 z-20 relative  border-2 border-[--cashier-main-color] rounded-full focus:outline-none  focus:ring-[--cashier-main-color] ${autoSearchFillValue ? 'bg-[--select-section]' :  "navbar-icon-bg-color"} hover:bg-[--select-section] focus-within:bg-[--select-section]`}
             />
             <AutoSuggestSearch inputValue={autoSearchFillValue} />
             <IoSearch className="absolute left-3 top-1/2 z-20 transform -translate-y-1/2 text-color-gray" />
@@ -485,12 +485,12 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
           {/* <Button title={" Generate Invoice"}/>
           <Button title={"Send to Kitchen"}/> */}
           <NavLink to={"/allinvoice"}>
-            <button className="px-8 py-2.5 bg-white text-light-gray-color text-base font-medium rounded-full border-light-gray">
+            <button className={`px-8 py-2.5 bg-white  text-base font-medium rounded-full ${MenuFromRedux?.Menu?.length > 0 ? 'border-cashier cashier-main-text-color': "border-light-gray text-light-gray-color"}`}>
               Generate Invoice
             </button>
           </NavLink>
           <NavLink to={"/sendtokitchen"}>
-            <button className="px-8 py-2.5 text-light-gray-color btn-bg-gray-color text-base font-medium rounded-full">
+            <button className={`px-8 py-2.5  text-base font-medium rounded-full ${MenuFromRedux?.Menu?.length > 0 ? 'cashier-main-bg-color text-white':"text-light-gray-color btn-bg-gray-color"}`}>
               Send To Kitchen
             </button>
           </NavLink>

@@ -5,6 +5,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import AutoSuggestSearch from "../AutoSuggestSearchBar/autoSuggestSearch";
 import { IoSearch } from "react-icons/io5";
 import NotificationModal from "../Modal/notificationModal";
+import NavbarSortModal from "../Modal/navSortModal";
 
 const Navbar = ({
   pageHeading = [],
@@ -21,6 +22,7 @@ const Navbar = ({
   const location = useLocation();
   const [autoSearchFillValue, setautoSearchFillValue] = useState();
   const [isOpen, setIsOpen] = useState(false);
+  const [NavSortModal, setNavSortModal] = useState(false);
   // =========
   // Functions
   // ===========
@@ -34,7 +36,10 @@ const Navbar = ({
       return setInputBar(true);
     }
     if (item?.nav_imgname == "bell") {
-      setIsOpen(!isOpen)
+      return setIsOpen(!isOpen);
+    }
+    if (item?.nav_imgname == "sort" && location?.pathname == "/schedule") {
+      return setNavSortModal(true);
     }
   };
 
@@ -47,8 +52,11 @@ const Navbar = ({
     setautoSearchFillValue(e.target.value);
   };
 
-    // Close Notification Modal function
-    const closeModal = () => setIsOpen(false);
+  // Close Notification Modal function
+  const closeModal = () => setIsOpen(false);
+
+  // Close Nav Sort Modal function
+  const closeNavSortModal = () => setNavSortModal(false);
 
   // =========
   // useEffect
@@ -138,7 +146,7 @@ const Navbar = ({
                       type="text"
                       placeholder="Search for items"
                       onChange={HandleAutoSearchInp}
-                      className="w-full menu-nav-search h-10 py-2 pl-10 pr-4 z-20 relative navbar-icon-bg-color border-2 border-[--cashier-main-color] rounded-full focus:outline-none  focus:ring-[--cashier-main-color] hover:bg-[--select-section] focus-within:bg-[--select-section]  "
+                      className={`w-full menu-nav-search h-10 py-2 pl-10 pr-4 z-20 relative  ${autoSearchFillValue ? 'bg-[--select-section]' :  "navbar-icon-bg-color"} border-2 border-[--cashier-main-color] rounded-full focus:outline-none  focus:ring-[--cashier-main-color] hover:bg-[--select-section] focus-within:bg-[--select-section] `}
                     />
                     <AutoSuggestSearch inputValue={autoSearchFillValue} />
                     <IoSearch className="absolute left-3 top-1/2 z-20 transform -translate-y-1/2 text-color-gray" />
@@ -154,13 +162,14 @@ const Navbar = ({
             {btn_purple}
           </button>
         )}
-      {/* Notification Modal popup */}
-      <NotificationModal
-        isOpen={isOpen}
-        // addOns={CurrentAddon}
-        onClose={closeModal}
-        // onSubmitFunc={HandleAddonSumbit}
-      />
+        {/* Notification Modal popup */}
+        <NotificationModal
+          isOpen={isOpen}
+          // addOns={CurrentAddon}
+          onClose={closeModal}
+          // onSubmitFunc={HandleAddonSumbit}
+        />
+        <NavbarSortModal isOpen={NavSortModal} onClose={closeNavSortModal} />
       </div>
     </div>
   );

@@ -890,6 +890,17 @@ height & Width CSS
 .notification-modal-content{
   height: 580px;
 }
+.calender-modal{
+  width: 346px;
+  height: 370px;
+}
+.notify-alert-position{
+  left: 40%;
+}
+
+.rightside-shedule-order-height{
+  height: 28vh;
+}
 
 /* ======================
 
