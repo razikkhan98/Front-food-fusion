@@ -34,12 +34,9 @@ const UserDetails = () => {
                         />
                     </div>
 
-                    {/* UserDetails Cards */}
-                    {[1, 2, 3, 4, 5, 6, 7, 8].map((i, index) => (
-                       <div className={index === 0 ? "card-box-shadow" : " "}>
+                    
                          <UserDetailaCard />
-                       </div>
-                    ))}
+                     
                 </div>
 
 
