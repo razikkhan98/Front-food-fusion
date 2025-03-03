@@ -16,6 +16,7 @@ import swiggy from "../../Assets/Images/navbar-img/swiggy.png";
 import Call from '../../Assets/Images/sidebarImg/call.svg';
 import Whatsapp from "../../Assets/Images/schedule-img/whatsapp.svg";
 import Gmail from "../../Assets/Images/schedule-img/gmail_symbol.svg";
+import Pagination from '../../Common/Pagination/pagination';
 
 // Json
 const notifications = [
@@ -147,7 +148,6 @@ const Notification = () => {
                                 {notifications?.map((i, index) => (
                                     <>
                                         <div className="p-4 border-b border-gray-200">
-                                            {/* <div className="flex"> */}
                                             <div className="flex justify-between">
                                                 <div className='flex'>
                                                     <div className="mr-3">
@@ -186,35 +186,12 @@ const Notification = () => {
                                                     </div>
                                                 </div>
                                             </div>
-
-
-                                            {/* </div> */}
                                         </div>
                                     </>
                                 ))}
                             </div>
 
-                            {/* Pagination Buttons Start */}
-
-                            <div className='flex items-center mt-7'>
-                                <div className='flex items-center justify-between mr-7'>
-                                    <p className='me-3'>Rows per page</p>
-                                    <div>
-                                        <select className="custom-select px-2 py-1 border-gray-color rounded-lg text-base font-medium focus-visible:bg-white">
-                                            {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
-                                                <option key={num} value={num}>
-                                                    {num}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                </div>
-                                <div className='flex items-center'>
-                                    <button className='px-3 py-1.5 bg-white border text-sm font-medium rounded-lg mr-3 text-light-gray-color'>Previous</button>
-                                    <button className='px-3 py-1.5 bg-white border text-sm font-medium text-color-black rounded-lg shadow-lg'>Next</button>
-
-                                </div>
-                            </div>
+                            <Pagination />
                         </>
                     ) : CurrentTab === "Online Deliveries" ? (
                         <>
@@ -270,10 +247,62 @@ const Notification = () => {
                                         </div>
                                     </>
                                 ))}
+
                             </div>
+                                <Pagination/>
                         </>
                     ) : (
-                        " "
+                        <>
+                             <div className="overflow-scroll hidden-scroll notification-modal-content">
+                                <p className='text-xl font-medium border-b py-4'>Kitchen Notifications</p>
+                                {notifications?.map((i, index) => (
+                                    <>
+                                        <div className="p-4 border-b border-gray-200">
+                                            <div className="flex justify-between">
+                                                <div className='flex'>
+                                                    <div className="mr-3">
+                                                        {/* <img
+                                                            className="w-8 h-8 rounded p-1 border"
+                                                            src={i?.icon}
+                                                            alt="Icon"
+                                                        /> */}
+                                                        <div className='w-8 h-8 border rounded bg-white'></div>
+                                                    </div>
+                                                    <div>
+                                                        <div className="text-base font-medium text-color-black">
+                                                            {i?.title}
+                                                        </div>
+                                                        <p className="text-color-gray text-xs mt-1 font-normal">
+                                                            {i?.description}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div className='flex'>
+                                                    <div className={`flex justify-evenly ${index == 2 ? "" : 'hidden'}`}>
+                                                        {contactOptions.map((option) => (
+                                                            <button
+                                                                key={option.name}
+                                                                // onClick={() => handleOptionClick(option.name)}
+                                                                className={`rounded-full px-6 mx-3 py-1 text-xs font-medium ${option.color} flex items-center justify-center`}
+                                                            >
+                                                                <img src={option.img} className='me-2 w-4 h-4' alt={option.name} />
+                                                                {option.name}
+                                                            </button>
+                                                        ))}
+                                                    </div>
+
+                                                    <div className="text-color-gray text-exs font-normal ms-8">
+                                                        {i?.time}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </>
+                                ))}
+                            </div>
+                            <Pagination/>
+
+                        </>
                     )}
 
 
