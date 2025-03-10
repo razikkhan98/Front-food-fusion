@@ -21,30 +21,34 @@ import { GoHome } from "react-icons/go";
 const CustomerDetailsCard = [
   {
     icon: "RV",
-    color: "rounded-md bg-white p-2 text-center border",
+    color: "rounded-md bg-white h-10 text-center border",
     border: "border-r",
     title: "Customer's Name",
     name: "Rahul Vijay",
+    span: " ",
   },
   {
-    icon: <IoCallOutline className="text-light-green text-xl" />,
-    color: "bg-gray-50 rounded-full flex items-center justify-center py-3",
+    icon: <IoCallOutline className="notify-call text-xl" />,
+    color: "previous-order-bg-gray rounded-full flex items-center justify-center h-7 w-7",
     border: "border-r",
     title: "Contact Number",
     name: 1234737577,
+    span: " ",
   },
   {
-    icon: <MdOutlineMailOutline className="text-blue-500 text-xl" />,
-    color: "bg-gray-50 rounded-full flex items-center justify-center py-3",
+    icon: <MdOutlineMailOutline className="text-blue-color text-xl" />,
+    color: "previous-order-bg-gray rounded-full flex items-center justify-center h-7 w-7",
     border: "border-r",
     title: "E-mail Address",
     name: "Avshd@gmail.com",
+    span: " ",
   },
   {
     icon: <GoHome className="text-xl" />,
-    color: "bg-gray-50 rounded-full flex items-center justify-center py-3",
+    color: "previous-order-bg-gray rounded-full flex items-center justify-center h-7 w-7",
     title: "Delivery Address",
     name: "132 main street Appartment 4B, Indore Madhya Pradesh, 85558",
+    span: "col-span-2"
   },
 ];
 
@@ -54,7 +58,7 @@ const PreviousIcons = [
   { nav_img: bell },
 ];
 const PreviousHeading = [
-  "Book Table", "Generate Orders"
+  "Generate Order", "Previous Orders"
 ];
 const PreviousButtons = [
   { btn_name: "All", btn_color: "bg-[--cashier-very-light-color]" },
@@ -71,7 +75,7 @@ const PreviousOrder = () => {
   // Function
   // =========
 
- 
+
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -90,27 +94,28 @@ const PreviousOrder = () => {
 
         <div className="bg-white border rounded-md py-4 px-3 my-4">
           {/* <div className="flex"> */}
-          <div className={`grid grid-cols-4 gap-1`}>
+          <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 w-full`}>
             {CustomerDetailsCard.map((items, index) => (
-              <div key={index} className={`grid grid-cols-5 gap-4 ps-2 ${items.border}`}>
-                <div>
-                  <div className={`uppercase  ${items.color}`}>
-                    {items.icon}
+              <div className={items.span}>
+                <div key={index} className={`grid grid-cols-5 gap-2 ps-2 ${items.border}`}>
+                  <div>
+                    <div className={`uppercase flex items-center justify-center  ${items.color}`}>
+                      {items.icon}
+                    </div>
                   </div>
-                </div>
-                <div className="col-span-4">
-                  <div className="text-xs text-gray-400 font-medium flex justify-between  ">{items.title}
-                    {/* Check if it's the last item */}
-                    {index === CustomerDetailsCard.length - 1 && (
-                      <div className="flex items-center bg-light-yellow rounded-md px-1 mb-2 -mt-2 py-0.5">
-                        <img src={Coin} className="h-4 w-4" alt="Loading" />
-                        <div className="text-sm font-medium ms-2 text-color-black">120 Pt</div>
-                      </div>
-                    )}
-                  </div>
-                  <div className="font-medium text-sm">
-                    {items.name}
-
+                  <div className="col-span-4">
+                    <div className="text-xs text-light-gray-color font-medium flex justify-between">{items.title}
+                      {/* Check if it's the last item */}
+                      {index === CustomerDetailsCard.length - 1 && (
+                        <div className="flex items-center bg-light-yellow rounded-md px-1 mb-2 -mt-2 py-0.5">
+                          <img src={Coin} className="h-4 w-4" alt="Loading" />
+                          <div className="text-sm font-medium ms-2 text-color-black">120 Pt</div>
+                        </div>
+                      )}
+                    </div>
+                    <div className="font-medium text-sm">
+                      {items.name}
+                    </div>
                   </div>
                 </div>
               </div>

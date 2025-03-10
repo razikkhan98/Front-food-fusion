@@ -2,7 +2,7 @@ import React from 'react'
 import ChatBot from '../../Common/ChatBot/chatbot';
 import LeftSideNavbar from '../../Common/SideNavbar/leftSideNavbar';
 import Navbar from '../../Common/Navbar/navbar';
-
+import Pagination from "../../Common/Pagination/pagination";
 
 // Import Images
 import bell from "../../Assets/Images/navbar-img/bell.svg";
@@ -25,7 +25,7 @@ const UserDetails = () => {
                 <ChatBot />
 
                 {/* Main Content Area */}
-                <div className={`flex-grow py-4 px-9 me-6 transition-all duration-300 h-full overflow-auto hidden-scroll`} >
+                <div className={`flex-grow py-4 px-9 me-6 transition-all duration-300 `} >
 
                     <div className="border-b">
                         <Navbar
@@ -35,7 +35,10 @@ const UserDetails = () => {
                     </div>
 
                     
-                         <UserDetailaCard />
+                       <div className='h-4/5 overflow-auto hidden-scroll'>
+                       <UserDetailaCard />
+                       </div>
+                         <Pagination/>
                      
                 </div>
 

@@ -1,6 +1,7 @@
 
-import React from 'react'
+import React, { useState } from 'react'
 import Button from "../Button/button";
+import GenerateInvoiceModal from '../Modal/GenerateInvoiceModal';
 
 // Role Json 
 const items = [
@@ -12,6 +13,17 @@ const items = [
 
 // const CardsColor=[""]
 const GenerateOrderCards = ({ OrderStatus }) => {
+    // ============
+    // State
+    // ============
+    const [invoiceModalOpen, setInvoiceModalOpen] = useState(false);
+
+    // ===========
+    // Function
+    // =============
+
+    const openInvoiceModal = () => setInvoiceModalOpen(true);
+    const closeInvoiceModal = () => setInvoiceModalOpen(false);
 
     // Dynamically assign text and styles
     let statusText = OrderStatus;
@@ -124,10 +136,15 @@ const GenerateOrderCards = ({ OrderStatus }) => {
 
 
                 {/* Generate invoice Button */}
-                <Button title={"Generate Invoice"} />
+                <Button title={"Generate Invoice"}   onClick={openInvoiceModal} />
             </div >
             {/* ))} */}
             {/* </div> */}
+
+            <GenerateInvoiceModal
+                isOpen={invoiceModalOpen}
+                closeModal={closeInvoiceModal}
+            />
         </>
     )
 }

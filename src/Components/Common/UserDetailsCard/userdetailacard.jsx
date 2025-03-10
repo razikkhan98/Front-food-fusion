@@ -3,12 +3,36 @@ import React from 'react'
 // Import Images
 import Point from "../../Assets/Images/previous/coin_16821589.svg";
 
-import Button from '../Button/button';
+// import Button from '../Button/button';
 import { IoCallOutline } from 'react-icons/io5';
 import { GoHome, GoMail } from 'react-icons/go';
 
 // Json
 const UserData = [
+    {
+        title: "RV",
+        name: "Rahul Vijay",
+        reward: 120,
+        contact: 123456789,
+        gmail: "demo12334@gmail.com",
+        address: "123 Main Street, Apartment 4B, Indore, Madhya Pradesh, 326023",
+    },
+    {
+        title: "RV",
+        name: "Rahul Vijay",
+        reward: 120,
+        contact: 123456789,
+        gmail: "demo12334@gmail.com",
+        address: "123 Main Street, Apartment 4B, Indore, Madhya Pradesh, 326023",
+    },
+    {
+        title: "RV",
+        name: "Rahul Vijay",
+        reward: 120,
+        contact: 123456789,
+        gmail: "demo12334@gmail.com",
+        address: "123 Main Street, Apartment 4B, Indore, Madhya Pradesh, 326023",
+    },
     {
         title: "RV",
         name: "Rahul Vijay",
@@ -64,7 +88,7 @@ const UserDetailaCard = () => {
                                     <div className="font-medium">
                                         <div className='text-base text-color-dark'>{items.name}</div>
                                         <div className='text-color-black text-xs font-normal flex'>
-                                            <img src={Point} className='h-4 w-4' alt="Loading" />
+                                            <img src={Point} className='h-4 w-4 me-2' alt="Loading" />
                                             {items.reward} Reward Points </div>
                                     </div>
                                 </div>
