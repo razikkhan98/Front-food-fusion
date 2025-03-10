@@ -90,11 +90,10 @@ const ScheduleForm = () => {
             <input
               type="text"
               placeholder="Customer's name here"
-              className={`w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${
-                nameInptField
-                  ? ""
-                  : "bg-light-color text-sm font-normal border-light-color py-3.5"
-              } focus-visible:bg-white`}
+              className={`w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${nameInptField
+                ? ""
+                : "bg-light-color text-sm font-normal border-light-color py-3.5"
+                } focus-visible:bg-white`}
               {...register("name")}
             />
             {errors?.customer_name && (
@@ -111,11 +110,10 @@ const ScheduleForm = () => {
             <input
               type="text"
               placeholder="Customer's contact no here"
-              className={`w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${
-                numberInptField
-                  ? ""
-                  : "bg-light-color text-sm font-normal border-light-color py-3.5"
-              } focus-visible:bg-white`}
+              className={`w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${numberInptField
+                ? ""
+                : "bg-light-color text-sm font-normal border-light-color py-3.5"
+                } focus-visible:bg-white`}
               {...register("number")}
             />
             {errors.customer_mobile_no && (
@@ -128,16 +126,15 @@ const ScheduleForm = () => {
           {/* Email */}
           <div>
             <label className="text-color-black font-medium text-sm">
-              E-mail (Optional)
+              E-mail <span className="text-color-gray">(Optional)</span>
             </label>
             <input
               type="email"
               placeholder="Customer's E-mail ID here"
-              className={`w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${
-                emailInptField
-                  ? ""
-                  : "bg-light-color text-sm font-normal border-light-color py-3.5"
-              } focus-visible:bg-white`}
+              className={`w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${emailInptField
+                ? ""
+                : "bg-light-color text-sm font-normal border-light-color py-3.5"
+                } focus-visible:bg-white`}
               {...register("email")}
             />
             {errors.customer_email && (
@@ -151,7 +148,7 @@ const ScheduleForm = () => {
         <p className="my-5 text-color-gray text-base font-medium">
           Date & Time
         </p>
-        <div className="grid grid-cols-7  grid-rows-1 gap-6 border-b pb-5">
+        <div className="flex border-b pb-5">
           {/* <div>
             <input
               type="date"
@@ -164,17 +161,18 @@ const ScheduleForm = () => {
               {...register("date")}
             />
           </div> */}
-          <CalenderInput handleSelectedDate={handleDateSelect} />
+          <div>
+            <CalenderInput handleSelectedDate={handleDateSelect} />
+          </div>
 
           <div>
             <input
               type="time"
               // placeholder=""
-              className={`w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${
-                timeInptField
-                  ? ""
-                  : "bg-light-color text-sm font-normal border-light-color py-3.5"
-              } focus-visible:bg-white`}
+              className={`w-40 ms-8 mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${timeInptField
+                ? ""
+                : "bg-light-color text-sm font-normal border-light-color py-3.5"
+                } focus-visible:bg-white`}
               {...register("time")}
             />
           </div>
@@ -209,15 +207,17 @@ const ScheduleForm = () => {
         {/* Table No if Dine In */}
         {orderTypeInptField === "Dine In" || orderTypeInptField === "" ? (
           <div>
+            <p className="my-5 text-color-gray text-base font-medium">
+              Table Details
+            </p>
             <label className="text-color-black font-medium text-sm block mt-3">
               No of Members
             </label>
             <select
-              className={`w-1/7 custom-select mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${
-                memberInputField
-                  ? ""
-                  : "bg-light-color text-sm font-normal border-light-color py-3.5"
-              } focus-visible:bg-white`}
+              className={`w-1/7 custom-select mt-1 px-4 py-3 border-gray-color text-base font-medium rounded-lg ${memberInputField
+                ? ""
+                : "bg-light-color text-sm font-normal text-light-gray-color border-light-color py-3.5"
+                } focus-visible:bg-white`}
               {...register("member")}
             >
               <option value={""}>No. of Members</option>
@@ -231,17 +231,16 @@ const ScheduleForm = () => {
               <option value={"8"}>8</option>
             </select>
 
-            <div className="grid grid-cols-7 gap-2 mt-2">
-              <div>
+            <div className="flex mt-2">
+              <div className="me-3">
                 <label className="text-color-black font-medium text-sm block mt-3">
                   Ground Floor
                 </label>
                 <select
-                  className={`w-40 custom-select mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${
-                    tableInputField1
-                      ? ""
-                      : "bg-light-color text-sm font-normal border-light-color py-3.5"
-                  } focus-visible:bg-white`}
+                  className={`w-40 custom-select mt-1 px-4 py-3 border-gray-color text-base font-medium rounded-lg ${tableInputField1
+                    ? ""
+                    : "bg-light-color text-sm font-normal text-light-gray-color border-light-color py-3.5"
+                    } focus-visible:bg-white`}
                   {...register("groundfloor_tableNo")}
                 >
                   <option value={""}>Select table</option>
@@ -256,16 +255,15 @@ const ScheduleForm = () => {
                 </select>
               </div>
 
-              <div>
+              <div className="mx-3">
                 <label className="text-color-black font-medium text-sm block mt-3">
                   First Floor
                 </label>
                 <select
-                  className={`w-40 custom-select mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${
-                    tableInputField2
-                      ? ""
-                      : "bg-light-color text-sm font-normal border-light-color py-3.5"
-                  } focus-visible:bg-white`}
+                  className={`w-40 custom-select mt-1 px-4 py-3 border-gray-color text-base font-medium rounded-lg ${tableInputField2
+                    ? ""
+                    : "bg-light-color text-sm text-light-gray-color font-normal border-light-color py-3.5"
+                    } focus-visible:bg-white`}
                   {...register("firstfloor_tableNo")}
                 >
                   <option value={""}>Select table</option>
@@ -280,16 +278,15 @@ const ScheduleForm = () => {
                 </select>
               </div>
 
-              <div>
+              <div className="ms-3">
                 <label className="text-color-black font-medium text-sm block mt-3">
                   Second Floor
                 </label>
                 <select
-                  className={`w-40 custom-select mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${
-                    tableInputField3
-                      ? ""
-                      : "bg-light-color text-sm font-normal border-light-color py-3.5"
-                  } focus-visible:bg-white`}
+                  className={`w-40 custom-select mt-1 px-4 py-3 border-gray-color text-base font-medium rounded-lg ${tableInputField3
+                    ? ""
+                    : "bg-light-color text-sm font-normal text-light-gray-color border-light-color py-3.5"
+                    } focus-visible:bg-white`}
                   {...register("secondfloor_tableNo")}
                 >
                   <option value={""}>Select table</option>
@@ -327,11 +324,11 @@ const ScheduleForm = () => {
                     <div className="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center peer-checked:border-[--green-color] peer-checked:bg-[--green-color]">
                       <div className="w-4 h-4 rounded-full border-2 border-gray-50 peer-checked:bg-[--green-color]"></div>
                     </div>
-                    <span className="text-gray-700">{option}</span>
+                    <span className="text-color-black text-base font-normal">{option}</span>
                   </label>
                 ))}
               </div>
-
+              {/* 
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5 gap-4 py-5">
                 <div className="inline">
                   <label className="text-color-black font-medium text-sm">
@@ -383,7 +380,50 @@ const ScheduleForm = () => {
                     className={`mt-1 p-2 border rounded-lg focus-visible:bg-white`}
                   />
                 </div>
+              </div> */}
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 gap-4 py-5">
+                <div className="flex flex-col">
+                  <label className="text-color-black font-medium text-sm">
+                    House/Flat No.
+                  </label>
+                  <input
+                    type="text"
+                    className="mt-1 p-2 border rounded-lg focus-visible:bg-white"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-color-black font-medium text-sm">
+                    Apartment/Road/Area
+                  </label>
+                  <input
+                    type="text"
+                    className="mt-1 p-2 border rounded-lg focus-visible:bg-white"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-color-black font-medium text-sm">Pincode</label>
+                  <input
+                    type="text"
+                    className="mt-1 p-2 border rounded-lg focus-visible:bg-white"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-color-black font-medium text-sm">City</label>
+                  <input
+                    type="text"
+                    className="mt-1 p-2 border rounded-lg focus-visible:bg-white"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-color-black font-medium text-sm">State</label>
+                  <input
+                    type="text"
+                    className="mt-1 p-2 border rounded-lg focus-visible:bg-white"
+                  />
+                </div>
               </div>
+
 
               <div className="border-t">
                 <p className="my-3 text-color-gray text-base font-medium">
@@ -404,7 +444,7 @@ const ScheduleForm = () => {
                       <div className="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center peer-checked:border-[--green-color] peer-checked:bg-[--green-color]">
                         <div className="w-4 h-4 rounded-full border-2 border-gray-50 peer-checked:bg-[--green-color]"></div>
                       </div>
-                      <span className="text-gray-700">{option}</span>
+                      <span className="text-color-black text-base font-normal">{option}</span>
                     </label>
                   ))}
                 </div>
@@ -432,7 +472,7 @@ const ScheduleForm = () => {
                     <div className="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center peer-checked:border-[--green-color] peer-checked:bg-[--green-color]">
                       <div className="w-4 h-4 rounded-full border-2 border-gray-50 peer-checked:bg-[--green-color]"></div>
                     </div>
-                    <span className="text-gray-700">{option}</span>
+                    <span className="text-color-black text-base font-normal">{option}</span>
                   </label>
                 ))}
               </div>
@@ -471,7 +511,7 @@ const ScheduleForm = () => {
         isOpen={notifyPopup}
         text={"Number copied to clipboard"}
         icon={CheckCircle}
-        // closeModal={closeModal}
+      // closeModal={closeModal}
       />
     </>
   );

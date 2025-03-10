@@ -340,15 +340,15 @@ const StaffData = () => {
 
                                             {visibleRow === index && (
                                                 <div className="absolute top-[100%] left-1/2 transform -translate-x-1/2 -translate-y-3 flex space-x-8 p-2 z-10">
-                                                    <button className="rounded-full bg-gray-light-color border p-2 notify-chat"
+                                                    <button className="rounded-full bg-gray-light-color border h-10 w-10 flex items-center justify-center notify-chat"
                                                         onClick={() => openModal()}
                                                     >
                                                         <PiChatsBold className="text-xl cursor-pointer" />
                                                     </button>
-                                                    <div className="rounded-full bg-gray-light-color p-2 border notify-bell">
+                                                    <div className="rounded-full bg-gray-light-color h-10 w-10  flex items-center justify-center border notify-bell">
                                                         <HiOutlineBellAlert className="text-xl cursor-pointer" />
                                                     </div>
-                                                    <div className="rounded-full bg-gray-light-color p-2 border notify-call">
+                                                    <div className="rounded-full bg-gray-light-color h-10 w-10  flex items-center justify-center border notify-call">
                                                         <BsTelephone className="text-xl cursor-pointer" />
                                                     </div>
 

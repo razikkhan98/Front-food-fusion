@@ -11,14 +11,12 @@
 
 @font-face {
   font-family: Montserrat Alternates;
-  src: url("../src/Components/Assets/fonts/MontserratAlternates-Regular.ttf")
-    format("truetype");
+  src: url("../src/Components/Assets/fonts/MontserratAlternates-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: poppins;
-  src: url("../src/Components/Assets/fonts/Poppins-Regular.ttf")
-    format("truetype");
+  src: url("../src/Components/Assets/fonts/Poppins-Regular.ttf") format("truetype");
 }
 
 body {
@@ -178,14 +176,21 @@ body {
 .navbar-icon-bg-color {
   background-color: rgba(215, 149, 85, 0.1);
 }
-.note-bg-color{
+
+.note-bg-color {
   background-color: #F7F7F7;
 }
-.bg-light-status-orage-color{
+
+.bg-light-status-orage-color {
   background-color: rgba(218, 106, 47, 0.05);
 }
-.orderside-menu-status{
+
+.orderside-menu-status {
   background-color: rgba(255, 233, 213, 0.5);
+}
+
+.previous-order-bg-gray {
+  background-color: rgba(234, 234, 234, 0.2);
 }
 
 /* 
@@ -243,7 +248,8 @@ body {
 .text-blue-color {
   color: var(--blue-color);
 }
-.text-yellow-color{
+
+.text-yellow-color {
   color: var(--yellow-color);
 }
 
@@ -311,7 +317,7 @@ body {
   font-size: 18px;
 }
 
-.text-exs{
+.text-exs {
   font-size: 10px;
 }
 
@@ -665,7 +671,8 @@ Home Page
   transform: translate(0px);
   transition: opacity 0.5s ease-out;
   height: 75% !important;
-  overflow: hidden !important;;
+  overflow: hidden !important;
+  ;
 }
 
 .menu-category-slider .slick-slide {
@@ -752,7 +759,8 @@ Common Box Shadow Css
 .card-box-shadow {
   box-shadow: 0px 4px 12px 1px rgba(0, 0, 0, 0.15);
 }
-.notification-modal-box{
+
+.notification-modal-box {
   box-shadow: 0px 4px 4px 0px #00000040;
 }
 
@@ -797,6 +805,7 @@ height & Width CSS
 
 .schedule-contact-modal {
   width: 427px;
+  height: 227px;
 }
 
 .Success-modal {
@@ -839,6 +848,7 @@ height & Width CSS
 .rightside-panel {
   width: 360px;
 }
+
 .table-card {
   width: 144px;
   height: 150px;
@@ -853,53 +863,70 @@ height & Width CSS
   width: 108.24px;
   height: 108.24px;
 }
+
 .user-box {
   height: 120px;
   width: 120px;
 }
+
 .menu-item-img {
   height: 70px;
   width: 86px;
 }
+
 .order-page-search-short {
   width: 573px;
 }
+
 /* .order-page-search-long {
   width: 849px;
 } */
-.width-100vw{
+.width-100vw {
   width: 100vw;
 }
-.auto-suggest{
+
+.auto-suggest {
   height: 280px;
 }
-.menudetailSliderimg{
+
+.menudetailSliderimg {
   height: 182px;
 }
-.orderside-menu{
+
+.orderside-menu {
   width: 330px;
   /* height: 931px; */
 }
-.invoice-card-scroll{
+
+.invoice-card-scroll {
   height: 75vh;
 }
-.notification-modal{
+
+.notification-modal {
   width: 465px;
   height: 634px;
 }
-.notification-modal-content{
+
+.notification-modal-content {
   height: 580px;
 }
-.calender-modal{
+
+.calender-modal {
   width: 346px;
   height: 370px;
 }
-.notify-alert-position{
+
+.notify-alert-position {
   left: 40%;
 }
 
-.rightside-shedule-order-height{
+.rightside-shedule-order-height {
   height: 28vh;
+}
+
+.invoice-modal {
+  width: 438px;
+  height: 482px;
 }
 
 /* ======================
@@ -908,14 +935,17 @@ Input Selector Css (Arrow)
 
 ======================== */
 .custom-select {
-  appearance: none; /* Default arrow hide */
+  appearance: none;
+  /* Default arrow hide */
   -webkit-appearance: none;
   -moz-appearance: none;
   background-image: url("././Components//Assets/Images/schedule-img/down-arrow.svg");
   background-repeat: no-repeat;
   background-position: right 10px center;
-  background-size: 15px; /* Arrow ka size */
-  padding-right: 35px; /* Arrow aur text ke beech gap */
+  background-size: 15px;
+  /* Arrow ka size */
+  padding-right: 35px;
+  /* Arrow aur text ke beech gap */
 }
 
 
@@ -958,30 +988,37 @@ Input Selector Css (Arrow)
                              Staff Data
 ========================================================== */
 
-.notify-bell{
+.notify-bell {
   color: var(--yellow-color);
 }
-.notify-bell:hover{
+
+.notify-bell:hover {
   background-color: var(--yellow-color);
   color: white;
 }
-.notify-chat{
+
+.notify-chat {
   color: var(--blue-color);
 }
-.notify-chat:hover{
+
+.notify-chat:hover {
   background-color: var(--blue-color);
   color: white;
 }
+
 .notify-call {
   color: #94D82D;
 }
-.notify-call:hover{
+
+.notify-call:hover {
   background-color: #94D82D;
   color: white;
 }
-.dropdown-list-light-color{
+
+.dropdown-list-light-color {
   background-color: rgba(255, 233, 213, 0.1);
 }
+
 .dropdown-list-color {
   background-color: #F6F0E9;
 }
@@ -991,6 +1028,6 @@ Input Selector Css (Arrow)
 User Details Css
 
 =================================================*/
-.icon-bg-color{
+.icon-bg-color {
   background-color: rgba(234, 234, 234, 0.2);
 }
