@@ -15,10 +15,10 @@ import InvoiceReceipt from "../../Common/InvoiceReceipt/invoicereceipt";
 import bell from "../../Assets/Images/navbar-img/bell.svg";
 import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
 import Sort from "../../Assets/Images/navbar-img/SortAscending.svg";
+import Pagination from "../../Common/Pagination/pagination";
 
 // Json
 
-const invoices = Array.from({ length: 25 }, (_, i) => i + 1);
 const InvoiceButtons = [
     { btn_name: "All", btn_color: "bg-[--cashier-very-light-color]" },
     { btn_name: "Dine In", btn_color: "bg-transparent" },
@@ -35,8 +35,7 @@ const AllInvoice = () => {
     // ========
     // State
     // ========
-    const [currentPage, setCurrentPage] = useState(1);
-    const [rowsPerPage, setRowsPerPage] = useState(5); // Default rows per page      
+   
     const [CurrentTab, setCurrentTab] = useState();
     console.log('CurrentTab: ', CurrentTab);
 
@@ -45,19 +44,7 @@ const AllInvoice = () => {
     // Functions
     // ========
   
-    // ======== Pagination Logic ========
-    const indexOfLastInvoice = currentPage * rowsPerPage;
-    const indexOfFirstInvoice = indexOfLastInvoice - rowsPerPage;
-    const currentInvoices = invoices.slice(indexOfFirstInvoice, indexOfLastInvoice);
-    const totalPages = Math.ceil(invoices.length / rowsPerPage);
-
-    const handleNext = () => {
-        if (currentPage < totalPages) setCurrentPage(currentPage + 1);
-    };
-
-    const handlePrevious = () => {
-        if (currentPage > 1) setCurrentPage(currentPage - 1);
-    };
+    
     return (
         <>
             <div className="flex h-screen overflow-hidden">
@@ -77,7 +64,7 @@ const AllInvoice = () => {
                         >
                             <div className="overflow-auto invoice-card-scroll md:h-2/5 hidden-scroll">
                                 <h2 className="text-base font-semibold mt-2">Today</h2>
-                                {currentInvoices.map((i, index) => (
+                                {[1,2,3,4,5,6].map((i, index) => (
                                     <>
                                         <div className={index === 0 ? "card-box-shadow" : " "}>
                                             <InvoiceCards />
@@ -87,46 +74,7 @@ const AllInvoice = () => {
                             </div>
 
                             {/* Pagination Buttons Start */}
-                            <div className='flex items-center mt-4'>
-                                <div className='flex items-center justify-between mr-7'>
-                                    <p className='me-3'>Rows per page</p>
-                                    <div>
-                                        <select
-                                            className="custom-select px-2 py-1 border-gray-color rounded-lg text-base font-medium focus-visible:bg-white"
-                                            value={rowsPerPage}
-                                            onChange={(e) => {
-                                                setRowsPerPage(Number(e.target.value));
-                                                setCurrentPage(1); // Reset to first page
-                                            }}
-                                        >
-                                            {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
-                                                <option key={num} value={num}>
-                                                    {num}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                </div>
-                                {/* Pagination Buttons */}
-                                <div className="flex items-center">
-                                    <button
-                                        className={`px-3 py-1.5 bg-gray-50 border rounded-lg mr-3 text-sm font-medium ${currentPage === 1 ? "cursor-not-allowed" : ""
-                                            }`}
-                                        onClick={handlePrevious}
-                                        disabled={currentPage === 1}
-                                    >
-                                        Previous
-                                    </button>
-                                    <button
-                                        className={`px-3 py-1.5 bg-white border rounded-lg text-sm font-medium ${currentPage === totalPages ? "opacity-50 cursor-not-allowed" : ""
-                                            }`}
-                                        onClick={handleNext}
-                                        disabled={currentPage === totalPages}
-                                    >
-                                        Next
-                                    </button>
-                                </div>
-                            </div>
+                           <Pagination/>
 
                         </div>
                         <div className="col-span-2 col-start-5 mt-3">

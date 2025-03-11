@@ -50,7 +50,7 @@ const StaffDataModal = ({ isOpen, closeModal }) => {
             <Dialog
                 open={isOpen}
                 onClose={handleModalClose}
-                className="fixed inset-0 z-10 flex items-center justify-center z-30"
+                className="fixed inset-0 flex items-center justify-center z-30"
             >
                 {/* Overlay */}
                 <div className="fixed inset-0 bg-black bg-opacity-50" aria-hidden="true" onClick={handleModalClose} />

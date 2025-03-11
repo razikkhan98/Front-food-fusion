@@ -17,15 +17,15 @@ const InvoiceCards = () => {
                 </div>
                 <div class="border-t border-gray-200 mt-4 pt-4 grid grid-cols-3 gap-4 text-sm">
                     <div className="text-sm font-medium border-r">
-                        <p><span class="text-color-gray">Booking ID:</span> <span className="text-color-black">123456789</span></p>
+                        <p className="mb-2"><span class="text-color-gray">Booking ID:</span> <span className="text-color-black">123456789</span></p>
                         <p><span class="text-color-gray">Order No:</span> <span className="text-color-black">#320</span></p>
                     </div>
                     <div className="border-r text-sm font-medium">
-                        <p><span class="text-color-gray">Payment Mode:</span> <span className="text-color-black">UPI</span></p>
+                        <p className="mb-2"><span class="text-color-gray">Payment Mode:</span> <span className="text-color-black">UPI</span></p>
                         <p><span class="text-color-gray">Discount (applied if any):</span> <span className="text-color-black">No</span></p>
                     </div>
                     <div className="ps-8 text-sm font-medium">
-                        <p><span class="text-color-gray">Date:</span> <span className="text-color-black">17-12-2024</span></p>
+                        <p className="mb-2"><span class="text-color-gray">Date:</span> <span className="text-color-black">17-12-2024</span></p>
                         <p><span class="text-color-gray">Time:</span> <span className="text-color-black">13:12:00</span></p>
                     </div>
                 </div>
