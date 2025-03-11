@@ -15,6 +15,7 @@ import Navbar from "../../Common/Navbar/navbar.jsx";
 // Import Images
 import bell from "../../Assets/Images/navbar-img/bell.svg";
 import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
+import AutoOrderPopupModal from "../../Common/AutoOrderPopupModal/AutoOrderPopupModal.jsx";
 
 // Json
 const HomeIcons = [
@@ -30,14 +31,22 @@ const Home = ({ tableDetailsFromRedux }) => {
   // State
   // --------
     const [CurrentTab, setCurrentTab] = useState();
-    console.log('CurrentTab: ', CurrentTab);
+      // const [isOpen, setIsOpen] = useState(true);
+      const [modalsOpen, setModalsOpen] = useState([true, true, true]); // Each index corresponds to a modal
+
+      
+      // ---------
+      // Functions
+      // ---------
 
 
-  // ---------
-  // Functions
-  // ---------
-  
-
+      const closeModal = (index) => {
+        setModalsOpen((prev) => {
+          const newModalsOpen = [...prev];
+          newModalsOpen[index] = false; // Close the specific modal
+          return newModalsOpen;
+        });
+      };
 
   return (
     <div className="flex h-dvh overflow-hidden">
@@ -72,6 +81,19 @@ const Home = ({ tableDetailsFromRedux }) => {
         className={`transition-all duration-300 ease-in-out relative rounded-l-3xl`}
       >
         <RightSidebar />
+
+      </div>
+      <div className="auto-modal-background">
+        {/* Auto popup modal */}
+        {[1,2,3]?.map((i,index)=>
+        <AutoOrderPopupModal
+        key={index}
+          isOpen={modalsOpen[index]}
+          closeModal={() => closeModal(index)}
+          modalIndex={index}
+          modalId={i}
+        />
+        )}
       </div>
     </div>
   );

@@ -24,6 +24,7 @@ import Navbar from "../../Common/Navbar/navbar";
 import RecommendationsModal from "../../Common/Modal/AddOnsModal";
 import AddOnsModal from "../../Common/Modal/AddOnsModal";
 import ChatBot from "../../Common/ChatBot/chatbot";
+import { FiChevronRight } from "react-icons/fi";
 
 // JSON
 const MenuCard = [
@@ -201,7 +202,10 @@ const Menu = () => {
 
           <MenuSlider Noslide={isRightSidebarOpen ? 6 : 9} />
           {/* <MenuDetailsCardSlider/> */}
-          <h1 className="font-bold text-xl ms-2">Starters</h1>
+          <div className="flex items-center justify-between">
+          <h1 className="font-medium text-xl ms-2 mb-2">Starters</h1>
+    <h6 className="flex items-center text-sm font-normal text-color-gray cursor-pointer">View all detailed <FiChevronRight className="ms-1" /></h6>
+          </div>
           <div className="grid grid-cols-[repeat(auto-fill,minmax(240px,240px))]">
             {MenuCard?.map((item, index) => (
               <div key={index} className="flex justify-center items-center m-2">
@@ -209,7 +213,6 @@ const Menu = () => {
                 //  className={`card-box-shadow bg-white rounded-lg p-2 h-32 w-56 ${item?.cardBorder}`}
                 >
                   <div
-                    // className=""
                     className={`bg-white rounded-lg card-box-shadow p-2 w-56 h-32 ${item?.cardBorder}`}
                   >
                     <div className="grid grid-cols-2">

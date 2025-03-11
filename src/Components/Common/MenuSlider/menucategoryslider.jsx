@@ -193,7 +193,7 @@ function MenuSlider({ Noslide }) {
 
   return (
     <div className="slider-container">
-      <h1 className="font-bold text-lg ">Categories</h1>
+      <h1 className="font-medium text-xl mt-3 mb-4">Categories</h1>
       <div className="slider-overlay menu-category-slider">
         <Slider {...settings}>
           {items?.map((item, index) => (
@@ -212,7 +212,7 @@ function MenuSlider({ Noslide }) {
                 />{" "}
                 {/* Optionally, you can add a class to the image itself */}
               </div>
-              <div className="flex justify-between">
+              <div className="flex justify-evenly">
                 <p className="text-base font-normal">{item.label}</p>
                 <span
                   className={`menu-category-slider-title-${
@@ -231,7 +231,7 @@ function MenuSlider({ Noslide }) {
 }
 
 // Custom arrow components
-function SampleNextArrow(props) {
+function SamplePrevArrow (props) {
   const { className, style, onClick } = props;
   return (
     <button className="menu-category-prev " onClick={onClick}>
@@ -240,7 +240,7 @@ function SampleNextArrow(props) {
   );
 }
 
-function SamplePrevArrow(props) {
+function SampleNextArrow (props) {
   const { className, style, onClick } = props;
   return (
     <button className="menu-category-next z-10" onClick={onClick}>

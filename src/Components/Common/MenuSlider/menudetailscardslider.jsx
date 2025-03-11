@@ -14,6 +14,7 @@ function MenuDetailsCardSlider({
 }) {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [direction, setDirection] = useState(null);
+  const SliderHeight = window?.screen?.height
 
 
   // useEffect to set the initial index based on selectedCard
@@ -91,7 +92,7 @@ function MenuDetailsCardSlider({
 
   return (
     <div className="relative flex justify-center items-center h-screen w-full overflow-hidden">
-      <div className="relative w-full sm:max-w-lg md:max-w-lg lg:max-w-2xl xl:max-w-3xl h-2/3">
+      <div className="relative w-full sm:max-w-lg md:max-w-lg lg:max-w-2xl xl:max-w-3xl h-[50vh]">
         {SliderDataJson?.map((card, index) => {
           const position = getCardPosition(index);
           
@@ -209,13 +210,13 @@ function MenuDetailsCardSlider({
         className="absolute left-10 top-1/2 transform -translate-y-1/2 z-30" 
         onClick={handlePrev}
       >
-        <IoIosArrowBack className="bg-white w-10 h-10 p-2 border-cashier cashier-main-text-color rounded-full text-xl hover:bg-[--cashier-main-color] hover:text-white" />
+        <IoIosArrowBack className="bg-white w-14 h-14 p-2 border-cashier cashier-main-text-color rounded-full text-xl hover:bg-[--cashier-main-color] hover:text-white" />
       </button>
       <button 
         className="absolute right-10 top-1/2 transform -translate-y-1/2 z-30" 
         onClick={handleNext}
       >
-        <IoIosArrowForward className="bg-white w-10 h-10 p-2 border-cashier cashier-main-text-color rounded-full text-xl hover:bg-[--cashier-main-color] hover:text-white" />
+        <IoIosArrowForward className="bg-white w-14 h-14 p-2 border-cashier cashier-main-text-color rounded-full text-xl hover:bg-[--cashier-main-color] hover:text-white" />
       </button>
     </div>
   );
