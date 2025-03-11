@@ -14,7 +14,7 @@ function MenuDetailsCardSlider({
 }) {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [direction, setDirection] = useState(null);
-  const SliderHeight = window?.screen?.height
+  const SliderHeight = window?.screen?.height / 2
 
 
   // useEffect to set the initial index based on selectedCard
@@ -92,7 +92,7 @@ function MenuDetailsCardSlider({
 
   return (
     <div className="relative flex justify-center items-center h-screen w-full overflow-hidden">
-      <div className="relative w-full sm:max-w-lg md:max-w-lg lg:max-w-2xl xl:max-w-3xl h-[50vh]">
+      <div className={`relative w-full sm:max-w-lg md:max-w-lg lg:max-w-2xl xl:max-w-3xl`} style={{ height: `${SliderHeight}px` }}>
         {SliderDataJson?.map((card, index) => {
           const position = getCardPosition(index);
           
