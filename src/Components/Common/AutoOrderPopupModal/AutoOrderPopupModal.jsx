@@ -4,6 +4,7 @@ import { Dialog } from "@headlessui/react";
 import { useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
 // import { NavLink } from "react-router-dom";
+// import 'animate.css';
 
 // import images
 import swiggy from "../../Assets/Images/navbar-img/swiggy.png";
@@ -31,7 +32,7 @@ const AutoOrderPopupModal = ({ isOpen, closeModal, modalIndex, modalId }) => {
   // ============
 
   // Modal Array for modal width design
-  const ModalArray = [1,2,3];
+  const ModalArray = [1, 2, 3];
 
   // Close the modal and reset the form
   const handleModalClose = () => {
@@ -65,7 +66,7 @@ const AutoOrderPopupModal = ({ isOpen, closeModal, modalIndex, modalId }) => {
       <Dialog
         open={isOpen}
         onClose={handleModalClose}
-        className={`fixed inset-0 z-10 flex items-center justify-center ${
+        className={`fixed inset-0 z-10 flex items-center justify-center  ${
           modalIndex == 0 ? "auto-modal-background" : ""
         }`}
       >
@@ -78,9 +79,8 @@ const AutoOrderPopupModal = ({ isOpen, closeModal, modalIndex, modalId }) => {
 
         {/* Modal Content */}
         <div
-          className={`bg-white p-6 rounded-2xl border-light-gray-color z-20  relative mt-${
-            modalIndex * 7
-          }  mx-auto login-modal`}
+          className={`bg-white p-6 rounded-2xl border-light-gray-color z-20  relative mx-auto login-modal`}
+          style={{ marginTop: `${modalIndex * 20}px` }}
         >
           {/* Close Button */}
           <div className="flex justify-between items-center">
