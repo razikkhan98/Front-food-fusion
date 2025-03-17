@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <ToastContainer />
-      <div className="background-img">
+      <div className="background-img" style={{height:window?.screen?.height}}>
         <Provider store={store}>
           <RouteRoutes />
         </Provider>

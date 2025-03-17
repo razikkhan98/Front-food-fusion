@@ -55,7 +55,7 @@ const UserLoginModal = ({ isOpen, closeModal, selectedUser, onSubmit }) => {
       />
 
       {/* Modal Content */}
-      <div className="bg-white p-6 rounded-2xl shadow-lg z-20 w-[540px] h-[440px]">
+      <div className="bg-white p-6 rounded-2xl shadow-lg z-20 login-modal">
         {/* Close Button */}
         <div className="flex justify-end">
           <button
@@ -68,7 +68,7 @@ const UserLoginModal = ({ isOpen, closeModal, selectedUser, onSubmit }) => {
 
         {/* User Image */}
         <div
-          className={`h-[108px] w-[108px] shadow-xl text-center m-auto rounded-full ${selectedUser?.bgClass}`}
+          className={`user-img shadow-xl text-center m-auto rounded-full ${selectedUser?.bgClass}`}
         >
           <img
             src={selectedUser?.image}
@@ -89,14 +89,14 @@ const UserLoginModal = ({ isOpen, closeModal, selectedUser, onSubmit }) => {
 
           <div className="relative">
             <input
-              className={`${selectedUser?.bgClass} opacity-60 w-[452px] rounded-full mt-4 border-0 py-3 text-center tracking-widest font-normal text-2xl text-color-black`}
+              className={`${selectedUser?.bgClass} opacity-60 rounded-full mt-4 border-0 py-3 text-center tracking-widest font-normal text-2xl text-color-black`}
               type="text"
               id="code"
               {...register("code", { required: "Code is required" })}
             />
             {/* Arrow Button */}
             {/* <NavLink to={"/home"}> */}
-            <button type="submit" className={`absolute right-7 top-2/3 transform -translate-y-2/3 rounded-full bg-gray-100 p-1.5 text-gray-600 ${errors.code ? "top-[50px]" : ""}`}>
+            <button type="submit" className={`absolute right-7 top-[50px] transform -translate-y-2/3 rounded-full bg-white p-1.5 text-gray-600 ${errors.code ? "top-[50px]" : ""}`}>
               <svg
                 fill="none"
                 viewBox="0 0 24 24"

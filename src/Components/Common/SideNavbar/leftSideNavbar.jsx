@@ -44,7 +44,7 @@ const navItems = [
     iconHover: Setting_light,
     label: "Settings",
   },
-  { to: "/logout", icon: Logout, iconHover: Logout_light, label: "Logout" },
+  { to: "/", icon: Logout, iconHover: Logout_light, label: "Logout" },
 ];
 const LeftSideNavbar = () => {
   // States
@@ -58,8 +58,8 @@ const LeftSideNavbar = () => {
 
   return (
     <div>
-      <div className="lg:w-[275px] md:w-40 bg-white flex-none h-screen rounded-r-3xl shadow-[rgba(0,0,0,0.15)_1.95px_1.95px_2.6px]">
-        <div className="flex pt-10 justify-center items-center">
+      <div className="leftside-panel ps-5 md:w-40 bg-white flex-none h-screen rounded-r-3xl shadow-[rgba(0,0,0,0.15)_1.95px_1.95px_2.6px]">
+        <div className="flex pt-6 justify-center items-center">
           <img src={logo} className="h-8 w-8" alt="Loading" />
           <h1 className="lg:text-xl md:text-base mx-2 right-sidebar-dropshadow montserrat-alternates-semibold cashier-main-text-color">
             FOOD FUSION
@@ -72,9 +72,9 @@ const LeftSideNavbar = () => {
           <h5 className="text-sm font-medium mt-2">Admin Panel</h5>
           <h6 className="text-sm font-normal ">Cashier</h6>
         </div>
-        <ul className="my-3">
+        <ul className="my-3 h-2/3 overflow-scroll hidden-scroll">
           {navItems.map((item, index) => (
-            <NavLink key={index} to={item?.to}>
+            <NavLink className="grid justify-center" key={index} to={item?.to}>
               <li
                 onMouseOver={() => setHoveredItem(item?.label)}
                 onMouseOut={() => setHoveredItem(null)}
@@ -82,7 +82,7 @@ const LeftSideNavbar = () => {
                   item?.to == Location?.pathname
                     ? "sidebar-li-active bg-[--cashier-main-color] text-white rounded-full"
                     : ""
-                } sidebar-li  items-center lg:text-base md:text-xs font-medium hover:bg-[--cashier-main-color] hover:text-white hover:rounded-full lg:mx-10 md:mx-6 text-center my-4`}
+                } sidebar-li items-center lg:text-base md:text-xs font-medium hover:bg-[--cashier-main-color] hover:text-white hover:rounded-full  text-center my-[14px]`}
               >
                 <CircleIcons
                   icon={

@@ -1,194 +1,227 @@
-// import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from "react";
+import calender from "../../Assets/icons/calendar.svg";
 
-// const Slider = () => {
-//   const [currentIndex, setCurrentIndex] = useState(1); // Start at the center (1)
-//   const sliderRef = useRef(null);
+// Json
+const datePickerMonthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
-//   const slides = [
-//     { id: 0, content: 'Slide 1', backgroundColor: 'bg-blue-200' },
-//     { id: 1, content: 'Slide 2', backgroundColor: 'bg-green-200' },
-//     { id: 2, content: 'Slide red', backgroundColor: 'bg-red-200' },
-//   ];
+const datePickerDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const DatePicker = ({ handleSelectedDate }) => {
+  // ========
+  // states
+  // ========
+  const [datePickerOpen, setDatePickerOpen] = useState(false);
+  const [datePickerValue, setDatePickerValue] = useState("00/00/00");
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [datePickerDaysInMonth, setDatePickerDaysInMonth] = useState([]);
+  const [datePickerBlankDaysInMonth, setDatePickerBlankDaysInMonth] = useState(
+    []
+  );
+  const [datePickerDay, setDatePickerDay] = useState(currentDate.getDate());
 
-//   const goToPrevious = () => {
-//     setCurrentIndex((prevIndex) => (prevIndex === 0 ? slides.length - 1 : prevIndex - 1));
-//   };
+  const inputRef = useRef(null);
 
-//   const goToNext = () => {
-//     setCurrentIndex((prevIndex) => (prevIndex === slides.length - 1 ? 0 : prevIndex + 1));
-//   };
+  // ===========
+  //   Functions
+  // ===========
 
-//   useEffect(() => {
-//     if (sliderRef.current) {
-//       sliderRef.current.style.transition = 'transform 0.5s ease-in-out'; // Add smooth transition
-//       sliderRef.current.style.transform = `translateX(-${currentIndex * (100 / slides.length)}%)`;
-//     }
-//     //Optional: set automatic sliding
-
-//     const intervalId = setInterval(() => {
-//         goToNext();
-//     }, 50000000)
-
-//     return () => clearInterval(intervalId); //Clean up interval on unmount.
-//   }, [currentIndex, slides.length]);
-
-
-
-//   return (
-//     <div className="relative w-full overflow-hidden">
-//       <div className="flex transition-transform duration-500 ease-in-out"
-//            style={{ width: `${slides.length * 100}%` }}
-//            ref={sliderRef}>
-//         {slides.map((slide, index) => (
-//           <div key={slide.id}
-//                className={`w-1/3 flex-shrink-0 flex items-center justify-center h-64 text-2xl font-bold ${slide.backgroundColor} ${index === currentIndex ? 'scale-125' : 'scale-100'} transition-transform duration-300 z-10`}>
-//             {slide.content}
-//           </div>
-//         ))}
-//       </div>
-
-//       <button
-//         className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-20"
-//         onClick={goToPrevious}
-//       >
-//         &#8249;
-//       </button>
-//       <button
-//         className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-20"
-//         onClick={goToNext}
-//       >
-//         &#8250;
-//       </button>
-//     </div>
-//   );
-// };
-
-// export default Slider;
-
-
-import React, { useState, useEffect } from 'react';
-
-// Card Slider Component
-const Slider = () => {
-  // Sample card data
-  const cards = [
-    {
-      id: 1,
-      title: 'Card 1',
-      description: 'Description for Card 1',
-      image: 'https://via.placeholder.com/300x200'
-    },
-    {
-      id: 2,
-      title: 'Card 2',
-      description: 'Description for Card 2',
-      image: 'https://via.placeholder.com/300x200'
-    },
-    {
-      id: 3,
-      title: 'Card 3',
-      description: 'Description for Card 3',
-      image: 'https://via.placeholder.com/300x200'
-    },
-    {
-      id: 4,
-      title: 'Card 4',
-      description: 'Description for Card 4',
-      image: 'https://via.placeholder.com/300x200'
-    },
-    {
-      id: 5,
-      title: 'Card 5',
-      description: 'Description for Card 5',
-      image: 'https://via.placeholder.com/300x200'
-    }
-  ];
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  // Handle slide to next card
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => 
-      (prevIndex + 1) % cards.length
+  const datePickerFormatDate = (date) => {
+    const formattedDate = ("0" + date.getDate()).slice(-2);
+    const formattedMonth = datePickerMonthNames[date.getMonth()].substring(
+      0,
+      3
     );
+    const formattedYear = date.getFullYear();
+    return `${formattedMonth} ${formattedDate}, ${formattedYear}`;
   };
 
-  // Handle slide to previous card
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? cards.length - 1 : prevIndex - 1
+  const datePickerCalculateDays = (year, month) => {
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const firstDayOfWeek = new Date(year, month, 1).getDay();
+
+    const blankDaysArray = Array.from(
+      { length: firstDayOfWeek },
+      (_, i) => i + 1
     );
+    const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+
+    return { blankDaysArray, daysArray };
   };
 
-  // Render individual card
-  const renderCard = (card, index) => {
-    // Calculate position relative to current index
-    const offset = index - currentIndex;
-    
-    // Determine card styles based on position
-    const getCardStyles = () => {
-      switch(offset) {
-        case -1:
-          return ' scale-75 w-[20rem] right-20 -translate-x-20 z-10';
-        case 0:
-          return 'opacity-100 w-[25rem] scale-100 z-20 shadow-2xl';
-        case 1:
-          return ' scale-75 w-[20rem] left-20 translate-x-20 z-10';
-        default:
-          return 'opacity-0 scale-50 z-0';
-      }
-    };
-
-    return (
-      <div 
-        key={card.id}
-        className={`
-          absolute 
-          transition-all 
-          duration-500 
-          ease-in-out 
-          
-          ${getCardStyles()}
-        `}
-      >
-        <div className="bg-white rounded-lg overflow-hidden shadow-md">
-          <img 
-            src={card.image} 
-            alt={card.title} 
-            className="w-full h-48 object-cover"
-          />
-          <div className="p-4">
-            <h3 className="text-xl font-bold mb-2">{card.title}</h3>
-            <p className="text-gray-600">{card.description}</p>
-          </div>
-        </div>
-      </div>
+  const datePickerDayClicked = (day) => {
+    const selectedDate = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      day
     );
+    setDatePickerDay(day);
+    setDatePickerValue(datePickerFormatDate(selectedDate));
+    setDatePickerOpen(false);
   };
+
+  const changeMonth = (increment) => {
+    const newMonth = currentDate.getMonth() + increment;
+    const newYear =
+      newMonth < 0
+        ? currentDate.getFullYear() - 1
+        : newMonth > 11
+        ? currentDate.getFullYear() + 1
+        : currentDate.getFullYear();
+
+    setCurrentDate(new Date(newYear, (newMonth + 12) % 12, 1)); // Reset day to 1 to recalculate correct days
+  };
+
+  // ===========
+  //   useeffect
+  // ===========
+
+  useEffect(() => {
+    const { blankDaysArray, daysArray } = datePickerCalculateDays(
+      currentDate.getFullYear(),
+      currentDate.getMonth()
+    );
+    setDatePickerBlankDaysInMonth(blankDaysArray);
+    setDatePickerDaysInMonth(daysArray);
+    // setDatePickerValue(datePickerFormatDate(currentDate));
+  }, [currentDate]);
+
+  useEffect(() => {
+    handleSelectedDate(datePickerValue);
+  }, [datePickerValue]);
 
   return (
-    <div className="relative w-full h-screen flex items-center justify-center">
-      {/* Navigation Buttons */}
-      <button 
-        onClick={prevSlide}
-        className="absolute left-10 z-30 bg-blue-500 text-white p-2 rounded-full"
-      >
-        ←
-      </button>
-      
-      <button 
-        onClick={nextSlide}
-        className="absolute right-10 z-30 bg-blue-500 text-white p-2 rounded-full"
-      >
-        →
-      </button>
-
-      {/* Card Container */}
-      <div className="relative  h-96 flex items-center justify-center">
-        {cards.map((card, index) => renderCard(card, index))}
+    <div className="">
+      <div className="relative w-40">
+        <input
+          ref={inputRef}
+          type="text"
+          onClick={() => setDatePickerOpen(!datePickerOpen)}
+          value={
+            datePickerValue !== "00/00/00"
+              ? new Date(datePickerValue)?.toLocaleDateString("en-GB")
+              : datePickerValue
+          }
+          className={`w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${
+            datePickerValue !== "00/00/00"
+              ? ""
+              :
+            "bg-light-color text-sm font-medium border-light-color py-3.5"
+          } focus-visible:bg-white`}
+          placeholder="Select date"
+          readOnly
+        />
+        <div
+          onClick={() => setDatePickerOpen(!datePickerOpen)}
+          className="absolute top-4 right-4 cursor-pointer"
+        >
+          <img src={calender} alt="" />
+        </div>
+        {datePickerOpen && (
+          <div className="absolute top-0 left-0 max-w-lg p-4 mt-12 bg-white rounded-xl shadow-md card-box-shadow calender-modal">
+            <div className="flex items-center justify-between mb-5">
+              <div>
+                <span className="text-sm font-medium">
+                  {datePickerMonthNames[currentDate.getMonth()]}
+                </span>
+                <span className="ml-2 text-2xl font-medium">
+                  {currentDate.getFullYear()}
+                </span>
+              </div>
+              <div>
+                <button
+                  onClick={() => changeMonth(-1)}
+                  type="button"
+                  className="p-1 transition duration-100 ease-in-out rounded-full hover:bg-gray-100"
+                >
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 19l-7-7 7-7"
+                    />
+                  </svg>
+                </button>
+                <button
+                  onClick={() => changeMonth(1)}
+                  type="button"
+                  className="p-1 transition duration-100 ease-in-out rounded-full hover:bg-gray-100"
+                >
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div className="grid grid-cols-7 mb-3">
+              {datePickerDays.map((day, index) => (
+                <div key={index} className="px-0.5">
+                  <div className="text-xs font-medium text-center text-gray-800">
+                    {day}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="grid grid-cols-7">
+              {datePickerBlankDaysInMonth.map((_, index) => (
+                <div
+                  key={index}
+                  className="p-1 text-sm text-center border border-transparent"
+                ></div>
+              ))}
+              {datePickerDaysInMonth.map((day, dayIndex) => (
+                <div key={dayIndex} className="px-0.5 mb-1 aspect-square">
+                  <div
+                    onClick={() => datePickerDayClicked(day)}
+                    className={`flex items-center justify-center text-sm font-medium leading-none text-center cursor-pointer h-7 w-7 
+                                            ${
+                                              datePickerDay === day
+                                                ? "bg-neutral-800 text-white"
+                                                : "hover:bg-neutral-200"
+                                            } ${
+                      datePickerDay === day
+                        ? "bg-neutral-800 text-white"
+                        : "text-gray-600"
+                    }
+                                        `}
+                  >
+                    {day}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
-export default Slider;
+export default DatePicker;

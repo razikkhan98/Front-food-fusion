@@ -113,13 +113,13 @@ const UserLogin = () => {
 
   return (
     <>
-    <section>
-      <div className="h-screen flex justify-center items-center">
-        <div className="grid grid-cols-1 grid-rows-4 gap-1">
+    {/* <section> */}
+      <div className=" flex justify-center items-center" style={{height:window?.screen?.height}}>
+        <div className="grid grid-cols-1 grid-rows-6 gap-1">
           {/* Logo & Title */}
-          <div className="row-span-2 flex justify-center items-center my-32">
+          <div className="row-span-2 flex justify-center items-center mb-32">
             <img
-              className="w-[108.24px] h-[108.24px] inline me-5"
+              className="logo inline me-5"
               src={Logo}
               alt="Food Fusion Logo"
             />
@@ -134,10 +134,10 @@ const UserLogin = () => {
               <span
                 key={user.name}
                 onClick={() => openModal(user)}
-                className="mx-10 cursor-pointer font-medium text-3xl transform transition-transform duration-300 hover:scale-125"
+                className="mx-10 cursor-pointer font-medium text-3xl transform ease-in-out transation-transform duration-100 hover:scale-150"
               >
                 <div
-                  className={`h-[120px] w-[120px] flex justify-center items-center ${user.bgClass} rounded-[16px] mb-3`}
+                  className={`user-box flex justify-center items-center ${user.bgClass} rounded-[16px] mb-3`}
                 >
                   <img
                     className="w-20 m-auto p-2"
@@ -165,7 +165,7 @@ const UserLogin = () => {
           onSubmit={onSubmit}
         />
       )}
-      </section>
+      {/* </section> */}
     </>
   );
 };

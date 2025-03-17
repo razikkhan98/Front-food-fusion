@@ -1,6 +1,7 @@
 
-import React from 'react'
+import React, { useState } from 'react'
 import Button from "../Button/button";
+import GenerateInvoiceModal from '../Modal/GenerateInvoiceModal';
 
 // Role Json 
 const items = [
@@ -12,15 +13,60 @@ const items = [
 
 // const CardsColor=[""]
 const GenerateOrderCards = ({ OrderStatus }) => {
+    // ============
+    // State
+    // ============
+    const [invoiceModalOpen, setInvoiceModalOpen] = useState(false);
+
+    // ===========
+    // Function
+    // =============
+
+    const openInvoiceModal = () => setInvoiceModalOpen(true);
+    const closeInvoiceModal = () => setInvoiceModalOpen(false);
+
+    // Dynamically assign text and styles
+    let statusText = OrderStatus;
+    let bgColor = "";
+    let textColor = "";
+
+    switch (OrderStatus) {
+        case "Dine In":
+        case "Paid":
+        case "Handed Over":
+        case "Ready":
+            // statusText = "Dine In";
+            bgColor = "bg-light-green";
+            textColor = "text-light-green";
+            break;
+        case "In Progress":
+            // statusText = "In Progress";
+            bgColor = "bg-light-yellow";
+            textColor = "text-yellow-color";
+            break;
+        case "Delivered":
+            // statusText = "Delivered";
+            bgColor = "bg-light-status-orage-color";
+            textColor = "text-color-orange";
+            break;
+        case "Unsuccessful":
+            // statusText = "Unsuccessful";
+            bgColor = "bg-color-red";
+            textColor = "text-color-red";
+            break;
+        default:
+            break; // No status
+    }
+
     return (
         <>
 
 
             {/* <div> */}
             {/* {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => ( */}
-            <div className="max-w-xs h-[362px] bg-white rounded-3xl shadow-lg p-4 mb-4">
+            <div className="generate-order-card bg-white rounded-3xl card-box-shadow m-3 p-4">
                 {/* Date & Time */}
-                <div className="flex justify-between text-sm pb-2">
+                <div className="flex justify-between text-sm pb-3">
                     <div className='flex'>
                         <div className='uppercase rounded-md bg-white p-2 text-base font-normal text-light-gray-color text-center border mr-2'>RV</div>
                         <div className="font-medium">
@@ -29,41 +75,19 @@ const GenerateOrderCards = ({ OrderStatus }) => {
                         </div>
                     </div>
 
-                    {/* Dine In Tag */}
-                    {(OrderStatus === "Dine In" || "Paid" || "Handed Over" || "Ready") ? (
-                        <>
-                            <div className="text-light-green h-full text-xs font-medium bg-light-green px-2 py-1 rounded-md inline-block ">
-                                Dine In
-                            </div>
-                        </>
-                    ) : OrderStatus === "In Progress" ?
-                        (
-                            <>
-                                <div className="text-yellow-400 h-full text-xs font-semibold bg-light-yellow px-2 py-1 rounded-md inline-block ">
-                                    In Progress
-                                </div>
-                            </>
-                        ) : OrderStatus === "Delivered" ? (
-                            <>
-                                <div className="text-yellow-600 h-full text-xs font-semibold bg-yellow-100 px-2 py-1 rounded-md inline-block ">
-                                    Delivered
-                                </div>
-                            </>
-                        )
-                            : OrderStatus === "Unsuccessfull" ? (
-                                <>
-                                    <div className="text-color-red h-full text-xs font-semibold bg-color-red px-2 py-1 rounded-md inline-block ">
-                                        Unsuccessfull
-                                    </div>
-                                </>
-                            ) : null
-                    }
+
+                    {/* Order Status Tag */}
+                    {statusText && (
+                        <div className={`${textColor} h-full text-xs font-medium ${bgColor} px-2 py-1 rounded-md inline-block`}>
+                            {statusText}
+                        </div>
+                    )}
                 </div>
 
 
                 <div className="flex justify-between pb-2">
                     <div className="font-medium text-xs">
-                        <div className='text-color-gray'>Booking ID : <span className='text-color-black'>123456789</span> </div>
+                        <div className='text-color-gray pb-1'>Booking ID : <span className='text-color-black'>123456789</span> </div>
                         <div className='text-color-gray'>Order No: <span className=' text-color-black'>312</span> </div>
                     </div>
 
@@ -85,7 +109,7 @@ const GenerateOrderCards = ({ OrderStatus }) => {
                     </div>
 
 
-                    <div className="h-[100px] overflow-auto hidden-scroll text-xs/5">
+                    <div className="h-14 overflow-auto hidden-scroll text-xs/5">
                         {items.map((item, index) => (
                             <div key={index} className="grid grid-cols-3 py-1">
                                 <span>{item.name}</span>
@@ -97,7 +121,7 @@ const GenerateOrderCards = ({ OrderStatus }) => {
 
 
                     {/* Total */}
-                    <div className="grid grid-cols-3 text-color-black font-normal text-xs border-t border-gray-200 mt-1 py-1">
+                    <div className="grid grid-cols-3 text-color-black font-normal text-xs border-t border-gray-200 mt-1 py-2">
                         <span>Total</span>
                         <span></span>
                         <span className="text-right">₹ 280</span>
@@ -106,16 +130,21 @@ const GenerateOrderCards = ({ OrderStatus }) => {
 
 
                 {/* Notes Section */}
-                <div className="mb-2 bg-light-color p-3 rounded-md text-color-gray text-xs font-normal">
-                    Notes: Lorem ipsum dolor sit amet
+                <div className="mb-2 px-3 py-2 rounded-md note-bg-color text-color-gray text-xs font-normal h-12 overflow-auto hidden-scroll">
+                    Notes: Lorem ipsum dolor sit amet ipsum dolor sit amet
                 </div>
 
 
                 {/* Generate invoice Button */}
-                <Button title={"Generate Invoice"} />
-            </div>
+                <Button title={"Generate Invoice"}   onClick={openInvoiceModal} />
+            </div >
             {/* ))} */}
             {/* </div> */}
+
+            <GenerateInvoiceModal
+                isOpen={invoiceModalOpen}
+                closeModal={closeInvoiceModal}
+            />
         </>
     )
 }

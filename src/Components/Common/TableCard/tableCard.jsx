@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { connect, useDispatch } from "react-redux";
 import { TableNoRedux } from "../../Redux/Slice/Table/tableDetailSlice";
 
-const TableCard = ({ tableNo, index, tableStatus, tableBooking,tableDetail }) => {
+const TableCard = ({ tableNo, index, tableStatus, tableBooking, tableDetail }) => {
   const dispatch = useDispatch();
 
   // =========
@@ -24,9 +24,9 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking,tableDetail }) =>
       {/* // ------- booked table ------- */}
       {tableStatus === "book" || tableDetail?.orderStatus === "book" ? (
         <>
-          <div className=" flex items-center">
-            <Link className="w-36 h-40" to={`/order/${tableDetail?.tableNo || tableNo}`}>
-              <div className="px-3 py-2 bg-white rounded-2xl shadow-lg cashier-light-bg-color h-full ">
+          <div className=" flex items-center m-3 w-36">
+            <Link className="" to={`/order/${tableDetail?.tableNo || tableNo}`}>
+              <div className="px-3 py-2 bg-white rounded-2xl shadow-lg cashier-light-bg-color h-full table-card">
                 <div className="flex justify-between">
                   <div>
                     <span className="bg-white rounded-lg px-2 hidden">
@@ -40,8 +40,8 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking,tableDetail }) =>
                 </div>
                 <div className="flex justify-between">
                   <div>
-                    <h2 className="text-xs ">Table {tableDetail?.tableNo || "7" }</h2>
-                    <p className="text-xs font-medium">{tableDetail?.customerName || "MR Rohan" }</p>
+                    <h2 className="text-xs ">Table {tableDetail?.tableNo || "7"}</h2>
+                    <p className="text-xs font-medium">{tableDetail?.customerName || "MR Rohan"}</p>
                   </div>
                   <div className="bg-[#ffffff4d] p-2 rounded-lg h-full">
                     <img className="" src={recipt} alt="" />
@@ -63,9 +63,9 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking,tableDetail }) =>
       ) : tableStatus === "pending" ? (
         <>
           {/* ------- pending table ------- */}
-          <div className=" flex items-center ">
-            <Link className="w-36 h-40" to={`/order/${tableNo}`}>
-              <div className="px-3 py-2 bg-white rounded-2xl shadow-lg cashier-light-bg-color h-full">
+          <div className=" flex items-center m-3 w-36">
+            <Link className="" to={`/order/${tableNo}`}>
+              <div className="px-3 py-2 bg-white rounded-2xl shadow-lg cashier-light-bg-color h-full table-card">
                 <div className="flex justify-between">
                   <div>
                     <span className="bg-white text-xs font-medium rounded-lg px-2 hidden">
@@ -102,9 +102,9 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking,tableDetail }) =>
       ) : tableStatus === "process" ? (
         <>
           {/* ------- process table ------- */}
-          <div className=" flex items-center ">
-            <Link className="w-36 h-40" to={`/order/${tableNo}`}>
-              <div className=" px-3 py-2 bg-white rounded-2xl shadow-lg cashier-light-bg-color h-full  ">
+          <div className=" flex items-center m-3 w-36">
+            <Link className="" to={`/order/${tableNo}`}>
+              <div className=" px-3 py-2 bg-white rounded-2xl shadow-lg cashier-light-bg-color h-full table-card">
                 <div className="flex justify-between my-1">
                   <div>
                     <span className="bg-white rounded-lg px-2">22:10</span>
@@ -127,16 +127,16 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking,tableDetail }) =>
       ) : tableStatus === "reserve" || tableDetail?.orderStatus === "reserve" ? (
         <>
           {/* ------- reserve table ------- */}
-          <div className=" flex items-center ">
-            <Link className="w-36 h-40" to={`/order/${tableDetail?.tableNo || tableNo}`}>
-              <div className=" px-3 py-2 bg-white rounded-2xl shadow-lg cashier-light-bg-color h-full  ">
+          <div className="flex items-center m-3 w-36">
+            <Link className="" to={`/order/${tableDetail?.tableNo || tableNo}`}>
+              <div className="px-3 py-2 bg-white rounded-2xl shadow-lg cashier-light-bg-color h-full table-card">
                 <div className="flex justify-between">
                   <div>
                     <span className="bg-white rounded-lg px-2 hidden">
                       22:10
                     </span>
                   </div>
-                  <img src={calender} alt="" />
+                  <img src={calender} alt="Loading" />
                 </div>
                 <div className="flex justify-center mt-1 mb-3">
                   <img className="w-16" src={Table} alt="Loading" />
@@ -152,8 +152,8 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking,tableDetail }) =>
         </div> */}
                 <div className="text-center">
                   <span className="text-xs">
-                    Table {tableDetail?.tableNo || "7" }{" "}
-                    <span className="font-medium text-xs">{tableDetail?.customerName || "MR Rohan" }</span>
+                    Table {tableDetail?.tableNo || "7"}{" "}
+                    <span className="font-medium text-xs">{tableDetail?.customerName || "MR Rohan"}</span>
                   </span>
                   <h5 className="text-xs font-semibold text-red-700">
                     Reserved
@@ -164,15 +164,15 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking,tableDetail }) =>
           </div>
         </>
       ) : (
-        <div className=" flex items-center">
+        <div className="flex items-center m-3 w-36">
           <Link
-            className="w-36 h-40"
+            className=""
             to={`/order/${tableNo}`}
             onClick={() => HandleTableNo(tableNo)}
           >
-            <div className="py-2 px-1 bg-white border border-black rounded-2xl ">
+            <div className="py-2 px-1 bg-white border border-black rounded-2xl table-card">
               <div className="flex justify-center mt-1 ">
-                <img className="w-[105px] h-[102px      ]" src={Table} alt="Loading" />
+                <img src={Table} className="table-img mx-2" alt="Loading" />
               </div>
               <div className="text-center my-2">
                 <span className="">Table {tableNo}</span>

@@ -10,6 +10,9 @@ import StaffData from "../Pages/StaffData/staffdata";
 import SendToKitchen from "../Pages/SendToKitchen/kitchen";
 import AllInvoice from "../Pages/Order/orderinvoice";
 import Schedule from "../Pages/Schedule/schedule";
+import Notification from "../Pages/Notification/notification";
+import UserDetails from "../Pages/UserDetails/userdetails";
+// import ScheduleOngoing from "../Pages/Schedule/scheduleongoing";
 const RouteRoutes = () => {
   return (
     <>
@@ -26,6 +29,9 @@ const RouteRoutes = () => {
           <Route path="/sendtokitchen" element={<SendToKitchen />}></Route>
           <Route path="/allinvoice" element={<AllInvoice />}></Route>
           <Route path="/schedule" element={<Schedule />}></Route>
+          <Route path="/notification" element={<Notification />}></Route>
+          <Route path="/userdetails" element={<UserDetails />}></Route>
+          {/* <Route path="/scheduleongoing" element={<ScheduleOngoing />}></Route> */}
 
         </Routes>
       </Router>
