@@ -1,177 +1,227 @@
-// import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import calender from "../../Assets/icons/calendar.svg";
 
-// const Dropdown = () => {
-//   const [inputValue, setInputValue] = useState("");
-//   const [isOpen, setIsOpen] = useState(false);
+// Json
+const datePickerMonthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
-//   // Sample data for the dropdown options
-//   const options = [
-//     "Apple",
-//     "Banana",
-//     "Orange",
-//     "Mango",
-//     "Strawberry",
-//     "Pineapple",
-//     "Grapes",
-//   ];
+const datePickerDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const DatePicker = ({ handleSelectedDate }) => {
+  // ========
+  // states
+  // ========
+  const [datePickerOpen, setDatePickerOpen] = useState(false);
+  const [datePickerValue, setDatePickerValue] = useState("00/00/00");
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [datePickerDaysInMonth, setDatePickerDaysInMonth] = useState([]);
+  const [datePickerBlankDaysInMonth, setDatePickerBlankDaysInMonth] = useState(
+    []
+  );
+  const [datePickerDay, setDatePickerDay] = useState(currentDate.getDate());
 
-//   // Filter options based on the input value
-//   const filteredOptions = options.filter((option) =>
-//     option.toLowerCase().includes(inputValue.toLowerCase())
-//   );
+  const inputRef = useRef(null);
 
-//   return (
-//     <div className="relative">
-//       <div className="flex items-center bg-transparent border-white border-2 rounded-full px-4 py-2 w-full max-w-md">
-//         <span className="text-gray-400">
-//           <svg
-//             xmlns="http://www.w3.org/2000/svg"
-//             className="h-5 w-5"
-//             fill="none"
-//             viewBox="0 0 24 24"
-//             stroke="currentColor"
-//             strokeWidth={2}
-//           >
-//             <path
-//               strokeLinecap="round"
-//               strokeLinejoin="round"
-//               d="M11 4a7 7 0 100 14 7 7 0 000-14zm10 10l-4-4"
-//             />
-//           </svg>
-//         </span>
-//         <input
-//           type="text"
-//           value={inputValue}
-//           onChange={(e) => setInputValue(e.target.value)}
-//           onFocus={() => setIsOpen(true)}
-//           onBlur={() => setIsOpen(false)} // Optional: You can keep the dropdown open by managing this state differently
-//           placeholder="Table or Order status"
-//           className="bg-transparent text-gray-400 placeholder-gray-400 focus:outline-none focus:ring-0 border-none ml-2 w-full"
-//         />
-//       </div>
+  // ===========
+  //   Functions
+  // ===========
 
-//       {/* Dropdown menu */}
-//       {isOpen && inputValue && (
-//         <ul className="absolute left-0 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-md max-h-60 overflow-y-auto z-10">
-//           {filteredOptions.length > 0 ? (
-//             filteredOptions.map((option, index) => (
-//               <li
-//                 key={index}
-//                 className="px-4 py-2 text-gray-700 hover:bg-gray-200 cursor-pointer"
-//                 onMouseDown={() => setInputValue(option)}
-//               >
-//                 {option}
-//               </li>
-//             ))
-//           ) : (
-//             <li className="px-4 py-2 text-gray-500">No results found</li>
-//           )}
-//         </ul>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default Dropdown;
-
-import React, { useState } from "react";
-import "./test.css";
-
-function ImageSlider() {
-  const [showModal, setShowModal] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [images, setImages] = useState([
-    {
-      id: 1,
-      url: "https://picsum.photos/200/300",
-    },
-    {
-      id: 2,
-      url: "https://picsum.photos/300/200",
-    },
-    {
-      id: 3,
-      url: "https://picsum.photos/200/200",
-    },
-    {
-      id: 4,
-      url: "https://picsum.photos/100/200",
-    },
-  ]);
-
-  const handleModal = (image) => {
-    setSelectedImage(image);
-    setShowModal(true);
+  const datePickerFormatDate = (date) => {
+    const formattedDate = ("0" + date.getDate()).slice(-2);
+    const formattedMonth = datePickerMonthNames[date.getMonth()].substring(
+      0,
+      3
+    );
+    const formattedYear = date.getFullYear();
+    return `${formattedMonth} ${formattedDate}, ${formattedYear}`;
   };
 
-  const handlePrevious = () => {
-    const index = images.indexOf(selectedImage);
-    if (index === 0) {
-      return;
-    }
-    setSelectedImage(images[index - 1]);
+  const datePickerCalculateDays = (year, month) => {
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const firstDayOfWeek = new Date(year, month, 1).getDay();
+
+    const blankDaysArray = Array.from(
+      { length: firstDayOfWeek },
+      (_, i) => i + 1
+    );
+    const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+
+    return { blankDaysArray, daysArray };
   };
 
-  const handleNext = () => {
-    const index = images.indexOf(selectedImage);
-    if (index === images.length - 1) {
-      return;
-    }
-    setSelectedImage(images[index + 1]);
+  const datePickerDayClicked = (day) => {
+    const selectedDate = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      day
+    );
+    setDatePickerDay(day);
+    setDatePickerValue(datePickerFormatDate(selectedDate));
+    setDatePickerOpen(false);
   };
+
+  const changeMonth = (increment) => {
+    const newMonth = currentDate.getMonth() + increment;
+    const newYear =
+      newMonth < 0
+        ? currentDate.getFullYear() - 1
+        : newMonth > 11
+        ? currentDate.getFullYear() + 1
+        : currentDate.getFullYear();
+
+    setCurrentDate(new Date(newYear, (newMonth + 12) % 12, 1)); // Reset day to 1 to recalculate correct days
+  };
+
+  // ===========
+  //   useeffect
+  // ===========
+
+  useEffect(() => {
+    const { blankDaysArray, daysArray } = datePickerCalculateDays(
+      currentDate.getFullYear(),
+      currentDate.getMonth()
+    );
+    setDatePickerBlankDaysInMonth(blankDaysArray);
+    setDatePickerDaysInMonth(daysArray);
+    // setDatePickerValue(datePickerFormatDate(currentDate));
+  }, [currentDate]);
+
+  useEffect(() => {
+    handleSelectedDate(datePickerValue);
+  }, [datePickerValue]);
 
   return (
-    <div className="app">
-      {images.map((image) => (
-        <img
-          key={image.id}
-          src={image.url}
-          alt="Card Image"
-          onClick={() => handleModal(image)}
-          className="card-image"
+    <div className="">
+      <div className="relative w-40">
+        <input
+          ref={inputRef}
+          type="text"
+          onClick={() => setDatePickerOpen(!datePickerOpen)}
+          value={
+            datePickerValue !== "00/00/00"
+              ? new Date(datePickerValue)?.toLocaleDateString("en-GB")
+              : datePickerValue
+          }
+          className={`w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${
+            datePickerValue !== "00/00/00"
+              ? ""
+              :
+            "bg-light-color text-sm font-medium border-light-color py-3.5"
+          } focus-visible:bg-white`}
+          placeholder="Select date"
+          readOnly
         />
-      ))}
-      {showModal && (
-        <div className="modal">
-          <button className="close-btn" onClick={() => setShowModal(false)}>
-            &times;
-          </button>
-          <button className="prev-btn" onClick={handlePrevious}>
-            Previous
-          </button>
-          <button className="next-btn" onClick={handleNext}>
-            Next
-          </button>
-          <div className="slider-container">
-            {images.map((img, index) => (
-              <div key={index}>
-                {index === images.indexOf(selectedImage) ? (
-                  <>
-                  <img
-                  src={img.url}
-                  alt="Selected Image"
-                  className={`image ${index === images.indexOf(selectedImage) ? "selected" : ""}`}
-                  />
-                  {/* {console.log('images.indexOf(selectedImage): ', images.indexOf(selectedImage))} */}
-                  </>
-                ) : (
-                  <img
-                    src={img.url}
-                    alt="Other Images"
-                    className={`image ${
-                      index < images.indexOf(selectedImage)
-                        ? "left"
-                        : "right"
-                    }`}
-                  />
-                )}
-              </div>
-            ))}
-          </div>
+        <div
+          onClick={() => setDatePickerOpen(!datePickerOpen)}
+          className="absolute top-4 right-4 cursor-pointer"
+        >
+          <img src={calender} alt="" />
         </div>
-      )}
+        {datePickerOpen && (
+          <div className="absolute top-0 left-0 max-w-lg p-4 mt-12 bg-white rounded-xl shadow-md card-box-shadow calender-modal">
+            <div className="flex items-center justify-between mb-5">
+              <div>
+                <span className="text-sm font-medium">
+                  {datePickerMonthNames[currentDate.getMonth()]}
+                </span>
+                <span className="ml-2 text-2xl font-medium">
+                  {currentDate.getFullYear()}
+                </span>
+              </div>
+              <div>
+                <button
+                  onClick={() => changeMonth(-1)}
+                  type="button"
+                  className="p-1 transition duration-100 ease-in-out rounded-full hover:bg-gray-100"
+                >
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 19l-7-7 7-7"
+                    />
+                  </svg>
+                </button>
+                <button
+                  onClick={() => changeMonth(1)}
+                  type="button"
+                  className="p-1 transition duration-100 ease-in-out rounded-full hover:bg-gray-100"
+                >
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div className="grid grid-cols-7 mb-3">
+              {datePickerDays.map((day, index) => (
+                <div key={index} className="px-0.5">
+                  <div className="text-xs font-medium text-center text-gray-800">
+                    {day}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="grid grid-cols-7">
+              {datePickerBlankDaysInMonth.map((_, index) => (
+                <div
+                  key={index}
+                  className="p-1 text-sm text-center border border-transparent"
+                ></div>
+              ))}
+              {datePickerDaysInMonth.map((day, dayIndex) => (
+                <div key={dayIndex} className="px-0.5 mb-1 aspect-square">
+                  <div
+                    onClick={() => datePickerDayClicked(day)}
+                    className={`flex items-center justify-center text-sm font-medium leading-none text-center cursor-pointer h-7 w-7 
+                                            ${
+                                              datePickerDay === day
+                                                ? "bg-neutral-800 text-white"
+                                                : "hover:bg-neutral-200"
+                                            } ${
+                      datePickerDay === day
+                        ? "bg-neutral-800 text-white"
+                        : "text-gray-600"
+                    }
+                                        `}
+                  >
+                    {day}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
-}
+};
 
-export default ImageSlider;
+export default DatePicker;

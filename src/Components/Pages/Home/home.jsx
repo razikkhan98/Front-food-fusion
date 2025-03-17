@@ -1,59 +1,98 @@
 import React, { useState } from "react";
-import LeftSideNavbar from "../../Common/SideNavbar/leftSideNavbar.jsx";
-import RightSidebar from "../../Common/SideNavbar/rightSideNavbar.jsx";
 
+// Import Third Party componets
+import { connect } from "react-redux";
 
-// import Icon
-import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
+// Import Common Components
+import TableCard from "../../Common/TableCard/tableCard.jsx";
 import ChatBot from "../../Common/ChatBot/chatbot.jsx";
-const Home = () => {
-  const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
+import RightSidebar from "../../Common/SideNavbar/rightSideNavbar.jsx";
+import LeftSideNavbar from "../../Common/SideNavbar/leftSideNavbar.jsx";
+import Navbar from "../../Common/Navbar/navbar.jsx";
 
-  const toggleRightSidebar = () => {
-    setIsRightSidebarOpen(!isRightSidebarOpen);
+// Import Images
+import bell from "../../Assets/Images/navbar-img/bell.svg";
+import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
+import AutoOrderPopupModal from "../../Common/AutoOrderPopupModal/AutoOrderPopupModal.jsx";
+
+// Json
+const HomeIcons = [{ nav_img: magnify }, { nav_img: bell }];
+const HomeHeading = ["Booked Table"];
+
+const Home = ({ tableDetailsFromRedux }) => {
+  // --------
+  // State
+  // --------
+  const [CurrentTab, setCurrentTab] = useState();
+  const numberOfModals = 7; // Define the number of modals
+  const initialModalsState = Array(numberOfModals).fill(true); // Create an array filled with `true`
+
+  const [modalsOpen, setModalsOpen] = useState(initialModalsState);
+
+  // ---------
+  // Functions
+  // ---------
+
+  const closeModal = (index) => {
+    setModalsOpen((prev) => {
+      const newModalsOpen = [...prev];
+      newModalsOpen[index] = false; // Close the specific modal
+      return newModalsOpen;
+    });
   };
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex h-dvh overflow-hidden">
       {/* Left Sidebar */}
       <LeftSideNavbar />
+
+      {/* Chatbot  */}
       <ChatBot />
 
       {/* Main Content Area */}
-      <div className={`flex-grow p-4 transition-all duration-300`}>
-        <h1>Table</h1>
-        <div className={`grid ${isRightSidebarOpen === true ? "grid-cols-4" : "grid-cols-5"} gap-4`}>
-          {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div key={i} onClick={toggleRightSidebar} className="bg-white rounded-lg shadow-md p-4 w-56">
-              <h2>Card {i}</h2>
-              <p>Some content for card {i}</p>
-            </div>
-          ))}
+      <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
+        <div className="border-b">
+          <Navbar
+            icons={HomeIcons}
+            pageHeading={HomeHeading}
+            selectedTab={setCurrentTab}
+          />
         </div>
-        
+
+        <div className="overflow-auto h-5/6 hidden-scroll">
+          <h2 className="text-base font-semibold my-3">Dine In</h2>
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(168px,168px))]">
+            {tableDetailsFromRedux?.TableBooking?.map((i, index) => (
+              <TableCard tableDetail={i} />
+            ))}
+            <div className=" p-4 w-56"></div>
+          </div>
+        </div>
       </div>
 
       {/* Right Sidebar */}
       <div
-        className={`bg-gray-200 transition-all duration-300 ease-in-out relative rounded-l-3xl ${isRightSidebarOpen ? "w-80" : "w-9"
-          }`}
+        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl`}
       >
-        {/* <button
-          onClick={toggleRightSidebar}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded absolute top-1/2 "
-        >
-          {isRightSidebarOpen ? "Close" : "Open"}
-        </button> */}
-        <span className="bg-blue-700 hover:bg-blue-700 cursor-pointer font-bold p-1 rounded-full absolute top-1/2 -left-5" onClick={toggleRightSidebar}>
-          {/* <img src={Toggle} alt="Loading" /> */}
-          <MdOutlineKeyboardDoubleArrowLeft className='text-3xl text-white font-semibold' />
-        </span>
-
         <RightSidebar />
-    
+      </div>
+      <div className="auto-modal-background">
+        {/* Auto popup modal */}
+        {[...Array(numberOfModals)]?.map((i, index) => (
+          <AutoOrderPopupModal
+            key={index}
+            isOpen={modalsOpen[index]}
+            closeModal={() => closeModal(index)}
+            modalIndex={index}
+            modalId={i}
+          />
+        ))}
       </div>
     </div>
-
   );
 };
-export default Home;
+const mapStateToProps = (state) => ({
+  tableDetailsFromRedux: state?.tableBooking,
+});
+
+export default connect(mapStateToProps, {})(Home);

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { IoSearch } from "react-icons/io5";
 
 // Role JSON Data
 const orders = [
@@ -54,9 +55,10 @@ const DropDownInput = () => {
   return (
     <div className="relative">
       {/* Search Input   */}
-      <div className="flex items-center bg-transparent border-white border-2 rounded-full px-4 py-2 w-full max-w-md hover:bg-white">
-        <span className="text-gray-400">
-          <svg
+      <div className={`flex items-center bg-transparent border rounded-full px-4 py-2 w-full max-w-md hover:bg-white ${inputValue?.length > 0 ? "relative z-10 bg-white border-[#EAEAEA] border-[1px]" : "" }`}>
+        <span className="">
+        <IoSearch className="text-light-gray-color h-5 w-5" />
+          {/* <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
             fill="none"
@@ -64,12 +66,13 @@ const DropDownInput = () => {
             stroke="currentColor"
             strokeWidth={2}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M11 4a7 7 0 100 14 7 7 0 000-14zm10 10l-4-4"
-            />
-          </svg>
+           <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-4.35-4.35M16.5 12.5a6 6 0 1 0-12 0 6 6 0 0 0 12 0z"
+              />
+          </svg> */}
         </span>
         <input
           type="text"
@@ -78,16 +81,16 @@ const DropDownInput = () => {
           onFocus={() => setIsOpen(true)}
           onBlur={() => setIsOpen(false)} // Optional: You can keep the dropdown open by managing this state differently
           placeholder="Table or Order status"
-          className="bg-transparent text-gray-400 placeholder-gray-400 focus:outline-none focus:ring-0 border-none ml-2 w-full"
+          className="bg-transparent  text-base font-normal placeholder-gray-400 focus:outline-none focus:ring-0 border-none ml-2 w-full"
         />
       </div>
 
       {/* Search Card  */}
       {isOpen && inputValue && (
-        <div className="absolute left-0 text-sm w-full max-h-60 py-4 px-3 bg-white mt-1 rounded-3xl shadow-md">
+        <div className="absolute left-0 text-sm w-full max-h-60 py-4 px-3 bg-white top-5 rounded-b-[32px] shadow-md overflow-scroll hidden-scroll">
           {filteredOptions.length > 0 ? (
             filteredOptions.map((order, index) => (
-              <div className="cursor-pointer" onMouseDown={() => handleSelect(order)}>
+              <div className="cursor-pointer pt-1" onMouseDown={() => handleSelect(order)}>
                 <div className="flex justify-between border-b py-2">
                   <span className="font-medium">Order Details :</span>
                   <span className="font-semibold">{order.table}</span>

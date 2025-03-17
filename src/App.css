@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 * {
   margin: 0px;
@@ -11,16 +11,27 @@
 
 @font-face {
   font-family: Montserrat Alternates;
-  src: url('../src/Components/Assets/fonts/MontserratAlternates-Regular.ttf')format('truetype');
+  src: url("../src/Components/Assets/fonts/MontserratAlternates-Regular.ttf") format("truetype");
 }
+
 @font-face {
   font-family: poppins;
-  src: url('../src/Components/Assets/fonts/Poppins-Regular.ttf')format('truetype');
+  src: url("../src/Components/Assets/fonts/Poppins-Regular.ttf") format("truetype");
 }
-body{
+
+body {
   font-family: poppins;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 0s 600000s, color 0s 600000s !important;
+}
+
+html,
+body {
+  overflow: hidden;
+}
 
 /* 
  ========================== 
@@ -36,20 +47,32 @@ body{
   --cashier-main-color: #d79555;
   --cashier-color: #ffdab9;
   --cashier-light-color: #ffe9d5;
+  --cashier-very-light-color: #fffbf7;
+  --cashier-hover-color: #f6f0e9;
   --staff-color: #fff9b0;
   --captain-color: #e3d6f7;
   --chef-color: #ffb3ab;
-  --light-color: #f1f1f1;
+  --light-color: #f5f5f5;
+  --gray-light-color: #fafafa;
   --red-color: #dc143c;
-  --green-color: #94d82d;
+  --green-color: #2fda32;
   --yellow-color: #ffd700;
   --purple-color: #6a5acd;
   --sidebar-light: #db9f66;
   --black-color: #111111;
   --gray-color: #707070;
+  --select-section: #f6f0e9;
+  --light-gray-color: #a1a1a1;
+  --dark-green-color: #7a8450;
+  --light-purple-color: #cfbcdf;
+  --dark-bule-color: #469dcf;
+  --status--orange-color: #da6a2f;
+  --status--pink-color: #ff5c83;
+  --whatsapp-green-color: #25d366;
+  --blue-color: #4285f4;
+  --btn-gray-color: #eaeaea;
+  --dropdown-option-color:#ffe9d51a;
 }
-
-
 
 /* 
  =========================
@@ -72,8 +95,9 @@ body{
 }
 
 .cashier-bg-table-color {
-  background-color: rgba(255, 233, 213, 0.7);
+  background-color: rgba(255, 233, 213, 0.5);
 }
+
 .bg-light-green {
   background-color: rgba(47, 218, 50, 0.05);
 }
@@ -85,8 +109,95 @@ body{
 .bg-light-yellow {
   background-color: rgba(255, 215, 0, 0.1);
 }
+
 .bg-purple-btn {
   background-color: var(--purple-color);
+}
+
+.bg-green-color {
+  background-color: var(--green-color);
+}
+
+.bg-color-gray {
+  background-color: rgba(112, 112, 112, 0.1);
+}
+
+.bg-light-gray-color {
+  background-color: var(--light-gray-color);
+}
+
+.bg-green-status-color {
+  background-color: #94d82d;
+}
+
+.bg-red-color {
+  background-color: var(--red-color);
+}
+
+.bg-light-color {
+  background-color: var(--light-color);
+}
+
+.bg-dark-green-color {
+  background-color: var(--dark-green-color);
+}
+
+.bg-dark-blue-color {
+  background-color: var(--dark-bule-color);
+}
+
+.bg-light-purple-color {
+  background-color: var(--light-purple-color);
+}
+
+.bg-gray-light-color {
+  background-color: var(--gray-light-color);
+}
+
+.bg-light-purple-color {
+  background-color: rgba(106, 90, 205, 0.1);
+}
+
+.bg-light-orange-color {
+  background-color: rgba(218, 106, 47, 0.05);
+}
+
+.bg-light-pink-color {
+  background-color: rgba(255, 92, 131, 0.05);
+}
+
+.bg-whatsapp-light-green {
+  background-color: rgba(37, 211, 102, 0.1);
+}
+
+.bg-blue-light-color {
+  background-color: rgba(66, 133, 244, 0.1);
+}
+
+.navbar-icon-bg-color {
+  background-color: rgba(215, 149, 85, 0.1);
+}
+
+.note-bg-color {
+  background-color: #F7F7F7;
+}
+
+.bg-light-status-orage-color {
+  background-color: rgba(218, 106, 47, 0.05);
+}
+
+.orderside-menu-status {
+  background-color: rgba(255, 233, 213, 0.5);
+}
+.auto-modal-background {
+  background-color: #00000080;
+}
+.dropdown-option-color:hover{
+  background-color: #FAF7F3;
+}
+
+.previous-order-bg-gray {
+  background-color: rgba(234, 234, 234, 0.2);
 }
 
 /* 
@@ -108,12 +219,45 @@ body{
 .text-color-red {
   color: #da322f;
 }
-.text-color-black{
+
+.text-color-black {
   color: var(--black-color);
 }
 
-.text-color-gray{
+.text-color-gray {
   color: var(--gray-color);
+}
+
+.text-light-gray-color {
+  color: var(--light-gray-color);
+}
+
+.text-purple-color {
+  color: var(--purple-color);
+}
+
+.text-color-orange {
+  color: var(--status--orange-color);
+}
+
+.text-color-pink {
+  color: var(--status--pink-color);
+}
+
+.text-color-green {
+  color: #94d82d;
+}
+
+.text-whatsapp-green-color {
+  color: var(--whatsapp-green-color);
+}
+
+.text-blue-color {
+  color: var(--blue-color);
+}
+
+.text-yellow-color {
+  color: var(--yellow-color);
 }
 
 /* 
@@ -127,11 +271,47 @@ body{
 .menu-green-borderCard {
   border-left: 3px solid #2fda32;
 }
+
 .menu-red-borderCard {
   border-left: 3px solid #da322f;
 }
-.border-cashier{
+
+.border-cashier {
   border: 2px solid var(--cashier-main-color);
+}
+.border-cashier-1 {
+  border: 1px solid var(--cashier-main-color);
+}
+
+.border-light-gray {
+  border: 1px solid var(--light-gray-color);
+}
+
+.border-gray-color {
+  border: 1px solid var(--gray-color);
+}
+
+.border-green-color {
+  border: 1px solid #94d82d;
+}
+
+.border-whatsapp-green {
+  border: 1px solid var(--whatsapp-green-color);
+}
+
+.border-blue-color {
+  border: 1px solid var(--blue-color);
+}
+
+.border-purple-color {
+  border: 1px solid var(--purple-color);
+}
+
+.border-light-color {
+  border: 1px solid var(--light-color);
+}
+.border-light-gray-color {
+  border: 1px solid var(--btn-gray-color);
 }
 
 /* 
@@ -148,6 +328,10 @@ body{
 
 .font-size-medium {
   font-size: 18px;
+}
+
+.text-exs {
+  font-size: 10px;
 }
 
 /* 
@@ -268,9 +452,7 @@ body{
   font-style: italic;
 }
 
-
 /* Poppins: CSS classes */
-
 
 .poppins-thin {
   font-family: "Poppins", serif;
@@ -380,7 +562,6 @@ body{
   font-style: italic;
 }
 
-
 /* 
   =========================
 
@@ -398,6 +579,25 @@ body{
   cursor: pointer;
 }
 
+.btn-bg-gray-color {
+  background-color: var(--btn-gray-color);
+}
+
+/* 
+==================================
+
+Home Page 
+
+===================================
+*/
+
+.background-img {
+  background-image: url(../src/Components/Assets/Images/background/background-img.png);
+  background-position: center, center;
+  background-size: contain;
+  /* min-height: 100vh; */
+}
+
 /* 
   =========================
 
@@ -413,6 +613,11 @@ body{
   background: var(--sidebar-light);
 }
 
+.right-sidebar-dropshadow {
+  filter: drop-shadow(2px 4px 2px rgba(0, 0, 0, 0.15));
+  /* box-shadow: 2px 0px 12px 1px rgba(0, 0, 0, 0.15); */
+}
+
 /* 
   =========================
 
@@ -423,39 +628,77 @@ body{
 .slider-container {
   /* text-align: center; */
   position: relative;
-  overflow: hidden; /* Hide overflow to only show visible items */
+  overflow: hidden;
+  /* Hide overflow to only show visible items */
 }
 
 .slider-overlay {
   width: 100%;
-  overflow: hidden; /* Hide overflow for sliding effect */
+  overflow: hidden;
+  /* Hide overflow for sliding effect */
 }
 
 .slider {
   display: flex;
-  transition: transform 0.5s ease-in-out; /* For smooth transition */
+  transition: transform 0.5s ease-in-out;
+  /* For smooth transition */
 }
 
 .slider-item {
-  min-width: 9%; /* Set width based on items to show */
-  box-sizing: border-box; /* Ensure padding and border are included in total width */
-  padding: 10px; /* Optional padding */
+  min-width: 9%;
+  /* Set width based on items to show */
+  box-sizing: border-box;
+  /* Ensure padding and border are included in total width */
+  /* Optional padding */
 }
 
 .active-image {
   border: 4px solid var(--cashier-main-color);
   border-radius: 10px;
 }
+
 .menu-category-next {
   position: absolute;
-  top: 3.5rem;
-  right: 0;
+  top: 20px;
+  right: 1px;
 }
+
 .menu-category-prev {
   position: absolute;
-  top: 3.5rem;
-  left: 0;
+  top: 20px;
+  left: 1px;
+  z-index: 2;
 }
+
+.menu-category-slider .slick-list {
+  position: relative !important;
+  height: 130px;
+}
+
+.menu-category-slider .slick-track {
+  position: absolute !important;
+}
+
+.menu-category-slider .slick-track {
+  /* width: 3614px;/ */
+  /* opacity: 1; */
+  transform: translate(0px);
+  transition: opacity 0.5s ease-out;
+  height: 75% !important;
+  overflow: hidden !important;
+  ;
+}
+
+.menu-category-slider .slick-slide {
+  width: 100px !important;
+  height: 110px !important;
+  margin: 0px 18px !important;
+}
+
+/* .menu-category-slider .slick-track.active {
+  transform: translate3d(0px, 0px, 0px); 
+  opacity: 1; 
+} */
 
 /* 
   =========================
@@ -476,6 +719,7 @@ body{
     display: none;
   }
 }
+
 /* 
   =========================
 
@@ -492,18 +736,11 @@ body{
   from {
     transform: translateX(-100%);
   }
+
   to {
     transform: translateX(0);
   }
 }
-
-.background-img {
-  background-image: url(../src/Components/Assets/Images/background/background-img.png);
-  background-position: center, center;
-  background-size: contain;
-}
-
-/* ---------right side bar-------------- */
 
 /* --------------- scroll bar css ----------------- */
 .hidden-scroll::-webkit-scrollbar {
@@ -512,7 +749,305 @@ body{
 
 /* --------------------------- */
 
-.slick-current img {
+.menu-category-slider-img-active {
   border: 4px solid var(--cashier-main-color);
   border-radius: 15px;
+}
+
+.menu-category-slider-title-active {
+  background-color: var(--cashier-main-color) !important;
+  color: white;
+}
+
+/* 
+--------------------- 
+Schedule Page Css
+------------------------ */
+.schedule-popup-hover:hover {
+  background-color: var(--cashier-hover-color);
+}
+
+/* -----------------
+Common Box Shadow Css
+*/
+.card-box-shadow {
+  box-shadow: 0px 4px 12px 1px rgba(0, 0, 0, 0.15);
+}
+
+.notification-modal-box {
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+/* =================
+
+
+height & Width CSS
+
+================== */
+.chatbot {
+  height: 326px;
+  width: 328px;
+}
+
+.chatbot-heading {
+  max-width: 75%;
+}
+
+.generate-order-card {
+  width: 312px;
+  height: 362px;
+}
+
+.invoice-receipt {
+  width: 312px;
+}
+
+.menu-slider-center-card {
+  width: 310px;
+  height: 440px;
+}
+
+.menu-slider-side-card {
+  width: 273px;
+  height: 388px;
+}
+
+.addons-modal {
+  height: 540px;
+  width: 420px;
+}
+
+.schedule-contact-modal {
+  width: 427px;
+  height: 227px;
+}
+
+.Success-modal {
+  height: 440px;
+  width: 422px;
+}
+
+.Success-modal img {
+  height: 85.5px;
+  width: 85.5px;
+}
+
+.login-modal {
+  /* height: 482px; */
+  width: 540px;
+}
+
+.login-modal .user-img {
+  height: 108px;
+  width: 108px;
+}
+
+.login-modal input {
+  width: 452px;
+}
+
+.previous-order {
+  width: 312px;
+  height: 338px;
+}
+
+.leftside-panel {
+  width: 275px;
+}
+
+.leftside-panel li {
+  width: 170px;
+}
+
+.rightside-panel {
+  width: 360px;
+}
+
+.table-card {
+  width: 144px;
+  height: 150px;
+}
+
+.table-card .table-img {
+  width: 105px;
+  height: 102px;
+}
+
+.logo {
+  width: 108.24px;
+  height: 108.24px;
+}
+
+.user-box {
+  height: 120px;
+  width: 120px;
+}
+
+.menu-item-img {
+  height: 70px;
+  width: 86px;
+}
+
+.order-page-search-short {
+  width: 573px;
+}
+
+/* .order-page-search-long {
+  width: 849px;
+} */
+.width-100vw {
+  width: 100vw;
+}
+.auto-suggest {
+  height: 280px;
+}
+.menudetailSliderimg {
+  height: 182px;
+}
+.orderside-menu {
+  width: 330px;
+  /* height: 931px; */
+}
+
+.invoice-card-scroll {
+  height: 75vh;
+}
+.notification-modal {
+  width: 465px;
+  height: 634px;
+}
+.notification-modal-content {
+  height: 580px;
+}
+.calender-modal {
+  width: 346px;
+  height: 370px;
+}
+.notify-alert-position {
+  left: 40%;
+}
+.order-process button{
+  width: 70px;
+  height: 56px;
+}
+.order-process input{
+  width: 87px !important;
+  height: 56px;
+}
+
+.rightside-shedule-order-height {
+  height: 28vh;
+}
+.auto-online-order-scroll::-webkit-scrollbar {
+  width: 1px;
+}
+.auto-online-order-scroll::-webkit-scrollbar-track {
+  background-color: #EAEAEA;
+}
+
+.auto-online-order-scroll::-webkit-scrollbar-thumb {
+  background-color: #707070;
+}
+
+.invoice-modal {
+  width: 438px;
+  height: 482px;
+}
+
+/* ======================
+
+Input Selector Css (Arrow)
+
+======================== */
+.custom-select {
+  appearance: none;
+  /* Default arrow hide */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("././Components//Assets/Images/schedule-img/down-arrow.svg");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 15px;
+  /* Arrow ka size */
+  padding-right: 35px;
+  /* Arrow aur text ke beech gap */
+}
+
+/* ============================================================== */
+
+/* ==================== MEDIA QUERY ============================== */
+
+/* =============================================================== */
+
+.menu-nav-search {
+  width: 30vw;
+}
+
+/* @media only screen and (min-width: 1024px) and (max-width: 1280px) {
+  .menu-nav-search {
+    width: 300px;
+  }
+  .menu-nav-search-sideOrder-active {
+    width: 300px;
+  }
+}
+@media only screen and (min-width: 1280px) and (max-width: 1536px) {
+  .menu-nav-search {
+    width: 30rem;
+  }
+  .menu-nav-search-sideOrder-active {
+    width: 12rem;
+  }
+}
+@media only screen and (min-width: 1536px){
+  .menu-nav-search {
+    width: 300px;
+  }
+  .menu-nav-search-sideOrder-active {
+    width: 300px;
+  }
+} */
+
+/* =========================================================
+                             Staff Data
+========================================================== */
+
+.notify-bell {
+  color: var(--yellow-color);
+}
+.notify-bell:hover {
+  background-color: var(--yellow-color);
+  color: white;
+}
+.notify-chat {
+  color: var(--blue-color);
+}
+.notify-chat:hover {
+  background-color: var(--blue-color);
+  color: white;
+}
+
+.notify-call {
+  color: #94d82d;
+}
+
+.notify-call:hover {
+  background-color: #94D82D;
+  color: white;
+}
+.dropdown-list-light-color {
+  background-color: rgba(255, 233, 213, 0.1);
+}
+
+.dropdown-list-color {
+  background-color: #f6f0e9;
+}
+
+/* ===============================================
+
+User Details Css
+
+=================================================*/
+.icon-bg-color {
+  background-color: rgba(234, 234, 234, 0.2);
 }
