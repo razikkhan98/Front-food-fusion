@@ -129,18 +129,18 @@ const UserLogin = () => {
           </div>
 
           {/* User Selection */}
-          <div className="row-span-2 row-start-3 text-center flex justify-center">
+          <div className="row-span-2 row-start-3 text-center flex justify-center items-center lg:items-start">
             {users.map((user) => (
               <span
                 key={user.name}
                 onClick={() => openModal(user)}
-                className="mx-10 cursor-pointer font-medium text-3xl transform ease-in-out transation-transform duration-100 hover:scale-150"
+                className="lg:mx-10 mx-5 cursor-pointer font-medium text-3xl transform ease-in-out transation-transform duration-100 hover:scale-150"
               >
                 <div
                   className={`user-box flex justify-center items-center ${user.bgClass} rounded-[16px] mb-3`}
                 >
                   <img
-                    className="w-20 m-auto p-2"
+                    className="lg:w-20 w-16 m-auto p-2"
                     src={user.image}
                     alt={user.label}
                   />
