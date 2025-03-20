@@ -302,6 +302,7 @@ const StaffData = () => {
                         <Navbar icons={StaffIcons} pageHeading={StaffHeading} selectedTab={setCurrentTab} />
                     </div>
 
+                    
                     {/* Table Start */}
                     <div className="mt-4 border-t rounded-xl overflow-auto h-5/6 hidden-scroll">
                         <table className="w-full border border-t-0 rounded-xl">
