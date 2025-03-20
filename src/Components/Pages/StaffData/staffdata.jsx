@@ -295,36 +295,37 @@ const StaffData = () => {
 
 
                 {/* Main Content Area */}
-                <div className={`flex-grow py-4 px-9 transition-all duration-300 me-6`}>
+                <div className={`flex-grow py-4 px-9 transition-all duration-300 me-6 h-full overflow-auto hidden-scroll`}>
 
                     {/* <Navbar /> */}
                     <div className="border-b">
                         <Navbar icons={StaffIcons} pageHeading={StaffHeading} selectedTab={setCurrentTab} />
                     </div>
 
+                    
                     {/* Table Start */}
                     <div className="mt-4 border-t rounded-xl overflow-auto h-5/6 hidden-scroll">
                         <table className="w-full border border-t-0 rounded-xl">
                             <thead className="sticky top-0 bg-white mt-0 z-20">
                                 <tr className="cashier-bg-table-color text-center">
-                                    <th className="px-6 py-3 font-normal text-sm text-left">Employee Name</th>
-                                    <th className="px-4 py-3 font-normal text-sm">Role</th>
-                                    <th className="px-4 py-3 font-normal text-sm">Shift</th>
-                                    <th className="px-4 py-3 font-normal text-sm">Status</th>
-                                    <th className="px-4 py-3 font-normal text-sm">Notify</th>
-                                    <th className="px-4 py-3 font-normal text-sm">Assigned Task</th>
+                                    <th scope="col" className="px-6 py-3 font-normal text-sm text-left">Employee Name</th>
+                                    <th scope="col" className="px-4 py-3 font-normal text-sm">Role</th>
+                                    <th scope="col" className="px-4 py-3 font-normal text-sm">Shift</th>
+                                    <th scope="col" className="px-4 py-3 font-normal text-sm">Status</th>
+                                    <th scope="col" className="px-4 py-3 font-normal text-sm">Notify</th>
+                                    <th scope="col" className="px-4 py-3 font-normal text-sm">Assigned Task</th>
                                 </tr>
                             </thead>
                             <tbody className="bg-white">
                                 {employees.map((employee, index) => (
                                     <tr key={index} className="border-t text-center">
-                                        <td className="px-6 py-3 flex items-center space-x-3 text-left">
+                                        <th scope="row" className="px-6 py-3 flex items-center space-x-3 text-left">
                                             <span className={`w-10 h-10 flex items-center justify-center text-white text-lg font-medium rounded-md ${employee.color}`}>{employee.initials}</span>
                                             <div>
-                                                <p className="text-color-black text-sm font-normal">{employee.name}</p>
+                                                <p className="text-color-black whitespace-nowrap text-sm font-normal">{employee.name}</p>
                                                 <p className="text-xs font-normal text-gray-500">{employee.phone}</p>
                                             </div>
-                                        </td>
+                                        </th>
                                         <td className="px-6 py-3 text-color-black text-sm font-normal">{employee.role}</td>
                                         <td className="px-4 py-3 text-color-black text-sm font-normal">{employee.shift}</td>
                                         <td className="px-4 py-3 flex justify-center">
