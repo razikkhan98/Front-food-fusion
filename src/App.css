@@ -831,6 +831,10 @@ height & Width CSS
   height: 85.5px;
   width: 85.5px;
 }
+.settle-bill-modal {
+  height: 482px;
+  width: 580px;
+}
 
 .login-modal {
   /* height: 482px; */
@@ -1050,4 +1054,40 @@ User Details Css
 =================================================*/
 .icon-bg-color {
   background-color: rgba(234, 234, 234, 0.2);
+}
+
+
+
+/* ==================== */
+/* AutoOrderPopupModal.css */
+.modal-closing {
+  animation: fadeOutOverlay 0.3s ease-out forwards;
+}
+
+.modal-content-closing {
+  animation: slideDownFade 0.3s ease-out forwards;
+}
+
+@keyframes fadeOutOverlay {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideDownFade {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  70% {
+    opacity: 0.5;
+    transform: translateY(20px) scale(0.95);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+  }
 }

@@ -4,7 +4,6 @@ import { Dialog } from "@headlessui/react";
 import { useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
 // import { NavLink } from "react-router-dom";
-// import 'animate.css';
 
 // import images
 import swiggy from "../../Assets/Images/navbar-img/swiggy.png";
@@ -35,10 +34,10 @@ const AutoOrderPopupModal = ({ isOpen, closeModal, modalIndex, modalId }) => {
   const ModalArray = [1, 2, 3];
 
   // Close the modal and reset the form
-  const handleModalClose = () => {
-    reset();
-    closeModal();
-  };
+  // const handleModalClose = () => {
+  //   reset();
+  //   closeModal();
+  // };
 
   // Submit the form
   const onSubmitHandler = async (payload) => {
@@ -61,14 +60,27 @@ const AutoOrderPopupModal = ({ isOpen, closeModal, modalIndex, modalId }) => {
     setProcessModal(true);
   };
 
+
+  const [isClosing, setIsClosing] = useState(false);
+
+  // Modified handleModalClose to add closing animation
+  const handleModalClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      reset();
+      closeModal();
+      setIsClosing(false);
+    }, 300); // Match this with CSS animation duration
+  };
+
   return (
     <>
       <Dialog
         open={isOpen}
         onClose={handleModalClose}
-        className={`fixed inset-0 z-10 flex items-center justify-center  ${
+        className={`fixed inset-0 z-10 flex items-center justify-center ${
           modalIndex == 0 ? "auto-modal-background" : ""
-        }`}
+        } ${isClosing ? 'modal-closing' : ''}`}
       >
         {/* Overlay */}
         <div
@@ -79,8 +91,8 @@ const AutoOrderPopupModal = ({ isOpen, closeModal, modalIndex, modalId }) => {
 
         {/* Modal Content */}
         <div
-          className={`bg-white p-6 rounded-2xl border-light-gray-color z-20  relative mx-auto login-modal`}
-          style={{ marginTop: `${modalIndex * 20}px` }}
+          className={`bg-white p-6 rounded-2xl border-light-gray-color z-20  relative mx-auto login-modal ${isClosing ? 'modal-content-closing' : ''}`}
+          // style={{ marginTop: `${modalIndex * 20}px` }}
         >
           {/* Close Button */}
           <div className="flex justify-between items-center">

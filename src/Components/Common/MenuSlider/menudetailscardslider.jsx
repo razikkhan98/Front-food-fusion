@@ -102,12 +102,11 @@ function MenuDetailsCardSlider({
               className={getCardClasses(position)}
             >
               <div
-                className={`max-w-sm bg-white w-full h-full rounded-3xl shadow-lg overflow-hidden ${
-                  card?.status !== "Available" ? "filter grayscale" : ""
-                }`}
+                className={`max-w-sm bg-white w-full h-full rounded-3xl shadow-lg overflow-hidden 
+                  `}
               >
                 {/* Card Content (Same as previous implementation) */}
-                <div className="relative">
+                <div className={`relative ${card?.status !== "Available" ? "filter grayscale" : ""}`}>
                   <img
                     className={`w-full ${position == "center" ? 'menudetailSliderimg' :'h-40'} object-cover border-4 border-white rounded-t-3xl`}
                     src={card?.img}
@@ -127,23 +126,23 @@ function MenuDetailsCardSlider({
               <div className={`p-4 pt-1 ${position == "center" ? 'h-64 grid items-center' :''}`}>
                 {/* Title & Ratings */}
                 <div className="flex justify-between text-center">
-                  <h2 className="text-base font-medium text-gray-800">
+                  <h2 className={`text-base font-medium ${card?.status !== "Available" ? "filter grayscale text-color-gray" : ""}`}>
                     {card?.name}
                   </h2>
                   <span
-                    className={`text-end flex text-xs items-center px-1  ${card?.colorStatus}`}
+                    className={`text-end flex text-xs items-center px-1 ${card?.colorStatus}`}
                   >
                     <span
                       className={`${
                         card?.status == "Available"
                           ? "bg-green-500"
-                          : "bg-red-500"
+                          : "bg-red-500 "
                       } inline-block h-1 me-1 p-0.5  rounded-full`}
                     ></span>
                     {card?.status}
                   </span>
                 </div>
-                <div className="flex items-center text-gray-600 mt-1">
+                <div className={`flex items-center  mt-1 text-light-gray-color ${card?.status !== "Available" ? "filter grayscale" : ""}`}>
                   {/* Star Icon */}
                       <span className="flex me-1.5">{renderStars(2.5)}</span>
                   <span className="mr-1 text-xs font-normal">4.5</span>
@@ -151,7 +150,7 @@ function MenuDetailsCardSlider({
                 </div>
 
                 {/* Features row */}
-                <div className="flex items-center gap-3 text-sm text-gray-600 mt-3">
+                <div className={`flex items-center gap-3 text-sm  mt-3 text-light-gray-color ${card?.status !== "Available" ? "filter grayscale" : ""}`}>
                   <div className="flex items-center gap-1">
                     {/* Time Icon */}
                     <PiChefHatFill className="text-[--yellow-color]" />
@@ -172,13 +171,13 @@ function MenuDetailsCardSlider({
                 </div>
 
                 {/* Description */}
-                <p className={`text-sm font-normal ${position == "center" ? 'h-20' :'h-20'} overflow-scroll hidden-scroll text-color-gray mt-3`}>
+                <p className={`text-sm font-normal ${position == "center" ? 'line-clamp-3' :'line-clamp-4'} overflow-scroll hidden-scroll text-color-gray mt-3`}>
                   A variety of delicious vegetarian pizzas made with fresh
                   ingredients, signature sauces, and cheesy
                 </p>
 
                 {/* Price and Add button */}
-                <div className="mt-2 flex items-center justify-between">
+                <div className={`mt-2 flex items-center justify-between ${card?.status !== "Available" ? "filter grayscale" : ""}`}>
                   <span
                     className={`${
                       card?.status !== "Available"
@@ -191,7 +190,7 @@ function MenuDetailsCardSlider({
                   <button
                     className={` ${
                       card?.status !== "Available"
-                        ? "border-2 text-color-gray cursor-not-allowed"
+                        ? "border text-color-gray cursor-not-allowed"
                         : "cashier-light-bg-color text-color-black"
                     } px-5 py-1 w-20 h-8 text-sm font-normal rounded-md`}
                   >

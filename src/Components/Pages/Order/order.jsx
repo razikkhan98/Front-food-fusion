@@ -473,13 +473,13 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
         <div className="flex gap-7 mt-8">
           {/* <Button title={" Generate Invoice"}/>
           <Button title={"Send to Kitchen"}/> */}
-          <NavLink to={"/allinvoice"}>
-            <button className={`px-8 py-2.5 bg-white  text-base font-medium rounded-full ${MenuFromRedux?.Menu?.length > 0 ? 'border-cashier cashier-main-text-color': "border-light-gray text-light-gray-color"}`}>
+          <NavLink  to={"/allinvoice"}>
+            <button className={`px-8 py-2.5  bg-white  lg:text-base  text-xs font-medium rounded-full ${MenuFromRedux?.Menu?.length > 0 ? 'border-cashier cashier-main-text-color': "border-light-gray text-light-gray-color"}`}>
               Generate Invoice
             </button>
           </NavLink>
           <NavLink to={"/sendtokitchen"}>
-            <button className={`px-8 py-2.5  text-base font-medium rounded-full ${MenuFromRedux?.Menu?.length > 0 ? 'cashier-main-bg-color text-white':"text-light-gray-color btn-bg-gray-color"}`}>
+            <button className={`px-8 py-2.5  lg:text-base  text-xs font-medium rounded-full ${MenuFromRedux?.Menu?.length > 0 ? 'cashier-main-bg-color text-white':"text-light-gray-color btn-bg-gray-color"}`}>
               Send To Kitchen
             </button>
           </NavLink>
