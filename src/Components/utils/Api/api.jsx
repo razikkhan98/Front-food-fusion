@@ -10,7 +10,6 @@ const useApi = () => {
   const [error, setError] = useState(null);
 
   const request = async (method, endpoint, data = null, params = null) => {
-    console.log('method: ', method);
     setLoading(true);
     setError(null);
 
@@ -23,7 +22,7 @@ const useApi = () => {
         headers: {
           "Content-Type": "application/json",
           "ngrok-skip-browser-warning": "69420",
-          "Authorization":`${Auth?.accessToken}`,
+          "Authorization":`Bearer ${Auth?.accessToken}`,
           "session":`${Auth?.session}`
         },
       });
