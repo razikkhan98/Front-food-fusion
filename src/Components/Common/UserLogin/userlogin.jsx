@@ -64,7 +64,7 @@ const UserLogin = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // ==========
   // Function
@@ -97,9 +97,10 @@ const UserLogin = () => {
         progress: undefined,
         theme: "light",
       });
-      sessionStorage?.setItem("User",JSON?.stringify(response))
+      sessionStorage?.setItem("User", JSON?.stringify(response));
       closeModal();
-      navigate('/table')
+      await request("GET", "/food-fusion/cashier/getAllFloors");
+      navigate("/table");
     }
   };
 

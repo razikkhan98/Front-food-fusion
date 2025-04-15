@@ -145,7 +145,7 @@ const Table = () => {
                (
                 <>
                   {i?.totalChairs <= 3 &&
-                  String(i?.floorName) == String(CurrentTab) ? (
+                  String(i?.floorName) == String(CurrentTab) && i?.tablestatus == "empty"  ? (
                     <TableCard
                       tableStatus={"blank"}
                       index={index}
@@ -167,7 +167,7 @@ const Table = () => {
               {FloorWiseTables?.map((i, index) => (
                 <>
                   {i?.totalChairs <= 4 &&
-                  String(i?.floorName) == String(CurrentTab) ? (
+                  String(i?.floorName) == String(CurrentTab) && i?.tablestatus == "empty" ? (
                     <TableCard
                       tableStatus={"blank"}
                       index={index}
@@ -193,7 +193,7 @@ const Table = () => {
               {FloorWiseTables?.map((i, index) => (
                 <>
                   {i?.totalChairs >= 5 &&
-                  String(i?.floorName) == String(CurrentTab) ? (
+                  String(i?.floorName) == String(CurrentTab) && i?.tablestatus == "empty" ? (
                     <TableCard
                       tableStatus={"blank"}
                       index={index}

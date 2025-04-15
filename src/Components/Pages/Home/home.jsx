@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Import Third Party componets
 import { connect } from "react-redux";
@@ -17,13 +17,14 @@ import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
 import AutoOrderPopupModal from "../../Common/AutoOrderPopupModal/AutoOrderPopupModal.jsx";
 import Button from "../../Common/Button/button.jsx";
 import Plus from "../../Assets/Images/sidebarImg/Plus.svg";
+import useApi from "../../utils/Api/api.jsx";
 
 // Json
 
 const HomeButtons = [
-  { btn_name: "Dine In", btn_color: "bg-[--cashier-very-light-color]" },
-  { btn_name: "Take Away", btn_color: "bg-transparent" },
-  { btn_name: "Delivery", btn_color: "bg-transparent" },
+  {btn_key:"dine", btn_name: "Dine In", btn_color: "bg-[--cashier-very-light-color]" },
+  {btn_key:"takeaway", btn_name: "Take Away", btn_color: "bg-transparent" },
+  {btn_key:"delivery", btn_name: "Delivery", btn_color: "bg-transparent" },
 ];
 const HomeIcons = [{ nav_img: magnify }, { nav_img: bell }];
 const HomeHeading = ["Booked Table"];
@@ -32,16 +33,21 @@ const Home = ({ tableDetailsFromRedux }) => {
   // --------
   // State
   // --------
-  const [CurrentTab, setCurrentTab] = useState();
+  const [CurrentTab, setCurrentTab] = useState("Dine In");
   const numberOfModals = 2; // Define the number of modals
   const initialModalsState = Array(numberOfModals).fill(true); // Create an array filled with `true`
+  const { request } = useApi();
 
   const [modalsOpen, setModalsOpen] = useState(initialModalsState);
+  const [WorkingTable, setWorkingTable] = useState();
+
+  const currentButton = HomeButtons.find(button => button.btn_name === CurrentTab);
+  const currentBtnKey = currentButton ? currentButton.btn_key : null;
+  console.log('currentBtnKey: ', currentBtnKey);
 
   // ---------
   // Functions
   // ---------
-
 
   const closeModal = (index) => {
     setModalsOpen((prev) => {
@@ -50,6 +56,24 @@ const Home = ({ tableDetailsFromRedux }) => {
       return newModalsOpen;
     });
   };
+
+  //
+  const fetchAllTable = async () => {
+    try {
+      const response = await request("GET", "/food-fusion/cashier/todayorder");
+      if (response) {
+        console.log('response: ', response);
+        setWorkingTable(response);
+      }
+    } catch (error) {}
+  };
+
+  // ===============
+  // UseEffect
+  // ===============
+  useEffect(() => {
+    fetchAllTable();
+  }, []);
 
   return (
     <div className="flex h-dvh overflow-hidden">
@@ -63,7 +87,7 @@ const Home = ({ tableDetailsFromRedux }) => {
       <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
         <div className="border-b">
           <Navbar
-          buttons={HomeButtons}
+            buttons={HomeButtons}
             icons={HomeIcons}
             pageHeading={HomeHeading}
             selectedTab={setCurrentTab}
@@ -78,14 +102,17 @@ const Home = ({ tableDetailsFromRedux }) => {
               to={"/order"}
             >
               <button className="w-full cashier-main-bg-color text-white py-2 px-4 rounded-full font-medium text-base flex items-center justify-center">
-                <img src={Plus} className="me-2 h-5 w-5" alt="Loading" /> Create New
-                Order
+                <img src={Plus} className="me-2 h-5 w-5" alt="Loading" /> Create
+                New Order
               </button>
             </NavLink>
           </div>
           <div className="grid grid-cols-[repeat(auto-fill,minmax(168px,168px))]">
-            {tableDetailsFromRedux?.TableBooking?.map((i, index) => (
-              <TableCard tableDetail={i} />
+            {WorkingTable?.currentBtnKey?.map((i, index) => (
+              <>
+              {/* {console.log('WorkingTable?.CurrentTab: ', WorkingTable)} */}
+              <TableCard tableDetail={i?.tableNumber} />
+              </>
             ))}
             <div className=" p-4 w-56"></div>
           </div>
