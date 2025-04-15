@@ -55,20 +55,17 @@ const users = [
 ];
 
 const UserLogin = () => {
-
-  // ==========  
-  // State 
+  // ==========
+  // State
   // ============
   const { request } = useApi();
   // const [name, setName] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
 
-
-
-  // ==========  
-  // Function 
-  // ============ 
+  // ==========
+  // Function
+  // ============
 
   // Open Modal for user login function
   const openModal = (user) => {
@@ -81,13 +78,13 @@ const UserLogin = () => {
 
   // Handle form submission
   const onSubmit = async (data) => {
-    console.log('data:----------------main ', data);
+    const response = await request("POST", "/food-fusion/cashier/staff/login", {
+      role: selectedUser?.name,
+      code: data.code,
+    });
 
-    const response = await request("POST", "/food-fusion/cashier/staff/login", { name: data.selectedUser, code: data.code, });
-
-    if (response) {
-      // alert("User login successful!");
-      toast.success("User Login Successfully", {
+    if (response?.success) {
+      toast.success(response?.message, {
         position: "top-center",
         autoClose: 2000,
         hideProgressBar: false,
@@ -97,24 +94,26 @@ const UserLogin = () => {
         progress: undefined,
         theme: "light",
       });
+      sessionStorage?.setItem("User",JSON?.stringify(response))
       closeModal();
     }
   };
 
-  // ======= 
-  // Api Functions 
-  // ========= 
+  // =======
+  // Api Functions
+  // =========
 
-
-
-  // ======= 
-  // UseEffect 
-  // ========= 
+  // =======
+  // UseEffect
+  // =========
 
   return (
     <>
-    {/* <section> */}
-      <div className=" flex justify-center items-center" style={{height:window?.screen?.height}}>
+      {/* <section> */}
+      <div
+        className=" flex justify-center items-center"
+        style={{ height: window?.screen?.height }}
+      >
         <div className="grid grid-cols-1 grid-rows-6 gap-1">
           {/* Logo & Title */}
           <div className="row-span-2 flex justify-center items-center mb-32">
@@ -123,7 +122,10 @@ const UserLogin = () => {
               src={Logo}
               alt="Food Fusion Logo"
             />
-            <span className="cashier-main-text-color text-6xl ms-3 montserrat-alternates-semibold" style={{ textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)" }}>
+            <span
+              className="cashier-main-text-color text-6xl ms-3 montserrat-alternates-semibold"
+              style={{ textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)" }}
+            >
               FOOD FUSION
             </span>
           </div>
@@ -146,9 +148,8 @@ const UserLogin = () => {
                   />
                 </div>
                 <div className="poppins-medium text-3xl text-color-black">
-                {user.label}
+                  {user.label}
                 </div>
-               
               </span>
             ))}
           </div>
@@ -158,7 +159,6 @@ const UserLogin = () => {
       {/* User Login Modal */}
       {selectedUser && (
         <UserLoginModal
-
           isOpen={isOpen}
           closeModal={closeModal}
           selectedUser={selectedUser}
