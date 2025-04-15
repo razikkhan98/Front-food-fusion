@@ -14,39 +14,40 @@ import useApi from "../../utils/Api/api";
 
 // Third party components
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 // Role JSON Data
 const users = [
   {
-    name: "admin",
+    name: "Admin",
     label: "Admin",
     image: Admin,
     bgClass: "bg-[--admin-color]",
     path: "/admin/dashboard",
   },
   {
-    name: "cashier",
+    name: "Cashier",
     label: "Cashier",
     image: Cashier,
     bgClass: "bg-[--cashier-color]",
     path: "/home",
   },
   {
-    name: "staff",
+    name: "Staff",
     label: "Staff",
     image: Staff,
     bgClass: "bg-[--staff-color]",
     path: "/home",
   },
   {
-    name: "captain",
+    name: "Captain",
     label: "Captain",
     image: Captain,
     bgClass: "bg-[--captain-color]",
     path: "/home",
   },
   {
-    name: "chef",
+    name: "Chef",
     label: "Chef",
     image: Chef,
     bgClass: "bg-[--chef-color]",
@@ -62,6 +63,8 @@ const UserLogin = () => {
   // const [name, setName] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+
+  const navigate = useNavigate()
 
   // ==========
   // Function
@@ -96,6 +99,7 @@ const UserLogin = () => {
       });
       sessionStorage?.setItem("User",JSON?.stringify(response))
       closeModal();
+      navigate('/table')
     }
   };
 
