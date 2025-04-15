@@ -109,6 +109,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
       orderStatus: "reserve",
     };
     console.log('payload: ', payload);
+    
     try {
       // API call to create customer
       const response = await request("POST", "/food-fusion/cashier/createCustomer", payload);
