@@ -79,9 +79,9 @@ const Table = () => {
         <LeftSideNavbar />
         <ChatBot />
         {/* Main Content Area */}
-        <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
+        <div className={`flex-grow py-4 px-9 transition-all duration-300 h-full overflow-auto hidden-scroll`}>
           {/* Navbar */}
-          <div className="border-b">
+          <div className="border-b ">
             <Navbar
               buttons={HomeButtons}
               icons={HomeIcons}

@@ -1085,15 +1085,15 @@ User Details Css
 
 /* ==================== */
 /* AutoOrderPopupModal.css */
-.modal-closing {
+/* .modal-closing {
   animation: fadeOutOverlay 0.3s ease-out forwards;
 }
 
 .modal-content-closing {
   animation: slideDownFade 0.3s ease-out forwards;
-}
+} */
 
-@keyframes fadeOutOverlay {
+/* @keyframes fadeOutOverlay {
   from {
     opacity: 1;
   }
@@ -1115,4 +1115,4 @@ User Details Css
     opacity: 0;
     transform: translateY(50px) scale(0.9);
   }
-}
+} */

@@ -24,7 +24,7 @@ const Home = ({ tableDetailsFromRedux }) => {
   // State
   // --------
   const [CurrentTab, setCurrentTab] = useState();
-  const numberOfModals = 7 ; // Define the number of modals
+  const numberOfModals = 2 ; // Define the number of modals
   const initialModalsState = Array(numberOfModals).fill(true); // Create an array filled with `true`
 
   const [modalsOpen, setModalsOpen] = useState(initialModalsState);
@@ -79,7 +79,7 @@ const Home = ({ tableDetailsFromRedux }) => {
       </div>
       <div className="auto-modal-background">
         {/* Auto popup modal */}
-        {[...Array(numberOfModals)]?.map((i, index) => (
+        {/* {[...Array(numberOfModals)]?.map((i, index) => (
           <AutoOrderPopupModal
             key={index}
             isOpen={modalsOpen[index]}
@@ -87,7 +87,7 @@ const Home = ({ tableDetailsFromRedux }) => {
             modalIndex={index}
             modalId={i}
           />
-        ))}
+        ))} */}
       </div>
     </div>
   );

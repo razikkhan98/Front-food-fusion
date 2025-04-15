@@ -60,7 +60,6 @@ const AutoOrderPopupModal = ({ isOpen, closeModal, modalIndex, modalId }) => {
     setProcessModal(true);
   };
 
-
   const [isClosing, setIsClosing] = useState(false);
 
   // Modified handleModalClose to add closing animation
@@ -70,7 +69,7 @@ const AutoOrderPopupModal = ({ isOpen, closeModal, modalIndex, modalId }) => {
       reset();
       closeModal();
       setIsClosing(false);
-    }, 300); // Match this with CSS animation duration
+    }, 100); // Match this with CSS animation duration
   };
 
   return (
@@ -80,7 +79,8 @@ const AutoOrderPopupModal = ({ isOpen, closeModal, modalIndex, modalId }) => {
         onClose={handleModalClose}
         className={`fixed inset-0 z-10 flex items-center justify-center ${
           modalIndex == 0 ? "auto-modal-background" : ""
-        } ${isClosing ? 'modal-closing' : ''}`}
+        }
+           ${isClosing ? "modal-closing" : ""}`}
       >
         {/* Overlay */}
         <div
@@ -91,8 +91,11 @@ const AutoOrderPopupModal = ({ isOpen, closeModal, modalIndex, modalId }) => {
 
         {/* Modal Content */}
         <div
-          className={`bg-white p-6 rounded-2xl border-light-gray-color z-20  relative mx-auto login-modal ${isClosing ? 'modal-content-closing' : ''}`}
-          // style={{ marginTop: `${modalIndex * 20}px` }}
+          className={`bg-white p-6 rounded-2xl border-light-gray-color z-20  relative mx-auto login-modal
+             ${
+              isClosing ? "modal-content-closing" : ""}
+              `}
+          style={{ marginTop: `${modalIndex * 20}px` }}
         >
           {/* Close Button */}
           <div className="flex justify-between items-center">
