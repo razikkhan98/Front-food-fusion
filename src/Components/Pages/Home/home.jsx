@@ -19,6 +19,12 @@ import Button from "../../Common/Button/button.jsx";
 import Plus from "../../Assets/Images/sidebarImg/Plus.svg";
 
 // Json
+
+const HomeButtons = [
+  { btn_name: "Dine In", btn_color: "bg-[--cashier-very-light-color]" },
+  { btn_name: "Take Away", btn_color: "bg-transparent" },
+  { btn_name: "Delivery", btn_color: "bg-transparent" },
+];
 const HomeIcons = [{ nav_img: magnify }, { nav_img: bell }];
 const HomeHeading = ["Booked Table"];
 
@@ -57,6 +63,7 @@ const Home = ({ tableDetailsFromRedux }) => {
       <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
         <div className="border-b">
           <Navbar
+          buttons={HomeButtons}
             icons={HomeIcons}
             pageHeading={HomeHeading}
             selectedTab={setCurrentTab}
