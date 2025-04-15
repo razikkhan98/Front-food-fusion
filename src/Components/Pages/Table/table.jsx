@@ -141,7 +141,8 @@ const Table = () => {
               Table for 2 members
             </h2>
             <div className="grid grid-cols-[repeat(auto-fill,minmax(168px,168px))]">
-              {FloorWiseTables?.map((i, index) => (
+              {FloorWiseTables?.map((i, index) =>
+               (
                 <>
                   {i?.totalChairs <= 3 &&
                   String(i?.floorName) == String(CurrentTab) ? (
@@ -154,7 +155,8 @@ const Table = () => {
                     <></>
                   )}
                 </>
-              ))}
+              )
+              )}
             </div>
             {/* -------- for 4 member table ---------- */}
             <hr className="mt-3 mb-1" />
