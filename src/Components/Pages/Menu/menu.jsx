@@ -173,10 +173,10 @@ const Menu = () => {
   // Close Modal for Addon function
   const closeModal = () => setIsOpen(false);
 
-    // Open side order menu on  Addon submit
-    const HandleAddonSumbit = () => {
-      toggleOrderSidebar()
-    };
+  // Open side order menu on  Addon submit
+  const HandleAddonSumbit = () => {
+    toggleOrderSidebar()
+  };
 
   // // Function to close the Menu Detail Modal
   // const closeModal = () => {
@@ -203,8 +203,8 @@ const Menu = () => {
           <MenuSlider Noslide={isRightSidebarOpen ? 6 : 9} />
           {/* <MenuDetailsCardSlider/> */}
           <div className="flex items-center justify-between">
-          <h1 className="font-medium text-xl ms-2 mb-2">Starters</h1>
-    <h6 className="flex items-center text-sm font-normal text-color-gray cursor-pointer">View all detailed <FiChevronRight className="ms-1" /></h6>
+            <h1 className="font-medium text-xl ms-2 mb-2">Starters</h1>
+            <h6 className="flex items-center text-sm font-normal text-color-gray cursor-pointer">View all detailed <FiChevronRight className="ms-1" /></h6>
           </div>
           <div className="grid grid-cols-[repeat(auto-fill,minmax(240px,240px))]">
             {MenuCard?.map((item, index) => (
@@ -221,11 +221,10 @@ const Menu = () => {
                           src={item?.img}
                           alt="Loading"
                           onClick={() => openMenuCardSlider(item)}
-                          className={`${
-                            item?.status !== "Available"
+                          className={`${item?.status !== "Available"
                               ? "filter grayscale"
                               : ""
-                          } cursor-pointer menu-item-img rounded-md`}
+                            } cursor-pointer menu-item-img rounded-md`}
                         />
                       </div>
                       <div>
@@ -234,19 +233,17 @@ const Menu = () => {
                             className={`text-end flex text-xs items-center px-1 font-semibold ${item?.colorStatus}`}
                           >
                             <span
-                              className={` ${
-                                item?.status == "Available"
+                              className={` ${item?.status == "Available"
                                   ? "bg-green-500"
                                   : "bg-red-500"
-                              } inline-block h-1 me-1 p-0.5 rounded-full`}
+                                } inline-block h-1 me-1 p-0.5 rounded-full`}
                             ></span>
                             {item?.status}
                           </span>
                         </div>
                         <p
-                          className={` mt-1 line-clamp-2  ${
-                            item?.status !== "Available" ? "text-gray-400" : ""
-                          } font-medium text-sm text-left`}
+                          className={` mt-1 line-clamp-2  ${item?.status !== "Available" ? "text-gray-400" : ""
+                            } font-medium text-sm text-left`}
                         >
                           {item?.name}
                         </p>
@@ -258,18 +255,16 @@ const Menu = () => {
                           openModal();
                           setCurrentAddon(item?.add_ons);
                         }}
-                        className={` text-sm ${
-                          item?.status !== "Available"
+                        className={` text-sm ${item?.status !== "Available"
                             ? "text-gray-400 border"
                             : "cashier-light-bg-color cursor-pointer"
-                        } uppercase  px-6 py-1 mt-2 rounded-md`}
+                          } uppercase  px-6 py-1 mt-2 rounded-md`}
                       >
                         Add
                       </button>
                       <p
-                        className={`${
-                          item?.status !== "Available" ? "text-gray-400" : ""
-                        } text-end text-base font-semibold`}
+                        className={`${item?.status !== "Available" ? "text-gray-400" : ""
+                          } text-end text-base font-semibold`}
                       >
                         ₹ {item?.price}
                       </p>
@@ -289,19 +284,18 @@ const Menu = () => {
         </div>
         {/* Right Order Details Sidebar  */}
         <div
-          className={`transition-all duration-300 ease-in-out mb-2 relative right-6 mr-6 rounded-l-3xl ${
-            OrderDetailSidebar ? " w-80" : "hidden"
-          } ${isRightSidebarOpen ? "hidden" : ""}`}
+          className={`transition-all duration-300 ease-in-out mb-2 relative right-6 mr-6 rounded-l-3xl ${OrderDetailSidebar ? " w-80" : "hidden"
+            } ${isRightSidebarOpen ? "hidden" : ""}`}
         >
           <OrderSideMenu />
         </div>
 
         {/* Right Sidebar */}
         <div
-        className={`transition-all duration-300 ease-in-out relative rounded-l-3xl`}>
-        <RightSidebar />
+          className={`transition-all duration-300 ease-in-out relative rounded-l-3xl`}>
+          <RightSidebar />
 
-      </div>
+        </div>
       </div>
 
       {/* Menu Details Card Slider */}
@@ -309,7 +303,7 @@ const Menu = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center  z-50">
           <div
             className=" p-6 rounded-lg shadow-lg relative width-100vw"
-            // onClick={closeMenuCardSlider}
+          // onClick={closeMenuCardSlider}
           >
             <button
               onClick={closeMenuCardSlider}
