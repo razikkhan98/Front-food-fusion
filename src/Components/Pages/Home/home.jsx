@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 // Import Third Party componets
 import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 // Import Common Components
 import TableCard from "../../Common/TableCard/tableCard.jsx";
@@ -14,6 +15,8 @@ import Navbar from "../../Common/Navbar/navbar.jsx";
 import bell from "../../Assets/Images/navbar-img/bell.svg";
 import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
 import AutoOrderPopupModal from "../../Common/AutoOrderPopupModal/AutoOrderPopupModal.jsx";
+import Button from "../../Common/Button/button.jsx";
+import Plus from "../../Assets/Images/sidebarImg/Plus.svg";
 
 // Json
 const HomeIcons = [{ nav_img: magnify }, { nav_img: bell }];
@@ -24,7 +27,7 @@ const Home = ({ tableDetailsFromRedux }) => {
   // State
   // --------
   const [CurrentTab, setCurrentTab] = useState();
-  const numberOfModals = 2 ; // Define the number of modals
+  const numberOfModals = 2; // Define the number of modals
   const initialModalsState = Array(numberOfModals).fill(true); // Create an array filled with `true`
 
   const [modalsOpen, setModalsOpen] = useState(initialModalsState);
@@ -32,7 +35,7 @@ const Home = ({ tableDetailsFromRedux }) => {
   // ---------
   // Functions
   // ---------
-  
+
 
   const closeModal = (index) => {
     setModalsOpen((prev) => {
@@ -61,7 +64,18 @@ const Home = ({ tableDetailsFromRedux }) => {
         </div>
 
         <div className="overflow-auto h-5/6 hidden-scroll">
-          <h2 className="text-base font-semibold my-3">Dine In</h2>
+          <div className="flex items-center justify-between my-3">
+            <h2 className="text-base font-semibold">Dine In</h2>
+            <NavLink
+              // className={`${isRightSidebarOpen ? "" : "hidden"}`}
+              to={"/order"}
+            >
+              <button className="w-full cashier-main-bg-color text-white py-2 px-4 rounded-full font-medium text-base flex items-center justify-center">
+                <img src={Plus} className="me-2 h-5 w-5" alt="Loading" /> Create New
+                Order
+              </button>
+            </NavLink>
+          </div>
           <div className="grid grid-cols-[repeat(auto-fill,minmax(168px,168px))]">
             {tableDetailsFromRedux?.TableBooking?.map((i, index) => (
               <TableCard tableDetail={i} />
