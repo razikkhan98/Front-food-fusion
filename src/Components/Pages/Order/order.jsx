@@ -359,7 +359,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                     </label>
                     <select
                       className="custom-select w-full mt-2 px-2 py-3 border-gray-color rounded-lg text-base font-medium focus-visible:bg-white"
-                      {...register("floorName")}
+                      {...register("floor")}
                       value={SelectedFloor}
                       onChange={handleFloorChange}
                     >
