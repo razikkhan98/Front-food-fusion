@@ -326,10 +326,10 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                     </label>
                     <select
                       className="custom-select w-full mt-2 px-2 py-3 border-gray-color rounded-lg text-base font-medium focus-visible:bg-white"
-                      {...register("floorName")}
+                      {...register("floor")}
                     >
                       <option value={""}>Select Floor</option>
-                      <option value={"ground floor"}>Gound Floor</option>
+                      <option value={"ground floor"}>Ground Floor</option>
                       <option value={"first floor"}>First Floor</option>
                       <option value={"second Floor"}>Second Floor</option>
 
