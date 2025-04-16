@@ -60,7 +60,7 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking, tableDetail }) =
             </Link>
           </div>
         </>
-      ) : tableStatus === "pending" ? (
+      ) : tableStatus === "Order pending" ? (
         <>
           {/* ------- pending table ------- */}
           <div className=" flex items-center m-3 w-36">
@@ -87,9 +87,9 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking, tableDetail }) =
             </div>
             </div> */}
                 <div className="text-center my-2">
-                  <span className="text-xs">
-                    Table {tableNo}{" "}
-                    <span className="font-medium text-xs">Mr Admin</span>
+                  <span className="text-xs truncate">
+                    T{tableNo}{" - "}
+                    <span className="font-medium text-xs">{tableDetail?.customerName}</span>
                   </span>
                   {/* <h5 className="text-sm font-semibold text-red-700">
                     Reserved
@@ -99,7 +99,7 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking, tableDetail }) =
             </Link>
           </div>
         </>
-      ) : tableStatus === "process" ? (
+      ) : tableStatus === "Order making" ? (
         <>
           {/* ------- process table ------- */}
           <div className=" flex items-center m-3 w-36">
@@ -116,8 +116,8 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking, tableDetail }) =
                 </div>
                 <div className="text-center my-3">
                   <span className="text-xs">
-                    Table {tableNo}{" "}
-                    <span className="font-medium text-xs">Mr Admin</span>
+                    T{tableNo}{" - "}
+                    <span className="font-medium text-xs">{tableDetail?.customerName}</span>
                   </span>
                 </div>
               </div>

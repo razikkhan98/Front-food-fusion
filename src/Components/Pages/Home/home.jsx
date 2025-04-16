@@ -22,28 +22,28 @@ import useApi from "../../utils/Api/api.jsx";
 // Json
 
 const HomeButtons = [
-  {btn_key:"dine", btn_name: "Dine In", btn_color: "bg-[--cashier-very-light-color]" },
-  {btn_key:"takeaway", btn_name: "Take Away", btn_color: "bg-transparent" },
-  {btn_key:"delivery", btn_name: "Delivery", btn_color: "bg-transparent" },
+  {
+    btn_key: "dine",
+    btn_name: "Dine In",
+    btn_color: "bg-[--cashier-very-light-color]",
+  },
+  { btn_key: "takeaway", btn_name: "Take Away", btn_color: "bg-transparent" },
+  { btn_key: "delivery", btn_name: "Delivery", btn_color: "bg-transparent" },
 ];
 const HomeIcons = [{ nav_img: magnify }, { nav_img: bell }];
 const HomeHeading = ["Booked Table"];
 
-const Home = ({ tableDetailsFromRedux }) => {
+const Home = () => {
   // --------
   // State
   // --------
-  const [CurrentTab, setCurrentTab] = useState("Dine In");
   const numberOfModals = 2; // Define the number of modals
   const initialModalsState = Array(numberOfModals).fill(true); // Create an array filled with `true`
   const { request } = useApi();
 
   const [modalsOpen, setModalsOpen] = useState(initialModalsState);
+  const [CurrentTab, setCurrentTab] = useState("Dine In");
   const [WorkingTable, setWorkingTable] = useState();
-
-  const currentButton = HomeButtons.find(button => button.btn_name === CurrentTab);
-  const currentBtnKey = currentButton ? currentButton.btn_key : null;
-  console.log('currentBtnKey: ', currentBtnKey);
 
   // ---------
   // Functions
@@ -62,8 +62,15 @@ const Home = ({ tableDetailsFromRedux }) => {
     try {
       const response = await request("GET", "/food-fusion/cashier/todayorder");
       if (response) {
-        console.log('response: ', response);
-        setWorkingTable(response);
+        if (CurrentTab == "Dine In") {
+          return setWorkingTable(response[0]?.dine);
+        }
+        if (CurrentTab == "Take Away") {
+          return setWorkingTable(response[0]?.takeaway);
+        }
+        if (CurrentTab == "Delivery") {
+          return setWorkingTable(response[0]?.delivery);
+        }
       }
     } catch (error) {}
   };
@@ -71,6 +78,13 @@ const Home = ({ tableDetailsFromRedux }) => {
   // ===============
   // UseEffect
   // ===============
+  useEffect(() => {
+    setWorkingTable()
+    fetchAllTable();
+  }, [CurrentTab]);
+
+  // ===========---------------------
+  // Effect to fetch data on mount
   useEffect(() => {
     fetchAllTable();
   }, []);
@@ -108,12 +122,16 @@ const Home = ({ tableDetailsFromRedux }) => {
             </NavLink>
           </div>
           <div className="grid grid-cols-[repeat(auto-fill,minmax(168px,168px))]">
-            {WorkingTable?.currentBtnKey?.map((i, index) => (
+            {WorkingTable?.map((i, index) => (
               <>
-              {/* {console.log('WorkingTable?.CurrentTab: ', WorkingTable)} */}
-              <TableCard tableDetail={i?.tableNumber} />
+                <TableCard
+                  tableStatus={i?.status}
+                  tableNo={i?.tableNumber}
+                  tableDetail={i}
+                />
               </>
             ))}
+
             <div className=" p-4 w-56"></div>
           </div>
         </div>

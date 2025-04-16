@@ -4,13 +4,19 @@ import RouteRoutes from "./Components/RouteRoutes/routes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { store } from "./Components/Redux/store";
+import { UseProvider } from "./Components/Context/context";
 function App() {
   return (
     <>
       <ToastContainer />
-      <div className="background-img" style={{height:window?.screen?.height}}>
+      <div
+        className="background-img"
+        style={{ height: window?.screen?.height }}
+      >
         <Provider store={store}>
-          <RouteRoutes />
+          <UseProvider>
+            <RouteRoutes />
+          </UseProvider>
         </Provider>
       </div>
     </>
