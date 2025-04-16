@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 // Common Components
 import LeftSideNavbar from "../../Common/SideNavbar/leftSideNavbar.jsx";
@@ -24,6 +24,7 @@ import { TableNoRedux } from "../../Redux/Slice/Table/tableDetailSlice.jsx";
 import AutoSuggestSearch from "../../Common/AutoSuggestSearchBar/autoSuggestSearch.jsx";
 import IncrementDecrementFunctionality from "../../Common/IncrementDecrementFunctionality/incrementDecrementFunctionality.jsx";
 import { AddMenuRedux } from "../../Redux/Slice/Menu/MenuSlice.jsx";
+import { UseContext } from "../../Context/context.jsx";
 // Json
 const customerData = [
   {
@@ -53,7 +54,13 @@ const customerData = [
 ];
 const OrderIcons = [{ nav_img: bell }];
 const OrderHeading = ["Book Table", "Generate Order"];
-const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
+const Order = ({
+  tableNoFromRedux,
+  tableDetailsFromRedux,
+  MenuFromRedux,
+  CustomerDetailRedux,
+}) => {
+
   // ==========
   // UseFrom
   // ============
@@ -64,6 +71,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
     watch,
     formState: { errors },
   } = useForm();
+    const { CustomerDetailsCnxt } = useContext(UseContext);
 
   // ==========
   // State
@@ -97,6 +105,9 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
 
   const { request, error } = useApi();
 
+  // Filter Previous order with customerId
+  const FilterPrevOrdCustmId = MenuFromRedux?.Menu?.filter((i)=>i?.customerID == CustomerDetailsCnxt?._id)
+
   // Get Selected Floor
   const handleFloorChange = (event) => {
     const { value } = event.target;
@@ -108,7 +119,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
       tableNumber:
         data?.orderType === "Takeaway" || data?.orderType === "Delivery"
           ? ""
-          : params.tableNo || data?.tableNo,
+          : data?.tableNo || params.tableNo,
       customerName: data?.name,
       customerEmail: data?.email,
       customerNumber: data?.number,
@@ -117,7 +128,6 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
       deliveryAddress: data?.deliveryAddress,
       orderStatus: "reserve",
     };
-    console.log("payload: ", payload);
 
     try {
       // API call to create customer
@@ -126,7 +136,6 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
         "/food-fusion/cashier/createCustomer",
         payload
       );
-      console.log("response: ", response);
 
       if (response?.success) {
         dispatch(TableBookingRedux(payload));
@@ -151,7 +160,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
   // function to get total amount
   const calculateTotalAmount = () => {
     let total = 0;
-    MenuFromRedux?.Menu?.forEach((item) => {
+    FilterPrevOrdCustmId?.forEach((item) => {
       total += item?.subcategoriesAmount * item?.quantity;
     });
     return total;
@@ -162,14 +171,19 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
     tableDetailsFromRedux?.TableBooking?.filter((i) => {
       return Number(i?.tableNo) == params.tableNo;
     });
+  const filterInpFildFromPrevOrderApi =
+    tableDetailsFromRedux?.TableBooking?.filter((i) => {
+      return Number(i?.tableNo) == params.tableNo;
+    });
 
   // Auto Search Input Field
   const HandleAutoSearchInp = (e) => {
     setautoSearchFillValue(e.target.value);
   };
   const GetQuantity = (data) => {
+    console.log('data: ', data);
     const payload = {
-      customerID: data?.ItemId,
+      customerID: CustomerDetailsCnxt?._id,
       menuID: 0,
       floorName: "",
       tableNumber: 0,
@@ -207,20 +221,43 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
     } catch (error) {}
   };
 
+
+  // Create Menu or Order place API
+  const HandleCreateMenuAPI =async()=> {
+try {
+  const payload= {
+    customerUid: CustomerDetailsCnxt?.customerUid,
+  floorName: CustomerDetailsCnxt?.floorName,
+  tableNumber: CustomerDetailsCnxt?.tableNumber,
+  }
+  if(FilterPrevOrdCustmId?.length > 0 ){
+    const response = await request(
+      "POST",
+      "/food-fusion/cashier/createMenu",
+      FilterPrevOrdCustmId
+    ); 
+    console.log('response: ', response);
+  }
+
+} catch (error) {
+  
+}
+  }
+
   //==========
   // useEffect
   // ============
 
   useEffect(() => {
-    setValue("name", filterInpFildFromPrevOrder[0]?.customerName);
-    setValue("number", filterInpFildFromPrevOrder[0]?.customerNumber);
-    setValue("email", filterInpFildFromPrevOrder[0]?.customerEmail);
-    setValue("orderType", filterInpFildFromPrevOrder[0]?.orderType);
-    setValue("deliveryAddress", filterInpFildFromPrevOrder[0]?.deliveryAddress);
-    setValue("floor", filterInpFildFromPrevOrder[0]?.floorName);
+    setValue("name", CustomerDetailsCnxt?.customerName);
+    setValue("number", CustomerDetailsCnxt?.customerNumber);
+    setValue("email", CustomerDetailsCnxt?.customerEmail);
+    setValue("orderType", CustomerDetailsCnxt?.orderType);
+    setValue("deliveryAddress", CustomerDetailsCnxt?.deliveryAddress);
+    setValue("floor", CustomerDetailsCnxt?.floorName);
     setValue(
       "tableNo",
-      filterInpFildFromPrevOrder[0]?.tableNo ||
+      CustomerDetailsCnxt?.tableNumber ||
         params.tableNo ||
         tableNoFromRedux?.tableNo
     );
@@ -316,9 +353,10 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                       ? ""
                       : "bg-light-color font-xs font-normal border-light-color"
                   } focus-visible:bg-white`}
+                  value={CustomerDetailsCnxt?.orderType}
                   {...register("orderType")}
                 >
-                  <option value="">Select Order Type</option>
+                  {/* <option value="">Select Order Type</option> */}
                   <option value="Dine In">Dine In</option>
                   <option value="Takeaway">Take Away</option>
                   <option value="Delivery">Delivery</option>
@@ -351,7 +389,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                 )}
               </div>
               {/* Table No if Dine In */}
-              {orderTypeInptField == "Dine In" || orderTypeInptField == "" ? (
+              {orderTypeInptField == "Dine In" || CustomerDetailsCnxt?.orderType == "Dine in" || orderTypeInptField == "" ? (
                 <>
                   <div>
                     <label className="text-color-black font-medium text-sm block">
@@ -367,7 +405,6 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                       {FloorNames?.map((i) => (
                         <option value={i}>{i}</option>
                       ))}
-          
                     </select>
                   </div>
 
@@ -377,11 +414,14 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                     </label>
                     <select
                       className="custom-select w-2/5 mt-2 px-2 py-3 border-gray-color rounded-lg text-base font-medium focus-visible:bg-white"
+                      value={CustomerDetailsCnxt?.tableNumber}
                       {...register("tableNo")}
                     >
                       <option value={""}>Table No.</option>
                       {FloorWiseTables?.filter(
-                        (i) => i?.floorName == SelectedFloor
+                        (i) =>
+                          i?.floorName == SelectedFloor &&
+                          i?.tablestatus == "empty"
                       )?.map((i) => (
                         <>
                           <option value={i?.tableNumber}>
@@ -497,7 +537,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
             </thead>
             <tbody>
               {/* Placeholder for dynamic items */}
-              {MenuFromRedux?.Menu?.map((item, index) => (
+              {FilterPrevOrdCustmId?.map((item, index) => (
                 <>
                   <tr className="border-b">
                     <td className="py-3 text-center text-sm font-normal text-[--gray-color] ">
@@ -511,7 +551,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                     </td>
                     <td className="py-3 text-center ">
                       <IncrementDecrementFunctionality
-                        ItemId={item?.customerID}
+                        ItemId={item?.orderID}
                         GetQuantity={GetQuantity}
                         prevCount={item?.quantity}
                       />
@@ -525,7 +565,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                   </tr>
                 </>
               ))}
-              {MenuFromRedux?.Menu?.length > 0 ? (
+              {FilterPrevOrdCustmId?.length > 0 ? (
                 <tr>
                   <td className="py-3 text-center"></td>
                   <td className="py-3 text-center"></td>
@@ -550,7 +590,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
           <NavLink to={"/allinvoice"}>
             <button
               className={`px-8 py-2.5  bg-white  lg:text-base  text-xs font-medium rounded-full ${
-                MenuFromRedux?.Menu?.length > 0
+                FilterPrevOrdCustmId?.length > 0
                   ? "border-cashier cashier-main-text-color"
                   : "border-light-gray text-light-gray-color"
               }`}
@@ -558,13 +598,16 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
               Generate Invoice
             </button>
           </NavLink>
-          <NavLink to={"/sendtokitchen"}>
+          <NavLink 
+          // to={"/sendtokitchen"}
+          >
             <button
               className={`px-8 py-2.5  lg:text-base  text-xs font-medium rounded-full ${
-                MenuFromRedux?.Menu?.length > 0
+                FilterPrevOrdCustmId?.length > 0
                   ? "cashier-main-bg-color text-white"
                   : "text-light-gray-color btn-bg-gray-color"
               }`}
+              onClick={()=>HandleCreateMenuAPI()}
             >
               Send To Kitchen
             </button>
@@ -583,6 +626,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
 };
 
 const mapStateToProps = (state) => ({
+  CustomerDetailRedux: state?.tableDetails,
   tableNoFromRedux: state?.tableDetails,
   tableDetailsFromRedux: state?.tableBooking,
   MenuFromRedux: state?.menu,

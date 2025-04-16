@@ -33,7 +33,7 @@ const HomeButtons = [
 const HomeIcons = [{ nav_img: magnify }, { nav_img: bell }];
 const HomeHeading = ["Booked Table"];
 
-const Home = () => {
+const Home = ({tableDetailsFromRedux}) => {
   // --------
   // State
   // --------
