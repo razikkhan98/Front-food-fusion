@@ -60,7 +60,7 @@ const UserLogin = () => {
   // ==========
   // State
   // ============
-  const { request } = useApi();
+  const { request, error } = useApi();
   const { setUserAuth } = useContext(UseContext);
 
   // const [name, setName] = useState("");
@@ -105,6 +105,17 @@ const UserLogin = () => {
       closeModal();
       await request("GET", "/food-fusion/cashier/getAllFloors");
       navigate("/table");
+    } else {
+      toast.error(error?.message || "Login failed. Please try again.", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        // theme: "colored",
+      });
     }
   };
 

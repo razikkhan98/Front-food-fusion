@@ -95,7 +95,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
   const emailInptField = watch("email");
   const deliveryAddressInptField = watch("deliveryAddress");
 
-  const { request } = useApi();
+  const { request, error } = useApi();
 
   // Get Selected Floor
   const handleFloorChange = (event) => {
@@ -140,7 +140,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
 
         toast.success(response?.message);
       } else {
-        toast.error(response?.message || "Failed to book the table.");
+        toast.error(error?.message || "Failed to book the table.");
       }
     } catch (error) {
       console.error("Booking error:", error);
@@ -359,7 +359,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                     </label>
                     <select
                       className="custom-select w-full mt-2 px-2 py-3 border-gray-color rounded-lg text-base font-medium focus-visible:bg-white"
-                      {...register("floorName")}
+                      {...register("floor")}
                       value={SelectedFloor}
                       onChange={handleFloorChange}
                     >

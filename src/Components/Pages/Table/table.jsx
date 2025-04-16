@@ -7,6 +7,9 @@ import TableCard from "../../Common/TableCard/tableCard.jsx";
 import Navbar from "../../Common/Navbar/navbar.jsx";
 import ChatBot from "../../Common/ChatBot/chatbot.jsx";
 
+// Import third Party components
+import { toast } from "react-toastify";
+
 // Import Images
 import bell from "../../Assets/Images/navbar-img/bell.svg";
 import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
@@ -75,7 +78,7 @@ const Table = () => {
   const [FloorNames, setFloorNames] = useState();
   // to set floor wise avilable tables
   const [FloorWiseTables, setFloorWiseTables] = useState();
-  const { request } = useApi();
+  const { request, error } = useApi();
   // ========
   // functions
   // ========
@@ -92,11 +95,22 @@ const Table = () => {
         setCurrentTab(FloorsName[0] || []);
         const FloorWiseTable = response?.data?.map((i) => i?.tables) || [];
         setFloorWiseTables(FloorWiseTable?.flat());
-      }
-    } catch (error) {
-
+      
+    } else {
+      toast.error(error?.message || "Failed to load tables", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        // theme: "colored",
+      });
     }
-  };
+  } catch (error) {
+   
+  }
+};
 
   // ===============
   // UseEffect
