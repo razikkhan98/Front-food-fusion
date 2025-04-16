@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import IncrementDecrementFunctionality from "../IncrementDecrementFunctionality/incrementDecrementFunctionality";
 import { connect, useDispatch } from "react-redux";
 import { AddMenuRedux } from "../../Redux/Slice/Menu/MenuSlice";
+import { UseContext } from "../../Context/context";
 
 // Json
 let MenuItemsJson = [
@@ -811,6 +812,7 @@ const AutoSuggestSearch = ({ inputValue, MenuFromRedux }) => {
   const [IncrDecrQuantity, setIncrDecrQuantity] = useState({});
   const dispatch = useDispatch();
   const dropdownRef = useRef(null); // Ref for the dropdown
+      const { CustomerDetailsCnxt } = useContext(UseContext);
 
   // =========
   // Functions
@@ -826,16 +828,19 @@ const AutoSuggestSearch = ({ inputValue, MenuFromRedux }) => {
   // setFilteredOptions(); // Hide suggestions
   // };
 
-  //
+  // Filter Previous order with customerId
+  const FilterPrevOrdCustmId = MenuFromRedux?.Menu?.filter((i)=>i?.customerID == CustomerDetailsCnxt?._id)
+
 
   // Function to handle Add FOOD Item
   const HandleItemAdd = (item) => {
+    console.log('item: ', item);
     const payload = {
-      customerID: item?.id,
+      customerID: CustomerDetailsCnxt?._id,
       menuID: 0,
-      floorName: "",
-      tableNumber: 0,
-      orderID: 0,
+      floorName: CustomerDetailsCnxt?.floorName,
+      tableNumber: CustomerDetailsCnxt?.tableNumber,
+      orderID: item?.id,
       categoriesName: "",
       subcategoriesName: item?.name,
       subcategoriesAmount: item?.price,
@@ -907,18 +912,20 @@ const AutoSuggestSearch = ({ inputValue, MenuFromRedux }) => {
                     className="ps-[10px] pe-5 mx-4 my-4 py-3 h-14 text-base flex justify-between items-center cursor-pointer border-b-2 hover:bg-[--select-section]"
                   >
                     {option?.name}
-                    {MenuFromRedux?.Menu?.find(
-                      (i) => i?.customerID == option?.id
+                    {FilterPrevOrdCustmId?.find(
+                      (i) => i?.orderID == option?.id
                     ) ? (
+                      <>
                       <IncrementDecrementFunctionality
                         ItemId={option?.id}
                         prevCount={
-                          MenuFromRedux?.Menu?.find(
-                            (i) => i?.customerID == option?.id
+                          FilterPrevOrdCustmId?.find(
+                            (i) => i?.orderID == option?.id
                           )?.quantity
                         }
                         // GetQuantity={GetQuantity}
-                      />
+                        />
+                        </>
                     ) : (
                       <button
                         onClick={() => HandleItemAdd(option)}

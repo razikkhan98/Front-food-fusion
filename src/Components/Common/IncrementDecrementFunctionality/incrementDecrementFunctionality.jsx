@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { connect, useDispatch } from "react-redux";
 import {
   ChangeInputItemQuantityRedux,
   DecreaseItemQuantityRedux,
   IncreaseItemQuantityRedux,
 } from "../../Redux/Slice/Menu/MenuSlice";
+import { UseContext } from "../../Context/context";
 
 const IncrementDecrementFunctionality = ({
   prevCount,
@@ -15,13 +16,17 @@ const IncrementDecrementFunctionality = ({
 }) => {
   const [count, setCount] = useState(1);
   const dispatch = useDispatch();
-
+  const { CustomerDetailsCnxt } = useContext(UseContext);
+  
+  // Filter Previous order with customerId
+  const FilterPrevOrdCustmId = MenuFromRedux?.Menu?.filter((i)=>i?.customerID == CustomerDetailsCnxt?._id)
+  
   const increment = () => {
     setCount((prevCount) => prevCount + 1);
     if (AddonKey !== "addOnQuantity") {
       dispatch(IncreaseItemQuantityRedux(ItemId));
     } else {
-      // GetQuantity(count);
+      GetQuantity(count);
     }
   };
 
@@ -30,7 +35,7 @@ const IncrementDecrementFunctionality = ({
     if (AddonKey !== "addOnQuantity") {
       dispatch(DecreaseItemQuantityRedux(ItemId));
     } else {
-      // GetQuantity(count);
+      GetQuantity(count);
     }
   };
 
@@ -62,7 +67,7 @@ const IncrementDecrementFunctionality = ({
         // console.log('prevCount: ', prevCount);
         value={
           AddonKey !== "addOnQuantity"
-            ? MenuFromRedux?.Menu?.find((i) => i?.customerID == ItemId)
+            ? FilterPrevOrdCustmId?.find((i) => i?.orderID == ItemId)
                 ?.quantity
             : count
         }

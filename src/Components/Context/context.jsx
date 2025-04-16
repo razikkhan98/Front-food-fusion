@@ -6,8 +6,10 @@ export const UseContext = createContext();
 
 export const UseProvider = ({ children }) => {
   const [UserAuth, setUserAuth] = useState();
+  const [CustomerDetailsCnxt, setCustomerDetailsCnxt] = useState();
+
   return (
-    <UseContext.Provider value={{ UserAuth, setUserAuth }}>
+    <UseContext.Provider value={{ UserAuth, setUserAuth,CustomerDetailsCnxt, setCustomerDetailsCnxt }}>
       {children}
     </UseContext.Provider>
   );
