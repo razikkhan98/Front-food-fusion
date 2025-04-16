@@ -10,14 +10,14 @@ import ChatBot from "../../Common/ChatBot/chatbot.jsx";
 import RightSidebar from "../../Common/SideNavbar/rightSideNavbar.jsx";
 import LeftSideNavbar from "../../Common/SideNavbar/leftSideNavbar.jsx";
 import Navbar from "../../Common/Navbar/navbar.jsx";
+import useApi from "../../utils/Api/api.jsx";
+import AutoOrderPopupModal from "../../Common/AutoOrderPopupModal/AutoOrderPopupModal.jsx";
+import Button from "../../Common/Button/button.jsx";
 
 // Import Images
 import bell from "../../Assets/Images/navbar-img/bell.svg";
 import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
-import AutoOrderPopupModal from "../../Common/AutoOrderPopupModal/AutoOrderPopupModal.jsx";
-import Button from "../../Common/Button/button.jsx";
-import Plus from "../../Assets/Images/sidebarImg/Plus.svg";
-import useApi from "../../utils/Api/api.jsx";
+import TableGif from "../../Assets/Images/TableImages/table (1).gif";
 
 // Json
 
@@ -33,7 +33,7 @@ const HomeButtons = [
 const HomeIcons = [{ nav_img: magnify }, { nav_img: bell }];
 const HomeHeading = ["Booked Table"];
 
-const Home = ({tableDetailsFromRedux}) => {
+const Home = ({ tableDetailsFromRedux }) => {
   // --------
   // State
   // --------
@@ -72,7 +72,7 @@ const Home = ({tableDetailsFromRedux}) => {
           return setWorkingTable(response[0]?.delivery);
         }
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 
   // ===============
@@ -110,19 +110,9 @@ const Home = ({tableDetailsFromRedux}) => {
         </div>
 
         <div className="overflow-auto h-5/6 hidden-scroll">
-          <div className="flex items-center justify-end my-3">
-            {/* <h2 className="text-base font-semibold">Dine In</h2> */}
-            {/* <NavLink
-              to={"/order"}
-            >
-              <button className="w-full cashier-main-bg-color text-white py-2 px-4 rounded-full font-medium text-base flex items-center justify-center">
-                <img src={Plus} className="me-2 h-5 w-5" alt="Loading" /> Create
-                New Order
-              </button>
-            </NavLink> */}
-          </div>
+
           <div className="grid grid-cols-[repeat(auto-fill,minmax(168px,168px))]">
-            {WorkingTable?.map((i, index) => (
+            {/* {WorkingTable?.map((i, index) => (
               <>
                 <TableCard
                   tableStatus={i?.status}
@@ -130,9 +120,25 @@ const Home = ({tableDetailsFromRedux}) => {
                   tableDetail={i}
                 />
               </>
-            ))}
+            ))} */}
+            {WorkingTable && WorkingTable.length > 0 ? (
+              WorkingTable.map((i, index) => (
+                <TableCard
+                  tableStatus={i?.status}
+                  tableNo={i?.tableNumber}
+                  tableDetail={i}
+                />
+              ))
+            ) : (
+              <div className="col-span-full flex flex-col items-center justify-center  h-[calc(100vh-180px)]">
+                <img src={TableGif} alt="No-Tables" className="w-56 h-56 object-contain" />
+                <p className="mt-6 text-3xl font-semibold text-gray-gif">No Tables Booked Yet</p>
+                <p className="text-base font-medium cashier-main-text-color mt-2">Ready to Book your first one? Let’s get started!</p>
+              </div>
+            )}
 
-            <div className=" p-4 w-56"></div>
+
+            {/* <div className=" p-4 w-56"></div> */}
           </div>
         </div>
       </div>
