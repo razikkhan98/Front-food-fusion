@@ -3,7 +3,7 @@ import axios from "axios";
 
 const Auth = JSON?.parse(sessionStorage?.getItem("User")??"{}")
 
-const BASE_URL = "https://a285-106-222-213-224.ngrok-free.app"; // Change this to your API
+const BASE_URL = "https://fa1f-2401-4900-8823-2711-ed4a-f467-2ae2-b13c.ngrok-free.app"; // Change this to your API
 
 const useApi = () => {
   const [loading, setLoading] = useState(false);
