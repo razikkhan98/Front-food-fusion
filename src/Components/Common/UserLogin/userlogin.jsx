@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 // Images
 import Logo from "../../Assets/Images/logo/logo-svg.svg";
@@ -15,6 +15,7 @@ import useApi from "../../utils/Api/api";
 // Third party components
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { UseContext } from "../../Context/context";
 
 // Role JSON Data
 const users = [
@@ -60,6 +61,8 @@ const UserLogin = () => {
   // State
   // ============
   const { request, error } = useApi();
+  const { setUserAuth } = useContext(UseContext);
+
   // const [name, setName] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
@@ -97,6 +100,7 @@ const UserLogin = () => {
         progress: undefined,
         theme: "light",
       });
+      setUserAuth(response);
       sessionStorage?.setItem("User", JSON?.stringify(response));
       closeModal();
       await request("GET", "/food-fusion/cashier/getAllFloors");

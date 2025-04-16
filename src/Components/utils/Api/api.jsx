@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
+import { UseContext } from "../../Context/context";
 
-const Auth = JSON?.parse(sessionStorage?.getItem("User")??"{}")
+const Auth = JSON?.parse(sessionStorage?.getItem("User") ?? "{}");
 
-const BASE_URL = "https://fa1f-2401-4900-8823-2711-ed4a-f467-2ae2-b13c.ngrok-free.app"; // Change this to your API
+const BASE_URL =
+  "https://fa1f-2401-4900-8823-2711-ed4a-f467-2ae2-b13c.ngrok-free.app"; // Change this to your API
 
 const useApi = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const { UserAuth } = useContext(UseContext);
 
   const request = async (method, endpoint, data = null, params = null) => {
     setLoading(true);
@@ -22,8 +25,8 @@ const useApi = () => {
         headers: {
           "Content-Type": "application/json",
           "ngrok-skip-browser-warning": "69420",
-          "Authorization":`Bearer ${Auth?.accessToken}`,
-          "session":`${Auth?.session}`
+          Authorization: `Bearer ${UserAuth?.accessToken || Auth?.accessToken}`,
+          session: `${UserAuth?.session || Auth?.session}`,
         },
       });
 
@@ -41,12 +44,3 @@ const useApi = () => {
 };
 
 export default useApi;
-
-
-
-
-
-
-
-
-
