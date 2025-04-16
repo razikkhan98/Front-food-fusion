@@ -98,28 +98,28 @@ const Home = () => {
       <ChatBot />
 
       {/* Main Content Area */}
-      <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
+      <div className={`flex-grow py-4 px-9 transition-all duration-300 overflow-scroll hidden-scroll`}>
         <div className="border-b">
           <Navbar
             buttons={HomeButtons}
             icons={HomeIcons}
             pageHeading={HomeHeading}
+            btn_add={"Create New Order"}
             selectedTab={setCurrentTab}
           />
         </div>
 
         <div className="overflow-auto h-5/6 hidden-scroll">
-          <div className="flex items-center justify-between my-3">
-            <h2 className="text-base font-semibold">Dine In</h2>
-            <NavLink
-              // className={`${isRightSidebarOpen ? "" : "hidden"}`}
+          <div className="flex items-center justify-end my-3">
+            {/* <h2 className="text-base font-semibold">Dine In</h2> */}
+            {/* <NavLink
               to={"/order"}
             >
               <button className="w-full cashier-main-bg-color text-white py-2 px-4 rounded-full font-medium text-base flex items-center justify-center">
                 <img src={Plus} className="me-2 h-5 w-5" alt="Loading" /> Create
                 New Order
               </button>
-            </NavLink>
+            </NavLink> */}
           </div>
           <div className="grid grid-cols-[repeat(auto-fill,minmax(168px,168px))]">
             {WorkingTable?.map((i, index) => (
