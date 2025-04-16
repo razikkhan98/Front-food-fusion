@@ -59,7 +59,7 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking, tableDetail }) =
                 <div className="flex justify-between">
                   <div>
                     <h2 className="text-xs ">Table {tableDetail?.tableNo || "7"}</h2>
-                    <p className="text-xs font-medium">{tableDetail?.customerName || "MR Rohan"}</p>
+                    <p className="text-xs font-medium truncate w-32">{tableDetail?.customerName || "MR Rohan"}</p>
                   </div>
                   <div className="bg-[#ffffff4d] p-2 rounded-lg h-full">
                     <img className="" src={recipt} alt="" />
@@ -106,7 +106,7 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking, tableDetail }) =
             <img className="" src={recipt} alt="" />
             </div>
             </div> */}
-                <div className="text-center my-2">
+                <div className="text-center my-2 truncate w-32">
                   <span className="text-xs truncate">
                     T{tableNo || tableDetail?.tableNumber}{" - "}
                     <span className="font-medium text-xs">{tableDetail?.customerName}</span>
@@ -136,7 +136,7 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking, tableDetail }) =
                 <div className="flex justify-center mt-1 mb-3">
                   <img className="w-16" src={Table} alt="Loading" />
                 </div>
-                <div className="text-center my-3">
+                <div className="text-center my-3 truncate w-32">
                   <span className="text-xs">
                     T{tableNo}{" - "}
                     <span className="font-medium text-xs">{tableDetail?.customerName}</span>
@@ -174,7 +174,7 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking, tableDetail }) =
         <img className="" src={recipt} alt="" />
         </div>
         </div> */}
-                <div className="text-center">
+                <div className="text-center truncate w-32">
                   <span className="text-xs">
                     Table {tableDetail?.tableNo || "7"}{" "}
                     <span className="font-medium text-xs">{tableDetail?.customerName || "MR Rohan"}</span>
