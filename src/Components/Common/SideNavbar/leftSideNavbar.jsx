@@ -9,6 +9,8 @@ import Home from "../../Assets/icons/House.svg";
 import Home_light from "../../Assets/icons/House-white.svg";
 import Menu from "../../Assets/icons/menu-board.svg";
 import Menu_light from "../../Assets/icons/menu-board-white.svg";
+import Dinner_Table from "../../Assets/icons/dinner-table.svg";
+import Dinner_Table_light from "../../Assets/icons/dinner-table_light.svg";
 import Order from "../../Assets/icons/task-square.svg";
 import Order_light from "../../Assets/icons/task-square-white.svg";
 import Shedule from "../../Assets/icons/calendar-tick.svg";
@@ -23,7 +25,7 @@ import Logout_light from "../../Assets/icons/logout-white.svg";
 // Json items
 const navItems = [
   { to: "/home", icon: Home, iconHover: Home_light, label: "Home" },
-  { to: "/table", icon: Menu, iconHover: Menu_light, label: "Table" },
+  { to: "/table", icon: Dinner_Table, iconHover: Dinner_Table_light, label: "Table" },
   { to: "/menu", icon: Menu, iconHover: Menu_light, label: "Menu" },
   { to: "/order", icon: Order, iconHover: Order_light, label: "Orders" },
   {

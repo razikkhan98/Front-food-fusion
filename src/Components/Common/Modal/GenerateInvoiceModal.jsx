@@ -10,6 +10,8 @@ import SettleBillModal from './SettleBillModal';
 
 // Images 
 import Recipt from "../../Assets/Images/modal/receipt.png";
+import print from "../../Assets/Images/previous/print.svg";
+import edit from "../../Assets/Images/previous/edit.svg";
 
 
 const GenerateInvoiceModal = ({ isOpen, closeModal }) => {
@@ -61,8 +63,13 @@ const GenerateInvoiceModal = ({ isOpen, closeModal }) => {
             </button>
           </div>
 
-          <div className='flex justify-center mb-14'>
+          <div className='flex justify-center'>
             <img src={Recipt} alt="Loading" />
+          </div>
+          {/* Print Edit images */}
+          <div className='flex justify-center -mt-7 mb-3'>
+            <span><img src={print} alt="" /></span>
+            <span><img src={edit} alt="" /></span>
           </div>
 
           {/* <button className='w-full py-2 cashier-main-text-color text-base font-medium rounded-full border-[--cashier-main-color] border-2 my-1 hover:bg-[--cashier-main-color] hover:text-white'>Save & Settle Bill</button> */}
