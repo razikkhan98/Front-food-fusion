@@ -261,7 +261,9 @@ body {
 .text-yellow-color {
   color: var(--yellow-color);
 }
-
+.text-gray-gif{
+  color: rgba(0, 0, 0, 0.44);
+}
 /* 
   =========================
 
