@@ -817,6 +817,125 @@ const AutoSuggestSearch = ({ inputValue, MenuFromRedux }) => {
   // =========
   // Functions
   // =========
+  // {
+  //   Mid: 11,
+  //   category: "Appetizers",
+  //   // image: Appetizers,
+  //   subcategories: [
+  //     {
+  //       id: 1,
+  //       name: "Samosa",
+  //       description:
+  //         "Crispy pastry filled with spiced potatoes, peas, and herbs.",
+  //       price: 80,
+  //       // foodImg: Rajasthani,
+  //       add_ons: [
+  //         { option: "Extra tamarind chutney", price: 10 },
+  //         { option: "Mint chutney", price: 10 },
+  //         { option: "Yogurt topping", price: 15 },
+  //         { option: "Mini samosas", price: 0 },
+  //         { option: "Spicy filling", price: 0 },
+  //         { option: "Cheese filling", price: 20 },
+  //       ],
+  //     },
+  //     {
+  //       id: 2,
+  //       name: "Paneer Tikka",
+  //       description:
+  //         "Marinated cottage cheese cubes grilled to perfection with herbs.",
+  //       price: 250,
+  //       // foodImg: Rajasthani,
+  //       add_ons: [
+  //         { option: "Extra paneer skewer", price: 50 },
+  //         { option: "Mint chutney", price: 10 },
+  //         { option: "Spicy marinade", price: 0 },
+  //         { option: "Lemon garnish", price: 0 },
+  //       ],
+  //     },
+  //     {
+  //       id: 3,
+  //       name: "Chicken Seekh Kebab",
+  //       description: "Spiced minced chicken skewers cooked in a tandoor.",
+  //       price: 300,
+  //       // foodImg: Rajasthani,
+  //       add_ons: [
+  //         { option: "Extra kebab skewer", price: 60 },
+  //         { option: "Garlic sauce", price: 15 },
+  //         { option: "Mild or spicy", price: 0 },
+  //         { option: "Mint chutney", price: 0 },
+  //       ],
+  //     },
+  //     {
+  //       id: 4,
+  //       name: "Aloo Tikki Chaat",
+  //       description:
+  //         "Potato patties topped with yogurt, tamarind, and mint chutney.",
+  //       price: 150,
+  //       // foodImg: Rajasthani,
+  //       add_ons: [
+  //         { option: "Extra yogurt", price: 10 },
+  //         { option: "Sev", price: 10 },
+  //         { option: "Pomegranate seeds", price: 20 },
+  //         { option: "Sweet or spicy chutney", price: 0 },
+  //       ],
+  //     },
+  //     {
+  //       id: 5,
+  //       name: "Lamb Galouti Kebab",
+  //       description:
+  //         "Melt-in-your-mouth minced lamb kebabs with a rich blend of spices.",
+  //       price: 400,
+  //       // foodImg: Rajasthani,
+  //       add_ons: [
+  //         { option: "Extra kebab", price: 70 },
+  //         { option: "Naan bread", price: 20 },
+  //         { option: "Spicy or mild", price: 0 },
+  //         { option: "Garlic butter topping", price: 0 },
+  //       ],
+  //     },
+  //     {
+  //       id: 6,
+  //       name: "Avocado Papdi Chaat",
+  //       description:
+  //         "Crispy wafers topped with mashed avocado, spiced yogurt, and chutneys—a modern twist on traditional chaat.",
+  //       price: 180,
+  //       // foodImg: Rajasthani,
+  //       add_ons: [
+  //         { option: "Extra avocado", price: 30 },
+  //         { option: "Sev", price: 10 },
+  //         { option: "Mild or spicy chutneys", price: 0 },
+  //       ],
+  //     },
+  //     {
+  //       id: 7,
+  //       name: "Chicken 65",
+  //       description:
+  //         "Spicy and tangy fried chicken with South Indian spices, curry leaves, and yogurt.",
+  //       price: 220,
+  //       // foodImg: Rajasthani,
+  //       add_ons: [
+  //         { option: "Extra curry leaves", price: 10 },
+  //         { option: "Yogurt dip", price: 15 },
+  //         { option: "Mild or extra spicy", price: 0 },
+  //       ],
+  //     },
+  //     {
+  //       id: 8,
+  //       name: "Kurkuri Bhindi",
+  //       description:
+  //         "Crispy, spiced okra fries for a crunchy and flavorful bite.",
+  //       price: 130,
+  //       // foodImg: Rajasthani,
+  //       add_ons: [
+  //         { option: "Extra crispy bhindi", price: 20 },
+  //         { option: "Tangy yogurt dip", price: 15 },
+  //         { option: "Less or extra crispy", price: 0 },
+  //         { option: "Spicy seasoning", price: 0 },
+  //       ],
+  //     },
+  //   ],
+  // },
+
   const options = [];
   MenuItemsJson.map((item) => {
     item?.subcategories?.map((foodName) => options?.push(foodName));

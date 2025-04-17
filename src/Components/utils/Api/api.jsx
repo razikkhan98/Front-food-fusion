@@ -5,7 +5,7 @@ import { UseContext } from "../../Context/context";
 const Auth = JSON?.parse(sessionStorage?.getItem("User") ?? "{}");
 
 const BASE_URL =
-  "https://7e9f-2401-4900-8823-2711-f808-2a6a-e038-c5d0.ngrok-free.app"; // Change this to your API
+  "https://f8ce-2401-4900-8823-2711-f808-2a6a-e038-c5d0.ngrok-free.app"; // Change this to your API
 
 const useApi = () => {
   const [loading, setLoading] = useState(false);

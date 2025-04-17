@@ -37,7 +37,6 @@ const UserLoginModal = ({ isOpen, closeModal, selectedUser, onSubmit }) => {
 
   // Submit the form
   const onSubmitHandler = async (payload) => {
-    console.log('payload: ', payload);
     await onSubmit(payload);
   }
 
