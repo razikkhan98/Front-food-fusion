@@ -26,6 +26,7 @@ import IncrementDecrementFunctionality from "../../Common/IncrementDecrementFunc
 import { AddMenuRedux } from "../../Redux/Slice/Menu/MenuSlice.jsx";
 import { UseContext } from "../../Context/context.jsx";
 // Json
+import { MenuItemsJson } from "../../Assets/Json/menuItem.jsx";
 const customerData = [
   {
     customer_name: "John Doe",
@@ -60,7 +61,6 @@ const Order = ({
   MenuFromRedux,
   CustomerDetailRedux,
 }) => {
-
   // ==========
   // UseFrom
   // ============
@@ -71,7 +71,7 @@ const Order = ({
     watch,
     formState: { errors },
   } = useForm();
-    const { CustomerDetailsCnxt } = useContext(UseContext);
+  const { CustomerDetailsCnxt } = useContext(UseContext);
 
   // ==========
   // State
@@ -84,6 +84,12 @@ const Order = ({
   const [FloorWiseTables, setFloorWiseTables] = useState();
   const [CurrentTab, setCurrentTab] = useState();
   const [SelectedFloor, setSelectedFloor] = useState();
+  const [orderData, setOrderData] = useState({
+    customerUid: CustomerDetailsCnxt?.customerUid, // replace with actual uid if needed
+    floorName: CustomerDetailsCnxt?.floorName,
+    tableNumber: CustomerDetailsCnxt?.tableNumber,
+    categories: [],
+  });
 
   // ==========
   // Functions
@@ -106,7 +112,9 @@ const Order = ({
   const { request, error } = useApi();
 
   // Filter Previous order with customerId
-  const FilterPrevOrdCustmId = MenuFromRedux?.Menu?.filter((i)=>i?.customerID == CustomerDetailsCnxt?._id)
+  const FilterPrevOrdCustmId = MenuFromRedux?.Menu?.filter(
+    (i) => i?.customerID == CustomerDetailsCnxt?._id
+  );
 
   // Get Selected Floor
   const handleFloorChange = (event) => {
@@ -181,7 +189,7 @@ const Order = ({
     setautoSearchFillValue(e.target.value);
   };
   const GetQuantity = (data) => {
-    console.log('data: ', data);
+    console.log("data: ", data);
     const payload = {
       customerID: CustomerDetailsCnxt?._id,
       menuID: 0,
@@ -221,29 +229,144 @@ const Order = ({
     } catch (error) {}
   };
 
-
-  
   // Create Menu or Order place API
-  const HandleCreateMenuAPI =async()=> {
-try {
-  const payload= {
-    customerUid: CustomerDetailsCnxt?.customerUid,
-  floorName: CustomerDetailsCnxt?.floorName,
-  tableNumber: CustomerDetailsCnxt?.tableNumber,
-  }
-  if(FilterPrevOrdCustmId?.length > 0 ){
-    const response = await request(
-      "POST",
-      "/food-fusion/cashier/createMenu",
-      FilterPrevOrdCustmId
-    ); 
-    console.log('response: ', response);
-  }
+  // const HandleCreateMenuAPI = async () => {
+  //   try {
+  //     console.log('MenuFromRedux?.Menu: ', MenuFromRedux?.Menu);
+  //     const category = MenuItemsJson?.find(({ subcategories }) =>
+  //       subcategories?.some((sub) => sub?.name === MenuFromRedux?.Menu?.name)
+  //   );
+  //   console.log('category: ', category);
+  //     const categoryName = category ? category?.category : "Uncategorized";
 
-} catch (error) {
-  
-}
-  }
+  //     // Find existing category in orderData
+  //     const existingCategoryIndex = orderData?.categories?.findIndex(
+  //       (cat) => cat?.categoriesName === categoryName
+  //     );
+
+  //     const subcategoryItem = {
+  //       subcategoriesName: MenuFromRedux?.Menu?.name,
+  //       subcategoriesAmount: MenuFromRedux?.Menu?.price,
+  //       subcategoriesType: categoryName,
+  //       quantity: 1,
+  //       totalAmount: MenuFromRedux?.Menu?.price,
+  //       totalItemTax: 0,
+  //       discount: "",
+  //       extraAddon: [],
+  //     };
+
+  //     if (existingCategoryIndex > -1) {
+  //       // Category exists, add the subcategory to the existing category
+  //       const updatedCategories = [...orderData?.categories];
+  //       updatedCategories[existingCategoryIndex]?.subcategories?.push(
+  //         subcategoryItem
+  //       );
+  //       setOrderData({ ...orderData, categories: updatedCategories });
+  //       console.log('{ ...orderData, categories: updatedCategories }: ', { ...orderData, categories: updatedCategories });
+  //       // const response = await request(
+  //       //   "POST",
+  //       //   "/food-fusion/cashier/createMenu",
+  //       //   { ...orderData, categories: updatedCategories }
+  //       // );
+  //       // console.log("response: ", response);
+  //     } else {
+  //       // Category doesn't exist, create a new one with the subcategory
+  //       const newCategory = {
+  //         categoriesName: categoryName,
+  //         subcategories: [subcategoryItem],
+  //       };
+  //       setOrderData({...orderData,categories: [...orderData.categories, newCategory],});
+  //       console.log('{...orderData,categories: [...orderData.categories, newCategory],}: ', {...orderData,categories: [...orderData.categories, newCategory],});
+
+  //       // const response = await request(
+  //       //   "POST",
+  //       //   "/food-fusion/cashier/createMenu",
+  //       //   { ...orderData, categories: [...orderData?.categories, newCategory] }
+  //       // );
+  //       // console.log("response: ", response);
+  //     }
+  //   } catch (error) {}
+  // };
+
+  const HandleCreateMenuAPI = async () => {
+    try {
+      HandleGetPrevOrderGetAPI()
+      for (const menuItem of MenuFromRedux?.Menu) {
+        const category = MenuItemsJson?.find(({ subcategories }) =>
+          subcategories?.some((sub) => sub?.name === menuItem.subcategoriesName)
+        );
+        const categoryName = category ? category?.category : "Uncategorized";
+
+        // Find existing category in orderData
+        const existingCategoryIndex = orderData?.categories?.findIndex(
+          (cat) => cat?.categoriesName === categoryName
+        );
+
+        const subcategoryItem = {
+          subcategoriesName: menuItem.subcategoriesName,
+          subcategoriesAmount: menuItem.subcategoriesAmount,
+          subcategoriesType: categoryName,
+          quantity: menuItem.quantity,
+          totalAmount: menuItem.totalAmount || menuItem.subcategoriesAmount, // Use the total amount from menuItem if exists
+          totalItemTax: menuItem.totalitemTax, // Make sure to use the correct tax value
+          discount: menuItem.discount,
+          extraAddon: [], // Add logic if you have extra addons
+        };
+
+        if (existingCategoryIndex > -1) {
+          // Category exists, check for existing subcategory
+          const existingSubcategoryIndex = orderData.categories[
+            existingCategoryIndex
+          ].subcategories.findIndex(
+            (sub) => sub.subcategoriesName === menuItem.subcategoriesName
+          );
+
+          if (existingSubcategoryIndex === -1) {
+            // Subcategory doesn't exist, add it to the existing category
+            const updatedCategories = [...orderData?.categories];
+            updatedCategories[existingCategoryIndex]?.subcategories?.push(
+              subcategoryItem
+            );
+            setOrderData({ ...orderData, categories: updatedCategories });
+            console.log("check for existing subcategory with new item: ", {
+              ...orderData,
+              categories: updatedCategories,
+            });
+          } else {
+            // Subcategory exists, do not add it again; do nothing
+            console.log("Subcategory: ");
+          }
+        } else {
+          // Category doesn't exist, create a new one with the subcategory
+          const newCategory = {
+            categoriesName: categoryName,
+            subcategories: [subcategoryItem],
+          };
+          setOrderData({
+            ...orderData,
+            categories: [...orderData.categories, newCategory],
+          });
+          console.log("new subcategory: ", {
+            ...orderData,
+            categories: [...orderData.categories, newCategory],
+          });
+        }
+      }
+    } catch (error) {
+      console.error("Error while creating menu: ", error);
+    }
+  };
+
+  const HandleGetPrevOrderGetAPI = async () => {
+    try {
+      const response = await request("GET", "/food-fusion/cashier/getAllMenu");
+
+      console.log("response: ", response?.data);
+
+      const options = response?.data[0]?.categories?.flatMap((item) => item.subcategories);
+      console.log('options: ', options);
+    } catch (error) {}
+  };
 
   //==========
   // useEffect
@@ -358,7 +481,7 @@ try {
                   {...register("orderType")}
                 >
                   {/* <option value="">Select Order Type</option> */}
-                  <option value="Dine In">Dine In</option>
+                  <option value="Dine in">Dine In</option>
                   <option value="Takeaway">Take Away</option>
                   <option value="Delivery">Delivery</option>
                 </select>
@@ -390,7 +513,9 @@ try {
                 )}
               </div>
               {/* Table No if Dine In */}
-              {orderTypeInptField == "Dine In" || CustomerDetailsCnxt?.orderType == "Dine in" || orderTypeInptField == "" ? (
+              {orderTypeInptField == "Dine in" ||
+              CustomerDetailsCnxt?.orderType == "Dine in" ||
+              orderTypeInptField == "" ? (
                 <>
                   <div>
                     <label className="text-color-black font-medium text-sm block">
@@ -599,7 +724,7 @@ try {
               Generate Invoice
             </button>
           </NavLink>
-          <NavLink 
+          <NavLink
           // to={"/sendtokitchen"}
           >
             <button
@@ -608,7 +733,7 @@ try {
                   ? "cashier-main-bg-color text-white"
                   : "text-light-gray-color btn-bg-gray-color"
               }`}
-              onClick={()=>HandleCreateMenuAPI()}
+              onClick={() => HandleCreateMenuAPI()}
             >
               Send To Kitchen
             </button>

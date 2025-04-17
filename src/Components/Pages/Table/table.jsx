@@ -94,8 +94,12 @@ const Table = () => {
         "GET",
         "/food-fusion/cashier/todayorder"
       );
+      const TableResponse = await request(
+        "GET",
+        "/food-fusion/cashier/getAllTables"
+      );
       if (BookTableResponse[0]?.dine) {
-        setBookedTableDtl(BookTableResponse[0]?.dine);
+        setBookedTableDtl(TableResponse?.data);
       }
       if (response?.success) {
         const FloorsName = response?.data?.map((i) => i?.floorName) || [];
@@ -160,28 +164,20 @@ const Table = () => {
               Table for 2 members
             </h2>
             <div className="grid grid-cols-[repeat(auto-fill,minmax(168px,168px))]">
-              {FloorWiseTables?.map((i, index) => (
+              {BookedTableDtl?.map((i, index) => (
                 <>
                   {i?.totalChairs <= 3 &&
-                  String(i?.floorName) == String(CurrentTab) ? (
+                  String(i?.floorName) == String(CurrentTab) && i?.floorName == i?.floor?.floorName  ? (
                     <>
                       <TableCard
                         tableStatus={i?.tablestatus}
                         tableNo={i?.tableNumber}
-                        tableDetail={i}
+                        tableDetail={i?.customerId}
                       />
                     </>
                   ) : (
                     <>
-                      {BookedTableDtl?.filter((booked) => booked?.customerId == i?.customerId )?.map((item)=>
-                      <>
-                      <TableCard
-                        tableStatus={item?.status}
-                        tableNo={item?.tableNumber}
-                        tableDetail={item}
-                      />
-                    </>
-                      )}
+       
                     </>
                   )}
                 </>
@@ -193,10 +189,10 @@ const Table = () => {
               Table for 4 members
             </h2>
             <div className="grid grid-cols-[repeat(auto-fill,minmax(168px,168px))]">
-              {FloorWiseTables?.map((i, index) => (
+              {BookedTableDtl?.map((i, index) => (
                 <>
                   {i?.totalChairs <= 4 &&
-                  String(i?.floorName) == String(CurrentTab) ? (
+                  String(i?.floorName) == String(CurrentTab) && i?.floorName == i?.floor?.floorName ? (
                     <TableCard
                       tableStatus={i?.tablestatus}
                       tableNo={i?.tableNumber}
