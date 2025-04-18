@@ -194,9 +194,9 @@ const Table = () => {
                   {i?.totalChairs <= 4 &&
                   String(i?.floorName) == String(CurrentTab) && i?.floorName == i?.floor?.floorName ? (
                     <TableCard
-                      tableStatus={i?.tablestatus}
-                      tableNo={i?.tableNumber}
-                      tableDetail={i}
+                    tableStatus={i?.tablestatus}
+                    tableNo={i?.tableNumber}
+                    tableDetail={i?.customerId}
                     />
                   ) : (
                     <></>
@@ -215,14 +215,14 @@ const Table = () => {
               </span>
             </div>
             <div className="grid grid-cols-[repeat(auto-fill,minmax(168px,168px))]">
-              {FloorWiseTables?.map((i, index) => (
+               {BookedTableDtl?.map((i, index) => (
                 <>
                   {i?.totalChairs >= 5 &&
-                  String(i?.floorName) == String(CurrentTab) ? (
+                  String(i?.floorName) == String(CurrentTab) && i?.floorName == i?.floor?.floorName ? (
                     <TableCard
-                      tableStatus={i?.tablestatus}
-                      tableNo={i?.tableNumber}
-                      tableDetail={i}
+                    tableStatus={i?.tablestatus}
+                    tableNo={i?.tableNumber}
+                    tableDetail={i?.customerId}
                     />
                   ) : (
                     <></>
