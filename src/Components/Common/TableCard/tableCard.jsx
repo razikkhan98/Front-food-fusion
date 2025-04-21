@@ -12,6 +12,8 @@ import useApi from "../../utils/Api/api";
 import { UseContext } from "../../Context/context";
 
 const TableCard = ({ tableNo, index, tableStatus, tableBooking, tableDetail }) => {
+  
+  
   const dispatch = useDispatch();
   const { request, error } = useApi();
   const { setCustomerDetailsCnxt } = useContext(UseContext);
@@ -24,7 +26,7 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking, tableDetail }) =
     try {
       const response = await request(
         "GET",
-        `/food-fusion/cashier//getCustomerById/${customer_id}`
+        `/food-fusion/cashier/getCustomerById/${customer_id}`
       );
       if(response?.success){
         setCustomerDetailsCnxt(response?.data)
@@ -41,7 +43,7 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking, tableDetail }) =
       {tableStatus === "book" || tableDetail?.orderStatus === "book" ? (
         <>
           <div className=" flex items-center m-3 w-36">
-            <Link onClick={() => HandleTableNo(tableNo,tableDetail?.customerId)} className="" 
+            <Link onClick={() => HandleTableNo(tableNo,tableDetail?.customerId || tableDetail?._id)} className="" 
             // to={`/order/${tableDetail?.tableNo || tableNo}`}
             >
               <div className="px-3 py-2 bg-white rounded-2xl shadow-lg cashier-light-bg-color h-full table-card">
@@ -82,7 +84,7 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking, tableDetail }) =
         <>
           {/* ------- pending table ------- */}
           <div className=" flex items-center m-3 w-36">
-            <Link onClick={() => HandleTableNo(tableNo,tableDetail?.customerId)} className="" 
+            <Link onClick={() => HandleTableNo(tableNo,tableDetail?.customerId || tableDetail?._id)} className="" 
             // to={`/order/${tableNo}`}
             >
               <div className="px-3 py-2 bg-white rounded-2xl shadow-lg cashier-light-bg-color h-full table-card">
@@ -123,7 +125,7 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking, tableDetail }) =
         <>
           {/* ------- process table ------- */}
           <div className=" flex items-center m-3 w-36">
-            <Link onClick={() => HandleTableNo(tableNo,tableDetail?.customerId)} className=""
+            <Link onClick={() => HandleTableNo(tableNo,tableDetail?.customerId || tableDetail?._id)} className=""
             //  to={`/order/${tableNo}`}
             >
               <div className=" px-3 py-2 bg-white rounded-2xl shadow-lg cashier-light-bg-color h-full table-card">
@@ -150,7 +152,7 @@ const TableCard = ({ tableNo, index, tableStatus, tableBooking, tableDetail }) =
         <>
           {/* ------- reserve table ------- */}
           <div className="flex items-center m-3 w-36">
-            <Link onClick={() => HandleTableNo(tableNo,tableDetail?.customerId)} className="" 
+            <Link onClick={() => HandleTableNo(tableNo,tableDetail?.customerId || tableDetail?._id)} className="" 
             // to={`/order/${tableDetail?.tableNo || tableNo}`}
             >
               <div className="px-3 py-2 bg-white rounded-2xl shadow-lg cashier-light-bg-color h-full table-card">

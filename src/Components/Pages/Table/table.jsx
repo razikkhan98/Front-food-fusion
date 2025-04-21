@@ -78,6 +78,7 @@ const Table = () => {
   const [FloorNames, setFloorNames] = useState();
   // to set floor wise avilable tables
   const [FloorWiseTables, setFloorWiseTables] = useState();
+  const [BookedTableDtl, setBookedTableDtl] = useState();
   const { request, error } = useApi();
   // ========
   // functions
@@ -89,28 +90,36 @@ const Table = () => {
         "GET",
         "/food-fusion/cashier/getAllFloors"
       );
+      const BookTableResponse = await request(
+        "GET",
+        "/food-fusion/cashier/todayorder"
+      );
+      const TableResponse = await request(
+        "GET",
+        "/food-fusion/cashier/getAllTables"
+      );
+      if (BookTableResponse[0]?.dine) {
+        setBookedTableDtl(TableResponse?.data);
+      }
       if (response?.success) {
         const FloorsName = response?.data?.map((i) => i?.floorName) || [];
         setFloorNames(FloorsName);
         setCurrentTab(FloorsName[0] || []);
         const FloorWiseTable = response?.data?.map((i) => i?.tables) || [];
         setFloorWiseTables(FloorWiseTable?.flat());
-      
-    } else {
-      toast.error(error?.message || "Failed to load tables", {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        // theme: "colored",
-      });
-    }
-  } catch (error) {
-   
-  }
-};
+      } else {
+        toast.error(error?.message || "Failed to load tables", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          // theme: "colored",
+        });
+      }
+    } catch (error) {}
+  };
 
   // ===============
   // UseEffect
@@ -155,22 +164,24 @@ const Table = () => {
               Table for 2 members
             </h2>
             <div className="grid grid-cols-[repeat(auto-fill,minmax(168px,168px))]">
-              {FloorWiseTables?.map((i, index) =>
-               (
+              {BookedTableDtl?.map((i, index) => (
                 <>
                   {i?.totalChairs <= 3 &&
-                  String(i?.floorName) == String(CurrentTab) && i?.tablestatus == "empty"  ? (
-                    <TableCard
-                      tableStatus={"blank"}
-                      index={index}
-                      tableNo={i?.tableNumber}
-                    />
+                  String(i?.floorName) == String(CurrentTab) && i?.floorName == i?.floor?.floorName  ? (
+                    <>
+                      <TableCard
+                        tableStatus={i?.tablestatus}
+                        tableNo={i?.tableNumber}
+                        tableDetail={i?.customerId}
+                      />
+                    </>
                   ) : (
-                    <></>
+                    <>
+       
+                    </>
                   )}
                 </>
-              )
-              )}
+              ))}
             </div>
             {/* -------- for 4 member table ---------- */}
             <hr className="mt-3 mb-1" />
@@ -178,14 +189,14 @@ const Table = () => {
               Table for 4 members
             </h2>
             <div className="grid grid-cols-[repeat(auto-fill,minmax(168px,168px))]">
-              {FloorWiseTables?.map((i, index) => (
+              {BookedTableDtl?.map((i, index) => (
                 <>
                   {i?.totalChairs <= 4 &&
-                  String(i?.floorName) == String(CurrentTab) && i?.tablestatus == "empty" ? (
+                  String(i?.floorName) == String(CurrentTab) && i?.floorName == i?.floor?.floorName ? (
                     <TableCard
-                      tableStatus={"blank"}
-                      index={index}
+                      tableStatus={i?.tablestatus}
                       tableNo={i?.tableNumber}
+                      tableDetail={i}
                     />
                   ) : (
                     <></>
@@ -207,11 +218,11 @@ const Table = () => {
               {FloorWiseTables?.map((i, index) => (
                 <>
                   {i?.totalChairs >= 5 &&
-                  String(i?.floorName) == String(CurrentTab) && i?.tablestatus == "empty" ? (
+                  String(i?.floorName) == String(CurrentTab) ? (
                     <TableCard
-                      tableStatus={"blank"}
-                      index={index}
+                      tableStatus={i?.tablestatus}
                       tableNo={i?.tableNumber}
+                      tableDetail={i}
                     />
                   ) : (
                     <></>
