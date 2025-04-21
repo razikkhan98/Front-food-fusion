@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 // Common Components
 import LeftSideNavbar from "../../Common/SideNavbar/leftSideNavbar.jsx";
@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { TableBookingRedux } from "../../Redux/Slice/Order/tableBookingSlice.jsx";
+import useApi from "../../utils/Api/api";
 
 // import React-icons
 import { IoSearch } from "react-icons/io5";
@@ -23,7 +24,9 @@ import { TableNoRedux } from "../../Redux/Slice/Table/tableDetailSlice.jsx";
 import AutoSuggestSearch from "../../Common/AutoSuggestSearchBar/autoSuggestSearch.jsx";
 import IncrementDecrementFunctionality from "../../Common/IncrementDecrementFunctionality/incrementDecrementFunctionality.jsx";
 import { AddMenuRedux } from "../../Redux/Slice/Menu/MenuSlice.jsx";
+import { UseContext } from "../../Context/context.jsx";
 // Json
+import { MenuItemsJson } from "../../Assets/Json/menuItem.jsx";
 const customerData = [
   {
     customer_name: "John Doe",
@@ -52,8 +55,12 @@ const customerData = [
 ];
 const OrderIcons = [{ nav_img: bell }];
 const OrderHeading = ["Book Table", "Generate Order"];
-const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
-  console.log("MenuFromRedux: ", MenuFromRedux?.Menu);
+const Order = ({
+  tableNoFromRedux,
+  tableDetailsFromRedux,
+  MenuFromRedux,
+  CustomerDetailRedux,
+}) => {
   // ==========
   // UseFrom
   // ============
@@ -64,14 +71,25 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
     watch,
     formState: { errors },
   } = useForm();
+  const { CustomerDetailsCnxt } = useContext(UseContext);
 
   // ==========
   // State
   // ============
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
   const [autoSearchFillValue, setautoSearchFillValue] = useState();
+  // to set floor name for navbar
+  const [FloorNames, setFloorNames] = useState();
+  // to set floor wise avilable tables
+  const [FloorWiseTables, setFloorWiseTables] = useState();
   const [CurrentTab, setCurrentTab] = useState();
-  console.log("CurrentTab: ", CurrentTab);
+  const [SelectedFloor, setSelectedFloor] = useState();
+  const [orderData, setOrderData] = useState({
+    customerUid: CustomerDetailsCnxt?.customerUid, // replace with actual uid if needed
+    floorName: CustomerDetailsCnxt?.floorName,
+    tableNumber: CustomerDetailsCnxt?.tableNumber,
+    categories: [],
+  });
 
   // ==========
   // Functions
@@ -91,33 +109,58 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
   const emailInptField = watch("email");
   const deliveryAddressInptField = watch("deliveryAddress");
 
-  const onSubmit = (data) => {
+  const { request, error } = useApi();
+
+  // Filter Previous order with customerId
+  const FilterPrevOrdCustmId = MenuFromRedux?.Menu?.filter(
+    (i) => i?.customerID == CustomerDetailsCnxt?._id
+  );
+
+  // Get Selected Floor
+  const handleFloorChange = (event) => {
+    const { value } = event.target;
+    setSelectedFloor(value);
+  };
+
+  const onSubmit = async (data) => {
     const payload = {
-      tableNo:
+      tableNumber:
         data?.orderType === "Takeaway" || data?.orderType === "Delivery"
           ? ""
-          : params.tableNo || data?.tableNo,
+          : data?.tableNo || params.tableNo,
       customerName: data?.name,
       customerEmail: data?.email,
-      customerPhone: data?.number,
+      customerNumber: data?.number,
+      floorName: data?.floor,
       orderType: data?.orderType,
       deliveryAddress: data?.deliveryAddress,
       orderStatus: "reserve",
     };
+
     try {
-      dispatch(TableBookingRedux(payload));
-      dispatch(
-        TableNoRedux(
-          data?.orderType === "Takeaway" || data?.orderType === "Delivery"
-            ? ""
-            : data?.tableNo
-        )
+      // API call to create customer
+      const response = await request(
+        "POST",
+        "/food-fusion/cashier/createCustomer",
+        payload
       );
 
-      // Success Toaster
-      toast.success("Table booked successfully!");
+      if (response?.success) {
+        dispatch(TableBookingRedux(payload));
+        dispatch(
+          TableNoRedux(
+            data?.orderType === "Takeaway" || data?.orderType === "Delivery"
+              ? ""
+              : data?.tableNo
+          )
+        );
+
+        toast.success(response?.message);
+      } else {
+        toast.error(error?.message || "Failed to book the table.");
+      }
     } catch (error) {
-      // Error Toaster
+      console.error("Booking error:", error);
       toast.error("Failed to book the table. Please try again.");
     }
   };
@@ -125,7 +168,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
   // function to get total amount
   const calculateTotalAmount = () => {
     let total = 0;
-    MenuFromRedux?.Menu?.forEach((item) => {
+    FilterPrevOrdCustmId?.forEach((item) => {
       total += item?.subcategoriesAmount * item?.quantity;
     });
     return total;
@@ -136,14 +179,19 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
     tableDetailsFromRedux?.TableBooking?.filter((i) => {
       return Number(i?.tableNo) == params.tableNo;
     });
+  const filterInpFildFromPrevOrderApi =
+    tableDetailsFromRedux?.TableBooking?.filter((i) => {
+      return Number(i?.tableNo) == params.tableNo;
+    });
 
   // Auto Search Input Field
   const HandleAutoSearchInp = (e) => {
     setautoSearchFillValue(e.target.value);
   };
   const GetQuantity = (data) => {
+    console.log("data: ", data);
     const payload = {
-      customerID: data?.ItemId,
+      customerID: CustomerDetailsCnxt?._id,
       menuID: 0,
       floorName: "",
       tableNumber: 0,
@@ -165,22 +213,179 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
     // return setIncrDecrQuantity(data);
   };
 
+  const fetchAllTable = async () => {
+    try {
+      const response = await request(
+        "GET",
+        "/food-fusion/cashier/getAllFloors"
+      );
+      if (response?.success) {
+        const FloorsName = response?.data?.map((i) => i?.floorName) || [];
+        setFloorNames(FloorsName);
+        // setCurrentTab(FloorsName[0] || []);
+        const FloorWiseTable = response?.data?.map((i) => i?.tables) || [];
+        setFloorWiseTables(FloorWiseTable?.flat());
+      }
+    } catch (error) {}
+  };
+
+  // Create Menu or Order place API
+  // const HandleCreateMenuAPI = async () => {
+  //   try {
+  //     console.log('MenuFromRedux?.Menu: ', MenuFromRedux?.Menu);
+  //     const category = MenuItemsJson?.find(({ subcategories }) =>
+  //       subcategories?.some((sub) => sub?.name === MenuFromRedux?.Menu?.name)
+  //   );
+  //   console.log('category: ', category);
+  //     const categoryName = category ? category?.category : "Uncategorized";
+
+  //     // Find existing category in orderData
+  //     const existingCategoryIndex = orderData?.categories?.findIndex(
+  //       (cat) => cat?.categoriesName === categoryName
+  //     );
+
+  //     const subcategoryItem = {
+  //       subcategoriesName: MenuFromRedux?.Menu?.name,
+  //       subcategoriesAmount: MenuFromRedux?.Menu?.price,
+  //       subcategoriesType: categoryName,
+  //       quantity: 1,
+  //       totalAmount: MenuFromRedux?.Menu?.price,
+  //       totalItemTax: 0,
+  //       discount: "",
+  //       extraAddon: [],
+  //     };
+
+  //     if (existingCategoryIndex > -1) {
+  //       // Category exists, add the subcategory to the existing category
+  //       const updatedCategories = [...orderData?.categories];
+  //       updatedCategories[existingCategoryIndex]?.subcategories?.push(
+  //         subcategoryItem
+  //       );
+  //       setOrderData({ ...orderData, categories: updatedCategories });
+  //       console.log('{ ...orderData, categories: updatedCategories }: ', { ...orderData, categories: updatedCategories });
+  //       // const response = await request(
+  //       //   "POST",
+  //       //   "/food-fusion/cashier/createMenu",
+  //       //   { ...orderData, categories: updatedCategories }
+  //       // );
+  //       // console.log("response: ", response);
+  //     } else {
+  //       // Category doesn't exist, create a new one with the subcategory
+  //       const newCategory = {
+  //         categoriesName: categoryName,
+  //         subcategories: [subcategoryItem],
+  //       };
+  //       setOrderData({...orderData,categories: [...orderData.categories, newCategory],});
+  //       console.log('{...orderData,categories: [...orderData.categories, newCategory],}: ', {...orderData,categories: [...orderData.categories, newCategory],});
+
+  //       // const response = await request(
+  //       //   "POST",
+  //       //   "/food-fusion/cashier/createMenu",
+  //       //   { ...orderData, categories: [...orderData?.categories, newCategory] }
+  //       // );
+  //       // console.log("response: ", response);
+  //     }
+  //   } catch (error) {}
+  // };
+
+  const HandleCreateMenuAPI = async () => {
+    try {
+      HandleGetPrevOrderGetAPI()
+      for (const menuItem of MenuFromRedux?.Menu) {
+        const category = MenuItemsJson?.find(({ subcategories }) =>
+          subcategories?.some((sub) => sub?.name === menuItem.subcategoriesName)
+        );
+        const categoryName = category ? category?.category : "Uncategorized";
+
+        // Find existing category in orderData
+        const existingCategoryIndex = orderData?.categories?.findIndex(
+          (cat) => cat?.categoriesName === categoryName
+        );
+
+        const subcategoryItem = {
+          subcategoriesName: menuItem.subcategoriesName,
+          subcategoriesAmount: menuItem.subcategoriesAmount,
+          subcategoriesType: categoryName,
+          quantity: menuItem.quantity,
+          totalAmount: menuItem.totalAmount || menuItem.subcategoriesAmount, // Use the total amount from menuItem if exists
+          totalItemTax: menuItem.totalitemTax, // Make sure to use the correct tax value
+          discount: menuItem.discount,
+          extraAddon: [], // Add logic if you have extra addons
+        };
+
+        if (existingCategoryIndex > -1) {
+          // Category exists, check for existing subcategory
+          const existingSubcategoryIndex = orderData.categories[
+            existingCategoryIndex
+          ].subcategories.findIndex(
+            (sub) => sub.subcategoriesName === menuItem.subcategoriesName
+          );
+
+          if (existingSubcategoryIndex === -1) {
+            // Subcategory doesn't exist, add it to the existing category
+            const updatedCategories = [...orderData?.categories];
+            updatedCategories[existingCategoryIndex]?.subcategories?.push(
+              subcategoryItem
+            );
+            setOrderData({ ...orderData, categories: updatedCategories });
+            console.log("check for existing subcategory with new item: ", {
+              ...orderData,
+              categories: updatedCategories,
+            });
+          } else {
+            // Subcategory exists, do not add it again; do nothing
+            console.log("Subcategory: ");
+          }
+        } else {
+          // Category doesn't exist, create a new one with the subcategory
+          const newCategory = {
+            categoriesName: categoryName,
+            subcategories: [subcategoryItem],
+          };
+          setOrderData({
+            ...orderData,
+            categories: [...orderData.categories, newCategory],
+          });
+          console.log("new subcategory: ", {
+            ...orderData,
+            categories: [...orderData.categories, newCategory],
+          });
+        }
+      }
+    } catch (error) {
+      console.error("Error while creating menu: ", error);
+    }
+  };
+
+  const HandleGetPrevOrderGetAPI = async () => {
+    try {
+      const response = await request("GET", "/food-fusion/cashier/getAllMenu");
+
+      console.log("response: ", response?.data);
+
+      const options = response?.data[0]?.categories?.flatMap((item) => item.subcategories);
+      console.log('options: ', options);
+    } catch (error) {}
+  };
+
   //==========
   // useEffect
   // ============
 
   useEffect(() => {
-    setValue("name", filterInpFildFromPrevOrder[0]?.customerName);
-    setValue("number", filterInpFildFromPrevOrder[0]?.customerPhone);
-    setValue("email", filterInpFildFromPrevOrder[0]?.customerEmail);
-    setValue("orderType", filterInpFildFromPrevOrder[0]?.orderType);
-    setValue("deliveryAddress", filterInpFildFromPrevOrder[0]?.deliveryAddress);
+    setValue("name", CustomerDetailsCnxt?.customerName);
+    setValue("number", CustomerDetailsCnxt?.customerNumber);
+    setValue("email", CustomerDetailsCnxt?.customerEmail);
+    setValue("orderType", CustomerDetailsCnxt?.orderType);
+    setValue("deliveryAddress", CustomerDetailsCnxt?.deliveryAddress);
+    setValue("floor", CustomerDetailsCnxt?.floorName);
     setValue(
       "tableNo",
-      filterInpFildFromPrevOrder[0]?.tableNo ||
-      params.tableNo ||
-      tableNoFromRedux?.tableNo
+      CustomerDetailsCnxt?.tableNumber ||
+        params.tableNo ||
+        tableNoFromRedux?.tableNo
     );
+    fetchAllTable();
   }, []);
 
   return (
@@ -214,10 +419,11 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                 <input
                   type="text"
                   placeholder="Customer's name here"
-                  className={`w-full mt-1 text-base text-color-black font-medium px-2 py-3 border-gray-color rounded-lg  ${nameInptField
+                  className={`w-full mt-1 text-base text-color-black font-medium px-2 py-3 border-gray-color rounded-lg  ${
+                    nameInptField
                       ? ""
                       : "bg-light-color text-sm font-normal border-light-color py-3.5"
-                    } focus-visible:bg-white`}
+                  } focus-visible:bg-white`}
                   {...register("name")}
                 />
                 {errors?.customer_name && (
@@ -247,10 +453,11 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                 <input
                   type="text"
                   placeholder="Customer's contact no here"
-                  className={`w-full mt-1 px-2 text-color-black py-3 border-gray-color rounded-lg ${numberInptField
+                  className={`w-full mt-1 px-2 text-color-black py-3 border-gray-color rounded-lg ${
+                    numberInptField
                       ? ""
                       : "bg-light-color text-sm font-normal border-light-color py-3.5"
-                    } focus-visible:bg-white`}
+                  } focus-visible:bg-white`}
                   {...register("number")}
                 />
                 {errors.customer_mobile_no && (
@@ -265,14 +472,16 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                   Order Type
                 </label>
                 <select
-                  className={`custom-select w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${orderTypeInptField
+                  className={`custom-select w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${
+                    orderTypeInptField
                       ? ""
                       : "bg-light-color font-xs font-normal border-light-color"
-                    } focus-visible:bg-white`}
+                  } focus-visible:bg-white`}
+                  value={CustomerDetailsCnxt?.orderType}
                   {...register("orderType")}
                 >
-                  <option value="">Select Order Type</option>
-                  <option value="Dine In">Dine In</option>
+                  {/* <option value="">Select Order Type</option> */}
+                  <option value="Dine in">Dine In</option>
                   <option value="Takeaway">Take Away</option>
                   <option value="Delivery">Delivery</option>
                 </select>
@@ -290,10 +499,11 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                 <input
                   type="email"
                   placeholder="Customer's E-mail ID here"
-                  className={`w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${emailInptField
+                  className={`w-full mt-1 px-2 py-3 border-gray-color text-base font-medium rounded-lg ${
+                    emailInptField
                       ? ""
                       : "bg-light-color text-sm font-normal border-light-color py-3.5"
-                    } focus-visible:bg-white`}
+                  } focus-visible:bg-white`}
                   {...register("email")}
                 />
                 {errors.customer_email && (
@@ -303,26 +513,51 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                 )}
               </div>
               {/* Table No if Dine In */}
-              {orderTypeInptField == "Dine In" || orderTypeInptField == "" ? (
-                <div>
-                  <label className="text-color-black font-medium text-sm block">
-                    Table No
-                  </label>
-                  <select
-                    className="custom-select w-2/5 mt-2 px-2 py-3 border-gray-color rounded-lg text-base font-medium focus-visible:bg-white"
-                    {...register("tableNo")}
-                  >
-                    <option value={""}>Table No.</option>
-                    <option value={"1"}>1</option>
-                    <option value={"2"}>2</option>
-                    <option value={"3"}>3</option>
-                    <option value={"4"}>4</option>
-                    <option value={"5"}>5</option>
-                    <option value={"6"}>6</option>
-                    <option value={"7"}>7</option>
-                    <option value={"8"}>8</option>
-                  </select>
-                </div>
+              {orderTypeInptField == "Dine in" ||
+              CustomerDetailsCnxt?.orderType == "Dine in" ||
+              orderTypeInptField == "" ? (
+                <>
+                  <div>
+                    <label className="text-color-black font-medium text-sm block">
+                      Floor's
+                    </label>
+                    <select
+                      className="custom-select w-full mt-2 px-2 py-3 border-gray-color rounded-lg text-base font-medium focus-visible:bg-white"
+                      {...register("floor")}
+                      value={SelectedFloor}
+                      onChange={handleFloorChange}
+                    >
+                      <option value={""}>Select Floor</option>
+                      {FloorNames?.map((i) => (
+                        <option value={i}>{i}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="text-color-black font-medium text-sm block">
+                      Table No
+                    </label>
+                    <select
+                      className="custom-select w-2/5 mt-2 px-2 py-3 border-gray-color rounded-lg text-base font-medium focus-visible:bg-white"
+                      value={CustomerDetailsCnxt?.tableNumber}
+                      {...register("tableNo")}
+                    >
+                      <option value={""}>Table No.</option>
+                      {FloorWiseTables?.filter(
+                        (i) =>
+                          i?.floorName == SelectedFloor &&
+                          i?.tablestatus == "empty"
+                      )?.map((i) => (
+                        <>
+                          <option value={i?.tableNumber}>
+                            {i?.tableNumber}
+                          </option>
+                        </>
+                      ))}
+                    </select>
+                  </div>
+                </>
               ) : orderTypeInptField == "Delivery" ? (
                 <>
                   {/* delivery address if delivery */}
@@ -333,10 +568,11 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                     <input
                       type="text"
                       placeholder="Customer's Address here"
-                      className={`w-full mt-1 px-2 text-color-black py-3 border-gray-color text-base font-medium rounded-lg ${orderTypeInptField
+                      className={`w-full mt-1 px-2 text-color-black py-3 border-gray-color text-base font-medium rounded-lg ${
+                        orderTypeInptField
                           ? ""
                           : "bg-light-color font-xs font-normal border-light-color"
-                        } focus-visible:bg-white`}
+                      } focus-visible:bg-white`}
                       {...register("deliveryAddress")}
                     />
                     {/* {errors.deliveryaddress && (
@@ -355,10 +591,11 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
               {/* <Button title={"Save"}/> */}
               <NavLink to={"/previousorder"}>
                 <button
-                  className={`px-6 py-2 text-base font-medium ${nameInptField && numberInptField && orderTypeInptField
+                  className={`px-6 py-2 text-base font-medium ${
+                    nameInptField && numberInptField && orderTypeInptField
                       ? "border-cashier cashier-main-text-color hover:text-white hover:bg-[--cashier-main-color]"
                       : "text-light-gray-color bg-white opacity-50 cursor-not-allowed"
-                    } rounded-full border border-gray-400`}
+                  } rounded-full border border-gray-400`}
                   disabled={
                     !(nameInptField || numberInptField || orderTypeInptField)
                   } // Disable the button if none of the fields are filled
@@ -367,10 +604,11 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                 </button>
               </NavLink>
               <button
-                className={`px-7 py-2 ${nameInptField && orderTypeInptField
+                className={`px-7 py-2 ${
+                  nameInptField && orderTypeInptField
                     ? "cashier-main-bg-color text-white"
                     : "btn-bg-gray-color text-light-gray-color cursor-not-allowed"
-                  } text-white rounded-full`}
+                } text-white rounded-full`}
                 type="submit"
               >
                 Save
@@ -386,14 +624,16 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
               Add Item
             </button>
           </NavLink>
-          <div
-            className={`bg-white rounded-full relative w-full ms-8`}
-          >
+          <div className={`bg-white rounded-full relative w-full ms-8`}>
             <input
               type="text"
               placeholder="Search for items"
               onChange={HandleAutoSearchInp}
-              className={`w-full py-2 pl-10 pr-4 z-50 relative  border-2 border-[--cashier-main-color] rounded-full focus:outline-none  focus:ring-[--cashier-main-color] ${autoSearchFillValue ? 'bg-[--select-section]' :  "navbar-icon-bg-color"} hover:bg-[--select-section] focus-within:bg-[--select-section]`}
+              className={`w-full py-2 pl-10 pr-4 z-50 relative  border-2 border-[--cashier-main-color] rounded-full focus:outline-none  focus:ring-[--cashier-main-color] ${
+                autoSearchFillValue
+                  ? "bg-[--select-section]"
+                  : "navbar-icon-bg-color"
+              } hover:bg-[--select-section] focus-within:bg-[--select-section]`}
             />
             <AutoSuggestSearch inputValue={autoSearchFillValue} />
             <IoSearch className="absolute left-3 top-1/2 z-20 transform -translate-y-1/2 text-color-gray" />
@@ -423,7 +663,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
             </thead>
             <tbody>
               {/* Placeholder for dynamic items */}
-              {MenuFromRedux?.Menu?.map((item, index) => (
+              {FilterPrevOrdCustmId?.map((item, index) => (
                 <>
                   <tr className="border-b">
                     <td className="py-3 text-center text-sm font-normal text-[--gray-color] ">
@@ -437,7 +677,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                     </td>
                     <td className="py-3 text-center ">
                       <IncrementDecrementFunctionality
-                        ItemId={item?.customerID}
+                        ItemId={item?.orderID}
                         GetQuantity={GetQuantity}
                         prevCount={item?.quantity}
                       />
@@ -451,7 +691,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
                   </tr>
                 </>
               ))}
-              {MenuFromRedux?.Menu?.length > 0 ? (
+              {FilterPrevOrdCustmId?.length > 0 ? (
                 <tr>
                   <td className="py-3 text-center"></td>
                   <td className="py-3 text-center"></td>
@@ -474,12 +714,27 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
           {/* <Button title={" Generate Invoice"}/>
           <Button title={"Send to Kitchen"}/> */}
           <NavLink to={"/allinvoice"}>
-            <button className={`px-8 py-2.5 bg-white  text-base font-medium rounded-full ${MenuFromRedux?.Menu?.length > 0 ? 'border-cashier cashier-main-text-color': "border-light-gray text-light-gray-color"}`}>
+            <button
+              className={`px-8 py-2.5  bg-white  lg:text-base  text-xs font-medium rounded-full ${
+                FilterPrevOrdCustmId?.length > 0
+                  ? "border-cashier cashier-main-text-color"
+                  : "border-light-gray text-light-gray-color"
+              }`}
+            >
               Generate Invoice
             </button>
           </NavLink>
-          <NavLink to={"/sendtokitchen"}>
-            <button className={`px-8 py-2.5  text-base font-medium rounded-full ${MenuFromRedux?.Menu?.length > 0 ? 'cashier-main-bg-color text-white':"text-light-gray-color btn-bg-gray-color"}`}>
+          <NavLink
+          // to={"/sendtokitchen"}
+          >
+            <button
+              className={`px-8 py-2.5  lg:text-base  text-xs font-medium rounded-full ${
+                FilterPrevOrdCustmId?.length > 0
+                  ? "cashier-main-bg-color text-white"
+                  : "text-light-gray-color btn-bg-gray-color"
+              }`}
+              onClick={() => HandleCreateMenuAPI()}
+            >
               Send To Kitchen
             </button>
           </NavLink>
@@ -497,6 +752,7 @@ const Order = ({ tableNoFromRedux, tableDetailsFromRedux, MenuFromRedux }) => {
 };
 
 const mapStateToProps = (state) => ({
+  CustomerDetailRedux: state?.tableDetails,
   tableNoFromRedux: state?.tableDetails,
   tableDetailsFromRedux: state?.tableBooking,
   MenuFromRedux: state?.menu,

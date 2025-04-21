@@ -214,7 +214,7 @@ const PreviousOrder = () => {
 
         {/* Previous Order Cards */}
 
-        <div className="h-3/4 hidden-scroll overflow-auto pb-3">
+        <div className="h-4/6 hidden-scroll overflow-auto pb-3">
           <div
             className={`grid grid-cols-[repeat(auto-fill,minmax(336px,336px))]`}
           >

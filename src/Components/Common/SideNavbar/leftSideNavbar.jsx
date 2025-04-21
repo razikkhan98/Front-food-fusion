@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
 // IMPORT IMAGES
@@ -9,6 +9,8 @@ import Home from "../../Assets/icons/House.svg";
 import Home_light from "../../Assets/icons/House-white.svg";
 import Menu from "../../Assets/icons/menu-board.svg";
 import Menu_light from "../../Assets/icons/menu-board-white.svg";
+import Dinner_Table from "../../Assets/icons/dinner-table.svg";
+import Dinner_Table_light from "../../Assets/icons/dinner-table_light.svg";
 import Order from "../../Assets/icons/task-square.svg";
 import Order_light from "../../Assets/icons/task-square-white.svg";
 import Shedule from "../../Assets/icons/calendar-tick.svg";
@@ -19,11 +21,17 @@ import Setting from "../../Assets/icons/GearSix.svg";
 import Setting_light from "../../Assets/icons/GearSix-white.svg";
 import Logout from "../../Assets/icons/logout.svg";
 import Logout_light from "../../Assets/icons/logout-white.svg";
+import { UseContext } from "../../Context/context";
 
 // Json items
 const navItems = [
   { to: "/home", icon: Home, iconHover: Home_light, label: "Home" },
-  { to: "/table", icon: Menu, iconHover: Menu_light, label: "Table" },
+  {
+    to: "/table",
+    icon: Dinner_Table,
+    iconHover: Dinner_Table_light,
+    label: "Table",
+  },
   { to: "/menu", icon: Menu, iconHover: Menu_light, label: "Menu" },
   { to: "/order", icon: Order, iconHover: Order_light, label: "Orders" },
   {
@@ -47,14 +55,15 @@ const navItems = [
   { to: "/", icon: Logout, iconHover: Logout_light, label: "Logout" },
 ];
 const LeftSideNavbar = () => {
+  const UserDetails = JSON?.parse(sessionStorage?.getItem("User") ?? "{}");
   // States
   const [hoveredItem, setHoveredItem] = useState(null);
+  const { UserAuth } = useContext(UseContext);
 
   // navigations
   const Location = useLocation();
 
   // Functions
-
 
   return (
     <div>
@@ -69,8 +78,12 @@ const LeftSideNavbar = () => {
           <div className="text-center flex justify-center">
             <img src={userImg} className="rounded-full" alt="Loading" />
           </div>
-          <h5 className="text-sm font-medium mt-2">Admin Panel</h5>
-          <h6 className="text-sm font-normal ">Cashier</h6>
+          <h5 className="text-sm font-medium mt-2">
+            {UserAuth?.user?.fullname || UserDetails?.user?.fullname}
+          </h5>
+          <h6 className="text-sm font-normal ">
+            {UserAuth?.user?.role || UserDetails?.user?.role}
+          </h6>
         </div>
         <ul className="my-3 h-2/3 overflow-scroll hidden-scroll">
           {navItems.map((item, index) => (

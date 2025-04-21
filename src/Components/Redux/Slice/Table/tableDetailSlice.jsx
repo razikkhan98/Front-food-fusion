@@ -1,8 +1,12 @@
 // cartReducer.js
 import { createSlice } from "@reduxjs/toolkit";
-import { TableNoActRedux } from "../../Action/Table/tableDetailAction";
+import {
+  TableCustomerIdActRedux,
+  TableNoActRedux,
+} from "../../Action/Table/tableDetailAction";
 export const initialState = {
   TableNo: "",
+  CustomerDetail: {},
   TableDetails: [],
 };
 const tableDetailsSlice = createSlice({
@@ -10,9 +14,13 @@ const tableDetailsSlice = createSlice({
   initialState,
   reducers: {
     TableNoActRedux,
+    TableCustomerIdActRedux,
   },
 });
 
-export const { TableNoActRedux: TableNoRedux } = tableDetailsSlice.actions;
+export const {
+  TableNoActRedux: TableNoRedux,
+  TableCustomerIdActRedux: TableCustomerIdRedux,
+} = tableDetailsSlice.actions;
 
 export default tableDetailsSlice.reducer;
