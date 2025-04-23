@@ -814,9 +814,7 @@ const AutoSuggestSearch = ({ inputValue, MenuFromRedux }) => {
   const dispatch = useDispatch();
   const dropdownRef = useRef(null); // Ref for the dropdown
   const { CustomerDetailsCnxt } = useContext(UseContext);
-  const { request, error } = useApi
-  ();
-
+  const { request, error } = useApi();
 
   // =========
   // Functions
@@ -1068,7 +1066,7 @@ const AutoSuggestSearch = ({ inputValue, MenuFromRedux }) => {
   //         ...orderData,
   //         categories: [...orderData.categories, newCategory],
   //       });
-   
+
   //       const response = await request(
   //         "POST",
   //         "/food-fusion/cashier/createMenu",
@@ -1078,8 +1076,6 @@ const AutoSuggestSearch = ({ inputValue, MenuFromRedux }) => {
   //     }
   //   } catch (error) {}
   // };
-
-
 
   return (
     <>
@@ -1117,6 +1113,7 @@ const AutoSuggestSearch = ({ inputValue, MenuFromRedux }) => {
                       <>
                         <IncrementDecrementFunctionality
                           ItemId={option?.id}
+                          isOptionSelected={true}
                           prevCount={
                             FilterPrevOrdCustmId?.find(
                               (i) => i?.orderID == option?.id

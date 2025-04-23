@@ -104,7 +104,7 @@ const UserLogin = () => {
       sessionStorage?.setItem("User", JSON?.stringify(response));
       closeModal();
       await request("GET", "/food-fusion/cashier/getAllFloors");
-      navigate("/table");
+      navigate("/home");
     } else {
       toast.error(error?.message || "Login failed. Please try again.", {
         position: "top-center",

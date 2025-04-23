@@ -62,3 +62,13 @@ export const ChangeInputItemQuantityActRedux = (state, action) => {
     }
   }
 };
+
+
+// ===================================
+// Add ons Data Functionality
+// ===================================
+
+export const GetAddOnsActRedux = (state, action) => {
+  console.log('action: ', action?.payload);
+// state?.AddOnsData
+}

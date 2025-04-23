@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../Assets/css/menuSearchBar.css";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { NavLink, useLocation } from "react-router-dom";
@@ -8,6 +8,7 @@ import NotificationModal from "../Modal/notificationModal";
 import NavbarSortModal from "../Modal/navSortModal";
 
 import Plus from "../../Assets/Images/sidebarImg/Plus.svg";
+import { UseContext } from "../../Context/context";
 
 const Navbar = ({
   pageHeading = [],
@@ -26,6 +27,7 @@ const Navbar = ({
   const [autoSearchFillValue, setautoSearchFillValue] = useState();
   const [isOpen, setIsOpen] = useState(false);
   const [NavSortModal, setNavSortModal] = useState(false);
+    const { setCustomerDetailsCnxt } = useContext(UseContext);
   // =========
   // Functions
   // ===========
@@ -80,7 +82,10 @@ const Navbar = ({
 
   return (
     <>
-      <div className="overflow-x-auto lg:overflow-x-hidden">
+    
+    {/* <div className="overflow-x-auto lg:overflow-x-hidden">// this is for nav scroll css on tab */}
+    {/* <div className="overflow-x-auto">// this is for nav scroll css on tab */}
+      <div className="">
         {pageHeading?.length > 0 && (
           <div className="text-sm my-3 flex items-center">
             {pageHeading.length === 1 ? (
@@ -105,7 +110,9 @@ const Navbar = ({
             )}
           </div>
         )}
-        <div class="flex gap-4 pb-3 overflow-x-auto lg:overflow-x-hidden w-screen lg:w-full">
+        {/* <div class="flex gap-4 pb-3 overflow-x-auto lg:overflow-x-hidden w-screen lg:w-full">// this is for nav scroll css on tab */}
+        {/* <div class="flex gap-4 pb-3 overflow-x-auto w-screen ">// this is for nav scroll css on tab */}
+        <div class="flex gap-4 pb-3">
           {buttons?.length > 0 &&
             buttons.map((floor, index) => (
               <NavLink to={floor?.btn_path}>
@@ -171,7 +178,7 @@ const Navbar = ({
             <NavLink
               to={"/order"}
             >
-              <button className="w-full cashier-main-bg-color text-white py-2 px-7 rounded-full font-bold text-base flex items-center justify-center">
+              <button onClick={()=>setCustomerDetailsCnxt() } className="w-full cashier-main-bg-color text-white py-2 px-7 rounded-full font-bold text-base flex items-center justify-center">
                 <img src={Plus} className="me-2 h-5 w-5" alt="Loading" /> {btn_add}
               </button>
             </NavLink>

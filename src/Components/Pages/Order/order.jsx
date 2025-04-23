@@ -62,6 +62,7 @@ const Order = ({
   tableDetailsFromRedux,
   MenuFromRedux,
   CustomerDetailRedux,
+  GetPreviousOrderRedux,
 }) => {
   // ==========
   // UseFrom
@@ -114,7 +115,7 @@ const Order = ({
 
   const { request, loading, error } = useApi();
 
-  // Filter Previous order with customerId
+  // Filter Previous orders with customerId;
   const FilterPrevOrdCustmId = MenuFromRedux?.Menu?.filter(
     (i) => i?.customerID == CustomerDetailsCnxt?._id
   );
@@ -192,7 +193,6 @@ const Order = ({
     setautoSearchFillValue(e.target.value);
   };
   const GetQuantity = (data) => {
-    console.log("data: ", data);
     const payload = {
       customerID: CustomerDetailsCnxt?._id,
       menuID: 0,
@@ -331,13 +331,19 @@ const Order = ({
               subcategoryItem
             );
             setOrderData({ ...orderData, categories: updatedCategories });
-            console.log("check for existing subcategory with new item: ", {
-              ...orderData,
-              categories: updatedCategories,
-            });
+            // console.log("check for existing subcategory with new item: ", {
+            //   ...orderData,
+            //   categories: updatedCategories,
+            // });
+            // const response = await request(
+            //   "POST",
+            //   "/food-fusion/cashier/createMenu",
+            //   { ...orderData, categories: updatedCategories }
+            // );
+            // console.log("response: ", response);
           } else {
             // Subcategory exists, do not add it again; do nothing
-            console.log("Subcategory: ");
+            // console.log("Subcategory: ");
           }
         } else {
           // Category doesn't exist, create a new one with the subcategory
@@ -349,10 +355,19 @@ const Order = ({
             ...orderData,
             categories: [...orderData.categories, newCategory],
           });
-          console.log("new subcategory: ", {
-            ...orderData,
-            categories: [...orderData.categories, newCategory],
-          });
+          // console.log("new subcategory: ", {
+          //   ...orderData,
+          //   categories: [...orderData.categories, newCategory],
+          // });
+                  const response = await request(
+          "POST",
+          "/food-fusion/cashier/createMenu",
+          { ...orderData, categories: [...orderData?.categories, newCategory] }
+        );
+        console.log("response: ", response);
+        if(response?.success){
+          toast.success("Order Placed Successfully");
+        }
         }
       }
     } catch (error) {
@@ -364,15 +379,13 @@ const Order = ({
     try {
       const response = await request("GET", "/food-fusion/cashier/getAllMenu");
 
-      console.log("response: ", response?.data);
-
       const options = response?.data[0]?.categories?.flatMap(
         (item) => item.subcategories
       );
-      console.log("options: ", options);
     } catch (error) {}
   };
 
+  // Check if Customer have previous order record using mobile number
   const HandleGetPrevOrdersGetAPI = async (customerNumber) => {
     try {
       dispatch(PreviousOrderRedux([]));
@@ -629,16 +642,20 @@ const Order = ({
             <div className="flex mt-6 space-x-4">
               {/* <Button title={"View previous Orders"}/> */}
               {/* <Button title={"Save"}/> */}
-              <NavLink to={"/previousorder"}>
+              <NavLink
+                to={
+                  GetPreviousOrderRedux?.PreviousOrder?.length > 0
+                    ? "/previousorder"
+                    : ""
+                }
+              >
                 <button
                   className={` ps-6 pe-4 py-2 flex text-base font-medium ${
-                    nameInptField && numberInptField && orderTypeInptField
+                    GetPreviousOrderRedux?.PreviousOrder?.length > 0
                       ? "border-cashier cashier-main-text-color hover:text-white hover:bg-[--cashier-main-color]"
                       : "text-light-gray-color bg-white cursor-not-allowed"
                   } rounded-full border border-gray-400`}
-                  disabled={
-                    !(nameInptField || numberInptField || orderTypeInptField)
-                  } // Disable the button if none of the fields are filled
+                  disabled={GetPreviousOrderRedux?.PreviousOrder?.length < 0} // Disable the button if none of the fields are filled
                 >
                   View Previous Orders
                   <span className="ms-2 flex justify-center items-center">
@@ -734,6 +751,7 @@ const Order = ({
                         ItemId={item?.orderID}
                         GetQuantity={GetQuantity}
                         prevCount={item?.quantity}
+                        isOptionSelected={true}
                       />
                     </td>
                     <td className="py-3 text-center text-sm font-normal text-[--gray-color] ">
@@ -810,6 +828,7 @@ const mapStateToProps = (state) => ({
   tableNoFromRedux: state?.tableDetails,
   tableDetailsFromRedux: state?.tableBooking,
   MenuFromRedux: state?.menu,
+  GetPreviousOrderRedux: state?.previousOrder,
 });
 
 export default connect(mapStateToProps, {})(Order);

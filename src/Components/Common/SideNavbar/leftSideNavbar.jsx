@@ -92,7 +92,7 @@ const LeftSideNavbar = () => {
                 onMouseOver={() => setHoveredItem(item?.label)}
                 onMouseOut={() => setHoveredItem(null)}
                 className={`flex cursor-pointer ${
-                  item?.to == Location?.pathname
+                  item?.to == Location?.pathname?.split('/').slice(0, 2).join('/')
                     ? "sidebar-li-active bg-[--cashier-main-color] text-white rounded-full"
                     : ""
                 } sidebar-li items-center lg:text-base md:text-xs font-medium hover:bg-[--cashier-main-color] hover:text-white hover:rounded-full  text-center my-[14px]`}
@@ -100,7 +100,7 @@ const LeftSideNavbar = () => {
                 <CircleIcons
                   icon={
                     hoveredItem === item?.label ||
-                    item?.to == Location?.pathname
+                    item?.to == Location?.pathname?.split('/').slice(0, 2).join('/')
                       ? item?.iconHover
                       : item?.icon
                   }

@@ -10,6 +10,7 @@ export const MenuItemsJson = [
         description:
           "Crispy pastry filled with spiced potatoes, peas, and herbs.",
         price: 80,
+        status: "Available",
         // foodImg: Rajasthani,
         add_ons: [
           { option: "Extra tamarind chutney", price: 10 },
@@ -23,6 +24,7 @@ export const MenuItemsJson = [
       {
         id: 2,
         name: "Paneer Tikka",
+        status: "Available",
         description:
           "Marinated cottage cheese cubes grilled to perfection with herbs.",
         price: 250,
@@ -37,6 +39,7 @@ export const MenuItemsJson = [
       {
         id: 3,
         name: "Chicken Seekh Kebab",
+        status: "Available",
         description: "Spiced minced chicken skewers cooked in a tandoor.",
         price: 300,
         // foodImg: Rajasthani,
@@ -50,6 +53,7 @@ export const MenuItemsJson = [
       {
         id: 4,
         name: "Aloo Tikki Chaat",
+        status: "Available",
         description:
           "Potato patties topped with yogurt, tamarind, and mint chutney.",
         price: 150,
@@ -64,6 +68,7 @@ export const MenuItemsJson = [
       {
         id: 5,
         name: "Lamb Galouti Kebab",
+        status: "Available",
         description:
           "Melt-in-your-mouth minced lamb kebabs with a rich blend of spices.",
         price: 400,
@@ -78,6 +83,7 @@ export const MenuItemsJson = [
       {
         id: 6,
         name: "Avocado Papdi Chaat",
+        status: "Available",
         description:
           "Crispy wafers topped with mashed avocado, spiced yogurt, and chutneys—a modern twist on traditional chaat.",
         price: 180,
@@ -91,6 +97,7 @@ export const MenuItemsJson = [
       {
         id: 7,
         name: "Chicken 65",
+        status: "N Available",
         description:
           "Spicy and tangy fried chicken with South Indian spices, curry leaves, and yogurt.",
         price: 220,
@@ -104,6 +111,7 @@ export const MenuItemsJson = [
       {
         id: 8,
         name: "Kurkuri Bhindi",
+        status: "N Available",
         description:
           "Crispy, spiced okra fries for a crunchy and flavorful bite.",
         price: 130,
@@ -125,6 +133,7 @@ export const MenuItemsJson = [
       {
         id: 1,
         name: "Paneer Butter Masala",
+        status: "N Available",
         description:
           "Cottage cheese in a rich, creamy tomato sauce with butter.",
         price: 300,
@@ -139,6 +148,7 @@ export const MenuItemsJson = [
       {
         id: 2,
         name: "Chole Bhature",
+        status: "Available",
         description: "Spiced chickpeas served with fluffy fried bread.",
         price: 220,
         // foodImg: Rajasthani,
@@ -152,6 +162,7 @@ export const MenuItemsJson = [
       {
         id: 3,
         name: "Baingan Bharta",
+        status: "Available",
         description:
           "Roasted and mashed eggplant with onions, tomatoes, and spices.",
         price: 200,

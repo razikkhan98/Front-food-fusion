@@ -38,7 +38,6 @@ const PreviousButtons = [
   { btn_name: "Frequently Ordered", btn_color: "bg-transparent" },
 ];
 const PreviousOrder = ({ GetPreviousOrderRedux }) => {
-  console.log("GetPreviousOrderRedux: ", GetPreviousOrderRedux?.PreviousOrder);
   // ===========
   // State
   // ==========

@@ -122,7 +122,7 @@ const Home = ({ tableDetailsFromRedux }) => {
               </>
             ))} */}
             {WorkingTable && WorkingTable.length > 0 ? (
-              WorkingTable.map((i, index) => (
+              WorkingTable?.map((i, index) => (
                 <TableCard
                   tableStatus={i?.status}
                   tableNo={i?.tableNumber}
