@@ -19,6 +19,7 @@ import home from "../../Assets/icons/prevordhouse.svg";
 import { IoCallOutline } from "react-icons/io5";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { GoHome } from "react-icons/go";
+import { connect } from "react-redux";
 
 const customerData = {
   name: "Rahul Vijay",
@@ -36,7 +37,7 @@ const PreviousButtons = [
   { btn_name: "All", btn_color: "bg-[--cashier-very-light-color]" },
   { btn_name: "Frequently Ordered", btn_color: "bg-transparent" },
 ];
-const PreviousOrder = () => {
+const PreviousOrder = ({ GetPreviousOrderRedux }) => {
   // ===========
   // State
   // ==========
@@ -73,15 +74,15 @@ const PreviousOrder = () => {
                 {/* Customer Name */}
                 <div className="flex items-start my-2">
                   <div className="flex-shrink-0 w-10 h-10 border rounded-md flex items-center justify-center ml-4 mr-4">
-                    <span className="font-medium text-light-gray-color">
-                      {customerData?.initials}
+                    <span className="font-medium text-light-gray-color uppercase">
+                    {GetPreviousOrderRedux?.PreviousOrder[0]?.customerName?.slice(0,2)}
                     </span>
                   </div>
                   <div>
                     <p className="text-xs font-medium text-light-gray-color">
                       Customer's Name
                     </p>
-                    <p className="text-sm font-medium">{customerData?.name}</p>
+                    <p className="text-sm font-medium">{GetPreviousOrderRedux?.PreviousOrder[0]?.customerName}</p>
                   </div>
                   <hr className="h-16 border-light-gray-color ms-7" />
                 </div>
@@ -96,7 +97,7 @@ const PreviousOrder = () => {
                     <p className="text-xs font-medium text-light-gray-color">
                       Contact No
                     </p>
-                    <p className="text-sm font-medium">{customerData?.phone}</p>
+                    <p className="text-sm font-medium">{GetPreviousOrderRedux?.PreviousOrder[0]?.customerNumber}</p>
                   </div>
                   <hr className="h-16 border-light-gray-color ms-7" />
                 </div>
@@ -111,7 +112,7 @@ const PreviousOrder = () => {
                     <p className="text-xs font-medium text-light-gray-color">
                       E-mail Address
                     </p>
-                    <p className="text-sm font-medium">{customerData?.email}</p>
+                    <p className="text-sm font-medium">{GetPreviousOrderRedux?.PreviousOrder[0]?.customerEmail}</p>
                   </div>
                   <hr className="h-16 border-light-gray-color ms-7" />
                 </div>
@@ -128,7 +129,7 @@ const PreviousOrder = () => {
                         Delivery Address
                       </p>
                       <p className="text-sm font-medium line-clamp-2">
-                        {customerData?.address}
+                        {GetPreviousOrderRedux?.PreviousOrder[0]?.deliveryAddress}
                       </p>
                     </div>
                   </div>
@@ -136,7 +137,7 @@ const PreviousOrder = () => {
                     {/* <Coins className="w-4 h-4 text-amber-500 mr-1" /> */}
                     <img className="w-5 h-5" src={Coin} alt="" />
                     <span className="text-xs font-medium ms-1">
-                      {customerData?.points} Pt
+                      {GetPreviousOrderRedux?.PreviousOrder[0]?.points} Pt
                     </span>
                   </div>
                 </div>
@@ -148,15 +149,15 @@ const PreviousOrder = () => {
                 {/* Customer Name */}
                 <div className="flex  border-r xl:w-1/5 md:w-1/2 w-1/2">
                   <div className="flex-shrink-0 w-10 h-10  border rounded-md flex items-center justify-center me-4 ms-4">
-                    <span className="font-medium text-light-gray-color">
-                      RV
+                    <span className="font-medium text-light-gray-color uppercase">
+                      {GetPreviousOrderRedux?.PreviousOrder[0]?.customerName?.slice(0,2)}
                     </span>
                   </div>
                   <div className="me-7">
                     <p className="text-xs font-medium text-light-gray-color">
                       Customer's Name
                     </p>
-                    <p className="text-sm font-medium">Rahul Vijay</p>
+                    <p className="text-sm font-medium">{GetPreviousOrderRedux?.PreviousOrder[0]?.customerName}</p>
                   </div>
                 </div>
 
@@ -169,7 +170,7 @@ const PreviousOrder = () => {
                     <p className="text-xs font-medium text-light-gray-color">
                       Contact No
                     </p>
-                    <p className="text-sm font-medium">1234567890</p>
+                    <p className="text-sm font-medium">{GetPreviousOrderRedux?.PreviousOrder[0]?.customerNumber}</p>
                   </div>
                 </div>
 
@@ -182,7 +183,7 @@ const PreviousOrder = () => {
                     <p className="text-xs font-medium text-light-gray-color">
                       E- mail Address
                     </p>
-                    <p className="text-sm font-medium">asxyz123@gmail.com</p>
+                    <p className="text-sm font-medium">{GetPreviousOrderRedux?.PreviousOrder[0]?.customerEmail}</p>
                   </div>
                 </div>
 
@@ -197,8 +198,7 @@ const PreviousOrder = () => {
                         Delivery Address
                       </p>
                       <p className="text-sm font-medium line-clamp-2 ">
-                        123 Main Street, Apartment 4B, Indore, Madhya Pradesh,
-                        326023
+                      {GetPreviousOrderRedux?.PreviousOrder[0]?.deliveryAddress}
                       </p>
                     </div>
                   </div>
@@ -218,9 +218,10 @@ const PreviousOrder = () => {
           <div
             className={`grid grid-cols-[repeat(auto-fill,minmax(336px,336px))]`}
           >
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((i, index) => (
+            {GetPreviousOrderRedux?.PreviousOrder?.map((item, index) => (
               <PreviousOrderCards
                 key={index}
+                item={item}
                 OrderStatus={
                   index === 0
                     ? "Dine In"
@@ -253,4 +254,8 @@ const PreviousOrder = () => {
     </div>
   );
 };
-export default PreviousOrder;
+const mapStateToProps = (state) => ({
+  GetPreviousOrderRedux: state?.previousOrder,
+});
+
+export default connect(mapStateToProps, {})(PreviousOrder);
