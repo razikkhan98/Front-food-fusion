@@ -1,14 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
+import { UseContext } from "../../Context/context";
 
-const BASE_URL = "https://1228-106-222-217-121.ngrok-free.app"; // Change this to your API
+const Auth = JSON?.parse(sessionStorage?.getItem("User") ?? "{}");
+
+const BASE_URL =
+  "https://7049-2401-4900-8821-96ab-544f-d7e0-ef8c-a13.ngrok-free.app"; // Change this to your API
 
 const useApi = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const { UserAuth } = useContext(UseContext);
 
   const request = async (method, endpoint, data = null, params = null) => {
-    console.log('method: ', method);
     setLoading(true);
     setError(null);
 
@@ -21,6 +25,8 @@ const useApi = () => {
         headers: {
           "Content-Type": "application/json",
           "ngrok-skip-browser-warning": "69420",
+          Authorization: `Bearer ${UserAuth?.accessToken || Auth?.accessToken}`,
+          session: `${UserAuth?.session || Auth?.session}`,
         },
       });
 
@@ -28,7 +34,7 @@ const useApi = () => {
     } catch (err) {
       setError(err.response?.data || "Something went wrong!");
       console.error("API Error:", err);
-      return null; // Return null on error
+      return err.response?.data || null; // Return null on error
     } finally {
       setLoading(false);
     }
@@ -38,12 +44,3 @@ const useApi = () => {
 };
 
 export default useApi;
-
-
-
-
-
-
-
-
-

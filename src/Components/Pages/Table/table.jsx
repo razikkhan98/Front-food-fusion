@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Common Componets
 import LeftSideNavbar from "../../Common/SideNavbar/leftSideNavbar.jsx";
@@ -7,43 +7,26 @@ import TableCard from "../../Common/TableCard/tableCard.jsx";
 import Navbar from "../../Common/Navbar/navbar.jsx";
 import ChatBot from "../../Common/ChatBot/chatbot.jsx";
 
+// Import third Party components
+import { toast } from "react-toastify";
+
 // Import Images
 import bell from "../../Assets/Images/navbar-img/bell.svg";
 import magnify from "../../Assets/Images/navbar-img/MagnifyingGlass.svg";
+import useApi from "../../utils/Api/api.jsx";
 
 // Json
-const HomeButtons = [
-  { btn_name: "Ground Floor", btn_color: "bg-[--cashier-very-light-color]" },
-  { btn_name: "First Floor", btn_color: "bg-transparent" },
-  { btn_name: "Second Floor", btn_color: "bg-transparent" },
-];
+// const HomeButtons = [
+//   { btn_name: "Ground Floor", btn_color: "bg-[--cashier-very-light-color]" },
+//   { btn_name: "First Floor", btn_color: "bg-transparent" },
+//   { btn_name: "Second Floor", btn_color: "bg-transparent" },
+// ];
+
 const TableDataJson = [
   {
-    "tables": {
+    tables: {
       "Ground Floor": {
-        "tables": [
-          "Table 1",
-          "Table 2",
-          "Table 3",
-          "Table 4",
-          "Table 5",
-          "Table 6",
-          "Table 7",
-          "Table 8"
-        ]
-      },
-      "First Floor": {
-        "tables": [
-          "Table 1",
-          "Table 2",
-          "Table 3",
-          "Table 4",
-          "Table 5",
-          "Table 6"
-        ]
-      },
-      "Second Floor": {
-        "tables": [
+        tables: [
           "Table 1",
           "Table 2",
           "Table 3",
@@ -52,25 +35,98 @@ const TableDataJson = [
           "Table 6",
           "Table 7",
           "Table 8",
-          "Table 9"
-        ]
-      }
-    }
-  }
-]
+        ],
+      },
+      "First Floor": {
+        tables: [
+          "Table 1",
+          "Table 2",
+          "Table 3",
+          "Table 4",
+          "Table 5",
+          "Table 6",
+        ],
+      },
+      "Second Floor": {
+        tables: [
+          "Table 1",
+          "Table 2",
+          "Table 3",
+          "Table 4",
+          "Table 5",
+          "Table 6",
+          "Table 7",
+          "Table 8",
+          "Table 9",
+        ],
+      },
+    },
+  },
+];
 
-const HomeIcons = [{ nav_img: magnify,nav_imgname:"magnify" }, { nav_img: bell,nav_imgname:"bell" }];
+const HomeIcons = [
+  { nav_img: magnify, nav_imgname: "magnify" },
+  { nav_img: bell, nav_imgname: "bell" },
+];
 const HomeHeading = ["Book Table"];
 const Table = () => {
   // ========
   // States
   // ========
   const [CurrentTab, setCurrentTab] = useState();
+  // to set floor name for navbar
+  const [FloorNames, setFloorNames] = useState();
+  // to set floor wise avilable tables
+  const [FloorWiseTables, setFloorWiseTables] = useState();
+  const [BookedTableDtl, setBookedTableDtl] = useState();
+  const { request, error } = useApi();
   // ========
   // functions
   // ========
 
+  const fetchAllTable = async () => {
+    try {
+      const response = await request(
+        "GET",
+        "/food-fusion/cashier/getAllFloors"
+      );
+      const BookTableResponse = await request(
+        "GET",
+        "/food-fusion/cashier/todayorder"
+      );
+      const TableResponse = await request(
+        "GET",
+        "/food-fusion/cashier/getAllTables"
+      );
+      if (BookTableResponse[0]?.dine) {
+        setBookedTableDtl(TableResponse?.data);
+      }
+      if (response?.success) {
+        const FloorsName = response?.data?.map((i) => i?.floorName) || [];
+        setFloorNames(FloorsName);
+        setCurrentTab(FloorsName[0] || []);
+        const FloorWiseTable = response?.data?.map((i) => i?.tables) || [];
+        setFloorWiseTables(FloorWiseTable?.flat());
+      } else {
+        toast.error(error?.message || "Failed to load tables", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          // theme: "colored",
+        });
+      }
+    } catch (error) {}
+  };
 
+  // ===============
+  // UseEffect
+  // ===============
+  useEffect(() => {
+    fetchAllTable();
+  }, []);
 
   return (
     <>
@@ -79,11 +135,21 @@ const Table = () => {
         <LeftSideNavbar />
         <ChatBot />
         {/* Main Content Area */}
-        <div className={`flex-grow py-4 px-9 transition-all duration-300`}>
+        <div
+          className={`flex-grow py-4 px-9 transition-all duration-300 h-full overflow-auto hidden-scroll`}
+        >
           {/* Navbar */}
-          <div className="border-b">
+          <div className="border-b ">
             <Navbar
-              buttons={HomeButtons}
+              buttons={FloorNames?.map((floorName, index) => {
+                return {
+                  btn_name: floorName,
+                  btn_color:
+                    index === 0
+                      ? "bg-[--cashier-very-light-color]"
+                      : "bg-transparent",
+                };
+              })}
               icons={HomeIcons}
               pageHeading={HomeHeading}
               selectedTab={setCurrentTab}
@@ -98,14 +164,22 @@ const Table = () => {
               Table for 2 members
             </h2>
             <div className="grid grid-cols-[repeat(auto-fill,minmax(168px,168px))]">
-
-              {[1, 2, 3, 4, 5, 6, 7,8,9,10,11,12,13,14,15,16].map((i, index) => (
+              {BookedTableDtl?.map((i, index) => (
                 <>
-                  {/* <div key={i} onClick={toggleRightSidebar} className="bg-white rounded-lg shadow-md p-4 ">
-              <h2>Card {i}</h2>
-              <p>Some content for card {i}</p>
-            </div> */}
-                  <TableCard tableStatus={"blank"} index={index} tableNo={i} />
+                  {i?.totalChairs <= 3 &&
+                  String(i?.floorName) == String(CurrentTab) && i?.floorName == i?.floor?.floorName  ? (
+                    <>
+                      <TableCard
+                        tableStatus={i?.tablestatus}
+                        tableNo={i?.tableNumber}
+                        tableDetail={i?.customerId}
+                      />
+                    </>
+                  ) : (
+                    <>
+       
+                    </>
+                  )}
                 </>
               ))}
             </div>
@@ -114,11 +188,19 @@ const Table = () => {
             <h2 className="text-base font-semibold my-3">
               Table for 4 members
             </h2>
-            <div
-              className="grid grid-cols-[repeat(auto-fill,minmax(168px,168px))]">
-              {[1, 2, 3, 4, 5, 6].map((i, index) => (
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(168px,168px))]">
+              {BookedTableDtl?.map((i, index) => (
                 <>
-                  <TableCard tableStatus={"blank"} index={index} tableNo={i} />
+                  {i?.totalChairs <= 4 &&
+                  String(i?.floorName) == String(CurrentTab) && i?.floorName == i?.floor?.floorName ? (
+                    <TableCard
+                    tableStatus={i?.tablestatus}
+                    tableNo={i?.tableNumber}
+                    tableDetail={i?.customerId}
+                    />
+                  ) : (
+                    <></>
+                  )}
                 </>
               ))}
             </div>
@@ -132,11 +214,19 @@ const Table = () => {
                 Max Capacity 12 members
               </span>
             </div>
-            <div
-              className="grid grid-cols-[repeat(auto-fill,minmax(168px,168px))]">
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i, index) => (
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(168px,168px))]">
+               {BookedTableDtl?.map((i, index) => (
                 <>
-                  <TableCard tableStatus={"blank"} index={index} tableNo={i} />
+                  {i?.totalChairs >= 5 &&
+                  String(i?.floorName) == String(CurrentTab) && i?.floorName == i?.floor?.floorName ? (
+                    <TableCard
+                    tableStatus={i?.tablestatus}
+                    tableNo={i?.tableNumber}
+                    tableDetail={i?.customerId}
+                    />
+                  ) : (
+                    <></>
+                  )}
                 </>
               ))}
             </div>

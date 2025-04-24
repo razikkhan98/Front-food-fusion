@@ -23,6 +23,7 @@ const AddOnsModal = ({ isOpen, onClose, onSubmitFunc,addOns }) => {
   // State
   // ============
   const [selectedItems, setSelectedItems] = useState({});
+  const [quantities, setQuantities] = useState({});
   const [notes, setNotes] = useState("");
 
   // ==========
@@ -34,18 +35,66 @@ const AddOnsModal = ({ isOpen, onClose, onSubmitFunc,addOns }) => {
     reset();
   };
 
+  // const handleCheckboxChange = (item) => {
+  //   setSelectedItems((prevState) => ({
+  //     ...prevState,
+  //     [item]: !prevState[item],
+  //   }));
+  // };
+
+  const GetQuantity = (data) => {
+  }
+
+  // ==================================
+
   const handleCheckboxChange = (item) => {
     setSelectedItems((prevState) => ({
       ...prevState,
       [item]: !prevState[item],
     }));
+
+    // Reset the quantity if the checkbox is unchecked
+    if (!selectedItems[item]) {
+      setQuantities((prevQuantities) => ({
+        ...prevQuantities,
+        [item]: 0, // Set to 0 if checkbox is unchecked
+      }));
+    }
+  };
+  const updateQuantity = (item, count) => {
+    setQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [item]: count,
+    }));
   };
 
-  //
-    const onSubmit = () => {
-      onClose()
-      onSubmitFunc()
-    }
+  const onSubmit = () => {
+    const resultData = {
+      id: addOns?.id,
+      name: addOns?.name,
+      price:addOns?.price,
+      extraAddon: []
+    };
+  
+    addOns?.add_ons?.forEach(item => {
+      if (selectedItems[item?.option] || notes?.length > 0) { // Check if the add-on is selected
+        const addonObject = {
+          addonName: item?.option,
+          addonQuantity: quantities[item?.option] || 1, // Default to 1 if no quantity specified
+          addonAmount: (item?.price || 0) * (quantities[item?.option] || 1),
+          addonNotes: notes // Use the notes provided by the user
+        };
+        resultData.extraAddon.push(addonObject);
+      }
+    });
+    onSubmitFunc(resultData); // Pass the result data to the parent component
+    onClose(); // Close modal after submission
+    setNotes("")
+  };
+
+  const isItemSelected = (item) => {
+    return !!selectedItems[item];
+  };
 
   return (
     <Dialog
@@ -77,7 +126,7 @@ const AddOnsModal = ({ isOpen, onClose, onSubmitFunc,addOns }) => {
             item you have just added!!
           </p>
           <div className="h-56 overflow-scroll hidden-scroll">
-            {addOns?.map((item, index) => (
+            {addOns?.add_ons?.map((item, index) => (
               <label key={index} className="flex my-6 items-center">
                 <input
                   type="checkbox"
@@ -95,8 +144,13 @@ const AddOnsModal = ({ isOpen, onClose, onSubmitFunc,addOns }) => {
                     </span>
                     <IncrementDecrementFunctionality
                       AddonKey={"addOnQuantity"} // Pass add-on ID
-                      // quantity={addOnQuantities[item.id] || 0} // Pass current quantity, default to 0
-                      // onQuantityChange={handleQuantityChange}/
+                      GetQuantity={GetQuantity}
+                      // ItemId={addOns?.id}
+                      ItemId={item.option} // Use the item option as the ID for the quantity
+                      updateQuantity={updateQuantity}
+                      isOptionSelected={isItemSelected(item?.option)}
+                      // quantity={addOnQuantities[item?.id] || 0} // Pass current quantity, default to 0
+                      // onQuantityChange={handleQuantityChange}
                     />
                   </>
                 ) : (
@@ -104,6 +158,7 @@ const AddOnsModal = ({ isOpen, onClose, onSubmitFunc,addOns }) => {
                     Free
                   </span>
                 )}
+                
               </label>
             ))}
           </div>
@@ -121,7 +176,8 @@ const AddOnsModal = ({ isOpen, onClose, onSubmitFunc,addOns }) => {
           </div>
           <button
             className="w-full mt-6 cashier-main-bg-color text-base text-white py-2 px-4 rounded-full font-medium"
-            onClick={onSubmit}
+            // onClick={onSubmit}
+            onClick={handleSubmit(onSubmit)}
           >
             Save & Proceed
           </button>

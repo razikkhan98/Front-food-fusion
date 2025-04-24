@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
 
 // Common Components
 import LeftSideNavbar from "../../Common/SideNavbar/leftSideNavbar.jsx";
@@ -7,7 +6,6 @@ import RightSidebar from "../../Common/SideNavbar/rightSideNavbar.jsx";
 import Navbar from "../../Common/Navbar/navbar.jsx";
 import ChatBot from "../../Common/ChatBot/chatbot.jsx";
 import StaffDataModal from "../../Common/Modal/staffDataModal.jsx";
-
 
 // Images
 // import Toggle from "../../Assets/Images/sidebarImg/toggle.png";
@@ -19,370 +17,447 @@ import Sort from "../../Assets/Images/navbar-img/SortAscending.svg";
 import { PiChatsBold } from "react-icons/pi";
 import { HiOutlineBellAlert } from "react-icons/hi2";
 import { BsTelephone } from "react-icons/bs";
-// import { MdOutlineKeyboardDoubleArrowLeft, MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
-
+import useApi from "../../utils/Api/api.jsx";
 
 // Role JSON Data
 const employees = [
+  {
+    initials: "DJ",
 
-    {
+    name: "Dollar Jain",
 
-        initials: "DJ",
+    phone: "+91-9715555555",
 
-        name: "Dollar Jain",
+    role: "Admin",
 
-        phone: "+91-9715555555",
+    shift: "Morning",
 
-        role: "Admin",
+    status: "Present",
 
-        shift: "Morning",
+    statuscolor: "text-light-green bg-light-green",
 
-        status: "Present",
+    task: "-",
 
-        statuscolor: "text-light-green bg-light-green",
+    color: "bg-dark-green-color",
 
-        task: "-",
+    dotcolor: "bg-green-color",
+  },
+  {
+    initials: "DJ",
 
-        color: "bg-dark-green-color",
+    name: "Dollar Jain",
 
-        dotcolor: "bg-green-color",
-    },
-    {
+    phone: "+91-9715555555",
 
-        initials: "DJ",
+    role: "Admin",
 
-        name: "Dollar Jain",
+    shift: "Afternoon",
 
-        phone: "+91-9715555555",
+    status: "Present",
 
-        role: "Admin",
+    statuscolor: "text-light-green bg-light-green",
 
-        shift: "Afternoon",
+    task: "Serving Table 2",
 
-        status: "Present",
+    color: "bg-dark-green-color",
 
-        statuscolor: "text-light-green bg-light-green",
+    dotcolor: "bg-green-color",
+  },
+  {
+    initials: "DJ",
 
-        task: "Serving Table 2",
+    name: "Dollar Jain",
 
-        color: "bg-dark-green-color",
+    phone: "+91-9715555555",
 
-        dotcolor: "bg-green-color",
-    },
-    {
+    role: "Chef Supervisor",
 
-        initials: "DJ",
+    shift: "Morning",
 
-        name: "Dollar Jain",
+    status: "Present",
 
-        phone: "+91-9715555555",
+    statuscolor: "text-light-green bg-light-green",
 
-        role: "Chef Supervisor",
+    task: "-",
 
-        shift: "Morning",
+    color: "bg-dark-green-color",
 
-        status: "Present",
+    dotcolor: "bg-green-color",
+  },
+  {
+    initials: "DJ",
 
-        statuscolor: "text-light-green bg-light-green",
+    name: "Dollar Jain",
 
-        task: "-",
+    phone: "+91-9715555555",
 
-        color: "bg-dark-green-color",
+    role: "Admin",
 
-        dotcolor: "bg-green-color",
-    },
-    {
+    shift: "Afternoon",
 
-        initials: "DJ",
+    status: "Present",
 
-        name: "Dollar Jain",
+    statuscolor: "text-light-green bg-light-green",
 
-        phone: "+91-9715555555",
+    task: "-",
 
-        role: "Admin",
+    color: "bg-dark-green-color",
 
-        shift: "Afternoon",
+    dotcolor: "bg-green-color",
+  },
+  {
+    initials: "DJ",
 
-        status: "Present",
+    name: "Dollar Jain",
 
-        statuscolor: "text-light-green bg-light-green",
+    phone: "+91-9715555555",
 
-        task: "-",
+    role: "Admin",
 
-        color: "bg-dark-green-color",
+    shift: "Afternoon",
 
-        dotcolor: "bg-green-color",
-    },
-    {
+    status: "Present",
 
-        initials: "DJ",
+    statuscolor: "text-light-green bg-light-green",
 
-        name: "Dollar Jain",
+    task: "-",
 
-        phone: "+91-9715555555",
+    color: "bg-dark-green-color",
 
-        role: "Admin",
+    dotcolor: "bg-green-color",
+  },
 
-        shift: "Afternoon",
+  {
+    initials: "RK",
 
-        status: "Present",
+    name: "Razik Khan",
 
-        statuscolor: "text-light-green bg-light-green",
+    phone: "+91-9715555555",
 
-        task: "-",
+    role: "Cashier",
 
-        color: "bg-dark-green-color",
+    shift: "Afternoon",
 
-        dotcolor: "bg-green-color",
-    },
+    status: "On Leave",
 
-    {
+    statuscolor: "text-color-red bg-color-red",
 
-        initials: "RK",
+    task: "Serving Table 2",
 
-        name: "Razik Khan",
+    color: "bg-dark-blue-color",
 
-        phone: "+91-9715555555",
+    dotcolor: "bg-red-color",
+  },
+  {
+    initials: "SK",
 
-        role: "Cashier",
+    name: "Shumaila Khan",
 
-        shift: "Afternoon",
+    phone: "+91-9715555555",
 
-        status: "On Leave",
+    role: "Cashier",
 
-        statuscolor: "text-color-red bg-color-red",
+    shift: "Morning",
 
-        task: "Serving Table 2",
+    status: "Present",
 
-        color: "bg-dark-blue-color",
+    statuscolor: "text-light-green bg-light-green",
 
-        dotcolor: "bg-red-color",
-    },
-    {
+    task: "Orders & Payments",
 
-        initials: "SK",
+    color: "bg-light-purple-color",
 
-        name: "Shumaila Khan",
+    dotcolor: "bg-green-color",
+  },
+  {
+    initials: "RK",
 
-        phone: "+91-9715555555",
+    name: "Razik Khan",
 
-        role: "Cashier",
+    phone: "+91-9715555555",
 
-        shift: "Morning",
+    role: "Cashier",
 
-        status: "Present",
+    shift: "Morning",
 
-        statuscolor: "text-light-green bg-light-green",
+    status: "On Leave",
 
-        task: "Orders & Payments",
+    statuscolor: "text-color-red bg-color-red",
 
-        color: "bg-light-purple-color",
+    task: "Orders & Payments",
 
-        dotcolor: "bg-green-color",
+    color: "bg-dark-blue-color",
 
-    },
-    {
+    dotcolor: "bg-red-color",
+  },
+  {
+    initials: "DJ",
 
-        initials: "RK",
+    name: "Dollar Jain",
 
-        name: "Razik Khan",
+    phone: "+91-9715555555",
 
-        phone: "+91-9715555555",
+    role: "Admin",
 
-        role: "Cashier",
+    shift: "Morning",
 
-        shift: "Morning",
+    status: "Present",
 
-        status: "On Leave",
+    statuscolor: "text-light-green bg-light-green",
 
-        statuscolor: "text-color-red bg-color-red",
+    task: "-",
 
-        task: "Orders & Payments",
+    color: "bg-light-purple-color",
 
-        color: "bg-dark-blue-color",
+    dotcolor: "bg-green-color",
+  },
+  {
+    initials: "RK",
 
-        dotcolor: "bg-red-color",
-    },
-    {
+    name: "Razik Khan",
 
-        initials: "DJ",
+    phone: "+91-9715555555",
 
-        name: "Dollar Jain",
+    role: "Cashier",
 
-        phone: "+91-9715555555",
+    shift: "Morning",
 
-        role: "Admin",
+    status: "On Leave",
 
-        shift: "Morning",
+    statuscolor: "text-color-red bg-color-red",
 
-        status: "Present",
+    task: "Orders & Payments",
 
-        statuscolor: "text-light-green bg-light-green",
+    color: "bg-dark-green-color",
 
-        task: "-",
-
-        color: "bg-light-purple-color",
-
-        dotcolor: "bg-green-color",
-    },
-    {
-
-        initials: "RK",
-
-        name: "Razik Khan",
-
-        phone: "+91-9715555555",
-
-        role: "Cashier",
-
-        shift: "Morning",
-
-        status: "On Leave",
-
-        statuscolor: "text-color-red bg-color-red",
-
-        task: "Orders & Payments",
-
-        color: "bg-dark-green-color",
-
-        dotcolor: "bg-red-color",
-    },
+    dotcolor: "bg-red-color",
+  },
 ];
 
+const Roless = [
+    {
+        _id: "67fe05c0ea728b6d28df9abe",
+        fullname: "Razik khan",
+        email: "Razik@gmail.com",
+        password: "$2a$10$85CUS5DWUtyY2fQ82e/d9.r09NiYf1Qt3h12a17qdFRB3Mwmk6QtS",
+        CountryCode: "+91",
+        mobileNum: "9876543210",
+        altNum: "9876543210",
+        address: "Sapna sangeeta",
+        role: "Cashier",
+        joining: "13-3-2024",
+        code: "01CA9876543210",
+        salary: 25000,
+        age: 25,
+        createdAt: "2025-04-15T07:07:44.648Z",
+        updatedAt: "2025-04-15T07:07:44.778Z",
+        sequence: 1,
+        __v: 0
+    },
+    {
+        _id: "67fe3c4e83b3339fd8aa5b5b",
+        fullname: "Nazli",
+        email: "Nazlo@gmail.com",
+        password: "$2a$10$UcSRuQ48zST/IiB/DDMU0.fBgw/V0tidZKuioWeb3eduT7JEpaRLy",
+        CountryCode: "+91",
+        mobileNum: "8877098765",
+        altNum: "9876543210",
+        address: "Sapna sangeeta",
+        role: "Cashier",
+        joining: "15-4-2024",
+        code: "02CA8877098765",
+        salary: 20000,
+        age: 23,
+        createdAt: "2025-04-15T11:00:30.919Z",
+        updatedAt: "2025-04-15T11:00:30.996Z",
+        sequence: 2,
+        __v: 0
+    }
+]
 
-const StaffIcons = [
-    { nav_img: magnify },
-    { nav_img: Sort },
-    { nav_img: bell },
-];
-const StaffHeading = [
-    "Staff Data"
-];
+const StaffIcons = [{ nav_img: magnify }, { nav_img: Sort }, { nav_img: bell }];
+const StaffHeading = ["Staff Data"];
 const StaffData = () => {
-    // ==========  
-    // State 
-    // ============ 
-    const [visibleRow, setVisibleRow] = useState(null);
-    const [ModalOpen, setModalOpen] = useState(false);
-    const [CurrentTab, setCurrentTab] = useState();
+  // ==========
+  // State
+  // ============
+  const [visibleRow, setVisibleRow] = useState(null);
+  const [ModalOpen, setModalOpen] = useState(false);
+  const [CurrentTab, setCurrentTab] = useState();
+  const [StaffData, setStaffData] = useState();
+  const { request, loading, error } = useApi();
+  // ==========
+  // Function
+  // ============
+  const handleNotifyClick = (index) => {
+    setVisibleRow(visibleRow === index ? null : index);
+  };
+  console.log("CurrentTab: ", CurrentTab);
+
+  // Function Open Modal
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  // Close Modal
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  // Function to fetch staff data from api
+  const FetchStaffData = async () => {
+    try {
+      const response = await request(
+        "GET",
+        "/food-fusion/cashier//staff/getAllUsers"
+      );
+      setStaffData(response?.data)
+    } catch (error) {
+      console.log("error: ", error);
+    }
+  };
+
+  //==================
+  // Useeffect
+  //==================
+useEffect(() => {
+    FetchStaffData()
+}, [])
 
 
 
-    // ==========  
-    // Function 
-    // ============
-    const handleNotifyClick = (index) => {
-        setVisibleRow(visibleRow === index ? null : index);
-    };
-    console.log('CurrentTab: ', CurrentTab);
+  return (
+    <>
+      <div className="flex h-screen overflow-hidden">
+        {/* Left Sidebar */}
+        <LeftSideNavbar />
+        <ChatBot />
 
-    // Function Open Modal
-    const openModal = () => {
-        setModalOpen(true);
-    };
-
-    // Close Modal
-    const closeModal = () => {
-        setModalOpen(false);
-    };
-
-    return (
-        <>
-            <div className="flex h-screen overflow-hidden">
-                {/* Left Sidebar */}
-                <LeftSideNavbar />
-                <ChatBot />
-
-
-                {/* Main Content Area */}
-                <div className={`flex-grow py-4 px-9 transition-all duration-300 me-6`}>
-
-                    {/* <Navbar /> */}
-                    <div className="border-b">
-                        <Navbar icons={StaffIcons} pageHeading={StaffHeading} selectedTab={setCurrentTab} />
-                    </div>
-
-                    {/* Table Start */}
-                    <div className="mt-4 border-t rounded-xl overflow-auto h-5/6 hidden-scroll">
-                        <table className="w-full border border-t-0 rounded-xl">
-                            <thead className="sticky top-0 bg-white mt-0 z-20">
-                                <tr className="cashier-bg-table-color text-center">
-                                    <th className="px-6 py-3 font-normal text-sm text-left">Employee Name</th>
-                                    <th className="px-4 py-3 font-normal text-sm">Role</th>
-                                    <th className="px-4 py-3 font-normal text-sm">Shift</th>
-                                    <th className="px-4 py-3 font-normal text-sm">Status</th>
-                                    <th className="px-4 py-3 font-normal text-sm">Notify</th>
-                                    <th className="px-4 py-3 font-normal text-sm">Assigned Task</th>
-                                </tr>
-                            </thead>
-                            <tbody className="bg-white">
-                                {employees.map((employee, index) => (
-                                    <tr key={index} className="border-t text-center">
-                                        <td className="px-6 py-3 flex items-center space-x-3 text-left">
-                                            <span className={`w-10 h-10 flex items-center justify-center text-white text-lg font-medium rounded-md ${employee.color}`}>{employee.initials}</span>
-                                            <div>
-                                                <p className="text-color-black text-sm font-normal">{employee.name}</p>
-                                                <p className="text-xs font-normal text-gray-500">{employee.phone}</p>
-                                            </div>
-                                        </td>
-                                        <td className="px-6 py-3 text-color-black text-sm font-normal">{employee.role}</td>
-                                        <td className="px-4 py-3 text-color-black text-sm font-normal">{employee.shift}</td>
-                                        <td className="px-4 py-3 flex justify-center">
-                                            <span className={`${employee.statuscolor} rounded-md px-3 font-medium text-xs flex items-center justify-center py-1`}>
-                                                <span className={`w-2 h-2 ${employee.dotcolor} rounded-full mr-2`}></span> {employee.status}
-                                            </span>
-                                        </td>
-                                        <td className="px-4 py-3 relative">
-                                            <button className="px-7 py-2 border border-[--cashier-main-color] text-xs font-medium cashier-main-text-color rounded-full hover:bg-[--cashier-main-color] hover:text-white"
-                                                onClick={() => handleNotifyClick(index)}
-                                            >Notify</button>
-
-
-                                            {visibleRow === index && (
-                                                <div className="absolute top-[100%] left-1/2 transform -translate-x-1/2 -translate-y-3 flex space-x-8 p-2 z-10">
-                                                    <button className="rounded-full bg-gray-light-color border h-10 w-10 flex items-center justify-center notify-chat"
-                                                        onClick={() => openModal()}
-                                                    >
-                                                        <PiChatsBold className="text-xl cursor-pointer" />
-                                                    </button>
-                                                    <div className="rounded-full bg-gray-light-color h-10 w-10  flex items-center justify-center border notify-bell">
-                                                        <HiOutlineBellAlert className="text-xl cursor-pointer" />
-                                                    </div>
-                                                    <div className="rounded-full bg-gray-light-color h-10 w-10  flex items-center justify-center border notify-call">
-                                                        <BsTelephone className="text-xl cursor-pointer" />
-                                                    </div>
-
-                                                </div>
-                                            )}
-                                        </td>
-                                        <td className="px-4 py-3 text-color-black text-sm font-normal">{employee.task}</td>
-                                    </tr>
-
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                    {/* Table End */}
-                </div>
-                {/* Right Sidebar */}
-                <div
-                    className={`transition-all duration-300 ease-in-out relative rounded-l-3xl 
-                `}
-                >
-                    <RightSidebar />
-                </div>
-
-            </div>
-
-
-            <StaffDataModal
-                isOpen={ModalOpen}
-                closeModal={closeModal}
+        {/* Main Content Area */}
+        <div
+          className={`flex-grow py-4 px-9 transition-all duration-300 me-6 h-full overflow-auto hidden-scroll`}
+        >
+          {/* <Navbar /> */}
+          <div className="border-b">
+            <Navbar
+              icons={StaffIcons}
+              pageHeading={StaffHeading}
+              selectedTab={setCurrentTab}
             />
-        </>
-    );
+          </div>
 
+          {/* Table Start */}
+          <div className="mt-4 border-t rounded-xl overflow-auto h-5/6 hidden-scroll">
+            <table className="w-full border border-t-0 rounded-xl">
+              <thead className="sticky top-0 bg-white mt-0 z-20">
+                <tr className="cashier-bg-table-color text-center">
+                  <th
+                    scope="col"
+                    className="px-6 py-3 font-normal text-sm text-left"
+                  >
+                    Employee Name
+                  </th>
+                  <th scope="col" className="px-4 py-3 font-normal text-sm">
+                    Role
+                  </th>
+                  <th scope="col" className="px-4 py-3 font-normal text-sm">
+                    Shift
+                  </th>
+                  <th scope="col" className="px-4 py-3 font-normal text-sm">
+                    Status
+                  </th>
+                  <th scope="col" className="px-4 py-3 font-normal text-sm">
+                    Notify
+                  </th>
+                  <th scope="col" className="px-4 py-3 font-normal text-sm">
+                    Assigned Task
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white">
+                {(Roless||StaffData)?.map((employee, index) => (
+                  <tr key={index} className="border-t text-center">
+                    <th
+                      scope="row"
+                      className="px-6 py-3 flex items-center space-x-3 text-left"
+                    >
+                      <span
+                        className={`w-10 h-10 flex items-center justify-center text-white text-lg font-medium rounded-md uppercase ${!employee.color?"bg-dark-blue-color":"bg-light-purple-color"}`}
+                      >
+                        {employee?.fullname?.slice(0,2)}
+                      </span>
+                      <div>
+                        <p className="text-color-black whitespace-nowrap text-sm font-normal">
+                          {employee?.fullname}
+                        </p>
+                        <p className="text-xs font-normal text-gray-500">
+                          {employee?.mobileNum}
+                        </p>
+                      </div>
+                    </th>
+                    <td className="px-6 py-3 text-color-black text-sm font-normal">
+                      {employee.role || "-"}
+                    </td>
+                    <td className="px-4 py-3 text-color-black text-sm font-normal">
+                      {employee.shift|| "-"}
+                    </td>
+                    <td className="px-4 py-3 flex justify-center">
+                      <span
+                        className={`${employee.statuscolor ?"text-light-green bg-light-green":"text-color-red bg-color-red"} rounded-md px-3 font-medium text-xs flex items-center justify-center py-1`}
+                      >
+                        <span
+                          className={`w-2 h-2 ${employee.dotcolor?"bg-green-color":"bg-red-color"} rounded-full mr-2`}
+                        ></span>{" "}
+                        {employee.status|| "-"}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 relative">
+                      <button
+                        className="px-7 py-2 border border-[--cashier-main-color] text-xs font-medium cashier-main-text-color rounded-full hover:bg-[--cashier-main-color] hover:text-white"
+                        onClick={() => handleNotifyClick(index)}
+                      >
+                        Notify
+                      </button>
+
+                      {visibleRow === index && (
+                        <div className="absolute top-[100%] left-1/2 transform -translate-x-1/2 -translate-y-3 flex space-x-8 p-2 z-10">
+                          <button
+                            className="rounded-full bg-gray-light-color border h-10 w-10 flex items-center justify-center notify-chat"
+                            onClick={() => openModal()}
+                          >
+                            <PiChatsBold className="text-xl cursor-pointer" />
+                          </button>
+                          <div className="rounded-full bg-gray-light-color h-10 w-10  flex items-center justify-center border notify-bell">
+                            <HiOutlineBellAlert className="text-xl cursor-pointer" />
+                          </div>
+                          <div className="rounded-full bg-gray-light-color h-10 w-10  flex items-center justify-center border notify-call">
+                            <BsTelephone className="text-xl cursor-pointer" />
+                          </div>
+                        </div>
+                      )}
+                    </td>
+                    <td className="px-4 py-3 text-color-black text-sm font-normal">
+                      {employee.task || "-"}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          {/* Table End */}
+        </div>
+        {/* Right Sidebar */}
+        <div
+          className={`transition-all duration-300 ease-in-out relative rounded-l-3xl 
+                `}
+        >
+          <RightSidebar />
+        </div>
+      </div>
+
+      <StaffDataModal isOpen={ModalOpen} closeModal={closeModal} />
+    </>
+  );
 };
 
 export default StaffData;
-

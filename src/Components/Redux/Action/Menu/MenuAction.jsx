@@ -1,6 +1,6 @@
 export const AddMenuActRedux = (state, action) => {
   const existingItemIndex = state.Menu?.findIndex(
-    (i) => i?.customerID === action.payload.customerID
+    (i) => i?.orderID === action.payload.orderID
   );
 
   if (existingItemIndex !== -1) {
@@ -18,7 +18,7 @@ export const AddMenuActRedux = (state, action) => {
 
 export const IncreaseItemQuantityActRedux = (state, action) => {
   const existingItemIndex = state?.Menu?.findIndex(
-    (i) => i?.customerID === action?.payload
+    (i) => i?.orderID === action?.payload
   );
   if (existingItemIndex !== -1) {
     state.Menu[existingItemIndex] = {
@@ -30,7 +30,7 @@ export const IncreaseItemQuantityActRedux = (state, action) => {
 
 export const DecreaseItemQuantityActRedux = (state, action) => {
   const existingItemIndex = state?.Menu?.findIndex(
-    (i) => i?.customerID === action?.payload
+    (i) => i?.orderID === action?.payload
   );
 
   if (existingItemIndex !== -1) {
@@ -62,3 +62,13 @@ export const ChangeInputItemQuantityActRedux = (state, action) => {
     }
   }
 };
+
+
+// ===================================
+// Add ons Data Functionality
+// ===================================
+
+export const GetAddOnsActRedux = (state, action) => {
+  console.log('action: ', action?.payload);
+// state?.AddOnsData
+}

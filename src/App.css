@@ -71,7 +71,7 @@ body {
   --whatsapp-green-color: #25d366;
   --blue-color: #4285f4;
   --btn-gray-color: #eaeaea;
-  --dropdown-option-color:#ffe9d51a;
+  --dropdown-option-color: #ffe9d51a;
 }
 
 /* 
@@ -189,10 +189,12 @@ body {
 .orderside-menu-status {
   background-color: rgba(255, 233, 213, 0.5);
 }
+
 .auto-modal-background {
   background-color: #00000080;
 }
-.dropdown-option-color:hover{
+
+.dropdown-option-color:hover {
   background-color: #FAF7F3;
 }
 
@@ -259,7 +261,9 @@ body {
 .text-yellow-color {
   color: var(--yellow-color);
 }
-
+.text-gray-gif{
+  color: rgba(0, 0, 0, 0.44);
+}
 /* 
   =========================
 
@@ -279,6 +283,7 @@ body {
 .border-cashier {
   border: 2px solid var(--cashier-main-color);
 }
+
 .border-cashier-1 {
   border: 1px solid var(--cashier-main-color);
 }
@@ -310,6 +315,7 @@ body {
 .border-light-color {
   border: 1px solid var(--light-color);
 }
+
 .border-light-gray-color {
   border: 1px solid var(--btn-gray-color);
 }
@@ -712,12 +718,18 @@ Home Page
   .hidden-tablet {
     display: none;
   }
+
+  .user-box {
+    width: 100px !important;
+    height: 100px !important;
+  }
 }
 
 @media screen and (max-width: 480px) {
   .hidden-mobile {
     display: none;
   }
+
 }
 
 /* 
@@ -831,6 +843,10 @@ height & Width CSS
   height: 85.5px;
   width: 85.5px;
 }
+.settle-bill-modal {
+  height: 482px;
+  width: 580px;
+}
 
 .login-modal {
   /* height: 482px; */
@@ -898,12 +914,15 @@ height & Width CSS
 .width-100vw {
   width: 100vw;
 }
+
 .auto-suggest {
   height: 280px;
 }
+
 .menudetailSliderimg {
   height: 182px;
 }
+
 .orderside-menu {
   width: 330px;
   /* height: 931px; */
@@ -912,25 +931,31 @@ height & Width CSS
 .invoice-card-scroll {
   height: 75vh;
 }
+
 .notification-modal {
   width: 465px;
   height: 634px;
 }
+
 .notification-modal-content {
   height: 580px;
 }
+
 .calender-modal {
   width: 346px;
   height: 370px;
 }
+
 .notify-alert-position {
   left: 40%;
 }
-.order-process button{
+
+.order-process button {
   width: 70px;
   height: 56px;
 }
-.order-process input{
+
+.order-process input {
   width: 87px !important;
   height: 56px;
 }
@@ -938,9 +963,11 @@ height & Width CSS
 .rightside-shedule-order-height {
   height: 28vh;
 }
+
 .auto-online-order-scroll::-webkit-scrollbar {
   width: 1px;
 }
+
 .auto-online-order-scroll::-webkit-scrollbar-track {
   background-color: #EAEAEA;
 }
@@ -1015,13 +1042,16 @@ Input Selector Css (Arrow)
 .notify-bell {
   color: var(--yellow-color);
 }
+
 .notify-bell:hover {
   background-color: var(--yellow-color);
   color: white;
 }
+
 .notify-chat {
   color: var(--blue-color);
 }
+
 .notify-chat:hover {
   background-color: var(--blue-color);
   color: white;
@@ -1035,6 +1065,7 @@ Input Selector Css (Arrow)
   background-color: #94D82D;
   color: white;
 }
+
 .dropdown-list-light-color {
   background-color: rgba(255, 233, 213, 0.1);
 }
@@ -1051,3 +1082,39 @@ User Details Css
 .icon-bg-color {
   background-color: rgba(234, 234, 234, 0.2);
 }
+
+
+
+/* ==================== */
+/* AutoOrderPopupModal.css */
+/* .modal-closing {
+  animation: fadeOutOverlay 0.3s ease-out forwards;
+}
+
+.modal-content-closing {
+  animation: slideDownFade 0.3s ease-out forwards;
+} */
+
+/* @keyframes fadeOutOverlay {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideDownFade {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  70% {
+    opacity: 0.5;
+    transform: translateY(20px) scale(0.95);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+  }
+} */

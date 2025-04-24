@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 // import images
 import edit from "../../Assets/Images/sidebarImg/edit.svg";
@@ -17,6 +17,7 @@ import {
   MdOutlineKeyboardDoubleArrowLeft,
   MdOutlineKeyboardDoubleArrowRight,
 } from "react-icons/md";
+import { UseContext } from "../../Context/context";
 
 // Json
 const tableData = [
@@ -51,6 +52,7 @@ const RightSidebar = () => {
   // ============
   const [isOpen, setIsOpen] = useState(true);
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
+   const { setCustomerDetailsCnxt } = useContext(UseContext);
   // ==========
   // Functions
   // ============
@@ -85,7 +87,7 @@ const RightSidebar = () => {
           className={`${isRightSidebarOpen ? "" : "hidden"}`}
           to={"/order"}
         >
-          <button className="w-full cashier-main-bg-color text-white py-2 px-4 rounded-full font-medium text-base flex items-center justify-center">
+          <button onClick={()=>setCustomerDetailsCnxt() } className="w-full cashier-main-bg-color text-white py-2 px-4 rounded-full font-medium text-base flex items-center justify-center">
             <img src={Plus} className="me-2 h-5 w-5" alt="Loading" /> Create New
             Order
           </button>
@@ -115,7 +117,7 @@ const RightSidebar = () => {
         </div>
 
         {/* Schedule New Order Button */}
-        <button className={`${isRightSidebarOpen ? "" : "hidden"}  w-full text-base font-medium bg-[#ffffff4d] py-2 my-5 px-4 rounded-full border-white border flex items-center justify-center`}>
+        <button  className={`${isRightSidebarOpen ? "" : "hidden"}  w-full text-base font-medium bg-[#ffffff4d] py-2 my-5 px-4 rounded-full border-white border flex items-center justify-center`}>
           <img src={PlusBlack} className="me-2 h-5 w-5" alt="Loading" />{" "}
           Schedule New Order
         </button>

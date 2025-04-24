@@ -4,10 +4,12 @@ import {
   AddMenuActRedux,
   ChangeInputItemQuantityActRedux,
   DecreaseItemQuantityActRedux,
+  GetAddOnsActRedux,
   IncreaseItemQuantityActRedux,
 } from "../../Action/Menu/MenuAction";
 export const initialState = {
   Menu: [],
+  AddOnsData:[],
 };
 const MenuSlice = createSlice({
   name: "menu",
@@ -17,6 +19,7 @@ const MenuSlice = createSlice({
     IncreaseItemQuantityActRedux,
     DecreaseItemQuantityActRedux,
     ChangeInputItemQuantityActRedux,
+    GetAddOnsActRedux,
   },
 });
 
@@ -25,6 +28,7 @@ export const {
   IncreaseItemQuantityActRedux: IncreaseItemQuantityRedux,
   DecreaseItemQuantityActRedux: DecreaseItemQuantityRedux,
   ChangeInputItemQuantityActRedux:ChangeInputItemQuantityRedux,
+  GetAddOnsActRedux:GetAddOnsRedux,
 } = MenuSlice.actions;
 
 export default MenuSlice.reducer;

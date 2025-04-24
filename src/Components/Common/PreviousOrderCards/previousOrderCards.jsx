@@ -9,9 +9,9 @@ const items = [
     { name: "Veg Pizza", quantity: 1, price: 280 },
     { name: "Samosa", quantity: 2, price: 40 },
 ];
-const PreviousOrderCards = ({OrderStatus}) => {
+const PreviousOrderCards = ({OrderStatus,item}) => {
     // Dynamically assign text and styles
-    let statusText = OrderStatus;
+    let statusText = item?.customerStatus;
     let bgColor = "";
     let textColor = "";
 
@@ -52,8 +52,8 @@ const PreviousOrderCards = ({OrderStatus}) => {
                 {/* Date & Time */}
                 <div className="flex justify-between text-sm pb-3">
                     <div className="font-medium">
-                        <span className='text-sm text-color-gray pb-1'> Date :<span className='text-xs text-color-black ps-1'>12-12-24</span> </span>
-                        <div className='text-sm text-color-gray'>Time:<span className='text-sm text-color-black ps-1'> 05:30 PM</span></div>
+                        <span className='text-sm text-color-gray pb-1'> Date :<span className='text-xs text-color-black ps-1'>{item?.ordeDate}</span> </span>
+                        <div className='text-sm text-color-gray'>Time:<span className='text-sm text-color-black ps-1'>{item?.orderTime}</span></div>
                     </div>
 
                     {/* Order Status Tag */}
