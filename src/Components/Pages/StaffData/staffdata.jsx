@@ -18,7 +18,6 @@ import { PiChatsBold } from "react-icons/pi";
 import { HiOutlineBellAlert } from "react-icons/hi2";
 import { BsTelephone } from "react-icons/bs";
 import useApi from "../../utils/Api/api.jsx";
-// import { MdOutlineKeyboardDoubleArrowLeft, MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 
 // Role JSON Data
 const employees = [
